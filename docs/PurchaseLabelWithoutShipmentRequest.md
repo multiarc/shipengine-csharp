@@ -1,4 +1,4 @@
-# IO.Swagger.Model.PurchaseLabelWithoutShipmentRequest
+# ShipEngine.ApiClient.Model.PurchaseLabelWithoutShipmentRequest
 ## Properties
 
 Name | Type | Description | Notes

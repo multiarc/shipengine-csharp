@@ -1,4 +1,4 @@
-# IO.Swagger.Model.WarehouseRequest
+# ShipEngine.ApiClient.Model.WarehouseRequest
 ## Properties
 
 Name | Type | Description | Notes

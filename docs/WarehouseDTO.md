@@ -1,4 +1,4 @@
-# IO.Swagger.Model.WarehouseDTO
+# ShipEngine.ApiClient.Model.WarehouseDTO
 ## Properties
 
 Name | Type | Description | Notes

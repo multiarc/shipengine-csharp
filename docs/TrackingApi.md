@@ -1,4 +1,4 @@
-# IO.Swagger.Api.TrackingApi
+# ShipEngine.ApiClient.Api.TrackingApi
 
 All URIs are relative to *https://api.shipengine.com*
 
@@ -21,9 +21,9 @@ Starts tracking events webhook notifications for a tracking number
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace Example
 {
@@ -91,9 +91,9 @@ Stops tracking events webhook notifications for a tracking number
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace Example
 {
@@ -161,9 +161,9 @@ Get tracking information by tracking number
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace Example
 {

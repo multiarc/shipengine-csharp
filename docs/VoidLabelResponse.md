@@ -1,4 +1,4 @@
-# IO.Swagger.Model.VoidLabelResponse
+# ShipEngine.ApiClient.Model.VoidLabelResponse
 ## Properties
 
 Name | Type | Description | Notes

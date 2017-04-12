@@ -1,4 +1,4 @@
-# IO.Swagger.Model.BatchResponseErrors
+# ShipEngine.ApiClient.Model.BatchResponseErrors
 ## Properties
 
 Name | Type | Description | Notes

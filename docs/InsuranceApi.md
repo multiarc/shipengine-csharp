@@ -1,4 +1,4 @@
-# IO.Swagger.Api.InsuranceApi
+# ShipEngine.ApiClient.Api.InsuranceApi
 
 All URIs are relative to *https://api.shipengine.com*
 
@@ -18,9 +18,9 @@ Add funds to your Shipsurance balance
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace Example
 {
@@ -85,9 +85,9 @@ Get your Shipsurance balance
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace Example
 {

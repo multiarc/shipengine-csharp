@@ -1,4 +1,4 @@
-# IO.Swagger.Api.CarriersApi
+# ShipEngine.ApiClient.Api.CarriersApi
 
 All URIs are relative to *https://api.shipengine.com*
 
@@ -21,9 +21,9 @@ Get a specific carrier
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace Example
 {
@@ -90,9 +90,9 @@ Get advanced options (such as Saturday delivery, special handling, etc...) for a
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace Example
 {
@@ -159,9 +159,9 @@ Get a list of carriers (carrier accounts)
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace Example
 {
@@ -224,9 +224,9 @@ Get packages for a carrier
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace Example
 {
@@ -291,9 +291,9 @@ Get shipping services for a carrier
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace Example
 {

@@ -1,4 +1,4 @@
-# IO.Swagger.Api.AddressValidationApi
+# ShipEngine.ApiClient.Api.AddressValidationApi
 
 All URIs are relative to *https://api.shipengine.com*
 
@@ -17,9 +17,9 @@ Method | HTTP request | Description
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace Example
 {

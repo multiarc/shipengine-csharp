@@ -1,4 +1,4 @@
-# IO.Swagger.Model.ShipmentResponseError
+# ShipEngine.ApiClient.Model.ShipmentResponseError
 ## Properties
 
 Name | Type | Description | Notes

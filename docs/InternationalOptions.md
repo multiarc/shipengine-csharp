@@ -1,4 +1,4 @@
-# IO.Swagger.Model.InternationalOptions
+# ShipEngine.ApiClient.Model.InternationalOptions
 ## Properties
 
 Name | Type | Description | Notes

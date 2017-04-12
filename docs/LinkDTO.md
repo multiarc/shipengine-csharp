@@ -1,4 +1,4 @@
-# IO.Swagger.Model.LinkDTO
+# ShipEngine.ApiClient.Model.LinkDTO
 ## Properties
 
 Name | Type | Description | Notes

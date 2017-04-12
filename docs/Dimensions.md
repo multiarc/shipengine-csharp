@@ -1,4 +1,4 @@
-# IO.Swagger.Model.Dimensions
+# ShipEngine.ApiClient.Model.Dimensions
 ## Properties
 
 Name | Type | Description | Notes

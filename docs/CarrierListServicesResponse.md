@@ -1,4 +1,4 @@
-# IO.Swagger.Model.CarrierListServicesResponse
+# ShipEngine.ApiClient.Model.CarrierListServicesResponse
 ## Properties
 
 Name | Type | Description | Notes

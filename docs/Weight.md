@@ -1,4 +1,4 @@
-# IO.Swagger.Model.Weight
+# ShipEngine.ApiClient.Model.Weight
 ## Properties
 
 Name | Type | Description | Notes

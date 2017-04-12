@@ -1,4 +1,4 @@
-# IO.Swagger.Model.ModifyBatchRequest
+# ShipEngine.ApiClient.Model.ModifyBatchRequest
 ## Properties
 
 Name | Type | Description | Notes

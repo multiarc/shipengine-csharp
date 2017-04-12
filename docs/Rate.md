@@ -1,4 +1,4 @@
-# IO.Swagger.Model.Rate
+# ShipEngine.ApiClient.Model.Rate
 ## Properties
 
 Name | Type | Description | Notes

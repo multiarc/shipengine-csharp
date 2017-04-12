@@ -1,4 +1,4 @@
-# IO.Swagger.Model.ApiErrorDTO
+# ShipEngine.ApiClient.Model.ApiErrorDTO
 ## Properties
 
 Name | Type | Description | Notes

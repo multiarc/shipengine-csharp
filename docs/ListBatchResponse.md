@@ -1,4 +1,4 @@
-# IO.Swagger.Model.ListBatchResponse
+# ShipEngine.ApiClient.Model.ListBatchResponse
 ## Properties
 
 Name | Type | Description | Notes

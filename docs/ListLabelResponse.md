@@ -1,4 +1,4 @@
-# IO.Swagger.Model.ListLabelResponse
+# ShipEngine.ApiClient.Model.ListLabelResponse
 ## Properties
 
 Name | Type | Description | Notes

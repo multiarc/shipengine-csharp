@@ -1,4 +1,4 @@
-# IO.Swagger.Model.ProcessBatchRequest
+# ShipEngine.ApiClient.Model.ProcessBatchRequest
 ## Properties
 
 Name | Type | Description | Notes

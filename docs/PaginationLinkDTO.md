@@ -1,4 +1,4 @@
-# IO.Swagger.Model.PaginationLinkDTO
+# ShipEngine.ApiClient.Model.PaginationLinkDTO
 ## Properties
 
 Name | Type | Description | Notes

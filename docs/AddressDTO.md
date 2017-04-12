@@ -1,4 +1,4 @@
-# IO.Swagger.Model.AddressDTO
+# ShipEngine.ApiClient.Model.AddressDTO
 ## Properties
 
 Name | Type | Description | Notes

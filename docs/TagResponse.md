@@ -1,4 +1,4 @@
-# IO.Swagger.Model.TagResponse
+# ShipEngine.ApiClient.Model.TagResponse
 ## Properties
 
 Name | Type | Description | Notes

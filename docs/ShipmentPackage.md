@@ -1,4 +1,4 @@
-# IO.Swagger.Model.ShipmentPackage
+# ShipEngine.ApiClient.Model.ShipmentPackage
 ## Properties
 
 Name | Type | Description | Notes

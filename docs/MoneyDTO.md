@@ -1,4 +1,4 @@
-# IO.Swagger.Model.MoneyDTO
+# ShipEngine.ApiClient.Model.MoneyDTO
 ## Properties
 
 Name | Type | Description | Notes

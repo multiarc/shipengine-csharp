@@ -1,4 +1,4 @@
-# IO.Swagger.Model.ProviderError
+# ShipEngine.ApiClient.Model.ProviderError
 ## Properties
 
 Name | Type | Description | Notes

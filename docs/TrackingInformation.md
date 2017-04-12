@@ -1,4 +1,4 @@
-# IO.Swagger.Model.TrackingInformation
+# ShipEngine.ApiClient.Model.TrackingInformation
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# IO.Swagger.Model.TrackEvent
+# ShipEngine.ApiClient.Model.TrackEvent
 ## Properties
 
 Name | Type | Description | Notes

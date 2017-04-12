@@ -1,4 +1,4 @@
-# IO.Swagger.Model.CreateShipmentsResponse
+# ShipEngine.ApiClient.Model.CreateShipmentsResponse
 ## Properties
 
 Name | Type | Description | Notes

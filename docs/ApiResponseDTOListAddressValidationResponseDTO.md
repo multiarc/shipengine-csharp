@@ -1,4 +1,4 @@
-# IO.Swagger.Model.ApiResponseDTOListAddressValidationResponseDTO
+# ShipEngine.ApiClient.Model.ApiResponseDTOListAddressValidationResponseDTO
 ## Properties
 
 Name | Type | Description | Notes

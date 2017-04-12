@@ -1,4 +1,4 @@
-# IO.Swagger.Model.CarrierAdvancedOption
+# ShipEngine.ApiClient.Model.CarrierAdvancedOption
 ## Properties
 
 Name | Type | Description | Notes

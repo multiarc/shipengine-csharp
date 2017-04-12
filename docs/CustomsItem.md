@@ -1,4 +1,4 @@
-# IO.Swagger.Model.CustomsItem
+# ShipEngine.ApiClient.Model.CustomsItem
 ## Properties
 
 Name | Type | Description | Notes

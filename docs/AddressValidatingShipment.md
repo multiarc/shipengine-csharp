@@ -1,4 +1,4 @@
-# IO.Swagger.Model.AddressValidatingShipment
+# ShipEngine.ApiClient.Model.AddressValidatingShipment
 ## Properties
 
 Name | Type | Description | Notes
