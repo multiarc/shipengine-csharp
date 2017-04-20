@@ -9,7 +9,7 @@
         <version>$version$</version>
 
         <!-- Authors contain text that appears directly on the gallery -->
-        <authors>$author$</authors>
+        <authors>ShipStation</authors>
 
         <!-- Owners are typically nuget.org identities that allow gallery
              users to earily find other packages by the same owners.  -->
@@ -19,7 +19,7 @@
 
         <!-- The description can be used in package manager UI. Note that the
              nuget.org gallery uses information you add in the portal. -->
-        <description>ShipEngine™</description>
+        <description>ShipEngine™ C# SDK, enables developers to build with the world’s best multi-carrier Shipping APIs.  Integrate with the world’s leading carriers, such as USPS, FedEx, UPS, DHL, and more! Compare rates, track packages, validate addresses, and print shipping labels all with a single solution.  ShipEngine™ is the platform of choice for tens of thousands of merchants, with over a billion shipments fulfilled and counting.</description>
 
         <!-- Dependencies are automatically installed when the package is installed -->
         <dependencies>
