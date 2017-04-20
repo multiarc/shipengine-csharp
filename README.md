@@ -1,5 +1,13 @@
 # ShipEngine.ApiClient - the C# library for the ShipEngine™
 
+<a name="nuget-install"></a>
+## Nuget Installation
+We're listed on Nuget for installation, simply find us in the package explorer, or install us using the Package Manager Console.
+
+```
+Install-Package ShipEngine.ApiClient
+```
+
 <a name="frameworks-supported"></a>
 ## Frameworks supported
 - .NET 4.0 or later
@@ -9,12 +17,6 @@
 ## Dependencies
 - [RestSharp](https://www.nuget.org/packages/RestSharp) - 105.1.0 or later
 - [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/) - 7.0.0 or later
-
-The DLLs included in the package may not be the latest version. We recommend using [NuGet] (https://docs.nuget.org/consume/installing-nuget) to obtain the latest version of the packages:
-```
-Install-Package RestSharp
-Install-Package Newtonsoft.Json
-```
 
 NOTE: RestSharp versions greater than 105.1.0 have a bug which causes file uploads to fail. See [RestSharp#742](https://github.com/restsharp/RestSharp/issues/742)
 
@@ -30,19 +32,6 @@ using ShipEngine.ApiClient.Api;
 using ShipEngine.ApiClient.Client;
 using ShipEngine.ApiClient.Model;
 ```
-
-<a name="packaging"></a>
-## Packaging
-
-A `.nuspec` is included with the project. You can follow the Nuget quickstart to [create](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package#create-the-package) and [publish](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package#publish-the-package) packages.
-
-This `.nuspec` uses placeholders from the `.csproj`, so build the `.csproj` directly:
-
-```
-nuget pack -Build -OutputDirectory out ShipEngine.ApiClient.csproj
-```
-
-Then, publish to a [local feed](https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds) or [other host](https://docs.microsoft.com/en-us/nuget/hosting-packages/overview) and consume the new package via Nuget as usual.
 
 <a name="getting-started"></a>
 ## Getting Started
