@@ -24,6 +24,7 @@
 
         <projectUrl>https://www.github.com/shipstation/shipengine-csharp</projectUrl>
         <copyright>© 2017 ShipStation. All rights reserved.</copyright>
+        <iconUrl>http://images.shipstation.com/shipengine/ShipEngine-64.png</iconUrl>
 
         <!-- Dependencies are automatically installed when the package is installed -->
         <dependencies>
