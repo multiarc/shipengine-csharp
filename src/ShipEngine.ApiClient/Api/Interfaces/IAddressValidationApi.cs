@@ -19,8 +19,8 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponseDTOListAddressValidationResponseDTO</returns>
-        ApiResponseDTOListAddressValidationResponseDTO AddressValidationValidateAddresses(List<AddressDTO> addresses,
+        /// <returns>List&lt;AddressValidationResponseDTO&gt;</returns>
+        List<AddressValidationResponseDTO> AddressValidationValidateAddresses(List<AddressDTO> addresses,
             string apiKey);
 
         /// <summary>
@@ -30,8 +30,8 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of ApiResponseDTOListAddressValidationResponseDTO</returns>
-        ApiResponse<ApiResponseDTOListAddressValidationResponseDTO> AddressValidationValidateAddressesWithHttpInfo(
+        /// <returns>ApiResponse of List&lt;AddressValidationResponseDTO&gt;</returns>
+        ApiResponse<List<AddressValidationResponseDTO>> AddressValidationValidateAddressesWithHttpInfo(
             List<AddressDTO> addresses, string apiKey);
 
         #endregion Synchronous Operations
@@ -45,8 +45,8 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponseDTOListAddressValidationResponseDTO</returns>
-        Task<ApiResponseDTOListAddressValidationResponseDTO> AddressValidationValidateAddressesAsync(
+        /// <returns>Task of List&lt;AddressValidationResponseDTO&gt;</returns>
+        Task<List<AddressValidationResponseDTO>> AddressValidationValidateAddressesAsync(
             List<AddressDTO> addresses, string apiKey);
 
         /// <summary>
@@ -56,8 +56,8 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (ApiResponseDTOListAddressValidationResponseDTO)</returns>
-        Task<ApiResponse<ApiResponseDTOListAddressValidationResponseDTO>>
+        /// <returns>Task of ApiResponse (List&lt;AddressValidationResponseDTO&gt;)</returns>
+        Task<ApiResponse<List<AddressValidationResponseDTO>>>
             AddressValidationValidateAddressesAsyncWithHttpInfo(List<AddressDTO> addresses, string apiKey);
 
         #endregion Asynchronous Operations
