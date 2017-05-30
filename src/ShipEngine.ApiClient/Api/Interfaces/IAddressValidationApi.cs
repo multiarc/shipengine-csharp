@@ -20,7 +20,7 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>ApiResponseDTOListAddressValidationResponseDTO</returns>
-        ApiResponseDTOListAddressValidationResponseDTO AddressValidationValidateAddresses(List<AddressDTO> addresses,
+        List<AddressValidationResponseDTO> AddressValidationValidateAddresses(List<AddressDTO> addresses,
             string apiKey);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>ApiResponse of ApiResponseDTOListAddressValidationResponseDTO</returns>
-        ApiResponse<ApiResponseDTOListAddressValidationResponseDTO> AddressValidationValidateAddressesWithHttpInfo(
+        ApiResponse<List<AddressValidationResponseDTO>> AddressValidationValidateAddressesWithHttpInfo(
             List<AddressDTO> addresses, string apiKey);
 
         #endregion Synchronous Operations
@@ -46,7 +46,7 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ApiResponseDTOListAddressValidationResponseDTO</returns>
-        Task<ApiResponseDTOListAddressValidationResponseDTO> AddressValidationValidateAddressesAsync(
+        Task<List<AddressValidationResponseDTO>> AddressValidationValidateAddressesAsync(
             List<AddressDTO> addresses, string apiKey);
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ApiResponse (ApiResponseDTOListAddressValidationResponseDTO)</returns>
-        Task<ApiResponse<ApiResponseDTOListAddressValidationResponseDTO>>
+        Task<ApiResponse<List<AddressValidationResponseDTO>>>
             AddressValidationValidateAddressesAsyncWithHttpInfo(List<AddressDTO> addresses, string apiKey);
 
         #endregion Asynchronous Operations

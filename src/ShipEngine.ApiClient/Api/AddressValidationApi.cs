@@ -99,7 +99,7 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>ApiResponseDTOListAddressValidationResponseDTO</returns>
-        public ApiResponseDTOListAddressValidationResponseDTO AddressValidationValidateAddresses(
+        public List<AddressValidationResponseDTO> AddressValidationValidateAddresses(
             List<AddressDTO> addresses, string apiKey)
         {
             var localVarResponse = AddressValidationValidateAddressesWithHttpInfo(addresses, apiKey);
@@ -111,8 +111,8 @@ namespace ShipEngine.ApiClient.Api
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of ApiResponseDTOListAddressValidationResponseDTO</returns>
-        public ApiResponse<ApiResponseDTOListAddressValidationResponseDTO>
+        /// <returns>ApiResponse of List&lt;AddressValidationResponseDTO&gt;</returns>
+        public ApiResponse<List<AddressValidationResponseDTO>>
             AddressValidationValidateAddressesWithHttpInfo(List<AddressDTO> addresses, string apiKey)
         {
             // verify the required parameter 'addresses' is set
@@ -191,11 +191,11 @@ namespace ShipEngine.ApiClient.Api
                 throw exception;
             }
 
-            return new ApiResponse<ApiResponseDTOListAddressValidationResponseDTO>(localVarStatusCode,
+            return new ApiResponse<List<AddressValidationResponseDTO>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ApiResponseDTOListAddressValidationResponseDTO)
+                (List<AddressValidationResponseDTO>)
                 Configuration.ApiClient.Deserialize(localVarResponse,
-                    typeof(ApiResponseDTOListAddressValidationResponseDTO)));
+                    typeof(List<AddressValidationResponseDTO>)));
         }
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ApiResponseDTOListAddressValidationResponseDTO</returns>
-        public async Task<ApiResponseDTOListAddressValidationResponseDTO> AddressValidationValidateAddressesAsync(
+        public async Task<List<AddressValidationResponseDTO>> AddressValidationValidateAddressesAsync(
             List<AddressDTO> addresses, string apiKey)
         {
             var localVarResponse = await AddressValidationValidateAddressesAsyncWithHttpInfo(addresses, apiKey);
@@ -217,7 +217,7 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ApiResponse (ApiResponseDTOListAddressValidationResponseDTO)</returns>
-        public async Task<ApiResponse<ApiResponseDTOListAddressValidationResponseDTO>>
+        public async Task<ApiResponse<List<AddressValidationResponseDTO>>>
             AddressValidationValidateAddressesAsyncWithHttpInfo(List<AddressDTO> addresses, string apiKey)
         {
             // verify the required parameter 'addresses' is set
@@ -295,11 +295,11 @@ namespace ShipEngine.ApiClient.Api
                 throw exception;
             }
 
-            return new ApiResponse<ApiResponseDTOListAddressValidationResponseDTO>(localVarStatusCode,
+            return new ApiResponse<List<AddressValidationResponseDTO>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ApiResponseDTOListAddressValidationResponseDTO)
+                (List<AddressValidationResponseDTO>)
                 Configuration.ApiClient.Deserialize(localVarResponse,
-                    typeof(ApiResponseDTOListAddressValidationResponseDTO)));
+                    typeof(List<AddressValidationResponseDTO>)));
         }
 
         /// <summary>
