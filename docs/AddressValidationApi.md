@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="addressvalidationvalidateaddresses"></a>
 # **AddressValidationValidateAddresses**
-> ApiResponseDTOListAddressValidationResponseDTO AddressValidationValidateAddresses (List<AddressDTO> addresses, string apiKey)
+> List&lt;AddressValidationResponseDTO&gt; AddressValidationValidateAddresses (List<AddressDTO> addresses, string apiKey)
 
 
 
@@ -39,7 +39,7 @@ namespace Example
 
             try
             {
-                ApiResponseDTOListAddressValidationResponseDTO result = apiInstance.AddressValidationValidateAddresses(addresses, apiKey);
+                List<AddressValidationResponseDTO> result = apiInstance.AddressValidationValidateAddresses(addresses, apiKey);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiResponseDTOListAddressValidationResponseDTO**](ApiResponseDTOListAddressValidationResponseDTO.md)
+[**List&lt;AddressValidationResponseDTO&gt;**](AddressValidationResponseDTO.md)
 
 ### Authorization
 

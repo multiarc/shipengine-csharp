@@ -59,7 +59,7 @@ namespace Example
 
             try
             {
-                ApiResponseDTOListAddressValidationResponseDTO result = apiInstance.AddressValidationValidateAddresses(addresses, apiKey);
+                List<AddressValidationResponseDTO> result = apiInstance.AddressValidationValidateAddresses(addresses, apiKey);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -147,7 +147,6 @@ Class | Method | HTTP request | Description
  - [Model.AddressValidationResponseDTO](docs/AddressValidationResponseDTO.md)
  - [Model.ApiErrorDTO](docs/ApiErrorDTO.md)
  - [Model.ApiErrorResponseDTO](docs/ApiErrorResponseDTO.md)
- - [Model.ApiResponseDTOListAddressValidationResponseDTO](docs/ApiResponseDTOListAddressValidationResponseDTO.md)
  - [Model.Batch](docs/Batch.md)
  - [Model.BatchResponseError](docs/BatchResponseError.md)
  - [Model.BatchResponseErrors](docs/BatchResponseErrors.md)

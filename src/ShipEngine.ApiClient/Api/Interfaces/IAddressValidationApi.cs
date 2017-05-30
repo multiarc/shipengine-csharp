@@ -19,7 +19,7 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponseDTOListAddressValidationResponseDTO</returns>
+        /// <returns>List&lt;AddressValidationResponseDTO&gt;</returns>
         List<AddressValidationResponseDTO> AddressValidationValidateAddresses(List<AddressDTO> addresses,
             string apiKey);
 
@@ -30,7 +30,7 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of ApiResponseDTOListAddressValidationResponseDTO</returns>
+        /// <returns>ApiResponse of List&lt;AddressValidationResponseDTO&gt;</returns>
         ApiResponse<List<AddressValidationResponseDTO>> AddressValidationValidateAddressesWithHttpInfo(
             List<AddressDTO> addresses, string apiKey);
 
@@ -45,7 +45,7 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponseDTOListAddressValidationResponseDTO</returns>
+        /// <returns>Task of List&lt;AddressValidationResponseDTO&gt;</returns>
         Task<List<AddressValidationResponseDTO>> AddressValidationValidateAddressesAsync(
             List<AddressDTO> addresses, string apiKey);
 
@@ -56,7 +56,7 @@ namespace ShipEngine.ApiClient.Api.Interfaces
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addresses"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (ApiResponseDTOListAddressValidationResponseDTO)</returns>
+        /// <returns>Task of ApiResponse (List&lt;AddressValidationResponseDTO&gt;)</returns>
         Task<ApiResponse<List<AddressValidationResponseDTO>>>
             AddressValidationValidateAddressesAsyncWithHttpInfo(List<AddressDTO> addresses, string apiKey);
 
