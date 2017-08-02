@@ -2,29 +2,34 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <!-- The identifier that must be unique within the hosting gallery -->
-        <id>$id$</id>
-        <title>Swagger Library</title>
+        <id>ShipEngine.ApiClient</id>
+        <title>ShipEngine™ C# SDK</title>
 
         <!-- The package version number that is used when resolving dependencies -->
         <version>$version$</version>
 
         <!-- Authors contain text that appears directly on the gallery -->
-        <authors>$author$</authors>
+        <authors>ShipStation</authors>
 
         <!-- Owners are typically nuget.org identities that allow gallery
              users to earily find other packages by the same owners.  -->
-        <owners>$author$</owners>
+        <owners>ShipEngine</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <developmentDependency>false</developmentDependency>
 
         <!-- The description can be used in package manager UI. Note that the
              nuget.org gallery uses information you add in the portal. -->
-        <description>A library generated from a Swagger doc</description>
+        <summary>Integrate with the worlds leading shipping carrier to compare rates, track packages, validate addresses, and print shipping labels.</summary>
+        <description>ShipEngine™ C# SDK, enables developers to build with the world’s best multi-carrier Shipping APIs.  Integrate with the world’s leading carriers, such as USPS, FedEx, UPS, DHL, and more! Compare rates, track packages, validate addresses, and print shipping labels all with a single solution.  ShipEngine™ is the platform of choice for tens of thousands of merchants, with over a billion shipments fulfilled and counting.</description>
+
+        <projectUrl>https://www.github.com/shipstation/shipengine-csharp</projectUrl>
+        <copyright>© 2017 ShipStation. All rights reserved.</copyright>
+        <iconUrl>http://images.shipstation.com/shipengine/ShipEngine-64.png</iconUrl>
 
         <!-- Dependencies are automatically installed when the package is installed -->
         <dependencies>
 
-            <dependency id="NewtonSoft.Json" version="10.0.3" />
+            <dependency id="NewtonSoft.Json" version="8.0.3" />
             <dependency id="RestSharp" version="105.1.0" />
 
         </dependencies>
@@ -34,6 +39,5 @@
         <!-- A readme.txt will be displayed when the package is installed -->
         <file src="..\..\README.md" target="" />
         <file src="..\..\docs\**\*.*" target="docs" />
-
     </files>
 </package>
