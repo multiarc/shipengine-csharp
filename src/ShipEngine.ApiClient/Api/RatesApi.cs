@@ -10,77 +10,272 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using RestSharp;
-using ShipEngine.ApiClient.Api.Interfaces;
 using ShipEngine.ApiClient.Client;
 using ShipEngine.ApiClient.Model;
 
 namespace ShipEngine.ApiClient.Api
 {
     /// <summary>
-    ///     Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class RatesApi : IRatesApi
+    public interface IRatesApi : IApiAccessor
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        #region Synchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>List&lt;Rate&gt;</returns>
+        List<Rate> RatesEstimate (RateEstimateRequest estimateRequest, string apiKey);
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="RatesApi" /> class.
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of List&lt;Rate&gt;</returns>
+        ApiResponse<List<Rate>> RatesEstimateWithHttpInfo (RateEstimateRequest estimateRequest, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Rate</returns>
+        Rate RatesGet (string rateId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Rate</returns>
+        ApiResponse<Rate> RatesGetWithHttpInfo (string rateId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>RateShipmentResponse</returns>
+        RateShipmentResponse RatesRateShipment (RateShipmentRequest request, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of RateShipmentResponse</returns>
+        ApiResponse<RateShipmentResponse> RatesRateShipmentWithHttpInfo (RateShipmentRequest request, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>List&lt;RateResponseAsync&gt;</returns>
+        List<RateResponseAsync> RatesRateShipmentsAsync (RateShipmentsRequest request, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of List&lt;RateResponseAsync&gt;</returns>
+        ApiResponse<List<RateResponseAsync>> RatesRateShipmentsAsyncWithHttpInfo (RateShipmentsRequest request, string apiKey);
+        #endregion Synchronous Operations
+        #region Asynchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of List&lt;Rate&gt;</returns>
+        System.Threading.Tasks.Task<List<Rate>> RatesEstimateAsync (RateEstimateRequest estimateRequest, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (List&lt;Rate&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<Rate>>> RatesEstimateAsyncWithHttpInfo (RateEstimateRequest estimateRequest, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Rate</returns>
+        System.Threading.Tasks.Task<Rate> RatesGetAsync (string rateId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Rate)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Rate>> RatesGetAsyncWithHttpInfo (string rateId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of RateShipmentResponse</returns>
+        System.Threading.Tasks.Task<RateShipmentResponse> RatesRateShipmentAsync (RateShipmentRequest request, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (RateShipmentResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RateShipmentResponse>> RatesRateShipmentAsyncWithHttpInfo (RateShipmentRequest request, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of List&lt;RateResponseAsync&gt;</returns>
+        System.Threading.Tasks.Task<List<RateResponseAsync>> RatesRateShipmentsAsyncAsync (RateShipmentsRequest request, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (List&lt;RateResponseAsync&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<RateResponseAsync>>> RatesRateShipmentsAsyncAsyncWithHttpInfo (RateShipmentsRequest request, string apiKey);
+        #endregion Asynchronous Operations
+    }
+
+    /// <summary>
+    /// Represents a collection of functions to interact with the API endpoints
+    /// </summary>
+    public partial class RatesApi : IRatesApi
+    {
+        private ShipEngine.ApiClient.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RatesApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public RatesApi(string basePath)
+        public RatesApi(String basePath)
         {
-            Configuration = new Configuration(new Client.ApiClient(basePath));
+            this.Configuration = new Configuration { BasePath = basePath };
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="RatesApi" /> class
-        ///     using Configuration object
+        /// Initializes a new instance of the <see cref="RatesApi"/> class
+        /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
         public RatesApi(Configuration configuration = null)
         {
-            Configuration = configuration ?? Configuration.Default;
+            if (configuration == null) // use the default one in Configuration
+                this.Configuration = Configuration.Default;
+            else
+                this.Configuration = configuration;
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Gets the base path of the API client.
+        /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public string GetBasePath()
+        public String GetBasePath()
         {
-            return Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
         }
 
         /// <summary>
-        ///     Gets or sets the configuration object
+        /// Sets the base path of the API client.
         /// </summary>
-        /// <value>An instance of the Configuration</value>
-        public Configuration Configuration { get; set; }
+        /// <value>The base path</value>
+        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        public void SetBasePath(String basePath)
+        {
+            // do nothing
+        }
 
         /// <summary>
-        ///     Provides a factory method hook for the creation of exceptions.
+        /// Gets or sets the configuration object
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        /// <value>An instance of the Configuration</value>
+        public Configuration Configuration {get; set;}
+
+        /// <summary>
+        /// Provides a factory method hook for the creation of exceptions.
+        /// </summary>
+        public ShipEngine.ApiClient.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -94,825 +289,17 @@ namespace ShipEngine.ApiClient.Api
         }
 
         /// <summary>
-        ///     Get a rate quote
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="estimateRequest">Get a rate quote without creating a shipment</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>List&lt;Rate&gt;</returns>
-        public List<Rate> RatesEstimate(RateEstimateRequest estimateRequest, string apiKey)
-        {
-            var localVarResponse = RatesEstimateWithHttpInfo(estimateRequest, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a rate quote
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="estimateRequest">Get a rate quote without creating a shipment</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of List&lt;Rate&gt;</returns>
-        public ApiResponse<List<Rate>> RatesEstimateWithHttpInfo(RateEstimateRequest estimateRequest, string apiKey)
-        {
-            // verify the required parameter 'estimateRequest' is set
-            if (estimateRequest == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'estimateRequest' when calling RatesApi->RatesEstimate");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesEstimate");
-            }
-
-            var localVarPath = "/v1/rates/estimate";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (estimateRequest.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(estimateRequest); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = estimateRequest; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("RatesEstimate", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<List<Rate>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Rate>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Rate>)));
-        }
-
-        /// <summary>
-        ///     Get a rate quote
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="estimateRequest">Get a rate quote without creating a shipment</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of List&lt;Rate&gt;</returns>
-        public async Task<List<Rate>> RatesEstimateAsync(RateEstimateRequest estimateRequest, string apiKey)
-        {
-            var localVarResponse = await RatesEstimateAsyncWithHttpInfo(estimateRequest, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a rate quote
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="estimateRequest">Get a rate quote without creating a shipment</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (List&lt;Rate&gt;)</returns>
-        public async Task<ApiResponse<List<Rate>>> RatesEstimateAsyncWithHttpInfo(RateEstimateRequest estimateRequest,
-            string apiKey)
-        {
-            // verify the required parameter 'estimateRequest' is set
-            if (estimateRequest == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'estimateRequest' when calling RatesApi->RatesEstimate");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesEstimate");
-            }
-
-            var localVarPath = "/v1/rates/estimate";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (estimateRequest.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(estimateRequest); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = estimateRequest; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("RatesEstimate", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<List<Rate>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (List<Rate>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Rate>)));
-        }
-
-        /// <summary>
-        ///     Get a rate
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="rateId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Rate</returns>
-        public Rate RatesGet(string rateId, string apiKey)
-        {
-            var localVarResponse = RatesGetWithHttpInfo(rateId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a rate
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="rateId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Rate</returns>
-        public ApiResponse<Rate> RatesGetWithHttpInfo(string rateId, string apiKey)
-        {
-            // verify the required parameter 'rateId' is set
-            if (rateId == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'rateId' when calling RatesApi->RatesGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesGet");
-            }
-
-            var localVarPath = "/v1/rates/{rate_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("rate_id", Configuration.ApiClient.ParameterToString(rateId)); // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("RatesGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Rate>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Rate) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Rate)));
-        }
-
-        /// <summary>
-        ///     Get a rate
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="rateId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Rate</returns>
-        public async Task<Rate> RatesGetAsync(string rateId, string apiKey)
-        {
-            var localVarResponse = await RatesGetAsyncWithHttpInfo(rateId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a rate
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="rateId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Rate)</returns>
-        public async Task<ApiResponse<Rate>> RatesGetAsyncWithHttpInfo(string rateId, string apiKey)
-        {
-            // verify the required parameter 'rateId' is set
-            if (rateId == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'rateId' when calling RatesApi->RatesGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesGet");
-            }
-
-            var localVarPath = "/v1/rates/{rate_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("rate_id", Configuration.ApiClient.ParameterToString(rateId)); // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("RatesGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Rate>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Rate) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Rate)));
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>RateShipmentResponse</returns>
-        public RateShipmentResponse RatesRateShipment(RateShipmentRequest request, string apiKey)
-        {
-            var localVarResponse = RatesRateShipmentWithHttpInfo(request, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of RateShipmentResponse</returns>
-        public ApiResponse<RateShipmentResponse> RatesRateShipmentWithHttpInfo(RateShipmentRequest request,
-            string apiKey)
-        {
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling RatesApi->RatesRateShipment");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling RatesApi->RatesRateShipment");
-            }
-
-            var localVarPath = "/v1/rates";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("RatesRateShipment", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<RateShipmentResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (RateShipmentResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(RateShipmentResponse)));
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of RateShipmentResponse</returns>
-        public async Task<RateShipmentResponse> RatesRateShipmentAsync(RateShipmentRequest request, string apiKey)
-        {
-            var localVarResponse = await RatesRateShipmentAsyncWithHttpInfo(request, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (RateShipmentResponse)</returns>
-        public async Task<ApiResponse<RateShipmentResponse>> RatesRateShipmentAsyncWithHttpInfo(
-            RateShipmentRequest request, string apiKey)
-        {
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling RatesApi->RatesRateShipment");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling RatesApi->RatesRateShipment");
-            }
-
-            var localVarPath = "/v1/rates";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("RatesRateShipment", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<RateShipmentResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (RateShipmentResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(RateShipmentResponse)));
-        }
-
-        /// <summary>
-        ///     Rate shipments asynchronously
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns></returns>
-        public void RatesRateShipmentsBulk(RateShipmentsRequest request, string apiKey)
-        {
-            RatesRateShipmentsBulkWithHttpInfo(request, apiKey);
-        }
-
-        /// <summary>
-        ///     Rate shipments asynchronously
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<object> RatesRateShipmentsBulkWithHttpInfo(RateShipmentsRequest request, string apiKey)
-        {
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling RatesApi->RatesRateShipmentsBulk");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling RatesApi->RatesRateShipmentsBulk");
-            }
-
-            var localVarPath = "/v1/rates/bulk";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("RatesRateShipmentsBulk", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Rate shipments asynchronously
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of void</returns>
-        public async Task RatesRateShipmentsBulkAsync(RateShipmentsRequest request, string apiKey)
-        {
-            await RatesRateShipmentsBulkAsyncWithHttpInfo(request, apiKey);
-        }
-
-        /// <summary>
-        ///     Rate shipments asynchronously
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async Task<ApiResponse<object>> RatesRateShipmentsBulkAsyncWithHttpInfo(RateShipmentsRequest request,
-            string apiKey)
-        {
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling RatesApi->RatesRateShipmentsBulk");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling RatesApi->RatesRateShipmentsBulk");
-            }
-
-            var localVarPath = "/v1/rates/bulk";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("RatesRateShipmentsBulk", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Sets the base path of the API client.
-        /// </summary>
-        /// <value>The base path</value>
-        [Obsolete(
-            "SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead."
-        )]
-        public void SetBasePath(string basePath)
-        {
-            // do nothing
-        }
-
-        /// <summary>
-        ///     Gets the default header.
+        /// Gets the default header.
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public Dictionary<string, string> DefaultHeader()
+        public IDictionary<String, String> DefaultHeader()
         {
-            return Configuration.DefaultHeader;
+            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
         }
 
         /// <summary>
-        ///     Add default header.
+        /// Add default header.
         /// </summary>
         /// <param name="key">Header field name.</param>
         /// <param name="value">Header field value.</param>
@@ -920,7 +307,690 @@ namespace ShipEngine.ApiClient.Api
         [Obsolete("AddDefaultHeader is deprecated, please use Configuration.AddDefaultHeader instead.")]
         public void AddDefaultHeader(string key, string value)
         {
-            Configuration.AddDefaultHeader(key, value);
+            this.Configuration.AddDefaultHeader(key, value);
         }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>List&lt;Rate&gt;</returns>
+        public List<Rate> RatesEstimate (RateEstimateRequest estimateRequest, string apiKey)
+        {
+             ApiResponse<List<Rate>> localVarResponse = RatesEstimateWithHttpInfo(estimateRequest, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of List&lt;Rate&gt;</returns>
+        public ApiResponse< List<Rate> > RatesEstimateWithHttpInfo (RateEstimateRequest estimateRequest, string apiKey)
+        {
+            // verify the required parameter 'estimateRequest' is set
+            if (estimateRequest == null)
+                throw new ApiException(400, "Missing required parameter 'estimateRequest' when calling RatesApi->RatesEstimate");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesEstimate");
+
+            var localVarPath = "/v1/rates/estimate";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (estimateRequest != null && estimateRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(estimateRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = estimateRequest; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RatesEstimate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<Rate>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<Rate>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Rate>)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of List&lt;Rate&gt;</returns>
+        public async System.Threading.Tasks.Task<List<Rate>> RatesEstimateAsync (RateEstimateRequest estimateRequest, string apiKey)
+        {
+             ApiResponse<List<Rate>> localVarResponse = await RatesEstimateAsyncWithHttpInfo(estimateRequest, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (List&lt;Rate&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<Rate>>> RatesEstimateAsyncWithHttpInfo (RateEstimateRequest estimateRequest, string apiKey)
+        {
+            // verify the required parameter 'estimateRequest' is set
+            if (estimateRequest == null)
+                throw new ApiException(400, "Missing required parameter 'estimateRequest' when calling RatesApi->RatesEstimate");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesEstimate");
+
+            var localVarPath = "/v1/rates/estimate";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (estimateRequest != null && estimateRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(estimateRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = estimateRequest; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RatesEstimate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<Rate>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<Rate>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Rate>)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Rate</returns>
+        public Rate RatesGet (string rateId, string apiKey)
+        {
+             ApiResponse<Rate> localVarResponse = RatesGetWithHttpInfo(rateId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Rate</returns>
+        public ApiResponse< Rate > RatesGetWithHttpInfo (string rateId, string apiKey)
+        {
+            // verify the required parameter 'rateId' is set
+            if (rateId == null)
+                throw new ApiException(400, "Missing required parameter 'rateId' when calling RatesApi->RatesGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesGet");
+
+            var localVarPath = "/v1/rates/{rate_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (rateId != null) localVarPathParams.Add("rate_id", Configuration.ApiClient.ParameterToString(rateId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RatesGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Rate>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Rate) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Rate)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Rate</returns>
+        public async System.Threading.Tasks.Task<Rate> RatesGetAsync (string rateId, string apiKey)
+        {
+             ApiResponse<Rate> localVarResponse = await RatesGetAsyncWithHttpInfo(rateId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Rate)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Rate>> RatesGetAsyncWithHttpInfo (string rateId, string apiKey)
+        {
+            // verify the required parameter 'rateId' is set
+            if (rateId == null)
+                throw new ApiException(400, "Missing required parameter 'rateId' when calling RatesApi->RatesGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesGet");
+
+            var localVarPath = "/v1/rates/{rate_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (rateId != null) localVarPathParams.Add("rate_id", Configuration.ApiClient.ParameterToString(rateId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RatesGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Rate>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Rate) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Rate)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>RateShipmentResponse</returns>
+        public RateShipmentResponse RatesRateShipment (RateShipmentRequest request, string apiKey)
+        {
+             ApiResponse<RateShipmentResponse> localVarResponse = RatesRateShipmentWithHttpInfo(request, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of RateShipmentResponse</returns>
+        public ApiResponse< RateShipmentResponse > RatesRateShipmentWithHttpInfo (RateShipmentRequest request, string apiKey)
+        {
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling RatesApi->RatesRateShipment");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesRateShipment");
+
+            var localVarPath = "/v1/rates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RatesRateShipment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<RateShipmentResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (RateShipmentResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(RateShipmentResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of RateShipmentResponse</returns>
+        public async System.Threading.Tasks.Task<RateShipmentResponse> RatesRateShipmentAsync (RateShipmentRequest request, string apiKey)
+        {
+             ApiResponse<RateShipmentResponse> localVarResponse = await RatesRateShipmentAsyncWithHttpInfo(request, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (RateShipmentResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<RateShipmentResponse>> RatesRateShipmentAsyncWithHttpInfo (RateShipmentRequest request, string apiKey)
+        {
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling RatesApi->RatesRateShipment");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesRateShipment");
+
+            var localVarPath = "/v1/rates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RatesRateShipment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<RateShipmentResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (RateShipmentResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(RateShipmentResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>List&lt;RateResponseAsync&gt;</returns>
+        public List<RateResponseAsync> RatesRateShipmentsAsync (RateShipmentsRequest request, string apiKey)
+        {
+             ApiResponse<List<RateResponseAsync>> localVarResponse = RatesRateShipmentsAsyncWithHttpInfo(request, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of List&lt;RateResponseAsync&gt;</returns>
+        public ApiResponse< List<RateResponseAsync> > RatesRateShipmentsAsyncWithHttpInfo (RateShipmentsRequest request, string apiKey)
+        {
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling RatesApi->RatesRateShipmentsAsync");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesRateShipmentsAsync");
+
+            var localVarPath = "/v1/rates/bulk";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RatesRateShipmentsAsync", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<RateResponseAsync>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<RateResponseAsync>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<RateResponseAsync>)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of List&lt;RateResponseAsync&gt;</returns>
+        public async System.Threading.Tasks.Task<List<RateResponseAsync>> RatesRateShipmentsAsyncAsync (RateShipmentsRequest request, string apiKey)
+        {
+             ApiResponse<List<RateResponseAsync>> localVarResponse = await RatesRateShipmentsAsyncAsyncWithHttpInfo(request, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (List&lt;RateResponseAsync&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<RateResponseAsync>>> RatesRateShipmentsAsyncAsyncWithHttpInfo (RateShipmentsRequest request, string apiKey)
+        {
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling RatesApi->RatesRateShipmentsAsync");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling RatesApi->RatesRateShipmentsAsync");
+
+            var localVarPath = "/v1/rates/bulk";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RatesRateShipmentsAsync", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<RateResponseAsync>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (List<RateResponseAsync>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<RateResponseAsync>)));
+        }
+
     }
 }

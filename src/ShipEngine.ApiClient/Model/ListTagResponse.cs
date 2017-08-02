@@ -9,63 +9,44 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     ListTagResponse
+    /// ListTagResponse
     /// </summary>
     [DataContract]
-    public class ListTagResponse : IEquatable<ListTagResponse>, IValidatableObject
+    public partial class ListTagResponse :  IEquatable<ListTagResponse>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ListTagResponse" /> class.
+        /// Initializes a new instance of the <see cref="ListTagResponse" /> class.
         /// </summary>
-        /// <param name="tags">Tags.</param>
-        public ListTagResponse(List<TagResponse> tags = default(List<TagResponse>))
+        /// <param name="Tags">Tags.</param>
+        public ListTagResponse(List<TagResponse> Tags = default(List<TagResponse>))
         {
-            Tags = tags;
+            this.Tags = Tags;
         }
-
+        
         /// <summary>
-        ///     Tags
+        /// Gets or Sets Tags
         /// </summary>
-        /// <value>Tags</value>
-        [DataMember(Name = "tags", EmitDefaultValue = false)]
+        [DataMember(Name="tags", EmitDefaultValue=false)]
         public List<TagResponse> Tags { get; set; }
 
         /// <summary>
-        ///     Returns true if ListTagResponse instances are equal
-        /// </summary>
-        /// <param name="other">Instance of ListTagResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ListTagResponse other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                Tags == other.Tags ||
-                Tags != null &&
-                Tags.SequenceEqual(other.Tags);
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -76,9 +57,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -87,33 +68,57 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as ListTagResponse);
+            return this.Equals(input as ListTagResponse);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if ListTagResponse instances are equal
+        /// </summary>
+        /// <param name="input">Instance of ListTagResponse to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(ListTagResponse input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Tags == input.Tags ||
+                    (this.Tags != null &&
+                    this.Tags.SequenceEqual(input.Tags))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Tags != null)
-                {
-                    hash = hash * 59 + Tags.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Tags != null)
+                    hashCode = hashCode * 59 + this.Tags.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

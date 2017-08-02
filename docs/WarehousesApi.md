@@ -4,18 +4,18 @@ All URIs are relative to *https://api.shipengine.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**WarehousesCreate**](WarehousesApi.md#warehousescreate) | **POST** /v1/warehouses | Create a warehouse
-[**WarehousesDelete**](WarehousesApi.md#warehousesdelete) | **DELETE** /v1/warehouses/{warehouse_id} | Delete a warehouse
-[**WarehousesGet**](WarehousesApi.md#warehousesget) | **GET** /v1/warehouses/{warehouse_id} | Get a specific warehouse
-[**WarehousesList**](WarehousesApi.md#warehouseslist) | **GET** /v1/warehouses | Get warehouses
-[**WarehousesUpdate**](WarehousesApi.md#warehousesupdate) | **PUT** /v1/warehouses/{warehouse_id} | Update a warehouse
+[**WarehousesCreate**](WarehousesApi.md#warehousescreate) | **POST** /v1/warehouses | 
+[**WarehousesDelete**](WarehousesApi.md#warehousesdelete) | **DELETE** /v1/warehouses/{warehouse_id} | 
+[**WarehousesGet**](WarehousesApi.md#warehousesget) | **GET** /v1/warehouses/{warehouse_id} | 
+[**WarehousesList**](WarehousesApi.md#warehouseslist) | **GET** /v1/warehouses | 
+[**WarehousesUpdate**](WarehousesApi.md#warehousesupdate) | **PUT** /v1/warehouses/{warehouse_id} | 
 
 
 <a name="warehousescreate"></a>
 # **WarehousesCreate**
 > WarehouseDTO WarehousesCreate (WarehouseRequest request, string apiKey)
 
-Create a warehouse
+
 
 ### Example
 ```csharp
@@ -31,11 +31,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new WarehousesApi();
             var request = new WarehouseRequest(); // WarehouseRequest | 
@@ -43,7 +42,6 @@ namespace Example
 
             try
             {
-                // Create a warehouse
                 WarehouseDTO result = apiInstance.WarehousesCreate(request, apiKey);
                 Debug.WriteLine(result);
             }
@@ -82,7 +80,7 @@ Name | Type | Description  | Notes
 # **WarehousesDelete**
 > void WarehousesDelete (string warehouseId, string apiKey)
 
-Delete a warehouse
+
 
 ### Example
 ```csharp
@@ -98,11 +96,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new WarehousesApi();
             var warehouseId = warehouseId_example;  // string | 
@@ -110,7 +107,6 @@ namespace Example
 
             try
             {
-                // Delete a warehouse
                 apiInstance.WarehousesDelete(warehouseId, apiKey);
             }
             catch (Exception e)
@@ -148,7 +144,7 @@ void (empty response body)
 # **WarehousesGet**
 > WarehouseDTO WarehousesGet (string warehouseId, string apiKey)
 
-Get a specific warehouse
+
 
 ### Example
 ```csharp
@@ -164,11 +160,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new WarehousesApi();
             var warehouseId = warehouseId_example;  // string | 
@@ -176,7 +171,6 @@ namespace Example
 
             try
             {
-                // Get a specific warehouse
                 WarehouseDTO result = apiInstance.WarehousesGet(warehouseId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -215,9 +209,7 @@ Name | Type | Description  | Notes
 # **WarehousesList**
 > WarehouseListDTO WarehousesList (string apiKey)
 
-Get warehouses
 
-Get a list of Warehouses
 
 ### Example
 ```csharp
@@ -233,18 +225,16 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new WarehousesApi();
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Get warehouses
                 WarehouseListDTO result = apiInstance.WarehousesList(apiKey);
                 Debug.WriteLine(result);
             }
@@ -282,7 +272,7 @@ Name | Type | Description  | Notes
 # **WarehousesUpdate**
 > void WarehousesUpdate (string warehouseId, WarehouseRequest request, string apiKey)
 
-Update a warehouse
+
 
 ### Example
 ```csharp
@@ -298,11 +288,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new WarehousesApi();
             var warehouseId = warehouseId_example;  // string | 
@@ -311,7 +300,6 @@ namespace Example
 
             try
             {
-                // Update a warehouse
                 apiInstance.WarehousesUpdate(warehouseId, request, apiKey);
             }
             catch (Exception e)

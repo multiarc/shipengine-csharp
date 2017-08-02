@@ -9,145 +9,120 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     PurchaseLabelWithoutShipmentRequest
+    /// PurchaseLabelWithoutShipmentRequest
     /// </summary>
     [DataContract]
-    public class PurchaseLabelWithoutShipmentRequest : IEquatable<PurchaseLabelWithoutShipmentRequest>,
-        IValidatableObject
+    public partial class PurchaseLabelWithoutShipmentRequest :  IEquatable<PurchaseLabelWithoutShipmentRequest>, IValidatableObject
     {
         /// <summary>
-        ///     Gets or Sets LabelFormat
+        /// Gets or Sets LabelFormat
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum LabelFormatEnum
         {
+            
             /// <summary>
-            ///     Enum Pdf for "pdf"
+            /// Enum Pdf for "pdf"
             /// </summary>
-            [EnumMember(Value = "pdf")] Pdf,
-
+            [EnumMember(Value = "pdf")]
+            Pdf,
+            
             /// <summary>
-            ///     Enum Zpl for "zpl"
+            /// Enum Zpl for "zpl"
             /// </summary>
-            [EnumMember(Value = "zpl")] Zpl
+            [EnumMember(Value = "zpl")]
+            Zpl,
+            
+            /// <summary>
+            /// Enum Png for "png"
+            /// </summary>
+            [EnumMember(Value = "png")]
+            Png
         }
 
         /// <summary>
-        ///     Gets or Sets ValidateAddress
+        /// Gets or Sets ValidateAddress
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ValidateAddressEnum
         {
+            
             /// <summary>
-            ///     Enum NoValidation for "noValidation"
+            /// Enum NoValidation for "noValidation"
             /// </summary>
-            [EnumMember(Value = "noValidation")] NoValidation,
-
+            [EnumMember(Value = "noValidation")]
+            NoValidation,
+            
             /// <summary>
-            ///     Enum ValidateOnly for "validateOnly"
+            /// Enum ValidateOnly for "validateOnly"
             /// </summary>
-            [EnumMember(Value = "validateOnly")] ValidateOnly,
-
+            [EnumMember(Value = "validateOnly")]
+            ValidateOnly,
+            
             /// <summary>
-            ///     Enum ValidateAndClean for "validateAndClean"
+            /// Enum ValidateAndClean for "validateAndClean"
             /// </summary>
-            [EnumMember(Value = "validateAndClean")] ValidateAndClean
+            [EnumMember(Value = "validateAndClean")]
+            ValidateAndClean
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="PurchaseLabelWithoutShipmentRequest" /> class.
+        /// Gets or Sets LabelFormat
         /// </summary>
-        /// <param name="labelFormat">LabelFormat.</param>
-        /// <param name="labelLayout">LabelLayout.</param>
-        /// <param name="testLabel">TestLabel.</param>
-        /// <param name="validateAddress">ValidateAddress.</param>
-        public PurchaseLabelWithoutShipmentRequest(LabelFormatEnum? labelFormat = default(LabelFormatEnum?),
-            string labelLayout = default(string), bool? testLabel = default(bool?),
-            ValidateAddressEnum? validateAddress = default(ValidateAddressEnum?))
-        {
-            LabelFormat = labelFormat;
-            LabelLayout = labelLayout;
-            TestLabel = testLabel;
-            ValidateAddress = validateAddress;
-        }
-
-        /// <summary>
-        ///     Gets or Sets LabelFormat
-        /// </summary>
-        [DataMember(Name = "label_format", EmitDefaultValue = false)]
+        [DataMember(Name="label_format", EmitDefaultValue=false)]
         public LabelFormatEnum? LabelFormat { get; set; }
-
         /// <summary>
-        ///     Gets or Sets ValidateAddress
+        /// Gets or Sets ValidateAddress
         /// </summary>
-        [DataMember(Name = "validate_address", EmitDefaultValue = false)]
+        [DataMember(Name="validate_address", EmitDefaultValue=false)]
         public ValidateAddressEnum? ValidateAddress { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PurchaseLabelWithoutShipmentRequest" /> class.
+        /// </summary>
+        /// <param name="LabelFormat">LabelFormat.</param>
+        /// <param name="LabelLayout">LabelLayout.</param>
+        /// <param name="TestLabel">TestLabel.</param>
+        /// <param name="ValidateAddress">ValidateAddress.</param>
+        public PurchaseLabelWithoutShipmentRequest(LabelFormatEnum? LabelFormat = default(LabelFormatEnum?), string LabelLayout = default(string), bool? TestLabel = default(bool?), ValidateAddressEnum? ValidateAddress = default(ValidateAddressEnum?))
+        {
+            this.LabelFormat = LabelFormat;
+            this.LabelLayout = LabelLayout;
+            this.TestLabel = TestLabel;
+            this.ValidateAddress = ValidateAddress;
+        }
+        
 
         /// <summary>
-        ///     Gets or Sets LabelLayout
+        /// Gets or Sets LabelLayout
         /// </summary>
-        [DataMember(Name = "label_layout", EmitDefaultValue = false)]
+        [DataMember(Name="label_layout", EmitDefaultValue=false)]
         public string LabelLayout { get; set; }
 
         /// <summary>
-        ///     Gets or Sets TestLabel
+        /// Gets or Sets TestLabel
         /// </summary>
-        [DataMember(Name = "test_label", EmitDefaultValue = false)]
+        [DataMember(Name="test_label", EmitDefaultValue=false)]
         public bool? TestLabel { get; set; }
 
-        /// <summary>
-        ///     Returns true if PurchaseLabelWithoutShipmentRequest instances are equal
-        /// </summary>
-        /// <param name="other">Instance of PurchaseLabelWithoutShipmentRequest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(PurchaseLabelWithoutShipmentRequest other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    LabelFormat == other.LabelFormat ||
-                    LabelFormat != null &&
-                    LabelFormat.Equals(other.LabelFormat)
-                ) &&
-                (
-                    LabelLayout == other.LabelLayout ||
-                    LabelLayout != null &&
-                    LabelLayout.Equals(other.LabelLayout)
-                ) &&
-                (
-                    TestLabel == other.TestLabel ||
-                    TestLabel != null &&
-                    TestLabel.Equals(other.TestLabel)
-                ) &&
-                (
-                    ValidateAddress == other.ValidateAddress ||
-                    ValidateAddress != null &&
-                    ValidateAddress.Equals(other.ValidateAddress)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
 
         /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -161,9 +136,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -172,45 +147,78 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as PurchaseLabelWithoutShipmentRequest);
+            return this.Equals(input as PurchaseLabelWithoutShipmentRequest);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if PurchaseLabelWithoutShipmentRequest instances are equal
+        /// </summary>
+        /// <param name="input">Instance of PurchaseLabelWithoutShipmentRequest to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(PurchaseLabelWithoutShipmentRequest input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.LabelFormat == input.LabelFormat ||
+                    (this.LabelFormat != null &&
+                    this.LabelFormat.Equals(input.LabelFormat))
+                ) && 
+                (
+                    this.LabelLayout == input.LabelLayout ||
+                    (this.LabelLayout != null &&
+                    this.LabelLayout.Equals(input.LabelLayout))
+                ) && 
+                (
+                    this.TestLabel == input.TestLabel ||
+                    (this.TestLabel != null &&
+                    this.TestLabel.Equals(input.TestLabel))
+                ) && 
+                (
+                    this.ValidateAddress == input.ValidateAddress ||
+                    (this.ValidateAddress != null &&
+                    this.ValidateAddress.Equals(input.ValidateAddress))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (LabelFormat != null)
-                {
-                    hash = hash * 59 + LabelFormat.GetHashCode();
-                }
-                if (LabelLayout != null)
-                {
-                    hash = hash * 59 + LabelLayout.GetHashCode();
-                }
-                if (TestLabel != null)
-                {
-                    hash = hash * 59 + TestLabel.GetHashCode();
-                }
-                if (ValidateAddress != null)
-                {
-                    hash = hash * 59 + ValidateAddress.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.LabelFormat != null)
+                    hashCode = hashCode * 59 + this.LabelFormat.GetHashCode();
+                if (this.LabelLayout != null)
+                    hashCode = hashCode * 59 + this.LabelLayout.GetHashCode();
+                if (this.TestLabel != null)
+                    hashCode = hashCode * 59 + this.TestLabel.GetHashCode();
+                if (this.ValidateAddress != null)
+                    hashCode = hashCode * 59 + this.ValidateAddress.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

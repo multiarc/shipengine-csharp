@@ -9,92 +9,60 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     RateShipmentsRequest
+    /// RateShipmentsRequest
     /// </summary>
     [DataContract]
-    public class RateShipmentsRequest : IEquatable<RateShipmentsRequest>, IValidatableObject
+    public partial class RateShipmentsRequest :  IEquatable<RateShipmentsRequest>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="RateShipmentsRequest" /> class.
+        /// Initializes a new instance of the <see cref="RateShipmentsRequest" /> class.
         /// </summary>
-        /// <param name="shipmentIds">ShipmentIds.</param>
-        /// <param name="rateOptions">RateOptions.</param>
-        /// <param name="shipments">Shipments.</param>
-        public RateShipmentsRequest(List<string> shipmentIds = default(List<string>),
-            RateRequest rateOptions = default(RateRequest),
-            List<AddressValidatingShipment> shipments = default(List<AddressValidatingShipment>))
+        /// <param name="ShipmentIds">ShipmentIds.</param>
+        /// <param name="RateOptions">RateOptions.</param>
+        /// <param name="Shipments">Shipments.</param>
+        public RateShipmentsRequest(List<string> ShipmentIds = default(List<string>), RateRequest RateOptions = default(RateRequest), List<AddressValidatingShipment> Shipments = default(List<AddressValidatingShipment>))
         {
-            ShipmentIds = shipmentIds;
-            RateOptions = rateOptions;
-            Shipments = shipments;
+            this.ShipmentIds = ShipmentIds;
+            this.RateOptions = RateOptions;
+            this.Shipments = Shipments;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets ShipmentIds
+        /// Gets or Sets ShipmentIds
         /// </summary>
-        [DataMember(Name = "shipment_ids", EmitDefaultValue = false)]
+        [DataMember(Name="shipment_ids", EmitDefaultValue=false)]
         public List<string> ShipmentIds { get; set; }
 
         /// <summary>
-        ///     Gets or Sets RateOptions
+        /// Gets or Sets RateOptions
         /// </summary>
-        [DataMember(Name = "rate_options", EmitDefaultValue = false)]
+        [DataMember(Name="rate_options", EmitDefaultValue=false)]
         public RateRequest RateOptions { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Shipments
+        /// Gets or Sets Shipments
         /// </summary>
-        [DataMember(Name = "shipments", EmitDefaultValue = false)]
+        [DataMember(Name="shipments", EmitDefaultValue=false)]
         public List<AddressValidatingShipment> Shipments { get; set; }
 
         /// <summary>
-        ///     Returns true if RateShipmentsRequest instances are equal
-        /// </summary>
-        /// <param name="other">Instance of RateShipmentsRequest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(RateShipmentsRequest other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    ShipmentIds == other.ShipmentIds ||
-                    ShipmentIds != null &&
-                    ShipmentIds.SequenceEqual(other.ShipmentIds)
-                ) &&
-                (
-                    Equals(RateOptions, other.RateOptions) ||
-                    RateOptions != null &&
-                    RateOptions.Equals(other.RateOptions)
-                ) &&
-                (
-                    Shipments == other.Shipments ||
-                    Shipments != null &&
-                    Shipments.SequenceEqual(other.Shipments)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -107,9 +75,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -118,41 +86,71 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as RateShipmentsRequest);
+            return this.Equals(input as RateShipmentsRequest);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if RateShipmentsRequest instances are equal
+        /// </summary>
+        /// <param name="input">Instance of RateShipmentsRequest to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(RateShipmentsRequest input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.ShipmentIds == input.ShipmentIds ||
+                    (this.ShipmentIds != null &&
+                    this.ShipmentIds.SequenceEqual(input.ShipmentIds))
+                ) && 
+                (
+                    this.RateOptions == input.RateOptions ||
+                    (this.RateOptions != null &&
+                    this.RateOptions.Equals(input.RateOptions))
+                ) && 
+                (
+                    this.Shipments == input.Shipments ||
+                    (this.Shipments != null &&
+                    this.Shipments.SequenceEqual(input.Shipments))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (ShipmentIds != null)
-                {
-                    hash = hash * 59 + ShipmentIds.GetHashCode();
-                }
-                if (RateOptions != null)
-                {
-                    hash = hash * 59 + RateOptions.GetHashCode();
-                }
-                if (Shipments != null)
-                {
-                    hash = hash * 59 + Shipments.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.ShipmentIds != null)
+                    hashCode = hashCode * 59 + this.ShipmentIds.GetHashCode();
+                if (this.RateOptions != null)
+                    hashCode = hashCode * 59 + this.RateOptions.GetHashCode();
+                if (this.Shipments != null)
+                    hashCode = hashCode * 59 + this.Shipments.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

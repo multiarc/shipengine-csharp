@@ -9,16 +9,19 @@
  */
 
 using System;
+using System.IO;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
+using RestSharp;
 using NUnit.Framework;
-using FluentAssertions;
-using Newtonsoft.Json;
+
+using ShipEngine.ApiClient.Client;
 using ShipEngine.ApiClient.Api;
 using ShipEngine.ApiClient.Model;
 
-namespace ShipEngine.ApiClient.Test.Api
+namespace ShipEngine.ApiClient.Test
 {
     /// <summary>
     ///  Class for testing AddressValidationApi
@@ -30,7 +33,7 @@ namespace ShipEngine.ApiClient.Test.Api
     [TestFixture]
     public class AddressValidationApiTests
     {
-        private AddressValidationApi _instance;
+        private AddressValidationApi instance;
 
         /// <summary>
         /// Setup before each unit test
@@ -38,7 +41,7 @@ namespace ShipEngine.ApiClient.Test.Api
         [SetUp]
         public void Init()
         {
-            _instance = new AddressValidationApi();
+            instance = new AddressValidationApi();
         }
 
         /// <summary>
@@ -51,40 +54,29 @@ namespace ShipEngine.ApiClient.Test.Api
         }
 
         /// <summary>
+        /// Test an instance of AddressValidationApi
+        /// </summary>
+        [Test]
+        public void InstanceTest()
+        {
+            // TODO uncomment below to test 'IsInstanceOfType' AddressValidationApi
+            //Assert.IsInstanceOfType(typeof(AddressValidationApi), instance, "instance is a AddressValidationApi");
+        }
+
+        
+        /// <summary>
         /// Test AddressValidationValidateAddresses
         /// </summary>
         [Test]
         public void AddressValidationValidateAddressesTest()
         {
-            var addresses = ValidAddresses();
-            var apiKey = ConfigurationManager.AppSettings[Constants.ConfigTestApiKey];
-            var response = _instance.AddressValidationValidateAddresses(addresses, apiKey);
-            response.Should()
-                .BeOfType<List<AddressValidationResponseDTO>>("response is List<AddressValidationResponseDTO>");
-
-            response.First().MatchedAddress.Should().NotBeNull();
-            Console.WriteLine(JsonConvert.SerializeObject(response, Formatting.Indented));
+            // TODO uncomment below to test the method and replace null with proper value
+            //List<AddressDTO> addresses = null;
+            //string apiKey = null;
+            //var response = instance.AddressValidationValidateAddresses(addresses, apiKey);
+            //Assert.IsInstanceOf<List<AddressValidationResponseDTO>> (response, "response is List<AddressValidationResponseDTO>");
         }
-
-        private static List<AddressDTO> ValidAddresses()
-        {
-            return new List<AddressDTO>
-            {
-                new AddressDTO
-                {
-                    CompanyName = "ShipStation",
-                    AddressLine1 = "3800 N Lamar Blvd",
-                    AddressLine2 = "#220",
-                    CityLocality = "AUSTIN",
-                    StateProvince = "TX",
-                    PostalCode = "78756",
-                    CountryCode = "US",
-                    Phone = "512-485-4282"
-                }
-            };
-        }
-
-
+        
     }
 
 }

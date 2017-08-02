@@ -4,20 +4,20 @@ All URIs are relative to *https://api.shipengine.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**LabelsGet**](LabelsApi.md#labelsget) | **GET** /v1/labels/{label_id} | Get a specific Label
-[**LabelsList**](LabelsApi.md#labelslist) | **GET** /v1/labels | Get labels
-[**LabelsPurchaseLabel**](LabelsApi.md#labelspurchaselabel) | **POST** /v1/labels | Purchase a label by providing full shipment info
-[**LabelsPurchaseLabelWithRate**](LabelsApi.md#labelspurchaselabelwithrate) | **POST** /v1/labels/rates/{rate_id} | Purchase a label using a rate
-[**LabelsPurchaseLabelWithShipment**](LabelsApi.md#labelspurchaselabelwithshipment) | **POST** /v1/labels/shipment/{shipment_id} | Purchase a label using an existing shipment
-[**LabelsTrack**](LabelsApi.md#labelstrack) | **GET** /v1/labels/{label_id}/track | Get tracking information for a label
-[**LabelsVoidLabel**](LabelsApi.md#labelsvoidlabel) | **PUT** /v1/labels/{label_id}/void | Void a label
+[**LabelsGet**](LabelsApi.md#labelsget) | **GET** /v1/labels/{label_id} | 
+[**LabelsList**](LabelsApi.md#labelslist) | **GET** /v1/labels | 
+[**LabelsPurchaseLabel**](LabelsApi.md#labelspurchaselabel) | **POST** /v1/labels | 
+[**LabelsPurchaseLabelWithRate**](LabelsApi.md#labelspurchaselabelwithrate) | **POST** /v1/labels/rates/{rate_id} | 
+[**LabelsPurchaseLabelWithShipment**](LabelsApi.md#labelspurchaselabelwithshipment) | **POST** /v1/labels/shipment/{shipment_id} | 
+[**LabelsTrack**](LabelsApi.md#labelstrack) | **GET** /v1/labels/{label_id}/track | 
+[**LabelsVoidLabel**](LabelsApi.md#labelsvoidlabel) | **PUT** /v1/labels/{label_id}/void | 
 
 
 <a name="labelsget"></a>
 # **LabelsGet**
 > Label LabelsGet (string labelId, string apiKey)
 
-Get a specific Label
+
 
 ### Example
 ```csharp
@@ -33,19 +33,17 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new LabelsApi();
-            var labelId = labelId_example;  // string | Label ID
+            var labelId = labelId_example;  // string | 
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Get a specific Label
                 Label result = apiInstance.LabelsGet(labelId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -62,7 +60,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **labelId** | **string**| Label ID | 
+ **labelId** | **string**|  | 
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
 
 ### Return type
@@ -84,9 +82,7 @@ Name | Type | Description  | Notes
 # **LabelsList**
 > ListLabelResponse LabelsList (string apiKey, string batchId = null, string labelStatus = null, string carrierId = null, string serviceCode = null, string trackingNumber = null, string warehouseId = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
 
-Get labels
 
-Get a list of labels using optional criteria
 
 ### Example
 ```csharp
@@ -102,30 +98,28 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new LabelsApi();
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
-            var batchId = batchId_example;  // string | Batch ID (optional) 
+            var batchId = batchId_example;  // string |  (optional) 
             var labelStatus = labelStatus_example;  // string |  (optional) 
-            var carrierId = carrierId_example;  // string | Carrier ID (optional) 
+            var carrierId = carrierId_example;  // string |  (optional) 
             var serviceCode = serviceCode_example;  // string |  (optional) 
-            var trackingNumber = trackingNumber_example;  // string | Tracking Number (optional) 
-            var warehouseId = warehouseId_example;  // string | Warehouse ID (optional) 
-            var createdAtStart = 2013-10-20T19:20:30+01:00;  // DateTime? | Create date range start (optional) 
-            var createdAtEnd = 2013-10-20T19:20:30+01:00;  // DateTime? | Create date range end (optional) 
-            var page = 56;  // int? | Page number (optional) 
-            var pageSize = 56;  // int? | Number of records per page (optional) 
-            var sortDir = sortDir_example;  // string | Sort direction (optional) 
-            var sortBy = sortBy_example;  // string | Sort by item (optional) 
+            var trackingNumber = trackingNumber_example;  // string |  (optional) 
+            var warehouseId = warehouseId_example;  // string |  (optional) 
+            var createdAtStart = 2013-10-20T19:20:30+01:00;  // DateTime? |  (optional) 
+            var createdAtEnd = 2013-10-20T19:20:30+01:00;  // DateTime? |  (optional) 
+            var page = 56;  // int? |  (optional) 
+            var pageSize = 56;  // int? |  (optional) 
+            var sortDir = sortDir_example;  // string |  (optional) 
+            var sortBy = sortBy_example;  // string |  (optional) 
 
             try
             {
-                // Get labels
                 ListLabelResponse result = apiInstance.LabelsList(apiKey, batchId, labelStatus, carrierId, serviceCode, trackingNumber, warehouseId, createdAtStart, createdAtEnd, page, pageSize, sortDir, sortBy);
                 Debug.WriteLine(result);
             }
@@ -143,18 +137,18 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
- **batchId** | **string**| Batch ID | [optional] 
+ **batchId** | **string**|  | [optional] 
  **labelStatus** | **string**|  | [optional] 
- **carrierId** | **string**| Carrier ID | [optional] 
+ **carrierId** | **string**|  | [optional] 
  **serviceCode** | **string**|  | [optional] 
- **trackingNumber** | **string**| Tracking Number | [optional] 
- **warehouseId** | **string**| Warehouse ID | [optional] 
- **createdAtStart** | **DateTime?**| Create date range start | [optional] 
- **createdAtEnd** | **DateTime?**| Create date range end | [optional] 
- **page** | **int?**| Page number | [optional] 
- **pageSize** | **int?**| Number of records per page | [optional] 
- **sortDir** | **string**| Sort direction | [optional] 
- **sortBy** | **string**| Sort by item | [optional] 
+ **trackingNumber** | **string**|  | [optional] 
+ **warehouseId** | **string**|  | [optional] 
+ **createdAtStart** | **DateTime?**|  | [optional] 
+ **createdAtEnd** | **DateTime?**|  | [optional] 
+ **page** | **int?**|  | [optional] 
+ **pageSize** | **int?**|  | [optional] 
+ **sortDir** | **string**|  | [optional] 
+ **sortBy** | **string**|  | [optional] 
 
 ### Return type
 
@@ -175,7 +169,7 @@ Name | Type | Description  | Notes
 # **LabelsPurchaseLabel**
 > Label LabelsPurchaseLabel (PurchaseLabelRequest request, string apiKey)
 
-Purchase a label by providing full shipment info
+
 
 ### Example
 ```csharp
@@ -191,11 +185,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new LabelsApi();
             var request = new PurchaseLabelRequest(); // PurchaseLabelRequest | 
@@ -203,7 +196,6 @@ namespace Example
 
             try
             {
-                // Purchase a label by providing full shipment info
                 Label result = apiInstance.LabelsPurchaseLabel(request, apiKey);
                 Debug.WriteLine(result);
             }
@@ -242,7 +234,7 @@ Name | Type | Description  | Notes
 # **LabelsPurchaseLabelWithRate**
 > Label LabelsPurchaseLabelWithRate (string rateId, PurchaseLabelWithoutShipmentRequest request, string apiKey)
 
-Purchase a label using a rate
+
 
 ### Example
 ```csharp
@@ -258,11 +250,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new LabelsApi();
             var rateId = rateId_example;  // string | 
@@ -271,7 +262,6 @@ namespace Example
 
             try
             {
-                // Purchase a label using a rate
                 Label result = apiInstance.LabelsPurchaseLabelWithRate(rateId, request, apiKey);
                 Debug.WriteLine(result);
             }
@@ -311,7 +301,7 @@ Name | Type | Description  | Notes
 # **LabelsPurchaseLabelWithShipment**
 > Label LabelsPurchaseLabelWithShipment (string shipmentId, PurchaseLabelWithoutShipmentRequest request, string apiKey)
 
-Purchase a label using an existing shipment
+
 
 ### Example
 ```csharp
@@ -327,11 +317,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new LabelsApi();
             var shipmentId = shipmentId_example;  // string | 
@@ -340,7 +329,6 @@ namespace Example
 
             try
             {
-                // Purchase a label using an existing shipment
                 Label result = apiInstance.LabelsPurchaseLabelWithShipment(shipmentId, request, apiKey);
                 Debug.WriteLine(result);
             }
@@ -380,7 +368,7 @@ Name | Type | Description  | Notes
 # **LabelsTrack**
 > TrackingInformation LabelsTrack (string labelId, string apiKey)
 
-Get tracking information for a label
+
 
 ### Example
 ```csharp
@@ -396,11 +384,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new LabelsApi();
             var labelId = labelId_example;  // string | 
@@ -408,7 +395,6 @@ namespace Example
 
             try
             {
-                // Get tracking information for a label
                 TrackingInformation result = apiInstance.LabelsTrack(labelId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -447,7 +433,7 @@ Name | Type | Description  | Notes
 # **LabelsVoidLabel**
 > VoidLabelResponse LabelsVoidLabel (string labelId, string apiKey)
 
-Void a label
+
 
 ### Example
 ```csharp
@@ -463,19 +449,17 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new LabelsApi();
-            var labelId = labelId_example;  // string | Label ID
+            var labelId = labelId_example;  // string | 
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Void a label
                 VoidLabelResponse result = apiInstance.LabelsVoidLabel(labelId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -492,7 +476,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **labelId** | **string**| Label ID | 
+ **labelId** | **string**|  | 
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
 
 ### Return type

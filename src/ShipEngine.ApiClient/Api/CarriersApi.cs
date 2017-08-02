@@ -10,77 +10,314 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using RestSharp;
-using ShipEngine.ApiClient.Api.Interfaces;
 using ShipEngine.ApiClient.Client;
 using ShipEngine.ApiClient.Model;
 
 namespace ShipEngine.ApiClient.Api
 {
     /// <summary>
-    ///     Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class CarriersApi : ICarriersApi
+    public interface ICarriersApi : IApiAccessor
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        #region Synchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Carrier</returns>
+        Carrier CarriersGet (string carrierId, string apiKey);
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CarriersApi" /> class.
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Carrier</returns>
+        ApiResponse<Carrier> CarriersGetWithHttpInfo (string carrierId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>CarrierListOptionsResponse</returns>
+        CarrierListOptionsResponse CarriersGetOptions (string carrierId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of CarrierListOptionsResponse</returns>
+        ApiResponse<CarrierListOptionsResponse> CarriersGetOptionsWithHttpInfo (string carrierId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>CarrierListResponse</returns>
+        CarrierListResponse CarriersList (string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of CarrierListResponse</returns>
+        ApiResponse<CarrierListResponse> CarriersListWithHttpInfo (string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>CarrierListPackagesResponse</returns>
+        CarrierListPackagesResponse CarriersListPackages (string carrierId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of CarrierListPackagesResponse</returns>
+        ApiResponse<CarrierListPackagesResponse> CarriersListPackagesWithHttpInfo (string carrierId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>CarrierListServicesResponse</returns>
+        CarrierListServicesResponse CarriersListServices (string carrierId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of CarrierListServicesResponse</returns>
+        ApiResponse<CarrierListServicesResponse> CarriersListServicesWithHttpInfo (string carrierId, string apiKey);
+        #endregion Synchronous Operations
+        #region Asynchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Carrier</returns>
+        System.Threading.Tasks.Task<Carrier> CarriersGetAsync (string carrierId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Carrier)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Carrier>> CarriersGetAsyncWithHttpInfo (string carrierId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of CarrierListOptionsResponse</returns>
+        System.Threading.Tasks.Task<CarrierListOptionsResponse> CarriersGetOptionsAsync (string carrierId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (CarrierListOptionsResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CarrierListOptionsResponse>> CarriersGetOptionsAsyncWithHttpInfo (string carrierId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of CarrierListResponse</returns>
+        System.Threading.Tasks.Task<CarrierListResponse> CarriersListAsync (string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (CarrierListResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CarrierListResponse>> CarriersListAsyncWithHttpInfo (string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of CarrierListPackagesResponse</returns>
+        System.Threading.Tasks.Task<CarrierListPackagesResponse> CarriersListPackagesAsync (string carrierId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (CarrierListPackagesResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CarrierListPackagesResponse>> CarriersListPackagesAsyncWithHttpInfo (string carrierId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of CarrierListServicesResponse</returns>
+        System.Threading.Tasks.Task<CarrierListServicesResponse> CarriersListServicesAsync (string carrierId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (CarrierListServicesResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CarrierListServicesResponse>> CarriersListServicesAsyncWithHttpInfo (string carrierId, string apiKey);
+        #endregion Asynchronous Operations
+    }
+
+    /// <summary>
+    /// Represents a collection of functions to interact with the API endpoints
+    /// </summary>
+    public partial class CarriersApi : ICarriersApi
+    {
+        private ShipEngine.ApiClient.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CarriersApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public CarriersApi(string basePath)
+        public CarriersApi(String basePath)
         {
-            Configuration = new Configuration(new Client.ApiClient(basePath));
+            this.Configuration = new Configuration { BasePath = basePath };
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CarriersApi" /> class
-        ///     using Configuration object
+        /// Initializes a new instance of the <see cref="CarriersApi"/> class
+        /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
         public CarriersApi(Configuration configuration = null)
         {
-            Configuration = configuration ?? Configuration.Default;
+            if (configuration == null) // use the default one in Configuration
+                this.Configuration = Configuration.Default;
+            else
+                this.Configuration = configuration;
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Gets the base path of the API client.
+        /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public string GetBasePath()
+        public String GetBasePath()
         {
-            return Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
         }
 
         /// <summary>
-        ///     Gets or sets the configuration object
+        /// Sets the base path of the API client.
         /// </summary>
-        /// <value>An instance of the Configuration</value>
-        public Configuration Configuration { get; set; }
+        /// <value>The base path</value>
+        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        public void SetBasePath(String basePath)
+        {
+            // do nothing
+        }
 
         /// <summary>
-        ///     Provides a factory method hook for the creation of exceptions.
+        /// Gets or sets the configuration object
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        /// <value>An instance of the Configuration</value>
+        public Configuration Configuration {get; set;}
+
+        /// <summary>
+        /// Provides a factory method hook for the creation of exceptions.
+        /// </summary>
+        public ShipEngine.ApiClient.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -94,953 +331,17 @@ namespace ShipEngine.ApiClient.Api
         }
 
         /// <summary>
-        ///     Get a specific carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Carrier</returns>
-        public Carrier CarriersGet(string carrierId, string apiKey)
-        {
-            var localVarResponse = CarriersGetWithHttpInfo(carrierId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Carrier</returns>
-        public ApiResponse<Carrier> CarriersGetWithHttpInfo(string carrierId, string apiKey)
-        {
-            // verify the required parameter 'carrierId' is set
-            if (carrierId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'carrierId' when calling CarriersApi->CarriersGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersGet");
-            }
-
-            var localVarPath = "/v1/carriers/{carrier_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("CarriersGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Carrier>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Carrier) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Carrier)));
-        }
-
-        /// <summary>
-        ///     Get a specific carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Carrier</returns>
-        public async Task<Carrier> CarriersGetAsync(string carrierId, string apiKey)
-        {
-            var localVarResponse = await CarriersGetAsyncWithHttpInfo(carrierId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Carrier)</returns>
-        public async Task<ApiResponse<Carrier>> CarriersGetAsyncWithHttpInfo(string carrierId, string apiKey)
-        {
-            // verify the required parameter 'carrierId' is set
-            if (carrierId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'carrierId' when calling CarriersApi->CarriersGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersGet");
-            }
-
-            var localVarPath = "/v1/carriers/{carrier_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("CarriersGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Carrier>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Carrier) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Carrier)));
-        }
-
-        /// <summary>
-        ///     Get advanced options for a carrier Get advanced options (such as Saturday delivery, special handling, etc...) for a
-        ///     carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>CarrierListOptionsResponse</returns>
-        public CarrierListOptionsResponse CarriersGetOptions(string carrierId, string apiKey)
-        {
-            var localVarResponse = CarriersGetOptionsWithHttpInfo(carrierId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get advanced options for a carrier Get advanced options (such as Saturday delivery, special handling, etc...) for a
-        ///     carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of CarrierListOptionsResponse</returns>
-        public ApiResponse<CarrierListOptionsResponse> CarriersGetOptionsWithHttpInfo(string carrierId, string apiKey)
-        {
-            // verify the required parameter 'carrierId' is set
-            if (carrierId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'carrierId' when calling CarriersApi->CarriersGetOptions");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling CarriersApi->CarriersGetOptions");
-            }
-
-            var localVarPath = "/v1/carriers/{carrier_id}/options";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("CarriersGetOptions", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CarrierListOptionsResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CarrierListOptionsResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListOptionsResponse)));
-        }
-
-        /// <summary>
-        ///     Get advanced options for a carrier Get advanced options (such as Saturday delivery, special handling, etc...) for a
-        ///     carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of CarrierListOptionsResponse</returns>
-        public async Task<CarrierListOptionsResponse> CarriersGetOptionsAsync(string carrierId, string apiKey)
-        {
-            var localVarResponse = await CarriersGetOptionsAsyncWithHttpInfo(carrierId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get advanced options for a carrier Get advanced options (such as Saturday delivery, special handling, etc...) for a
-        ///     carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (CarrierListOptionsResponse)</returns>
-        public async Task<ApiResponse<CarrierListOptionsResponse>> CarriersGetOptionsAsyncWithHttpInfo(string carrierId,
-            string apiKey)
-        {
-            // verify the required parameter 'carrierId' is set
-            if (carrierId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'carrierId' when calling CarriersApi->CarriersGetOptions");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling CarriersApi->CarriersGetOptions");
-            }
-
-            var localVarPath = "/v1/carriers/{carrier_id}/options";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("CarriersGetOptions", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CarrierListOptionsResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CarrierListOptionsResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListOptionsResponse)));
-        }
-
-        /// <summary>
-        ///     Get carriers Get a list of carriers (carrier accounts)
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>CarrierListResponse</returns>
-        public CarrierListResponse CarriersList(string apiKey)
-        {
-            var localVarResponse = CarriersListWithHttpInfo(apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get carriers Get a list of carriers (carrier accounts)
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of CarrierListResponse</returns>
-        public ApiResponse<CarrierListResponse> CarriersListWithHttpInfo(string apiKey)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersList");
-            }
-
-            var localVarPath = "/v1/carriers";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("CarriersList", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CarrierListResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CarrierListResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListResponse)));
-        }
-
-        /// <summary>
-        ///     Get carriers Get a list of carriers (carrier accounts)
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of CarrierListResponse</returns>
-        public async Task<CarrierListResponse> CarriersListAsync(string apiKey)
-        {
-            var localVarResponse = await CarriersListAsyncWithHttpInfo(apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get carriers Get a list of carriers (carrier accounts)
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (CarrierListResponse)</returns>
-        public async Task<ApiResponse<CarrierListResponse>> CarriersListAsyncWithHttpInfo(string apiKey)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersList");
-            }
-
-            var localVarPath = "/v1/carriers";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("CarriersList", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CarrierListResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CarrierListResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListResponse)));
-        }
-
-        /// <summary>
-        ///     Get packages for a carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>CarrierListPackagesResponse</returns>
-        public CarrierListPackagesResponse CarriersListPackages(string carrierId, string apiKey)
-        {
-            var localVarResponse = CarriersListPackagesWithHttpInfo(carrierId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get packages for a carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of CarrierListPackagesResponse</returns>
-        public ApiResponse<CarrierListPackagesResponse> CarriersListPackagesWithHttpInfo(string carrierId, string apiKey)
-        {
-            // verify the required parameter 'carrierId' is set
-            if (carrierId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'carrierId' when calling CarriersApi->CarriersListPackages");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling CarriersApi->CarriersListPackages");
-            }
-
-            var localVarPath = "/v1/carriers/{carrier_id}/packages";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("CarriersListPackages", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CarrierListPackagesResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CarrierListPackagesResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListPackagesResponse)));
-        }
-
-        /// <summary>
-        ///     Get packages for a carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of CarrierListPackagesResponse</returns>
-        public async Task<CarrierListPackagesResponse> CarriersListPackagesAsync(string carrierId, string apiKey)
-        {
-            var localVarResponse = await CarriersListPackagesAsyncWithHttpInfo(carrierId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get packages for a carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (CarrierListPackagesResponse)</returns>
-        public async Task<ApiResponse<CarrierListPackagesResponse>> CarriersListPackagesAsyncWithHttpInfo(
-            string carrierId, string apiKey)
-        {
-            // verify the required parameter 'carrierId' is set
-            if (carrierId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'carrierId' when calling CarriersApi->CarriersListPackages");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling CarriersApi->CarriersListPackages");
-            }
-
-            var localVarPath = "/v1/carriers/{carrier_id}/packages";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("CarriersListPackages", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CarrierListPackagesResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CarrierListPackagesResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListPackagesResponse)));
-        }
-
-        /// <summary>
-        ///     Get shipping services for a carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>CarrierListServicesResponse</returns>
-        public CarrierListServicesResponse CarriersListServices(string carrierId, string apiKey)
-        {
-            var localVarResponse = CarriersListServicesWithHttpInfo(carrierId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get shipping services for a carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of CarrierListServicesResponse</returns>
-        public ApiResponse<CarrierListServicesResponse> CarriersListServicesWithHttpInfo(string carrierId, string apiKey)
-        {
-            // verify the required parameter 'carrierId' is set
-            if (carrierId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'carrierId' when calling CarriersApi->CarriersListServices");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling CarriersApi->CarriersListServices");
-            }
-
-            var localVarPath = "/v1/carriers/{carrier_id}/services";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("CarriersListServices", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CarrierListServicesResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CarrierListServicesResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListServicesResponse)));
-        }
-
-        /// <summary>
-        ///     Get shipping services for a carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of CarrierListServicesResponse</returns>
-        public async Task<CarrierListServicesResponse> CarriersListServicesAsync(string carrierId, string apiKey)
-        {
-            var localVarResponse = await CarriersListServicesAsyncWithHttpInfo(carrierId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get shipping services for a carrier
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="carrierId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (CarrierListServicesResponse)</returns>
-        public async Task<ApiResponse<CarrierListServicesResponse>> CarriersListServicesAsyncWithHttpInfo(
-            string carrierId, string apiKey)
-        {
-            // verify the required parameter 'carrierId' is set
-            if (carrierId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'carrierId' when calling CarriersApi->CarriersListServices");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling CarriersApi->CarriersListServices");
-            }
-
-            var localVarPath = "/v1/carriers/{carrier_id}/services";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("CarriersListServices", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CarrierListServicesResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CarrierListServicesResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListServicesResponse)));
-        }
-
-        /// <summary>
-        ///     Sets the base path of the API client.
-        /// </summary>
-        /// <value>The base path</value>
-        [Obsolete(
-            "SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead."
-        )]
-        public void SetBasePath(string basePath)
-        {
-            // do nothing
-        }
-
-        /// <summary>
-        ///     Gets the default header.
+        /// Gets the default header.
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public Dictionary<string, string> DefaultHeader()
+        public IDictionary<String, String> DefaultHeader()
         {
-            return Configuration.DefaultHeader;
+            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
         }
 
         /// <summary>
-        ///     Add default header.
+        /// Add default header.
         /// </summary>
         /// <param name="key">Header field name.</param>
         /// <param name="value">Header field value.</param>
@@ -1048,7 +349,781 @@ namespace ShipEngine.ApiClient.Api
         [Obsolete("AddDefaultHeader is deprecated, please use Configuration.AddDefaultHeader instead.")]
         public void AddDefaultHeader(string key, string value)
         {
-            Configuration.AddDefaultHeader(key, value);
+            this.Configuration.AddDefaultHeader(key, value);
         }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Carrier</returns>
+        public Carrier CarriersGet (string carrierId, string apiKey)
+        {
+             ApiResponse<Carrier> localVarResponse = CarriersGetWithHttpInfo(carrierId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Carrier</returns>
+        public ApiResponse< Carrier > CarriersGetWithHttpInfo (string carrierId, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarriersApi->CarriersGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersGet");
+
+            var localVarPath = "/v1/carriers/{carrier_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Carrier>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Carrier) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Carrier)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Carrier</returns>
+        public async System.Threading.Tasks.Task<Carrier> CarriersGetAsync (string carrierId, string apiKey)
+        {
+             ApiResponse<Carrier> localVarResponse = await CarriersGetAsyncWithHttpInfo(carrierId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Carrier)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Carrier>> CarriersGetAsyncWithHttpInfo (string carrierId, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarriersApi->CarriersGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersGet");
+
+            var localVarPath = "/v1/carriers/{carrier_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Carrier>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Carrier) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Carrier)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>CarrierListOptionsResponse</returns>
+        public CarrierListOptionsResponse CarriersGetOptions (string carrierId, string apiKey)
+        {
+             ApiResponse<CarrierListOptionsResponse> localVarResponse = CarriersGetOptionsWithHttpInfo(carrierId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of CarrierListOptionsResponse</returns>
+        public ApiResponse< CarrierListOptionsResponse > CarriersGetOptionsWithHttpInfo (string carrierId, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarriersApi->CarriersGetOptions");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersGetOptions");
+
+            var localVarPath = "/v1/carriers/{carrier_id}/options";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersGetOptions", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CarrierListOptionsResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CarrierListOptionsResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListOptionsResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of CarrierListOptionsResponse</returns>
+        public async System.Threading.Tasks.Task<CarrierListOptionsResponse> CarriersGetOptionsAsync (string carrierId, string apiKey)
+        {
+             ApiResponse<CarrierListOptionsResponse> localVarResponse = await CarriersGetOptionsAsyncWithHttpInfo(carrierId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (CarrierListOptionsResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CarrierListOptionsResponse>> CarriersGetOptionsAsyncWithHttpInfo (string carrierId, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarriersApi->CarriersGetOptions");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersGetOptions");
+
+            var localVarPath = "/v1/carriers/{carrier_id}/options";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersGetOptions", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CarrierListOptionsResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CarrierListOptionsResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListOptionsResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>CarrierListResponse</returns>
+        public CarrierListResponse CarriersList (string apiKey)
+        {
+             ApiResponse<CarrierListResponse> localVarResponse = CarriersListWithHttpInfo(apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of CarrierListResponse</returns>
+        public ApiResponse< CarrierListResponse > CarriersListWithHttpInfo (string apiKey)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersList");
+
+            var localVarPath = "/v1/carriers";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersList", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CarrierListResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CarrierListResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of CarrierListResponse</returns>
+        public async System.Threading.Tasks.Task<CarrierListResponse> CarriersListAsync (string apiKey)
+        {
+             ApiResponse<CarrierListResponse> localVarResponse = await CarriersListAsyncWithHttpInfo(apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (CarrierListResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CarrierListResponse>> CarriersListAsyncWithHttpInfo (string apiKey)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersList");
+
+            var localVarPath = "/v1/carriers";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersList", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CarrierListResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CarrierListResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>CarrierListPackagesResponse</returns>
+        public CarrierListPackagesResponse CarriersListPackages (string carrierId, string apiKey)
+        {
+             ApiResponse<CarrierListPackagesResponse> localVarResponse = CarriersListPackagesWithHttpInfo(carrierId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of CarrierListPackagesResponse</returns>
+        public ApiResponse< CarrierListPackagesResponse > CarriersListPackagesWithHttpInfo (string carrierId, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarriersApi->CarriersListPackages");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersListPackages");
+
+            var localVarPath = "/v1/carriers/{carrier_id}/packages";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersListPackages", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CarrierListPackagesResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CarrierListPackagesResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListPackagesResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of CarrierListPackagesResponse</returns>
+        public async System.Threading.Tasks.Task<CarrierListPackagesResponse> CarriersListPackagesAsync (string carrierId, string apiKey)
+        {
+             ApiResponse<CarrierListPackagesResponse> localVarResponse = await CarriersListPackagesAsyncWithHttpInfo(carrierId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (CarrierListPackagesResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CarrierListPackagesResponse>> CarriersListPackagesAsyncWithHttpInfo (string carrierId, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarriersApi->CarriersListPackages");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersListPackages");
+
+            var localVarPath = "/v1/carriers/{carrier_id}/packages";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersListPackages", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CarrierListPackagesResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CarrierListPackagesResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListPackagesResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>CarrierListServicesResponse</returns>
+        public CarrierListServicesResponse CarriersListServices (string carrierId, string apiKey)
+        {
+             ApiResponse<CarrierListServicesResponse> localVarResponse = CarriersListServicesWithHttpInfo(carrierId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of CarrierListServicesResponse</returns>
+        public ApiResponse< CarrierListServicesResponse > CarriersListServicesWithHttpInfo (string carrierId, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarriersApi->CarriersListServices");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersListServices");
+
+            var localVarPath = "/v1/carriers/{carrier_id}/services";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersListServices", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CarrierListServicesResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CarrierListServicesResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListServicesResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of CarrierListServicesResponse</returns>
+        public async System.Threading.Tasks.Task<CarrierListServicesResponse> CarriersListServicesAsync (string carrierId, string apiKey)
+        {
+             ApiResponse<CarrierListServicesResponse> localVarResponse = await CarriersListServicesAsyncWithHttpInfo(carrierId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (CarrierListServicesResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CarrierListServicesResponse>> CarriersListServicesAsyncWithHttpInfo (string carrierId, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarriersApi->CarriersListServices");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersListServices");
+
+            var localVarPath = "/v1/carriers/{carrier_id}/services";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersListServices", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CarrierListServicesResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CarrierListServicesResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierListServicesResponse)));
+        }
+
     }
 }

@@ -9,78 +9,52 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     Basic Link class for passing back links with api results.
+    /// LinkDTO
     /// </summary>
     [DataContract]
-    public class LinkDTO : IEquatable<LinkDTO>, IValidatableObject
+    public partial class LinkDTO :  IEquatable<LinkDTO>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="LinkDTO" /> class.
+        /// Initializes a new instance of the <see cref="LinkDTO" /> class.
         /// </summary>
-        /// <param name="href">The url for the link..</param>
-        /// <param name="type">The object type that can be found at the url..</param>
-        public LinkDTO(string href = default(string), string type = default(string))
+        /// <param name="Href">Href.</param>
+        /// <param name="Type">Type.</param>
+        public LinkDTO(string Href = default(string), string Type = default(string))
         {
-            Href = href;
-            Type = type;
+            this.Href = Href;
+            this.Type = Type;
         }
-
+        
         /// <summary>
-        ///     The url for the link.
+        /// Gets or Sets Href
         /// </summary>
-        /// <value>The url for the link.</value>
-        [DataMember(Name = "href", EmitDefaultValue = false)]
+        [DataMember(Name="href", EmitDefaultValue=false)]
         public string Href { get; set; }
 
         /// <summary>
-        ///     The object type that can be found at the url.
+        /// Gets or Sets Type
         /// </summary>
-        /// <value>The object type that can be found at the url.</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name="type", EmitDefaultValue=false)]
         public string Type { get; set; }
 
         /// <summary>
-        ///     Returns true if LinkDTO instances are equal
-        /// </summary>
-        /// <param name="other">Instance of LinkDTO to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(LinkDTO other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    Href == other.Href ||
-                    Href != null &&
-                    Href.Equals(other.Href)
-                ) &&
-                (
-                    Type == other.Type ||
-                    Type != null &&
-                    Type.Equals(other.Type)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -92,9 +66,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -103,37 +77,64 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as LinkDTO);
+            return this.Equals(input as LinkDTO);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if LinkDTO instances are equal
+        /// </summary>
+        /// <param name="input">Instance of LinkDTO to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(LinkDTO input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Href == input.Href ||
+                    (this.Href != null &&
+                    this.Href.Equals(input.Href))
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Href != null)
-                {
-                    hash = hash * 59 + Href.GetHashCode();
-                }
-                if (Type != null)
-                {
-                    hash = hash * 59 + Type.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Href != null)
+                    hashCode = hashCode * 59 + this.Href.GetHashCode();
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

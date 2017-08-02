@@ -9,121 +9,88 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     Dimensions
+    /// Dimensions
     /// </summary>
     [DataContract]
-    public class Dimensions : IEquatable<Dimensions>, IValidatableObject
+    public partial class Dimensions :  IEquatable<Dimensions>, IValidatableObject
     {
         /// <summary>
-        ///     Gets or Sets Unit
+        /// Gets or Sets Unit
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum UnitEnum
         {
+            
             /// <summary>
-            ///     Enum Inch for "inch"
+            /// Enum Inch for "inch"
             /// </summary>
-            [EnumMember(Value = "inch")] Inch,
-
+            [EnumMember(Value = "inch")]
+            Inch,
+            
             /// <summary>
-            ///     Enum Centimeter for "centimeter"
+            /// Enum Centimeter for "centimeter"
             /// </summary>
-            [EnumMember(Value = "centimeter")] Centimeter
+            [EnumMember(Value = "centimeter")]
+            Centimeter
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Dimensions" /> class.
+        /// Gets or Sets Unit
         /// </summary>
-        /// <param name="unit">Unit.</param>
-        /// <param name="length">Length.</param>
-        /// <param name="width">Width.</param>
-        /// <param name="height">Height.</param>
-        public Dimensions(UnitEnum? unit = default(UnitEnum?), double? length = default(double?),
-            double? width = default(double?), double? height = default(double?))
-        {
-            Unit = unit;
-            Length = length;
-            Width = width;
-            Height = height;
-        }
-
-        /// <summary>
-        ///     Gets or Sets Unit
-        /// </summary>
-        [DataMember(Name = "unit", EmitDefaultValue = false)]
+        [DataMember(Name="unit", EmitDefaultValue=false)]
         public UnitEnum? Unit { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Dimensions" /> class.
+        /// </summary>
+        /// <param name="Unit">Unit.</param>
+        /// <param name="Length">Length.</param>
+        /// <param name="Width">Width.</param>
+        /// <param name="Height">Height.</param>
+        public Dimensions(UnitEnum? Unit = default(UnitEnum?), double? Length = default(double?), double? Width = default(double?), double? Height = default(double?))
+        {
+            this.Unit = Unit;
+            this.Length = Length;
+            this.Width = Width;
+            this.Height = Height;
+        }
+        
 
         /// <summary>
-        ///     Gets or Sets Length
+        /// Gets or Sets Length
         /// </summary>
-        [DataMember(Name = "length", EmitDefaultValue = false)]
+        [DataMember(Name="length", EmitDefaultValue=false)]
         public double? Length { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Width
+        /// Gets or Sets Width
         /// </summary>
-        [DataMember(Name = "width", EmitDefaultValue = false)]
+        [DataMember(Name="width", EmitDefaultValue=false)]
         public double? Width { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Height
+        /// Gets or Sets Height
         /// </summary>
-        [DataMember(Name = "height", EmitDefaultValue = false)]
+        [DataMember(Name="height", EmitDefaultValue=false)]
         public double? Height { get; set; }
 
         /// <summary>
-        ///     Returns true if Dimensions instances are equal
-        /// </summary>
-        /// <param name="other">Instance of Dimensions to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Dimensions other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    Unit == other.Unit ||
-                    Unit != null &&
-                    Unit.Equals(other.Unit)
-                ) &&
-                (
-                    Length == other.Length ||
-                    Length != null &&
-                    Length.Equals(other.Length)
-                ) &&
-                (
-                    Width == other.Width ||
-                    Width != null &&
-                    Width.Equals(other.Width)
-                ) &&
-                (
-                    Height == other.Height ||
-                    Height != null &&
-                    Height.Equals(other.Height)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -137,9 +104,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -148,45 +115,78 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Dimensions);
+            return this.Equals(input as Dimensions);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if Dimensions instances are equal
+        /// </summary>
+        /// <param name="input">Instance of Dimensions to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(Dimensions input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Unit == input.Unit ||
+                    (this.Unit != null &&
+                    this.Unit.Equals(input.Unit))
+                ) && 
+                (
+                    this.Length == input.Length ||
+                    (this.Length != null &&
+                    this.Length.Equals(input.Length))
+                ) && 
+                (
+                    this.Width == input.Width ||
+                    (this.Width != null &&
+                    this.Width.Equals(input.Width))
+                ) && 
+                (
+                    this.Height == input.Height ||
+                    (this.Height != null &&
+                    this.Height.Equals(input.Height))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Unit != null)
-                {
-                    hash = hash * 59 + Unit.GetHashCode();
-                }
-                if (Length != null)
-                {
-                    hash = hash * 59 + Length.GetHashCode();
-                }
-                if (Width != null)
-                {
-                    hash = hash * 59 + Width.GetHashCode();
-                }
-                if (Height != null)
-                {
-                    hash = hash * 59 + Height.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Unit != null)
+                    hashCode = hashCode * 59 + this.Unit.GetHashCode();
+                if (this.Length != null)
+                    hashCode = hashCode * 59 + this.Length.GetHashCode();
+                if (this.Width != null)
+                    hashCode = hashCode * 59 + this.Width.GetHashCode();
+                if (this.Height != null)
+                    hashCode = hashCode * 59 + this.Height.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

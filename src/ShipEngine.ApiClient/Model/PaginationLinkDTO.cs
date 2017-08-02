@@ -9,132 +9,84 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     PaginationLinkDTO
+    /// PaginationLinkDTO
     /// </summary>
     [DataContract]
-    public class PaginationLinkDTO : IEquatable<PaginationLinkDTO>, IValidatableObject
+    public partial class PaginationLinkDTO :  IEquatable<PaginationLinkDTO>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="PaginationLinkDTO" /> class.
+        /// Initializes a new instance of the <see cref="PaginationLinkDTO" /> class.
         /// </summary>
-        /// <param name="first">First.</param>
-        /// <param name="last">Last.</param>
-        /// <param name="prev">Prev.</param>
-        /// <param name="next">Next.</param>
-        /// <param name="href">The url for the link..</param>
-        /// <param name="type">The object type that can be found at the url..</param>
-        public PaginationLinkDTO(LinkDTO first = default(LinkDTO), LinkDTO last = default(LinkDTO),
-            LinkDTO prev = default(LinkDTO), LinkDTO next = default(LinkDTO), string href = default(string),
-            string type = default(string))
+        /// <param name="First">First.</param>
+        /// <param name="Last">Last.</param>
+        /// <param name="Prev">Prev.</param>
+        /// <param name="Next">Next.</param>
+        /// <param name="Href">Href.</param>
+        /// <param name="Type">Type.</param>
+        public PaginationLinkDTO(LinkDTO First = default(LinkDTO), LinkDTO Last = default(LinkDTO), LinkDTO Prev = default(LinkDTO), LinkDTO Next = default(LinkDTO), string Href = default(string), string Type = default(string))
         {
-            First = first;
-            Last = last;
-            Prev = prev;
-            Next = next;
-            Href = href;
-            Type = type;
+            this.First = First;
+            this.Last = Last;
+            this.Prev = Prev;
+            this.Next = Next;
+            this.Href = Href;
+            this.Type = Type;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets First
+        /// Gets or Sets First
         /// </summary>
-        [DataMember(Name = "first", EmitDefaultValue = false)]
+        [DataMember(Name="first", EmitDefaultValue=false)]
         public LinkDTO First { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Last
+        /// Gets or Sets Last
         /// </summary>
-        [DataMember(Name = "last", EmitDefaultValue = false)]
+        [DataMember(Name="last", EmitDefaultValue=false)]
         public LinkDTO Last { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Prev
+        /// Gets or Sets Prev
         /// </summary>
-        [DataMember(Name = "prev", EmitDefaultValue = false)]
+        [DataMember(Name="prev", EmitDefaultValue=false)]
         public LinkDTO Prev { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Next
+        /// Gets or Sets Next
         /// </summary>
-        [DataMember(Name = "next", EmitDefaultValue = false)]
+        [DataMember(Name="next", EmitDefaultValue=false)]
         public LinkDTO Next { get; set; }
 
         /// <summary>
-        ///     The url for the link.
+        /// Gets or Sets Href
         /// </summary>
-        /// <value>The url for the link.</value>
-        [DataMember(Name = "href", EmitDefaultValue = false)]
+        [DataMember(Name="href", EmitDefaultValue=false)]
         public string Href { get; set; }
 
         /// <summary>
-        ///     The object type that can be found at the url.
+        /// Gets or Sets Type
         /// </summary>
-        /// <value>The object type that can be found at the url.</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name="type", EmitDefaultValue=false)]
         public string Type { get; set; }
 
         /// <summary>
-        ///     Returns true if PaginationLinkDTO instances are equal
-        /// </summary>
-        /// <param name="other">Instance of PaginationLinkDTO to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(PaginationLinkDTO other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    Equals(First, other.First) ||
-                    First != null &&
-                    First.Equals(other.First)
-                ) &&
-                (
-                    Equals(Last, other.Last) ||
-                    Last != null &&
-                    Last.Equals(other.Last)
-                ) &&
-                (
-                    Equals(Prev, other.Prev) ||
-                    Prev != null &&
-                    Prev.Equals(other.Prev)
-                ) &&
-                (
-                    Equals(Next, other.Next) ||
-                    Next != null &&
-                    Next.Equals(other.Next)
-                ) &&
-                (
-                    Href == other.Href ||
-                    Href != null &&
-                    Href.Equals(other.Href)
-                ) &&
-                (
-                    Type == other.Type ||
-                    Type != null &&
-                    Type.Equals(other.Type)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -150,9 +102,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -161,53 +113,92 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as PaginationLinkDTO);
+            return this.Equals(input as PaginationLinkDTO);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if PaginationLinkDTO instances are equal
+        /// </summary>
+        /// <param name="input">Instance of PaginationLinkDTO to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(PaginationLinkDTO input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.First == input.First ||
+                    (this.First != null &&
+                    this.First.Equals(input.First))
+                ) && 
+                (
+                    this.Last == input.Last ||
+                    (this.Last != null &&
+                    this.Last.Equals(input.Last))
+                ) && 
+                (
+                    this.Prev == input.Prev ||
+                    (this.Prev != null &&
+                    this.Prev.Equals(input.Prev))
+                ) && 
+                (
+                    this.Next == input.Next ||
+                    (this.Next != null &&
+                    this.Next.Equals(input.Next))
+                ) && 
+                (
+                    this.Href == input.Href ||
+                    (this.Href != null &&
+                    this.Href.Equals(input.Href))
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (First != null)
-                {
-                    hash = hash * 59 + First.GetHashCode();
-                }
-                if (Last != null)
-                {
-                    hash = hash * 59 + Last.GetHashCode();
-                }
-                if (Prev != null)
-                {
-                    hash = hash * 59 + Prev.GetHashCode();
-                }
-                if (Next != null)
-                {
-                    hash = hash * 59 + Next.GetHashCode();
-                }
-                if (Href != null)
-                {
-                    hash = hash * 59 + Href.GetHashCode();
-                }
-                if (Type != null)
-                {
-                    hash = hash * 59 + Type.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.First != null)
+                    hashCode = hashCode * 59 + this.First.GetHashCode();
+                if (this.Last != null)
+                    hashCode = hashCode * 59 + this.Last.GetHashCode();
+                if (this.Prev != null)
+                    hashCode = hashCode * 59 + this.Prev.GetHashCode();
+                if (this.Next != null)
+                    hashCode = hashCode * 59 + this.Next.GetHashCode();
+                if (this.Href != null)
+                    hashCode = hashCode * 59 + this.Href.GetHashCode();
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

@@ -10,77 +10,318 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using RestSharp;
-using ShipEngine.ApiClient.Api.Interfaces;
 using ShipEngine.ApiClient.Client;
 using ShipEngine.ApiClient.Model;
 
 namespace ShipEngine.ApiClient.Api
 {
     /// <summary>
-    ///     Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class PackagesApi : IPackagesApi
+    public interface IPackagesApi : IApiAccessor
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        #region Synchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Package</returns>
+        Package PackagesCreate (Package package, string apiKey);
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="PackagesApi" /> class.
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Package</returns>
+        ApiResponse<Package> PackagesCreateWithHttpInfo (Package package, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        void PackagesDelete (string packageId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> PackagesDeleteWithHttpInfo (string packageId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Package</returns>
+        Package PackagesGet (string packageId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Package</returns>
+        ApiResponse<Package> PackagesGetWithHttpInfo (string packageId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>PackagesListResponse</returns>
+        PackagesListResponse PackagesList (string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of PackagesListResponse</returns>
+        ApiResponse<PackagesListResponse> PackagesListWithHttpInfo (string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        void PackagesUpdate (string packageId, Package package, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> PackagesUpdateWithHttpInfo (string packageId, Package package, string apiKey);
+        #endregion Synchronous Operations
+        #region Asynchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Package</returns>
+        System.Threading.Tasks.Task<Package> PackagesCreateAsync (Package package, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Package)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Package>> PackagesCreateAsyncWithHttpInfo (Package package, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task PackagesDeleteAsync (string packageId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> PackagesDeleteAsyncWithHttpInfo (string packageId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Package</returns>
+        System.Threading.Tasks.Task<Package> PackagesGetAsync (string packageId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Package)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Package>> PackagesGetAsyncWithHttpInfo (string packageId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of PackagesListResponse</returns>
+        System.Threading.Tasks.Task<PackagesListResponse> PackagesListAsync (string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (PackagesListResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PackagesListResponse>> PackagesListAsyncWithHttpInfo (string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task PackagesUpdateAsync (string packageId, Package package, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> PackagesUpdateAsyncWithHttpInfo (string packageId, Package package, string apiKey);
+        #endregion Asynchronous Operations
+    }
+
+    /// <summary>
+    /// Represents a collection of functions to interact with the API endpoints
+    /// </summary>
+    public partial class PackagesApi : IPackagesApi
+    {
+        private ShipEngine.ApiClient.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PackagesApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public PackagesApi(string basePath)
+        public PackagesApi(String basePath)
         {
-            Configuration = new Configuration(new Client.ApiClient(basePath));
+            this.Configuration = new Configuration { BasePath = basePath };
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="PackagesApi" /> class
-        ///     using Configuration object
+        /// Initializes a new instance of the <see cref="PackagesApi"/> class
+        /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
         public PackagesApi(Configuration configuration = null)
         {
-            Configuration = configuration ?? Configuration.Default;
+            if (configuration == null) // use the default one in Configuration
+                this.Configuration = Configuration.Default;
+            else
+                this.Configuration = configuration;
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Gets the base path of the API client.
+        /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public string GetBasePath()
+        public String GetBasePath()
         {
-            return Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
         }
 
         /// <summary>
-        ///     Gets or sets the configuration object
+        /// Sets the base path of the API client.
         /// </summary>
-        /// <value>An instance of the Configuration</value>
-        public Configuration Configuration { get; set; }
+        /// <value>The base path</value>
+        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        public void SetBasePath(String basePath)
+        {
+            // do nothing
+        }
 
         /// <summary>
-        ///     Provides a factory method hook for the creation of exceptions.
+        /// Gets or sets the configuration object
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        /// <value>An instance of the Configuration</value>
+        public Configuration Configuration {get; set;}
+
+        /// <summary>
+        /// Provides a factory method hook for the creation of exceptions.
+        /// </summary>
+        public ShipEngine.ApiClient.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -94,999 +335,17 @@ namespace ShipEngine.ApiClient.Api
         }
 
         /// <summary>
-        ///     Create a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="package"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Package</returns>
-        public Package PackagesCreate(Package package, string apiKey)
-        {
-            var localVarResponse = PackagesCreateWithHttpInfo(package, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Create a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="package"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Package</returns>
-        public ApiResponse<Package> PackagesCreateWithHttpInfo(Package package, string apiKey)
-        {
-            // verify the required parameter 'package' is set
-            if (package == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'package' when calling PackagesApi->PackagesCreate");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling PackagesApi->PackagesCreate");
-            }
-
-            var localVarPath = "/v1/packages";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (package.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(package); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = package; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("PackagesCreate", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Package>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Package) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Package)));
-        }
-
-        /// <summary>
-        ///     Create a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="package"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Package</returns>
-        public async Task<Package> PackagesCreateAsync(Package package, string apiKey)
-        {
-            var localVarResponse = await PackagesCreateAsyncWithHttpInfo(package, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Create a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="package"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Package)</returns>
-        public async Task<ApiResponse<Package>> PackagesCreateAsyncWithHttpInfo(Package package, string apiKey)
-        {
-            // verify the required parameter 'package' is set
-            if (package == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'package' when calling PackagesApi->PackagesCreate");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling PackagesApi->PackagesCreate");
-            }
-
-            var localVarPath = "/v1/packages";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (package.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(package); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = package; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("PackagesCreate", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Package>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Package) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Package)));
-        }
-
-        /// <summary>
-        ///     Delete a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns></returns>
-        public void PackagesDelete(string packageId, string apiKey)
-        {
-            PackagesDeleteWithHttpInfo(packageId, apiKey);
-        }
-
-        /// <summary>
-        ///     Delete a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<object> PackagesDeleteWithHttpInfo(string packageId, string apiKey)
-        {
-            // verify the required parameter 'packageId' is set
-            if (packageId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'packageId' when calling PackagesApi->PackagesDelete");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling PackagesApi->PackagesDelete");
-            }
-
-            var localVarPath = "/v1/packages/{package_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("PackagesDelete", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Delete a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of void</returns>
-        public async Task PackagesDeleteAsync(string packageId, string apiKey)
-        {
-            await PackagesDeleteAsyncWithHttpInfo(packageId, apiKey);
-        }
-
-        /// <summary>
-        ///     Delete a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async Task<ApiResponse<object>> PackagesDeleteAsyncWithHttpInfo(string packageId, string apiKey)
-        {
-            // verify the required parameter 'packageId' is set
-            if (packageId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'packageId' when calling PackagesApi->PackagesDelete");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling PackagesApi->PackagesDelete");
-            }
-
-            var localVarPath = "/v1/packages/{package_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("PackagesDelete", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Get a specific package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Package</returns>
-        public Package PackagesGet(string packageId, string apiKey)
-        {
-            var localVarResponse = PackagesGetWithHttpInfo(packageId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Package</returns>
-        public ApiResponse<Package> PackagesGetWithHttpInfo(string packageId, string apiKey)
-        {
-            // verify the required parameter 'packageId' is set
-            if (packageId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'packageId' when calling PackagesApi->PackagesGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesGet");
-            }
-
-            var localVarPath = "/v1/packages/{package_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("PackagesGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Package>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Package) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Package)));
-        }
-
-        /// <summary>
-        ///     Get a specific package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Package</returns>
-        public async Task<Package> PackagesGetAsync(string packageId, string apiKey)
-        {
-            var localVarResponse = await PackagesGetAsyncWithHttpInfo(packageId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Package)</returns>
-        public async Task<ApiResponse<Package>> PackagesGetAsyncWithHttpInfo(string packageId, string apiKey)
-        {
-            // verify the required parameter 'packageId' is set
-            if (packageId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'packageId' when calling PackagesApi->PackagesGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesGet");
-            }
-
-            var localVarPath = "/v1/packages/{package_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("PackagesGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Package>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Package) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Package)));
-        }
-
-        /// <summary>
-        ///     Get packages Get a list of packages
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>PackagesListResponse</returns>
-        public PackagesListResponse PackagesList(string apiKey)
-        {
-            var localVarResponse = PackagesListWithHttpInfo(apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get packages Get a list of packages
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of PackagesListResponse</returns>
-        public ApiResponse<PackagesListResponse> PackagesListWithHttpInfo(string apiKey)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesList");
-            }
-
-            var localVarPath = "/v1/packages";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("PackagesList", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<PackagesListResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PackagesListResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(PackagesListResponse)));
-        }
-
-        /// <summary>
-        ///     Get packages Get a list of packages
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of PackagesListResponse</returns>
-        public async Task<PackagesListResponse> PackagesListAsync(string apiKey)
-        {
-            var localVarResponse = await PackagesListAsyncWithHttpInfo(apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get packages Get a list of packages
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (PackagesListResponse)</returns>
-        public async Task<ApiResponse<PackagesListResponse>> PackagesListAsyncWithHttpInfo(string apiKey)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesList");
-            }
-
-            var localVarPath = "/v1/packages";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("PackagesList", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<PackagesListResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PackagesListResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(PackagesListResponse)));
-        }
-
-        /// <summary>
-        ///     Update a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId">Package ID</param>
-        /// <param name="package"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns></returns>
-        public void PackagesUpdate(string packageId, Package package, string apiKey)
-        {
-            PackagesUpdateWithHttpInfo(packageId, package, apiKey);
-        }
-
-        /// <summary>
-        ///     Update a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId">Package ID</param>
-        /// <param name="package"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<object> PackagesUpdateWithHttpInfo(string packageId, Package package, string apiKey)
-        {
-            // verify the required parameter 'packageId' is set
-            if (packageId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'packageId' when calling PackagesApi->PackagesUpdate");
-            }
-            // verify the required parameter 'package' is set
-            if (package == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'package' when calling PackagesApi->PackagesUpdate");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling PackagesApi->PackagesUpdate");
-            }
-
-            var localVarPath = "/v1/packages/{package_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (package.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(package); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = package; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("PackagesUpdate", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Update a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId">Package ID</param>
-        /// <param name="package"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of void</returns>
-        public async Task PackagesUpdateAsync(string packageId, Package package, string apiKey)
-        {
-            await PackagesUpdateAsyncWithHttpInfo(packageId, package, apiKey);
-        }
-
-        /// <summary>
-        ///     Update a package
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="packageId">Package ID</param>
-        /// <param name="package"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async Task<ApiResponse<object>> PackagesUpdateAsyncWithHttpInfo(string packageId, Package package,
-            string apiKey)
-        {
-            // verify the required parameter 'packageId' is set
-            if (packageId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'packageId' when calling PackagesApi->PackagesUpdate");
-            }
-            // verify the required parameter 'package' is set
-            if (package == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'package' when calling PackagesApi->PackagesUpdate");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling PackagesApi->PackagesUpdate");
-            }
-
-            var localVarPath = "/v1/packages/{package_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (package.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(package); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = package; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("PackagesUpdate", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Sets the base path of the API client.
-        /// </summary>
-        /// <value>The base path</value>
-        [Obsolete(
-            "SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead."
-        )]
-        public void SetBasePath(string basePath)
-        {
-            // do nothing
-        }
-
-        /// <summary>
-        ///     Gets the default header.
+        /// Gets the default header.
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public Dictionary<string, string> DefaultHeader()
+        public IDictionary<String, String> DefaultHeader()
         {
-            return Configuration.DefaultHeader;
+            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
         }
 
         /// <summary>
-        ///     Add default header.
+        /// Add default header.
         /// </summary>
         /// <param name="key">Header field name.</param>
         /// <param name="value">Header field value.</param>
@@ -1094,7 +353,825 @@ namespace ShipEngine.ApiClient.Api
         [Obsolete("AddDefaultHeader is deprecated, please use Configuration.AddDefaultHeader instead.")]
         public void AddDefaultHeader(string key, string value)
         {
-            Configuration.AddDefaultHeader(key, value);
+            this.Configuration.AddDefaultHeader(key, value);
         }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Package</returns>
+        public Package PackagesCreate (Package package, string apiKey)
+        {
+             ApiResponse<Package> localVarResponse = PackagesCreateWithHttpInfo(package, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Package</returns>
+        public ApiResponse< Package > PackagesCreateWithHttpInfo (Package package, string apiKey)
+        {
+            // verify the required parameter 'package' is set
+            if (package == null)
+                throw new ApiException(400, "Missing required parameter 'package' when calling PackagesApi->PackagesCreate");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesCreate");
+
+            var localVarPath = "/v1/packages";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (package != null && package.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(package); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = package; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PackagesCreate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Package>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Package) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Package)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Package</returns>
+        public async System.Threading.Tasks.Task<Package> PackagesCreateAsync (Package package, string apiKey)
+        {
+             ApiResponse<Package> localVarResponse = await PackagesCreateAsyncWithHttpInfo(package, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Package)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Package>> PackagesCreateAsyncWithHttpInfo (Package package, string apiKey)
+        {
+            // verify the required parameter 'package' is set
+            if (package == null)
+                throw new ApiException(400, "Missing required parameter 'package' when calling PackagesApi->PackagesCreate");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesCreate");
+
+            var localVarPath = "/v1/packages";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (package != null && package.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(package); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = package; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PackagesCreate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Package>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Package) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Package)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        public void PackagesDelete (string packageId, string apiKey)
+        {
+             PackagesDeleteWithHttpInfo(packageId, apiKey);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> PackagesDeleteWithHttpInfo (string packageId, string apiKey)
+        {
+            // verify the required parameter 'packageId' is set
+            if (packageId == null)
+                throw new ApiException(400, "Missing required parameter 'packageId' when calling PackagesApi->PackagesDelete");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesDelete");
+
+            var localVarPath = "/v1/packages/{package_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (packageId != null) localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PackagesDelete", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task PackagesDeleteAsync (string packageId, string apiKey)
+        {
+             await PackagesDeleteAsyncWithHttpInfo(packageId, apiKey);
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> PackagesDeleteAsyncWithHttpInfo (string packageId, string apiKey)
+        {
+            // verify the required parameter 'packageId' is set
+            if (packageId == null)
+                throw new ApiException(400, "Missing required parameter 'packageId' when calling PackagesApi->PackagesDelete");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesDelete");
+
+            var localVarPath = "/v1/packages/{package_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (packageId != null) localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PackagesDelete", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Package</returns>
+        public Package PackagesGet (string packageId, string apiKey)
+        {
+             ApiResponse<Package> localVarResponse = PackagesGetWithHttpInfo(packageId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Package</returns>
+        public ApiResponse< Package > PackagesGetWithHttpInfo (string packageId, string apiKey)
+        {
+            // verify the required parameter 'packageId' is set
+            if (packageId == null)
+                throw new ApiException(400, "Missing required parameter 'packageId' when calling PackagesApi->PackagesGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesGet");
+
+            var localVarPath = "/v1/packages/{package_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (packageId != null) localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PackagesGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Package>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Package) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Package)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Package</returns>
+        public async System.Threading.Tasks.Task<Package> PackagesGetAsync (string packageId, string apiKey)
+        {
+             ApiResponse<Package> localVarResponse = await PackagesGetAsyncWithHttpInfo(packageId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Package)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Package>> PackagesGetAsyncWithHttpInfo (string packageId, string apiKey)
+        {
+            // verify the required parameter 'packageId' is set
+            if (packageId == null)
+                throw new ApiException(400, "Missing required parameter 'packageId' when calling PackagesApi->PackagesGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesGet");
+
+            var localVarPath = "/v1/packages/{package_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (packageId != null) localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PackagesGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Package>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Package) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Package)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>PackagesListResponse</returns>
+        public PackagesListResponse PackagesList (string apiKey)
+        {
+             ApiResponse<PackagesListResponse> localVarResponse = PackagesListWithHttpInfo(apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of PackagesListResponse</returns>
+        public ApiResponse< PackagesListResponse > PackagesListWithHttpInfo (string apiKey)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesList");
+
+            var localVarPath = "/v1/packages";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PackagesList", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PackagesListResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PackagesListResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PackagesListResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of PackagesListResponse</returns>
+        public async System.Threading.Tasks.Task<PackagesListResponse> PackagesListAsync (string apiKey)
+        {
+             ApiResponse<PackagesListResponse> localVarResponse = await PackagesListAsyncWithHttpInfo(apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (PackagesListResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PackagesListResponse>> PackagesListAsyncWithHttpInfo (string apiKey)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesList");
+
+            var localVarPath = "/v1/packages";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PackagesList", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PackagesListResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (PackagesListResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PackagesListResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        public void PackagesUpdate (string packageId, Package package, string apiKey)
+        {
+             PackagesUpdateWithHttpInfo(packageId, package, apiKey);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> PackagesUpdateWithHttpInfo (string packageId, Package package, string apiKey)
+        {
+            // verify the required parameter 'packageId' is set
+            if (packageId == null)
+                throw new ApiException(400, "Missing required parameter 'packageId' when calling PackagesApi->PackagesUpdate");
+            // verify the required parameter 'package' is set
+            if (package == null)
+                throw new ApiException(400, "Missing required parameter 'package' when calling PackagesApi->PackagesUpdate");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesUpdate");
+
+            var localVarPath = "/v1/packages/{package_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (packageId != null) localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (package != null && package.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(package); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = package; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PackagesUpdate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task PackagesUpdateAsync (string packageId, Package package, string apiKey)
+        {
+             await PackagesUpdateAsyncWithHttpInfo(packageId, package, apiKey);
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="packageId"></param>
+        /// <param name="package"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> PackagesUpdateAsyncWithHttpInfo (string packageId, Package package, string apiKey)
+        {
+            // verify the required parameter 'packageId' is set
+            if (packageId == null)
+                throw new ApiException(400, "Missing required parameter 'packageId' when calling PackagesApi->PackagesUpdate");
+            // verify the required parameter 'package' is set
+            if (package == null)
+                throw new ApiException(400, "Missing required parameter 'package' when calling PackagesApi->PackagesUpdate");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling PackagesApi->PackagesUpdate");
+
+            var localVarPath = "/v1/packages/{package_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (packageId != null) localVarPathParams.Add("package_id", Configuration.ApiClient.ParameterToString(packageId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (package != null && package.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(package); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = package; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PackagesUpdate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
     }
 }

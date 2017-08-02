@@ -10,77 +10,462 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using RestSharp;
-using ShipEngine.ApiClient.Api.Interfaces;
 using ShipEngine.ApiClient.Client;
 using ShipEngine.ApiClient.Model;
 
 namespace ShipEngine.ApiClient.Api
 {
     /// <summary>
-    ///     Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class LabelsApi : ILabelsApi
+    public interface ILabelsApi : IApiAccessor
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        #region Synchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Label</returns>
+        Label LabelsGet (string labelId, string apiKey);
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="LabelsApi" /> class.
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Label</returns>
+        ApiResponse<Label> LabelsGetWithHttpInfo (string labelId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="labelStatus"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="serviceCode"> (optional)</param>
+        /// <param name="trackingNumber"> (optional)</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>ListLabelResponse</returns>
+        ListLabelResponse LabelsList (string apiKey, string batchId = null, string labelStatus = null, string carrierId = null, string serviceCode = null, string trackingNumber = null, string warehouseId = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="labelStatus"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="serviceCode"> (optional)</param>
+        /// <param name="trackingNumber"> (optional)</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>ApiResponse of ListLabelResponse</returns>
+        ApiResponse<ListLabelResponse> LabelsListWithHttpInfo (string apiKey, string batchId = null, string labelStatus = null, string carrierId = null, string serviceCode = null, string trackingNumber = null, string warehouseId = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Label</returns>
+        Label LabelsPurchaseLabel (PurchaseLabelRequest request, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Label</returns>
+        ApiResponse<Label> LabelsPurchaseLabelWithHttpInfo (PurchaseLabelRequest request, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Label</returns>
+        Label LabelsPurchaseLabelWithRate (string rateId, PurchaseLabelWithoutShipmentRequest request, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Label</returns>
+        ApiResponse<Label> LabelsPurchaseLabelWithRateWithHttpInfo (string rateId, PurchaseLabelWithoutShipmentRequest request, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Label</returns>
+        Label LabelsPurchaseLabelWithShipment (string shipmentId, PurchaseLabelWithoutShipmentRequest request, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Label</returns>
+        ApiResponse<Label> LabelsPurchaseLabelWithShipmentWithHttpInfo (string shipmentId, PurchaseLabelWithoutShipmentRequest request, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>TrackingInformation</returns>
+        TrackingInformation LabelsTrack (string labelId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of TrackingInformation</returns>
+        ApiResponse<TrackingInformation> LabelsTrackWithHttpInfo (string labelId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>VoidLabelResponse</returns>
+        VoidLabelResponse LabelsVoidLabel (string labelId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of VoidLabelResponse</returns>
+        ApiResponse<VoidLabelResponse> LabelsVoidLabelWithHttpInfo (string labelId, string apiKey);
+        #endregion Synchronous Operations
+        #region Asynchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Label</returns>
+        System.Threading.Tasks.Task<Label> LabelsGetAsync (string labelId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Label)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Label>> LabelsGetAsyncWithHttpInfo (string labelId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="labelStatus"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="serviceCode"> (optional)</param>
+        /// <param name="trackingNumber"> (optional)</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>Task of ListLabelResponse</returns>
+        System.Threading.Tasks.Task<ListLabelResponse> LabelsListAsync (string apiKey, string batchId = null, string labelStatus = null, string carrierId = null, string serviceCode = null, string trackingNumber = null, string warehouseId = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="labelStatus"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="serviceCode"> (optional)</param>
+        /// <param name="trackingNumber"> (optional)</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>Task of ApiResponse (ListLabelResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListLabelResponse>> LabelsListAsyncWithHttpInfo (string apiKey, string batchId = null, string labelStatus = null, string carrierId = null, string serviceCode = null, string trackingNumber = null, string warehouseId = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Label</returns>
+        System.Threading.Tasks.Task<Label> LabelsPurchaseLabelAsync (PurchaseLabelRequest request, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Label)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Label>> LabelsPurchaseLabelAsyncWithHttpInfo (PurchaseLabelRequest request, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Label</returns>
+        System.Threading.Tasks.Task<Label> LabelsPurchaseLabelWithRateAsync (string rateId, PurchaseLabelWithoutShipmentRequest request, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Label)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Label>> LabelsPurchaseLabelWithRateAsyncWithHttpInfo (string rateId, PurchaseLabelWithoutShipmentRequest request, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Label</returns>
+        System.Threading.Tasks.Task<Label> LabelsPurchaseLabelWithShipmentAsync (string shipmentId, PurchaseLabelWithoutShipmentRequest request, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Label)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Label>> LabelsPurchaseLabelWithShipmentAsyncWithHttpInfo (string shipmentId, PurchaseLabelWithoutShipmentRequest request, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of TrackingInformation</returns>
+        System.Threading.Tasks.Task<TrackingInformation> LabelsTrackAsync (string labelId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (TrackingInformation)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TrackingInformation>> LabelsTrackAsyncWithHttpInfo (string labelId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of VoidLabelResponse</returns>
+        System.Threading.Tasks.Task<VoidLabelResponse> LabelsVoidLabelAsync (string labelId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (VoidLabelResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<VoidLabelResponse>> LabelsVoidLabelAsyncWithHttpInfo (string labelId, string apiKey);
+        #endregion Asynchronous Operations
+    }
+
+    /// <summary>
+    /// Represents a collection of functions to interact with the API endpoints
+    /// </summary>
+    public partial class LabelsApi : ILabelsApi
+    {
+        private ShipEngine.ApiClient.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LabelsApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public LabelsApi(string basePath)
+        public LabelsApi(String basePath)
         {
-            Configuration = new Configuration(new Client.ApiClient(basePath));
+            this.Configuration = new Configuration { BasePath = basePath };
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="LabelsApi" /> class
-        ///     using Configuration object
+        /// Initializes a new instance of the <see cref="LabelsApi"/> class
+        /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
         public LabelsApi(Configuration configuration = null)
         {
-            Configuration = configuration ?? Configuration.Default;
+            if (configuration == null) // use the default one in Configuration
+                this.Configuration = Configuration.Default;
+            else
+                this.Configuration = configuration;
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Gets the base path of the API client.
+        /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public string GetBasePath()
+        public String GetBasePath()
         {
-            return Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
         }
 
         /// <summary>
-        ///     Gets or sets the configuration object
+        /// Sets the base path of the API client.
         /// </summary>
-        /// <value>An instance of the Configuration</value>
-        public Configuration Configuration { get; set; }
+        /// <value>The base path</value>
+        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        public void SetBasePath(String basePath)
+        {
+            // do nothing
+        }
 
         /// <summary>
-        ///     Provides a factory method hook for the creation of exceptions.
+        /// Gets or sets the configuration object
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        /// <value>An instance of the Configuration</value>
+        public Configuration Configuration {get; set;}
+
+        /// <summary>
+        /// Provides a factory method hook for the creation of exceptions.
+        /// </summary>
+        public ShipEngine.ApiClient.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -94,1598 +479,17 @@ namespace ShipEngine.ApiClient.Api
         }
 
         /// <summary>
-        ///     Get a specific Label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId">Label ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Label</returns>
-        public Label LabelsGet(string labelId, string apiKey)
-        {
-            var localVarResponse = LabelsGetWithHttpInfo(labelId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific Label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId">Label ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Label</returns>
-        public ApiResponse<Label> LabelsGetWithHttpInfo(string labelId, string apiKey)
-        {
-            // verify the required parameter 'labelId' is set
-            if (labelId == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'labelId' when calling LabelsApi->LabelsGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsGet");
-            }
-
-            var localVarPath = "/v1/labels/{label_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Label>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
-        }
-
-        /// <summary>
-        ///     Get a specific Label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId">Label ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Label</returns>
-        public async Task<Label> LabelsGetAsync(string labelId, string apiKey)
-        {
-            var localVarResponse = await LabelsGetAsyncWithHttpInfo(labelId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific Label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId">Label ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Label)</returns>
-        public async Task<ApiResponse<Label>> LabelsGetAsyncWithHttpInfo(string labelId, string apiKey)
-        {
-            // verify the required parameter 'labelId' is set
-            if (labelId == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'labelId' when calling LabelsApi->LabelsGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsGet");
-            }
-
-            var localVarPath = "/v1/labels/{label_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Label>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
-        }
-
-        /// <summary>
-        ///     Get labels Get a list of labels using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Batch ID (optional)</param>
-        /// <param name="labelStatus"> (optional)</param>
-        /// <param name="carrierId">Carrier ID (optional)</param>
-        /// <param name="serviceCode"> (optional)</param>
-        /// <param name="trackingNumber">Tracking Number (optional)</param>
-        /// <param name="warehouseId">Warehouse ID (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
-        /// <returns>ListLabelResponse</returns>
-        public ListLabelResponse LabelsList(string apiKey, string batchId = null, string labelStatus = null,
-            string carrierId = null, string serviceCode = null, string trackingNumber = null, string warehouseId = null,
-            DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null,
-            string sortDir = null, string sortBy = null)
-        {
-            var localVarResponse = LabelsListWithHttpInfo(apiKey, batchId, labelStatus, carrierId, serviceCode,
-                trackingNumber, warehouseId, createdAtStart, createdAtEnd, page, pageSize, sortDir, sortBy);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get labels Get a list of labels using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Batch ID (optional)</param>
-        /// <param name="labelStatus"> (optional)</param>
-        /// <param name="carrierId">Carrier ID (optional)</param>
-        /// <param name="serviceCode"> (optional)</param>
-        /// <param name="trackingNumber">Tracking Number (optional)</param>
-        /// <param name="warehouseId">Warehouse ID (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
-        /// <returns>ApiResponse of ListLabelResponse</returns>
-        public ApiResponse<ListLabelResponse> LabelsListWithHttpInfo(string apiKey, string batchId = null,
-            string labelStatus = null, string carrierId = null, string serviceCode = null, string trackingNumber = null,
-            string warehouseId = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null,
-            int? pageSize = null, string sortDir = null, string sortBy = null)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsList");
-            }
-
-            var localVarPath = "/v1/labels";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (batchId != null)
-            {
-                localVarQueryParams.Add("batch_id", Configuration.ApiClient.ParameterToString(batchId));
-                    // query parameter
-            }
-            if (labelStatus != null)
-            {
-                localVarQueryParams.Add("label_status", Configuration.ApiClient.ParameterToString(labelStatus));
-                    // query parameter
-            }
-            if (carrierId != null)
-            {
-                localVarQueryParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-                    // query parameter
-            }
-            if (serviceCode != null)
-            {
-                localVarQueryParams.Add("service_code", Configuration.ApiClient.ParameterToString(serviceCode));
-                    // query parameter
-            }
-            if (trackingNumber != null)
-            {
-                localVarQueryParams.Add("tracking_number", Configuration.ApiClient.ParameterToString(trackingNumber));
-                    // query parameter
-            }
-            if (warehouseId != null)
-            {
-                localVarQueryParams.Add("warehouse_id", Configuration.ApiClient.ParameterToString(warehouseId));
-                    // query parameter
-            }
-            if (createdAtStart != null)
-            {
-                localVarQueryParams.Add("created_at_start", Configuration.ApiClient.ParameterToString(createdAtStart));
-                    // query parameter
-            }
-            if (createdAtEnd != null)
-            {
-                localVarQueryParams.Add("created_at_end", Configuration.ApiClient.ParameterToString(createdAtEnd));
-                    // query parameter
-            }
-            if (page != null)
-            {
-                localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
-            }
-            if (pageSize != null)
-            {
-                localVarQueryParams.Add("page_size", Configuration.ApiClient.ParameterToString(pageSize));
-                    // query parameter
-            }
-            if (sortDir != null)
-            {
-                localVarQueryParams.Add("sort_dir", Configuration.ApiClient.ParameterToString(sortDir));
-                    // query parameter
-            }
-            if (sortBy != null)
-            {
-                localVarQueryParams.Add("sort_by", Configuration.ApiClient.ParameterToString(sortBy));
-                    // query parameter
-            }
-            if (apiKey != null)
-            {
-                localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-                    // header parameter
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsList", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ListLabelResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ListLabelResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListLabelResponse)));
-        }
-
-        /// <summary>
-        ///     Get labels Get a list of labels using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Batch ID (optional)</param>
-        /// <param name="labelStatus"> (optional)</param>
-        /// <param name="carrierId">Carrier ID (optional)</param>
-        /// <param name="serviceCode"> (optional)</param>
-        /// <param name="trackingNumber">Tracking Number (optional)</param>
-        /// <param name="warehouseId">Warehouse ID (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
-        /// <returns>Task of ListLabelResponse</returns>
-        public async Task<ListLabelResponse> LabelsListAsync(string apiKey, string batchId = null,
-            string labelStatus = null, string carrierId = null, string serviceCode = null, string trackingNumber = null,
-            string warehouseId = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null,
-            int? pageSize = null, string sortDir = null, string sortBy = null)
-        {
-            var localVarResponse = await LabelsListAsyncWithHttpInfo(apiKey, batchId, labelStatus, carrierId,
-                serviceCode, trackingNumber, warehouseId, createdAtStart, createdAtEnd, page, pageSize, sortDir, sortBy);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get labels Get a list of labels using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Batch ID (optional)</param>
-        /// <param name="labelStatus"> (optional)</param>
-        /// <param name="carrierId">Carrier ID (optional)</param>
-        /// <param name="serviceCode"> (optional)</param>
-        /// <param name="trackingNumber">Tracking Number (optional)</param>
-        /// <param name="warehouseId">Warehouse ID (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
-        /// <returns>Task of ApiResponse (ListLabelResponse)</returns>
-        public async Task<ApiResponse<ListLabelResponse>> LabelsListAsyncWithHttpInfo(string apiKey,
-            string batchId = null, string labelStatus = null, string carrierId = null, string serviceCode = null,
-            string trackingNumber = null, string warehouseId = null, DateTime? createdAtStart = null,
-            DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null,
-            string sortBy = null)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsList");
-            }
-
-            var localVarPath = "/v1/labels";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (batchId != null)
-            {
-                localVarQueryParams.Add("batch_id", Configuration.ApiClient.ParameterToString(batchId));
-                    // query parameter
-            }
-            if (labelStatus != null)
-            {
-                localVarQueryParams.Add("label_status", Configuration.ApiClient.ParameterToString(labelStatus));
-                    // query parameter
-            }
-            if (carrierId != null)
-            {
-                localVarQueryParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-                    // query parameter
-            }
-            if (serviceCode != null)
-            {
-                localVarQueryParams.Add("service_code", Configuration.ApiClient.ParameterToString(serviceCode));
-                    // query parameter
-            }
-            if (trackingNumber != null)
-            {
-                localVarQueryParams.Add("tracking_number", Configuration.ApiClient.ParameterToString(trackingNumber));
-                    // query parameter
-            }
-            if (warehouseId != null)
-            {
-                localVarQueryParams.Add("warehouse_id", Configuration.ApiClient.ParameterToString(warehouseId));
-                    // query parameter
-            }
-            if (createdAtStart != null)
-            {
-                localVarQueryParams.Add("created_at_start", Configuration.ApiClient.ParameterToString(createdAtStart));
-                    // query parameter
-            }
-            if (createdAtEnd != null)
-            {
-                localVarQueryParams.Add("created_at_end", Configuration.ApiClient.ParameterToString(createdAtEnd));
-                    // query parameter
-            }
-            if (page != null)
-            {
-                localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
-            }
-            if (pageSize != null)
-            {
-                localVarQueryParams.Add("page_size", Configuration.ApiClient.ParameterToString(pageSize));
-                    // query parameter
-            }
-            if (sortDir != null)
-            {
-                localVarQueryParams.Add("sort_dir", Configuration.ApiClient.ParameterToString(sortDir));
-                    // query parameter
-            }
-            if (sortBy != null)
-            {
-                localVarQueryParams.Add("sort_by", Configuration.ApiClient.ParameterToString(sortBy));
-                    // query parameter
-            }
-            if (apiKey != null)
-            {
-                localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-                    // header parameter
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsList", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ListLabelResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ListLabelResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListLabelResponse)));
-        }
-
-        /// <summary>
-        ///     Purchase a label by providing full shipment info
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Label</returns>
-        public Label LabelsPurchaseLabel(PurchaseLabelRequest request, string apiKey)
-        {
-            var localVarResponse = LabelsPurchaseLabelWithHttpInfo(request, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Purchase a label by providing full shipment info
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Label</returns>
-        public ApiResponse<Label> LabelsPurchaseLabelWithHttpInfo(PurchaseLabelRequest request, string apiKey)
-        {
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabel");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabel");
-            }
-
-            var localVarPath = "/v1/labels";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsPurchaseLabel", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Label>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
-        }
-
-        /// <summary>
-        ///     Purchase a label by providing full shipment info
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Label</returns>
-        public async Task<Label> LabelsPurchaseLabelAsync(PurchaseLabelRequest request, string apiKey)
-        {
-            var localVarResponse = await LabelsPurchaseLabelAsyncWithHttpInfo(request, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Purchase a label by providing full shipment info
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Label)</returns>
-        public async Task<ApiResponse<Label>> LabelsPurchaseLabelAsyncWithHttpInfo(PurchaseLabelRequest request,
-            string apiKey)
-        {
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabel");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabel");
-            }
-
-            var localVarPath = "/v1/labels";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsPurchaseLabel", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Label>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
-        }
-
-        /// <summary>
-        ///     Purchase a label using a rate
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="rateId"></param>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Label</returns>
-        public Label LabelsPurchaseLabelWithRate(string rateId, PurchaseLabelWithoutShipmentRequest request,
-            string apiKey)
-        {
-            var localVarResponse = LabelsPurchaseLabelWithRateWithHttpInfo(rateId, request, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Purchase a label using a rate
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="rateId"></param>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Label</returns>
-        public ApiResponse<Label> LabelsPurchaseLabelWithRateWithHttpInfo(string rateId,
-            PurchaseLabelWithoutShipmentRequest request, string apiKey)
-        {
-            // verify the required parameter 'rateId' is set
-            if (rateId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'rateId' when calling LabelsApi->LabelsPurchaseLabelWithRate");
-            }
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabelWithRate");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabelWithRate");
-            }
-
-            var localVarPath = "/v1/labels/rates/{rate_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("rate_id", Configuration.ApiClient.ParameterToString(rateId)); // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsPurchaseLabelWithRate", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Label>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
-        }
-
-        /// <summary>
-        ///     Purchase a label using a rate
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="rateId"></param>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Label</returns>
-        public async Task<Label> LabelsPurchaseLabelWithRateAsync(string rateId,
-            PurchaseLabelWithoutShipmentRequest request, string apiKey)
-        {
-            var localVarResponse = await LabelsPurchaseLabelWithRateAsyncWithHttpInfo(rateId, request, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Purchase a label using a rate
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="rateId"></param>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Label)</returns>
-        public async Task<ApiResponse<Label>> LabelsPurchaseLabelWithRateAsyncWithHttpInfo(string rateId,
-            PurchaseLabelWithoutShipmentRequest request, string apiKey)
-        {
-            // verify the required parameter 'rateId' is set
-            if (rateId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'rateId' when calling LabelsApi->LabelsPurchaseLabelWithRate");
-            }
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabelWithRate");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabelWithRate");
-            }
-
-            var localVarPath = "/v1/labels/rates/{rate_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("rate_id", Configuration.ApiClient.ParameterToString(rateId)); // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsPurchaseLabelWithRate", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Label>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
-        }
-
-        /// <summary>
-        ///     Purchase a label using an existing shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Label</returns>
-        public Label LabelsPurchaseLabelWithShipment(string shipmentId, PurchaseLabelWithoutShipmentRequest request,
-            string apiKey)
-        {
-            var localVarResponse = LabelsPurchaseLabelWithShipmentWithHttpInfo(shipmentId, request, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Purchase a label using an existing shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Label</returns>
-        public ApiResponse<Label> LabelsPurchaseLabelWithShipmentWithHttpInfo(string shipmentId,
-            PurchaseLabelWithoutShipmentRequest request, string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
-            }
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
-            }
-
-            var localVarPath = "/v1/labels/shipment/{shipment_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsPurchaseLabelWithShipment", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Label>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
-        }
-
-        /// <summary>
-        ///     Purchase a label using an existing shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Label</returns>
-        public async Task<Label> LabelsPurchaseLabelWithShipmentAsync(string shipmentId,
-            PurchaseLabelWithoutShipmentRequest request, string apiKey)
-        {
-            var localVarResponse = await LabelsPurchaseLabelWithShipmentAsyncWithHttpInfo(shipmentId, request, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Purchase a label using an existing shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Label)</returns>
-        public async Task<ApiResponse<Label>> LabelsPurchaseLabelWithShipmentAsyncWithHttpInfo(string shipmentId,
-            PurchaseLabelWithoutShipmentRequest request, string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
-            }
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
-            }
-
-            var localVarPath = "/v1/labels/shipment/{shipment_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsPurchaseLabelWithShipment", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Label>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
-        }
-
-        /// <summary>
-        ///     Get tracking information for a label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>TrackingInformation</returns>
-        public TrackingInformation LabelsTrack(string labelId, string apiKey)
-        {
-            var localVarResponse = LabelsTrackWithHttpInfo(labelId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get tracking information for a label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of TrackingInformation</returns>
-        public ApiResponse<TrackingInformation> LabelsTrackWithHttpInfo(string labelId, string apiKey)
-        {
-            // verify the required parameter 'labelId' is set
-            if (labelId == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'labelId' when calling LabelsApi->LabelsTrack");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsTrack");
-            }
-
-            var localVarPath = "/v1/labels/{label_id}/track";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsTrack", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<TrackingInformation>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (TrackingInformation) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrackingInformation)));
-        }
-
-        /// <summary>
-        ///     Get tracking information for a label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of TrackingInformation</returns>
-        public async Task<TrackingInformation> LabelsTrackAsync(string labelId, string apiKey)
-        {
-            var localVarResponse = await LabelsTrackAsyncWithHttpInfo(labelId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get tracking information for a label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (TrackingInformation)</returns>
-        public async Task<ApiResponse<TrackingInformation>> LabelsTrackAsyncWithHttpInfo(string labelId, string apiKey)
-        {
-            // verify the required parameter 'labelId' is set
-            if (labelId == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'labelId' when calling LabelsApi->LabelsTrack");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsTrack");
-            }
-
-            var localVarPath = "/v1/labels/{label_id}/track";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsTrack", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<TrackingInformation>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (TrackingInformation) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrackingInformation)));
-        }
-
-        /// <summary>
-        ///     Void a label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId">Label ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>VoidLabelResponse</returns>
-        public VoidLabelResponse LabelsVoidLabel(string labelId, string apiKey)
-        {
-            var localVarResponse = LabelsVoidLabelWithHttpInfo(labelId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Void a label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId">Label ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of VoidLabelResponse</returns>
-        public ApiResponse<VoidLabelResponse> LabelsVoidLabelWithHttpInfo(string labelId, string apiKey)
-        {
-            // verify the required parameter 'labelId' is set
-            if (labelId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'labelId' when calling LabelsApi->LabelsVoidLabel");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling LabelsApi->LabelsVoidLabel");
-            }
-
-            var localVarPath = "/v1/labels/{label_id}/void";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsVoidLabel", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<VoidLabelResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (VoidLabelResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(VoidLabelResponse)));
-        }
-
-        /// <summary>
-        ///     Void a label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId">Label ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of VoidLabelResponse</returns>
-        public async Task<VoidLabelResponse> LabelsVoidLabelAsync(string labelId, string apiKey)
-        {
-            var localVarResponse = await LabelsVoidLabelAsyncWithHttpInfo(labelId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Void a label
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="labelId">Label ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (VoidLabelResponse)</returns>
-        public async Task<ApiResponse<VoidLabelResponse>> LabelsVoidLabelAsyncWithHttpInfo(string labelId, string apiKey)
-        {
-            // verify the required parameter 'labelId' is set
-            if (labelId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'labelId' when calling LabelsApi->LabelsVoidLabel");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling LabelsApi->LabelsVoidLabel");
-            }
-
-            var localVarPath = "/v1/labels/{label_id}/void";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("LabelsVoidLabel", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<VoidLabelResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (VoidLabelResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(VoidLabelResponse)));
-        }
-
-        /// <summary>
-        ///     Sets the base path of the API client.
-        /// </summary>
-        /// <value>The base path</value>
-        [Obsolete(
-            "SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead."
-        )]
-        public void SetBasePath(string basePath)
-        {
-            // do nothing
-        }
-
-        /// <summary>
-        ///     Gets the default header.
+        /// Gets the default header.
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public Dictionary<string, string> DefaultHeader()
+        public IDictionary<String, String> DefaultHeader()
         {
-            return Configuration.DefaultHeader;
+            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
         }
 
         /// <summary>
-        ///     Add default header.
+        /// Add default header.
         /// </summary>
         /// <param name="key">Header field name.</param>
         /// <param name="value">Header field value.</param>
@@ -1693,7 +497,1245 @@ namespace ShipEngine.ApiClient.Api
         [Obsolete("AddDefaultHeader is deprecated, please use Configuration.AddDefaultHeader instead.")]
         public void AddDefaultHeader(string key, string value)
         {
-            Configuration.AddDefaultHeader(key, value);
+            this.Configuration.AddDefaultHeader(key, value);
         }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Label</returns>
+        public Label LabelsGet (string labelId, string apiKey)
+        {
+             ApiResponse<Label> localVarResponse = LabelsGetWithHttpInfo(labelId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Label</returns>
+        public ApiResponse< Label > LabelsGetWithHttpInfo (string labelId, string apiKey)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new ApiException(400, "Missing required parameter 'labelId' when calling LabelsApi->LabelsGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsGet");
+
+            var localVarPath = "/v1/labels/{label_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (labelId != null) localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Label>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Label</returns>
+        public async System.Threading.Tasks.Task<Label> LabelsGetAsync (string labelId, string apiKey)
+        {
+             ApiResponse<Label> localVarResponse = await LabelsGetAsyncWithHttpInfo(labelId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Label)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Label>> LabelsGetAsyncWithHttpInfo (string labelId, string apiKey)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new ApiException(400, "Missing required parameter 'labelId' when calling LabelsApi->LabelsGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsGet");
+
+            var localVarPath = "/v1/labels/{label_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (labelId != null) localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Label>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="labelStatus"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="serviceCode"> (optional)</param>
+        /// <param name="trackingNumber"> (optional)</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>ListLabelResponse</returns>
+        public ListLabelResponse LabelsList (string apiKey, string batchId = null, string labelStatus = null, string carrierId = null, string serviceCode = null, string trackingNumber = null, string warehouseId = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
+        {
+             ApiResponse<ListLabelResponse> localVarResponse = LabelsListWithHttpInfo(apiKey, batchId, labelStatus, carrierId, serviceCode, trackingNumber, warehouseId, createdAtStart, createdAtEnd, page, pageSize, sortDir, sortBy);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="labelStatus"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="serviceCode"> (optional)</param>
+        /// <param name="trackingNumber"> (optional)</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>ApiResponse of ListLabelResponse</returns>
+        public ApiResponse< ListLabelResponse > LabelsListWithHttpInfo (string apiKey, string batchId = null, string labelStatus = null, string carrierId = null, string serviceCode = null, string trackingNumber = null, string warehouseId = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsList");
+
+            var localVarPath = "/v1/labels";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (batchId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "batch_id", batchId)); // query parameter
+            if (labelStatus != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "label_status", labelStatus)); // query parameter
+            if (carrierId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "carrier_id", carrierId)); // query parameter
+            if (serviceCode != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "service_code", serviceCode)); // query parameter
+            if (trackingNumber != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "tracking_number", trackingNumber)); // query parameter
+            if (warehouseId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "warehouse_id", warehouseId)); // query parameter
+            if (createdAtStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_start", createdAtStart)); // query parameter
+            if (createdAtEnd != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_end", createdAtEnd)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (sortDir != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "sort_dir", sortDir)); // query parameter
+            if (sortBy != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "sort_by", sortBy)); // query parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsList", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ListLabelResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ListLabelResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListLabelResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="labelStatus"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="serviceCode"> (optional)</param>
+        /// <param name="trackingNumber"> (optional)</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>Task of ListLabelResponse</returns>
+        public async System.Threading.Tasks.Task<ListLabelResponse> LabelsListAsync (string apiKey, string batchId = null, string labelStatus = null, string carrierId = null, string serviceCode = null, string trackingNumber = null, string warehouseId = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
+        {
+             ApiResponse<ListLabelResponse> localVarResponse = await LabelsListAsyncWithHttpInfo(apiKey, batchId, labelStatus, carrierId, serviceCode, trackingNumber, warehouseId, createdAtStart, createdAtEnd, page, pageSize, sortDir, sortBy);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="labelStatus"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="serviceCode"> (optional)</param>
+        /// <param name="trackingNumber"> (optional)</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>Task of ApiResponse (ListLabelResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ListLabelResponse>> LabelsListAsyncWithHttpInfo (string apiKey, string batchId = null, string labelStatus = null, string carrierId = null, string serviceCode = null, string trackingNumber = null, string warehouseId = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsList");
+
+            var localVarPath = "/v1/labels";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (batchId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "batch_id", batchId)); // query parameter
+            if (labelStatus != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "label_status", labelStatus)); // query parameter
+            if (carrierId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "carrier_id", carrierId)); // query parameter
+            if (serviceCode != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "service_code", serviceCode)); // query parameter
+            if (trackingNumber != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "tracking_number", trackingNumber)); // query parameter
+            if (warehouseId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "warehouse_id", warehouseId)); // query parameter
+            if (createdAtStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_start", createdAtStart)); // query parameter
+            if (createdAtEnd != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_end", createdAtEnd)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (sortDir != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "sort_dir", sortDir)); // query parameter
+            if (sortBy != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "sort_by", sortBy)); // query parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsList", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ListLabelResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ListLabelResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListLabelResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Label</returns>
+        public Label LabelsPurchaseLabel (PurchaseLabelRequest request, string apiKey)
+        {
+             ApiResponse<Label> localVarResponse = LabelsPurchaseLabelWithHttpInfo(request, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Label</returns>
+        public ApiResponse< Label > LabelsPurchaseLabelWithHttpInfo (PurchaseLabelRequest request, string apiKey)
+        {
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabel");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabel");
+
+            var localVarPath = "/v1/labels";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsPurchaseLabel", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Label>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Label</returns>
+        public async System.Threading.Tasks.Task<Label> LabelsPurchaseLabelAsync (PurchaseLabelRequest request, string apiKey)
+        {
+             ApiResponse<Label> localVarResponse = await LabelsPurchaseLabelAsyncWithHttpInfo(request, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Label)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Label>> LabelsPurchaseLabelAsyncWithHttpInfo (PurchaseLabelRequest request, string apiKey)
+        {
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabel");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabel");
+
+            var localVarPath = "/v1/labels";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsPurchaseLabel", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Label>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Label</returns>
+        public Label LabelsPurchaseLabelWithRate (string rateId, PurchaseLabelWithoutShipmentRequest request, string apiKey)
+        {
+             ApiResponse<Label> localVarResponse = LabelsPurchaseLabelWithRateWithHttpInfo(rateId, request, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Label</returns>
+        public ApiResponse< Label > LabelsPurchaseLabelWithRateWithHttpInfo (string rateId, PurchaseLabelWithoutShipmentRequest request, string apiKey)
+        {
+            // verify the required parameter 'rateId' is set
+            if (rateId == null)
+                throw new ApiException(400, "Missing required parameter 'rateId' when calling LabelsApi->LabelsPurchaseLabelWithRate");
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabelWithRate");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabelWithRate");
+
+            var localVarPath = "/v1/labels/rates/{rate_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (rateId != null) localVarPathParams.Add("rate_id", Configuration.ApiClient.ParameterToString(rateId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsPurchaseLabelWithRate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Label>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Label</returns>
+        public async System.Threading.Tasks.Task<Label> LabelsPurchaseLabelWithRateAsync (string rateId, PurchaseLabelWithoutShipmentRequest request, string apiKey)
+        {
+             ApiResponse<Label> localVarResponse = await LabelsPurchaseLabelWithRateAsyncWithHttpInfo(rateId, request, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="rateId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Label)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Label>> LabelsPurchaseLabelWithRateAsyncWithHttpInfo (string rateId, PurchaseLabelWithoutShipmentRequest request, string apiKey)
+        {
+            // verify the required parameter 'rateId' is set
+            if (rateId == null)
+                throw new ApiException(400, "Missing required parameter 'rateId' when calling LabelsApi->LabelsPurchaseLabelWithRate");
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabelWithRate");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabelWithRate");
+
+            var localVarPath = "/v1/labels/rates/{rate_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (rateId != null) localVarPathParams.Add("rate_id", Configuration.ApiClient.ParameterToString(rateId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsPurchaseLabelWithRate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Label>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Label</returns>
+        public Label LabelsPurchaseLabelWithShipment (string shipmentId, PurchaseLabelWithoutShipmentRequest request, string apiKey)
+        {
+             ApiResponse<Label> localVarResponse = LabelsPurchaseLabelWithShipmentWithHttpInfo(shipmentId, request, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Label</returns>
+        public ApiResponse< Label > LabelsPurchaseLabelWithShipmentWithHttpInfo (string shipmentId, PurchaseLabelWithoutShipmentRequest request, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
+
+            var localVarPath = "/v1/labels/shipment/{shipment_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsPurchaseLabelWithShipment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Label>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Label</returns>
+        public async System.Threading.Tasks.Task<Label> LabelsPurchaseLabelWithShipmentAsync (string shipmentId, PurchaseLabelWithoutShipmentRequest request, string apiKey)
+        {
+             ApiResponse<Label> localVarResponse = await LabelsPurchaseLabelWithShipmentAsyncWithHttpInfo(shipmentId, request, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Label)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Label>> LabelsPurchaseLabelWithShipmentAsyncWithHttpInfo (string shipmentId, PurchaseLabelWithoutShipmentRequest request, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsPurchaseLabelWithShipment");
+
+            var localVarPath = "/v1/labels/shipment/{shipment_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsPurchaseLabelWithShipment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Label>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Label) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Label)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>TrackingInformation</returns>
+        public TrackingInformation LabelsTrack (string labelId, string apiKey)
+        {
+             ApiResponse<TrackingInformation> localVarResponse = LabelsTrackWithHttpInfo(labelId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of TrackingInformation</returns>
+        public ApiResponse< TrackingInformation > LabelsTrackWithHttpInfo (string labelId, string apiKey)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new ApiException(400, "Missing required parameter 'labelId' when calling LabelsApi->LabelsTrack");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsTrack");
+
+            var localVarPath = "/v1/labels/{label_id}/track";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (labelId != null) localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsTrack", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrackingInformation>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrackingInformation) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrackingInformation)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of TrackingInformation</returns>
+        public async System.Threading.Tasks.Task<TrackingInformation> LabelsTrackAsync (string labelId, string apiKey)
+        {
+             ApiResponse<TrackingInformation> localVarResponse = await LabelsTrackAsyncWithHttpInfo(labelId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (TrackingInformation)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<TrackingInformation>> LabelsTrackAsyncWithHttpInfo (string labelId, string apiKey)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new ApiException(400, "Missing required parameter 'labelId' when calling LabelsApi->LabelsTrack");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsTrack");
+
+            var localVarPath = "/v1/labels/{label_id}/track";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (labelId != null) localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsTrack", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<TrackingInformation>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (TrackingInformation) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TrackingInformation)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>VoidLabelResponse</returns>
+        public VoidLabelResponse LabelsVoidLabel (string labelId, string apiKey)
+        {
+             ApiResponse<VoidLabelResponse> localVarResponse = LabelsVoidLabelWithHttpInfo(labelId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of VoidLabelResponse</returns>
+        public ApiResponse< VoidLabelResponse > LabelsVoidLabelWithHttpInfo (string labelId, string apiKey)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new ApiException(400, "Missing required parameter 'labelId' when calling LabelsApi->LabelsVoidLabel");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsVoidLabel");
+
+            var localVarPath = "/v1/labels/{label_id}/void";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (labelId != null) localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsVoidLabel", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<VoidLabelResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (VoidLabelResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(VoidLabelResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of VoidLabelResponse</returns>
+        public async System.Threading.Tasks.Task<VoidLabelResponse> LabelsVoidLabelAsync (string labelId, string apiKey)
+        {
+             ApiResponse<VoidLabelResponse> localVarResponse = await LabelsVoidLabelAsyncWithHttpInfo(labelId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="labelId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (VoidLabelResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<VoidLabelResponse>> LabelsVoidLabelAsyncWithHttpInfo (string labelId, string apiKey)
+        {
+            // verify the required parameter 'labelId' is set
+            if (labelId == null)
+                throw new ApiException(400, "Missing required parameter 'labelId' when calling LabelsApi->LabelsVoidLabel");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling LabelsApi->LabelsVoidLabel");
+
+            var localVarPath = "/v1/labels/{label_id}/void";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (labelId != null) localVarPathParams.Add("label_id", Configuration.ApiClient.ParameterToString(labelId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("LabelsVoidLabel", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<VoidLabelResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (VoidLabelResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(VoidLabelResponse)));
+        }
+
     }
 }

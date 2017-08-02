@@ -9,130 +9,84 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     CustomsItem
+    /// CustomsItem
     /// </summary>
     [DataContract]
-    public class CustomsItem : IEquatable<CustomsItem>, IValidatableObject
+    public partial class CustomsItem :  IEquatable<CustomsItem>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CustomsItem" /> class.
+        /// Initializes a new instance of the <see cref="CustomsItem" /> class.
         /// </summary>
-        /// <param name="customsItemId">CustomsItemId.</param>
-        /// <param name="description">Description.</param>
-        /// <param name="quantity">Quantity.</param>
-        /// <param name="value">Value.</param>
-        /// <param name="harmonizedTariffCode">HarmonizedTariffCode.</param>
-        /// <param name="countryOfOrigin">CountryOfOrigin.</param>
-        public CustomsItem(string customsItemId = default(string), string description = default(string),
-            int? quantity = default(int?), decimal? value = default(decimal?),
-            string harmonizedTariffCode = default(string), string countryOfOrigin = default(string))
+        /// <param name="CustomsItemId">CustomsItemId.</param>
+        /// <param name="Description">Description.</param>
+        /// <param name="Quantity">Quantity.</param>
+        /// <param name="Value">Value.</param>
+        /// <param name="HarmonizedTariffCode">HarmonizedTariffCode.</param>
+        /// <param name="CountryOfOrigin">CountryOfOrigin.</param>
+        public CustomsItem(string CustomsItemId = default(string), string Description = default(string), int? Quantity = default(int?), double? Value = default(double?), string HarmonizedTariffCode = default(string), string CountryOfOrigin = default(string))
         {
-            CustomsItemId = customsItemId;
-            Description = description;
-            Quantity = quantity;
-            Value = value;
-            HarmonizedTariffCode = harmonizedTariffCode;
-            CountryOfOrigin = countryOfOrigin;
+            this.CustomsItemId = CustomsItemId;
+            this.Description = Description;
+            this.Quantity = Quantity;
+            this.Value = Value;
+            this.HarmonizedTariffCode = HarmonizedTariffCode;
+            this.CountryOfOrigin = CountryOfOrigin;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets CustomsItemId
+        /// Gets or Sets CustomsItemId
         /// </summary>
-        [DataMember(Name = "customs_item_id", EmitDefaultValue = false)]
+        [DataMember(Name="customs_item_id", EmitDefaultValue=false)]
         public string CustomsItemId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Description
+        /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Quantity
+        /// Gets or Sets Quantity
         /// </summary>
-        [DataMember(Name = "quantity", EmitDefaultValue = false)]
+        [DataMember(Name="quantity", EmitDefaultValue=false)]
         public int? Quantity { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Value
+        /// Gets or Sets Value
         /// </summary>
-        [DataMember(Name = "value", EmitDefaultValue = false)]
-        public decimal? Value { get; set; }
+        [DataMember(Name="value", EmitDefaultValue=false)]
+        public double? Value { get; set; }
 
         /// <summary>
-        ///     Gets or Sets HarmonizedTariffCode
+        /// Gets or Sets HarmonizedTariffCode
         /// </summary>
-        [DataMember(Name = "harmonized_tariff_code", EmitDefaultValue = false)]
+        [DataMember(Name="harmonized_tariff_code", EmitDefaultValue=false)]
         public string HarmonizedTariffCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CountryOfOrigin
+        /// Gets or Sets CountryOfOrigin
         /// </summary>
-        [DataMember(Name = "country_of_origin", EmitDefaultValue = false)]
+        [DataMember(Name="country_of_origin", EmitDefaultValue=false)]
         public string CountryOfOrigin { get; set; }
 
         /// <summary>
-        ///     Returns true if CustomsItem instances are equal
-        /// </summary>
-        /// <param name="other">Instance of CustomsItem to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CustomsItem other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    CustomsItemId == other.CustomsItemId ||
-                    CustomsItemId != null &&
-                    CustomsItemId.Equals(other.CustomsItemId)
-                ) &&
-                (
-                    Description == other.Description ||
-                    Description != null &&
-                    Description.Equals(other.Description)
-                ) &&
-                (
-                    Quantity == other.Quantity ||
-                    Quantity != null &&
-                    Quantity.Equals(other.Quantity)
-                ) &&
-                (
-                    Value == other.Value ||
-                    Value != null &&
-                    Value.Equals(other.Value)
-                ) &&
-                (
-                    HarmonizedTariffCode == other.HarmonizedTariffCode ||
-                    HarmonizedTariffCode != null &&
-                    HarmonizedTariffCode.Equals(other.HarmonizedTariffCode)
-                ) &&
-                (
-                    CountryOfOrigin == other.CountryOfOrigin ||
-                    CountryOfOrigin != null &&
-                    CountryOfOrigin.Equals(other.CountryOfOrigin)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -148,9 +102,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -159,53 +113,92 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as CustomsItem);
+            return this.Equals(input as CustomsItem);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if CustomsItem instances are equal
+        /// </summary>
+        /// <param name="input">Instance of CustomsItem to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(CustomsItem input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.CustomsItemId == input.CustomsItemId ||
+                    (this.CustomsItemId != null &&
+                    this.CustomsItemId.Equals(input.CustomsItemId))
+                ) && 
+                (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                ) && 
+                (
+                    this.Quantity == input.Quantity ||
+                    (this.Quantity != null &&
+                    this.Quantity.Equals(input.Quantity))
+                ) && 
+                (
+                    this.Value == input.Value ||
+                    (this.Value != null &&
+                    this.Value.Equals(input.Value))
+                ) && 
+                (
+                    this.HarmonizedTariffCode == input.HarmonizedTariffCode ||
+                    (this.HarmonizedTariffCode != null &&
+                    this.HarmonizedTariffCode.Equals(input.HarmonizedTariffCode))
+                ) && 
+                (
+                    this.CountryOfOrigin == input.CountryOfOrigin ||
+                    (this.CountryOfOrigin != null &&
+                    this.CountryOfOrigin.Equals(input.CountryOfOrigin))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (CustomsItemId != null)
-                {
-                    hash = hash * 59 + CustomsItemId.GetHashCode();
-                }
-                if (Description != null)
-                {
-                    hash = hash * 59 + Description.GetHashCode();
-                }
-                if (Quantity != null)
-                {
-                    hash = hash * 59 + Quantity.GetHashCode();
-                }
-                if (Value != null)
-                {
-                    hash = hash * 59 + Value.GetHashCode();
-                }
-                if (HarmonizedTariffCode != null)
-                {
-                    hash = hash * 59 + HarmonizedTariffCode.GetHashCode();
-                }
-                if (CountryOfOrigin != null)
-                {
-                    hash = hash * 59 + CountryOfOrigin.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.CustomsItemId != null)
+                    hashCode = hashCode * 59 + this.CustomsItemId.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.Quantity != null)
+                    hashCode = hashCode * 59 + this.Quantity.GetHashCode();
+                if (this.Value != null)
+                    hashCode = hashCode * 59 + this.Value.GetHashCode();
+                if (this.HarmonizedTariffCode != null)
+                    hashCode = hashCode * 59 + this.HarmonizedTariffCode.GetHashCode();
+                if (this.CountryOfOrigin != null)
+                    hashCode = hashCode * 59 + this.CountryOfOrigin.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

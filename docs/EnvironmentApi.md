@@ -28,11 +28,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new EnvironmentApi();
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
@@ -92,11 +91,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new EnvironmentApi();
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)

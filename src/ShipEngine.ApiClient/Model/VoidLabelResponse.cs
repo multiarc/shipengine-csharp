@@ -9,76 +9,52 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     VoidLabelResponse
+    /// VoidLabelResponse
     /// </summary>
     [DataContract]
-    public class VoidLabelResponse : IEquatable<VoidLabelResponse>, IValidatableObject
+    public partial class VoidLabelResponse :  IEquatable<VoidLabelResponse>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="VoidLabelResponse" /> class.
+        /// Initializes a new instance of the <see cref="VoidLabelResponse" /> class.
         /// </summary>
-        /// <param name="approved">Approved.</param>
-        /// <param name="message">Message.</param>
-        public VoidLabelResponse(bool? approved = default(bool?), string message = default(string))
+        /// <param name="Approved">Approved.</param>
+        /// <param name="Message">Message.</param>
+        public VoidLabelResponse(bool? Approved = default(bool?), string Message = default(string))
         {
-            Approved = approved;
-            Message = message;
+            this.Approved = Approved;
+            this.Message = Message;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets Approved
+        /// Gets or Sets Approved
         /// </summary>
-        [DataMember(Name = "approved", EmitDefaultValue = false)]
+        [DataMember(Name="approved", EmitDefaultValue=false)]
         public bool? Approved { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Message
+        /// Gets or Sets Message
         /// </summary>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
+        [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
 
         /// <summary>
-        ///     Returns true if VoidLabelResponse instances are equal
-        /// </summary>
-        /// <param name="other">Instance of VoidLabelResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(VoidLabelResponse other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    Approved == other.Approved ||
-                    Approved != null &&
-                    Approved.Equals(other.Approved)
-                ) &&
-                (
-                    Message == other.Message ||
-                    Message != null &&
-                    Message.Equals(other.Message)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -90,9 +66,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -101,37 +77,64 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as VoidLabelResponse);
+            return this.Equals(input as VoidLabelResponse);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if VoidLabelResponse instances are equal
+        /// </summary>
+        /// <param name="input">Instance of VoidLabelResponse to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(VoidLabelResponse input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Approved == input.Approved ||
+                    (this.Approved != null &&
+                    this.Approved.Equals(input.Approved))
+                ) && 
+                (
+                    this.Message == input.Message ||
+                    (this.Message != null &&
+                    this.Message.Equals(input.Message))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Approved != null)
-                {
-                    hash = hash * 59 + Approved.GetHashCode();
-                }
-                if (Message != null)
-                {
-                    hash = hash * 59 + Message.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Approved != null)
+                    hashCode = hashCode * 59 + this.Approved.GetHashCode();
+                if (this.Message != null)
+                    hashCode = hashCode * 59 + this.Message.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

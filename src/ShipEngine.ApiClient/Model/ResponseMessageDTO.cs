@@ -9,175 +9,160 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     ResponseMessageDTO
+    /// ResponseMessageDTO
     /// </summary>
     [DataContract]
-    public class ResponseMessageDTO : IEquatable<ResponseMessageDTO>, IValidatableObject
+    public partial class ResponseMessageDTO :  IEquatable<ResponseMessageDTO>, IValidatableObject
     {
         /// <summary>
-        ///     Gets or Sets Code
+        /// Gets or Sets Code
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CodeEnum
         {
+            
             /// <summary>
-            ///     Enum A1000 for "a1000"
+            /// Enum A1000 for "a1000"
             /// </summary>
-            [EnumMember(Value = "a1000")] A1000,
-
+            [EnumMember(Value = "a1000")]
+            A1000,
+            
             /// <summary>
-            ///     Enum A1001 for "a1001"
+            /// Enum A1001 for "a1001"
             /// </summary>
-            [EnumMember(Value = "a1001")] A1001,
-
+            [EnumMember(Value = "a1001")]
+            A1001,
+            
             /// <summary>
-            ///     Enum A1002 for "a1002"
+            /// Enum A1002 for "a1002"
             /// </summary>
-            [EnumMember(Value = "a1002")] A1002,
-
+            [EnumMember(Value = "a1002")]
+            A1002,
+            
             /// <summary>
-            ///     Enum A1003 for "a1003"
+            /// Enum A1003 for "a1003"
             /// </summary>
-            [EnumMember(Value = "a1003")] A1003,
-
+            [EnumMember(Value = "a1003")]
+            A1003,
+            
             /// <summary>
-            ///     Enum A1004 for "a1004"
+            /// Enum A1004 for "a1004"
             /// </summary>
-            [EnumMember(Value = "a1004")] A1004,
-
+            [EnumMember(Value = "a1004")]
+            A1004,
+            
             /// <summary>
-            ///     Enum A1005 for "a1005"
+            /// Enum A1005 for "a1005"
             /// </summary>
-            [EnumMember(Value = "a1005")] A1005,
-
+            [EnumMember(Value = "a1005")]
+            A1005,
+            
             /// <summary>
-            ///     Enum A1006 for "a1006"
+            /// Enum A1006 for "a1006"
             /// </summary>
-            [EnumMember(Value = "a1006")] A1006,
-
+            [EnumMember(Value = "a1006")]
+            A1006,
+            
             /// <summary>
-            ///     Enum R1000 for "r1000"
+            /// Enum R1000 for "r1000"
             /// </summary>
-            [EnumMember(Value = "r1000")] R1000,
-
+            [EnumMember(Value = "r1000")]
+            R1000,
+            
             /// <summary>
-            ///     Enum R1001 for "r1001"
+            /// Enum R1001 for "r1001"
             /// </summary>
-            [EnumMember(Value = "r1001")] R1001,
-
+            [EnumMember(Value = "r1001")]
+            R1001,
+            
             /// <summary>
-            ///     Enum R1002 for "r1002"
+            /// Enum R1002 for "r1002"
             /// </summary>
-            [EnumMember(Value = "r1002")] R1002,
-
+            [EnumMember(Value = "r1002")]
+            R1002,
+            
             /// <summary>
-            ///     Enum R1003 for "r1003"
+            /// Enum R1003 for "r1003"
             /// </summary>
-            [EnumMember(Value = "r1003")] R1003
+            [EnumMember(Value = "r1003")]
+            R1003
         }
 
         /// <summary>
-        ///     Gets or Sets Type
+        /// Gets or Sets Type
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
+            
             /// <summary>
-            ///     Enum Error for "error"
+            /// Enum Error for "error"
             /// </summary>
-            [EnumMember(Value = "error")] Error,
-
+            [EnumMember(Value = "error")]
+            Error,
+            
             /// <summary>
-            ///     Enum Warning for "warning"
+            /// Enum Warning for "warning"
             /// </summary>
-            [EnumMember(Value = "warning")] Warning,
-
+            [EnumMember(Value = "warning")]
+            Warning,
+            
             /// <summary>
-            ///     Enum Info for "info"
+            /// Enum Info for "info"
             /// </summary>
-            [EnumMember(Value = "info")] Info
+            [EnumMember(Value = "info")]
+            Info
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ResponseMessageDTO" /> class.
+        /// Gets or Sets Code
         /// </summary>
-        /// <param name="code">Code.</param>
-        /// <param name="message">Message.</param>
-        /// <param name="type">Type.</param>
-        public ResponseMessageDTO(CodeEnum? code = default(CodeEnum?), string message = default(string),
-            TypeEnum? type = default(TypeEnum?))
-        {
-            Code = code;
-            Message = message;
-            Type = type;
-        }
-
-        /// <summary>
-        ///     Gets or Sets Code
-        /// </summary>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
+        [DataMember(Name="code", EmitDefaultValue=false)]
         public CodeEnum? Code { get; set; }
-
         /// <summary>
-        ///     Gets or Sets Type
+        /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name="type", EmitDefaultValue=false)]
         public TypeEnum? Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResponseMessageDTO" /> class.
+        /// </summary>
+        /// <param name="Code">Code.</param>
+        /// <param name="Message">Message.</param>
+        /// <param name="Type">Type.</param>
+        public ResponseMessageDTO(CodeEnum? Code = default(CodeEnum?), string Message = default(string), TypeEnum? Type = default(TypeEnum?))
+        {
+            this.Code = Code;
+            this.Message = Message;
+            this.Type = Type;
+        }
+        
 
         /// <summary>
-        ///     Gets or Sets Message
+        /// Gets or Sets Message
         /// </summary>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
+        [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
 
-        /// <summary>
-        ///     Returns true if ResponseMessageDTO instances are equal
-        /// </summary>
-        /// <param name="other">Instance of ResponseMessageDTO to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ResponseMessageDTO other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    Code == other.Code ||
-                    Code != null &&
-                    Code.Equals(other.Code)
-                ) &&
-                (
-                    Message == other.Message ||
-                    Message != null &&
-                    Message.Equals(other.Message)
-                ) &&
-                (
-                    Type == other.Type ||
-                    Type != null &&
-                    Type.Equals(other.Type)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
 
         /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -190,9 +175,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -201,41 +186,71 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as ResponseMessageDTO);
+            return this.Equals(input as ResponseMessageDTO);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if ResponseMessageDTO instances are equal
+        /// </summary>
+        /// <param name="input">Instance of ResponseMessageDTO to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(ResponseMessageDTO input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Code == input.Code ||
+                    (this.Code != null &&
+                    this.Code.Equals(input.Code))
+                ) && 
+                (
+                    this.Message == input.Message ||
+                    (this.Message != null &&
+                    this.Message.Equals(input.Message))
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Code != null)
-                {
-                    hash = hash * 59 + Code.GetHashCode();
-                }
-                if (Message != null)
-                {
-                    hash = hash * 59 + Message.GetHashCode();
-                }
-                if (Type != null)
-                {
-                    hash = hash * 59 + Type.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Code != null)
+                    hashCode = hashCode * 59 + this.Code.GetHashCode();
+                if (this.Message != null)
+                    hashCode = hashCode * 59 + this.Message.GetHashCode();
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

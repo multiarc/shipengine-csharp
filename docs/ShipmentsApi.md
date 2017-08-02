@@ -4,23 +4,23 @@ All URIs are relative to *https://api.shipengine.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ShipmentsAddTag**](ShipmentsApi.md#shipmentsaddtag) | **POST** /v1/shipments/{shipment_id}/tags/{tag} | Add a tag to a shipment
-[**ShipmentsCancel**](ShipmentsApi.md#shipmentscancel) | **PUT** /v1/shipments/{shipment_id}/cancel | Cancel a shipment
-[**ShipmentsCreateShipments**](ShipmentsApi.md#shipmentscreateshipments) | **POST** /v1/shipments | Create multiple shipments
-[**ShipmentsGet**](ShipmentsApi.md#shipmentsget) | **GET** /v1/shipments/{shipment_id} | Get a specific shipment
-[**ShipmentsGetByExternalId**](ShipmentsApi.md#shipmentsgetbyexternalid) | **GET** /v1/shipments/external_shipment_id/{external_shipment_id} | Get a specific shipment by an external id
-[**ShipmentsGetRatesForShipment**](ShipmentsApi.md#shipmentsgetratesforshipment) | **GET** /v1/shipments/{shipment_id}/rates | Get rates for a specific shipment
-[**ShipmentsList**](ShipmentsApi.md#shipmentslist) | **GET** /v1/shipments | Get shipments
-[**ShipmentsListErrors**](ShipmentsApi.md#shipmentslisterrors) | **GET** /v1/shipments/{shipment_id}/errors | Lists the errors.
-[**ShipmentsRemoveTag**](ShipmentsApi.md#shipmentsremovetag) | **DELETE** /v1/shipments/{shipment_id}/tags/{tag} | Remove a tag from a shipment
-[**ShipmentsUpdateShipment**](ShipmentsApi.md#shipmentsupdateshipment) | **PUT** /v1/shipments/{shipment_id} | Update a shipment
+[**ShipmentsAddTag**](ShipmentsApi.md#shipmentsaddtag) | **POST** /v1/shipments/{shipment_id}/tags/{tag} | 
+[**ShipmentsCancel**](ShipmentsApi.md#shipmentscancel) | **PUT** /v1/shipments/{shipment_id}/cancel | 
+[**ShipmentsCreateShipments**](ShipmentsApi.md#shipmentscreateshipments) | **POST** /v1/shipments | 
+[**ShipmentsGet**](ShipmentsApi.md#shipmentsget) | **GET** /v1/shipments/{shipment_id} | 
+[**ShipmentsGetByExternalId**](ShipmentsApi.md#shipmentsgetbyexternalid) | **GET** /v1/shipments/external_shipment_id/{external_shipment_id} | 
+[**ShipmentsGetRatesForShipment**](ShipmentsApi.md#shipmentsgetratesforshipment) | **GET** /v1/shipments/{shipment_id}/rates | 
+[**ShipmentsList**](ShipmentsApi.md#shipmentslist) | **GET** /v1/shipments | 
+[**ShipmentsListErrors**](ShipmentsApi.md#shipmentslisterrors) | **GET** /v1/shipments/{shipment_id}/errors | 
+[**ShipmentsRemoveTag**](ShipmentsApi.md#shipmentsremovetag) | **DELETE** /v1/shipments/{shipment_id}/tags/{tag} | 
+[**ShipmentsUpdateShipment**](ShipmentsApi.md#shipmentsupdateshipment) | **PUT** /v1/shipments/{shipment_id} | 
 
 
 <a name="shipmentsaddtag"></a>
 # **ShipmentsAddTag**
 > ShipmentAddTagResponse ShipmentsAddTag (string shipmentId, string tag, string apiKey)
 
-Add a tag to a shipment
+
 
 ### Example
 ```csharp
@@ -36,20 +36,18 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ShipmentsApi();
             var shipmentId = shipmentId_example;  // string | 
-            var tag = tag_example;  // string | Tag
+            var tag = tag_example;  // string | 
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Add a tag to a shipment
                 ShipmentAddTagResponse result = apiInstance.ShipmentsAddTag(shipmentId, tag, apiKey);
                 Debug.WriteLine(result);
             }
@@ -67,7 +65,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **shipmentId** | **string**|  | 
- **tag** | **string**| Tag | 
+ **tag** | **string**|  | 
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
 
 ### Return type
@@ -89,7 +87,7 @@ Name | Type | Description  | Notes
 # **ShipmentsCancel**
 > void ShipmentsCancel (string shipmentId, string apiKey)
 
-Cancel a shipment
+
 
 ### Example
 ```csharp
@@ -105,19 +103,17 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ShipmentsApi();
-            var shipmentId = shipmentId_example;  // string | Shipment ID
+            var shipmentId = shipmentId_example;  // string | 
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Cancel a shipment
                 apiInstance.ShipmentsCancel(shipmentId, apiKey);
             }
             catch (Exception e)
@@ -133,7 +129,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **shipmentId** | **string**| Shipment ID | 
+ **shipmentId** | **string**|  | 
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
 
 ### Return type
@@ -155,7 +151,7 @@ void (empty response body)
 # **ShipmentsCreateShipments**
 > CreateShipmentsResponse ShipmentsCreateShipments (CreateShipmentsRequest shipmentsRequest, string apiKey)
 
-Create multiple shipments
+
 
 ### Example
 ```csharp
@@ -171,11 +167,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ShipmentsApi();
             var shipmentsRequest = new CreateShipmentsRequest(); // CreateShipmentsRequest | 
@@ -183,7 +178,6 @@ namespace Example
 
             try
             {
-                // Create multiple shipments
                 CreateShipmentsResponse result = apiInstance.ShipmentsCreateShipments(shipmentsRequest, apiKey);
                 Debug.WriteLine(result);
             }
@@ -222,7 +216,7 @@ Name | Type | Description  | Notes
 # **ShipmentsGet**
 > Shipment ShipmentsGet (string shipmentId, string apiKey)
 
-Get a specific shipment
+
 
 ### Example
 ```csharp
@@ -238,11 +232,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ShipmentsApi();
             var shipmentId = shipmentId_example;  // string | 
@@ -250,7 +243,6 @@ namespace Example
 
             try
             {
-                // Get a specific shipment
                 Shipment result = apiInstance.ShipmentsGet(shipmentId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -289,7 +281,7 @@ Name | Type | Description  | Notes
 # **ShipmentsGetByExternalId**
 > Shipment ShipmentsGetByExternalId (string externalShipmentId, string apiKey)
 
-Get a specific shipment by an external id
+
 
 ### Example
 ```csharp
@@ -305,19 +297,17 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ShipmentsApi();
-            var externalShipmentId = externalShipmentId_example;  // string | External Shipment Id
+            var externalShipmentId = externalShipmentId_example;  // string | 
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Get a specific shipment by an external id
                 Shipment result = apiInstance.ShipmentsGetByExternalId(externalShipmentId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -334,7 +324,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **externalShipmentId** | **string**| External Shipment Id | 
+ **externalShipmentId** | **string**|  | 
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
 
 ### Return type
@@ -356,7 +346,7 @@ Name | Type | Description  | Notes
 # **ShipmentsGetRatesForShipment**
 > RateResponse ShipmentsGetRatesForShipment (string shipmentId, string apiKey, DateTime? createdAtStart = null)
 
-Get rates for a specific shipment
+
 
 ### Example
 ```csharp
@@ -372,11 +362,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ShipmentsApi();
             var shipmentId = shipmentId_example;  // string | 
@@ -385,7 +374,6 @@ namespace Example
 
             try
             {
-                // Get rates for a specific shipment
                 RateResponse result = apiInstance.ShipmentsGetRatesForShipment(shipmentId, apiKey, createdAtStart);
                 Debug.WriteLine(result);
             }
@@ -425,9 +413,7 @@ Name | Type | Description  | Notes
 # **ShipmentsList**
 > ListShipmentResponse ShipmentsList (string apiKey, string batchId = null, string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
 
-Get shipments
 
-Get a list of shipments using optional criteria
 
 ### Example
 ```csharp
@@ -443,29 +429,27 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ShipmentsApi();
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
-            var batchId = batchId_example;  // string | Retrieve shipments in the specified batch_id (optional) 
-            var tag = tag_example;  // string | Retrieve shipments by assocated tag (optional) 
-            var shipmentStatus = shipmentStatus_example;  // string | Shipment status (optional) 
-            var modifiedAtStart = 2013-10-20T19:20:30+01:00;  // DateTime? | Modify date range start (optional) 
-            var modifiedAtEnd = 2013-10-20T19:20:30+01:00;  // DateTime? | Modify date range end (optional) 
-            var createdAtStart = 2013-10-20T19:20:30+01:00;  // DateTime? | Create date range start (optional) 
-            var createdAtEnd = 2013-10-20T19:20:30+01:00;  // DateTime? | Create date range end (optional) 
-            var page = 56;  // int? | Page number (optional) 
-            var pageSize = 56;  // int? | Number of records per page (optional) 
-            var sortDir = sortDir_example;  // string | Sort direction (optional) 
-            var sortBy = sortBy_example;  // string | Sort by item (optional) 
+            var batchId = batchId_example;  // string |  (optional) 
+            var tag = tag_example;  // string |  (optional) 
+            var shipmentStatus = shipmentStatus_example;  // string |  (optional) 
+            var modifiedAtStart = 2013-10-20T19:20:30+01:00;  // DateTime? |  (optional) 
+            var modifiedAtEnd = 2013-10-20T19:20:30+01:00;  // DateTime? |  (optional) 
+            var createdAtStart = 2013-10-20T19:20:30+01:00;  // DateTime? |  (optional) 
+            var createdAtEnd = 2013-10-20T19:20:30+01:00;  // DateTime? |  (optional) 
+            var page = 56;  // int? |  (optional) 
+            var pageSize = 56;  // int? |  (optional) 
+            var sortDir = sortDir_example;  // string |  (optional) 
+            var sortBy = sortBy_example;  // string |  (optional) 
 
             try
             {
-                // Get shipments
                 ListShipmentResponse result = apiInstance.ShipmentsList(apiKey, batchId, tag, shipmentStatus, modifiedAtStart, modifiedAtEnd, createdAtStart, createdAtEnd, page, pageSize, sortDir, sortBy);
                 Debug.WriteLine(result);
             }
@@ -483,17 +467,17 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
- **batchId** | **string**| Retrieve shipments in the specified batch_id | [optional] 
- **tag** | **string**| Retrieve shipments by assocated tag | [optional] 
- **shipmentStatus** | **string**| Shipment status | [optional] 
- **modifiedAtStart** | **DateTime?**| Modify date range start | [optional] 
- **modifiedAtEnd** | **DateTime?**| Modify date range end | [optional] 
- **createdAtStart** | **DateTime?**| Create date range start | [optional] 
- **createdAtEnd** | **DateTime?**| Create date range end | [optional] 
- **page** | **int?**| Page number | [optional] 
- **pageSize** | **int?**| Number of records per page | [optional] 
- **sortDir** | **string**| Sort direction | [optional] 
- **sortBy** | **string**| Sort by item | [optional] 
+ **batchId** | **string**|  | [optional] 
+ **tag** | **string**|  | [optional] 
+ **shipmentStatus** | **string**|  | [optional] 
+ **modifiedAtStart** | **DateTime?**|  | [optional] 
+ **modifiedAtEnd** | **DateTime?**|  | [optional] 
+ **createdAtStart** | **DateTime?**|  | [optional] 
+ **createdAtEnd** | **DateTime?**|  | [optional] 
+ **page** | **int?**|  | [optional] 
+ **pageSize** | **int?**|  | [optional] 
+ **sortDir** | **string**|  | [optional] 
+ **sortBy** | **string**|  | [optional] 
 
 ### Return type
 
@@ -514,7 +498,7 @@ Name | Type | Description  | Notes
 # **ShipmentsListErrors**
 > ShipmentResponseErrors ShipmentsListErrors (string shipmentId, string apiKey, int? page = null, int? pagesize = null)
 
-Lists the errors.
+
 
 ### Example
 ```csharp
@@ -530,21 +514,19 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ShipmentsApi();
             var shipmentId = shipmentId_example;  // string | 
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
-            var page = 56;  // int? | The page. (optional) 
+            var page = 56;  // int? |  (optional) 
             var pagesize = 56;  // int? |  (optional) 
 
             try
             {
-                // Lists the errors.
                 ShipmentResponseErrors result = apiInstance.ShipmentsListErrors(shipmentId, apiKey, page, pagesize);
                 Debug.WriteLine(result);
             }
@@ -563,7 +545,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **shipmentId** | **string**|  | 
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
- **page** | **int?**| The page. | [optional] 
+ **page** | **int?**|  | [optional] 
  **pagesize** | **int?**|  | [optional] 
 
 ### Return type
@@ -585,7 +567,7 @@ Name | Type | Description  | Notes
 # **ShipmentsRemoveTag**
 > void ShipmentsRemoveTag (string shipmentId, string tag, string apiKey)
 
-Remove a tag from a shipment
+
 
 ### Example
 ```csharp
@@ -601,20 +583,18 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ShipmentsApi();
             var shipmentId = shipmentId_example;  // string | 
-            var tag = tag_example;  // string | Tag
+            var tag = tag_example;  // string | 
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Remove a tag from a shipment
                 apiInstance.ShipmentsRemoveTag(shipmentId, tag, apiKey);
             }
             catch (Exception e)
@@ -631,7 +611,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **shipmentId** | **string**|  | 
- **tag** | **string**| Tag | 
+ **tag** | **string**|  | 
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
 
 ### Return type
@@ -651,9 +631,9 @@ void (empty response body)
 
 <a name="shipmentsupdateshipment"></a>
 # **ShipmentsUpdateShipment**
-> CreateShipmentResponse ShipmentsUpdateShipment (string shipmentId, AddressValidatingShipment shipment, string apiKey)
+> void ShipmentsUpdateShipment (string shipmentId, AddressValidatingShipment shipment, string apiKey)
 
-Update a shipment
+
 
 ### Example
 ```csharp
@@ -669,22 +649,19 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ShipmentsApi();
-            var shipmentId = shipmentId_example;  // string | Shipment ID
-            var shipment = new AddressValidatingShipment(); // AddressValidatingShipment | Shipment
+            var shipmentId = shipmentId_example;  // string | 
+            var shipment = new AddressValidatingShipment(); // AddressValidatingShipment | 
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Update a shipment
-                CreateShipmentResponse result = apiInstance.ShipmentsUpdateShipment(shipmentId, shipment, apiKey);
-                Debug.WriteLine(result);
+                apiInstance.ShipmentsUpdateShipment(shipmentId, shipment, apiKey);
             }
             catch (Exception e)
             {
@@ -699,13 +676,13 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **shipmentId** | **string**| Shipment ID | 
- **shipment** | [**AddressValidatingShipment**](AddressValidatingShipment.md)| Shipment | 
+ **shipmentId** | **string**|  | 
+ **shipment** | [**AddressValidatingShipment**](AddressValidatingShipment.md)|  | 
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
 
 ### Return type
 
-[**CreateShipmentResponse**](CreateShipmentResponse.md)
+void (empty response body)
 
 ### Authorization
 

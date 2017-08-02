@@ -10,77 +10,272 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using RestSharp;
-using ShipEngine.ApiClient.Api.Interfaces;
 using ShipEngine.ApiClient.Client;
 using ShipEngine.ApiClient.Model;
 
 namespace ShipEngine.ApiClient.Api
 {
     /// <summary>
-    ///     Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class TagsApi : ITagsApi
+    public interface ITagsApi : IApiAccessor
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        #region Synchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        void TagsAddTag (string tagName, string apiKey);
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="TagsApi" /> class.
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> TagsAddTagWithHttpInfo (string tagName, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ListTagResponse</returns>
+        ListTagResponse TagsDelete (string tagName, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of ListTagResponse</returns>
+        ApiResponse<ListTagResponse> TagsDeleteWithHttpInfo (string tagName, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ListTagResponse</returns>
+        ListTagResponse TagsListTags (string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of ListTagResponse</returns>
+        ApiResponse<ListTagResponse> TagsListTagsWithHttpInfo (string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="newName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        void TagsUpdateTag (string tagName, string newName, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="newName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> TagsUpdateTagWithHttpInfo (string tagName, string newName, string apiKey);
+        #endregion Synchronous Operations
+        #region Asynchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task TagsAddTagAsync (string tagName, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> TagsAddTagAsyncWithHttpInfo (string tagName, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ListTagResponse</returns>
+        System.Threading.Tasks.Task<ListTagResponse> TagsDeleteAsync (string tagName, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (ListTagResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListTagResponse>> TagsDeleteAsyncWithHttpInfo (string tagName, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ListTagResponse</returns>
+        System.Threading.Tasks.Task<ListTagResponse> TagsListTagsAsync (string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (ListTagResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListTagResponse>> TagsListTagsAsyncWithHttpInfo (string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="newName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task TagsUpdateTagAsync (string tagName, string newName, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="newName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> TagsUpdateTagAsyncWithHttpInfo (string tagName, string newName, string apiKey);
+        #endregion Asynchronous Operations
+    }
+
+    /// <summary>
+    /// Represents a collection of functions to interact with the API endpoints
+    /// </summary>
+    public partial class TagsApi : ITagsApi
+    {
+        private ShipEngine.ApiClient.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TagsApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public TagsApi(string basePath)
+        public TagsApi(String basePath)
         {
-            Configuration = new Configuration(new Client.ApiClient(basePath));
+            this.Configuration = new Configuration { BasePath = basePath };
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="TagsApi" /> class
-        ///     using Configuration object
+        /// Initializes a new instance of the <see cref="TagsApi"/> class
+        /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
         public TagsApi(Configuration configuration = null)
         {
-            Configuration = configuration ?? Configuration.Default;
+            if (configuration == null) // use the default one in Configuration
+                this.Configuration = Configuration.Default;
+            else
+                this.Configuration = configuration;
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Gets the base path of the API client.
+        /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public string GetBasePath()
+        public String GetBasePath()
         {
-            return Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
         }
 
         /// <summary>
-        ///     Gets or sets the configuration object
+        /// Sets the base path of the API client.
         /// </summary>
-        /// <value>An instance of the Configuration</value>
-        public Configuration Configuration { get; set; }
+        /// <value>The base path</value>
+        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        public void SetBasePath(String basePath)
+        {
+            // do nothing
+        }
 
         /// <summary>
-        ///     Provides a factory method hook for the creation of exceptions.
+        /// Gets or sets the configuration object
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        /// <value>An instance of the Configuration</value>
+        public Configuration Configuration {get; set;}
+
+        /// <summary>
+        /// Provides a factory method hook for the creation of exceptions.
+        /// </summary>
+        public ShipEngine.ApiClient.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -94,762 +289,17 @@ namespace ShipEngine.ApiClient.Api
         }
 
         /// <summary>
-        ///     Create a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns></returns>
-        public void TagsAddTag(string tagName, string apiKey)
-        {
-            TagsAddTagWithHttpInfo(tagName, apiKey);
-        }
-
-        /// <summary>
-        ///     Create a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<object> TagsAddTagWithHttpInfo(string tagName, string apiKey)
-        {
-            // verify the required parameter 'tagName' is set
-            if (tagName == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsAddTag");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsAddTag");
-            }
-
-            var localVarPath = "/v1/tags/{tag_name}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("TagsAddTag", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Create a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of void</returns>
-        public async Task TagsAddTagAsync(string tagName, string apiKey)
-        {
-            await TagsAddTagAsyncWithHttpInfo(tagName, apiKey);
-        }
-
-        /// <summary>
-        ///     Create a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async Task<ApiResponse<object>> TagsAddTagAsyncWithHttpInfo(string tagName, string apiKey)
-        {
-            // verify the required parameter 'tagName' is set
-            if (tagName == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsAddTag");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsAddTag");
-            }
-
-            var localVarPath = "/v1/tags/{tag_name}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("TagsAddTag", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Delete a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ListTagResponse</returns>
-        public ListTagResponse TagsDelete(string tagName, string apiKey)
-        {
-            var localVarResponse = TagsDeleteWithHttpInfo(tagName, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Delete a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of ListTagResponse</returns>
-        public ApiResponse<ListTagResponse> TagsDeleteWithHttpInfo(string tagName, string apiKey)
-        {
-            // verify the required parameter 'tagName' is set
-            if (tagName == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsDelete");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsDelete");
-            }
-
-            var localVarPath = "/v1/tags/{tag_name}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("TagsDelete", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ListTagResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ListTagResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListTagResponse)));
-        }
-
-        /// <summary>
-        ///     Delete a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ListTagResponse</returns>
-        public async Task<ListTagResponse> TagsDeleteAsync(string tagName, string apiKey)
-        {
-            var localVarResponse = await TagsDeleteAsyncWithHttpInfo(tagName, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Delete a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (ListTagResponse)</returns>
-        public async Task<ApiResponse<ListTagResponse>> TagsDeleteAsyncWithHttpInfo(string tagName, string apiKey)
-        {
-            // verify the required parameter 'tagName' is set
-            if (tagName == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsDelete");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsDelete");
-            }
-
-            var localVarPath = "/v1/tags/{tag_name}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("TagsDelete", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ListTagResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ListTagResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListTagResponse)));
-        }
-
-        /// <summary>
-        ///     Get tags Get all tags associated with your account
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ListTagResponse</returns>
-        public ListTagResponse TagsListTags(string apiKey)
-        {
-            var localVarResponse = TagsListTagsWithHttpInfo(apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get tags Get all tags associated with your account
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of ListTagResponse</returns>
-        public ApiResponse<ListTagResponse> TagsListTagsWithHttpInfo(string apiKey)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsListTags");
-            }
-
-            var localVarPath = "/v1/tags";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("TagsListTags", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ListTagResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ListTagResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListTagResponse)));
-        }
-
-        /// <summary>
-        ///     Get tags Get all tags associated with your account
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ListTagResponse</returns>
-        public async Task<ListTagResponse> TagsListTagsAsync(string apiKey)
-        {
-            var localVarResponse = await TagsListTagsAsyncWithHttpInfo(apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get tags Get all tags associated with your account
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (ListTagResponse)</returns>
-        public async Task<ApiResponse<ListTagResponse>> TagsListTagsAsyncWithHttpInfo(string apiKey)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsListTags");
-            }
-
-            var localVarPath = "/v1/tags";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("TagsListTags", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ListTagResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ListTagResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListTagResponse)));
-        }
-
-        /// <summary>
-        ///     Rename a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName">Current tag name</param>
-        /// <param name="newName">New tag name</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns></returns>
-        public void TagsUpdateTag(string tagName, string newName, string apiKey)
-        {
-            TagsUpdateTagWithHttpInfo(tagName, newName, apiKey);
-        }
-
-        /// <summary>
-        ///     Rename a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName">Current tag name</param>
-        /// <param name="newName">New tag name</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<object> TagsUpdateTagWithHttpInfo(string tagName, string newName, string apiKey)
-        {
-            // verify the required parameter 'tagName' is set
-            if (tagName == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsUpdateTag");
-            }
-            // verify the required parameter 'newName' is set
-            if (newName == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'newName' when calling TagsApi->TagsUpdateTag");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsUpdateTag");
-            }
-
-            var localVarPath = "/v1/tags/{tag_name}/{new_name}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName));
-            // path parameter
-            localVarPathParams.Add("new_name", Configuration.ApiClient.ParameterToString(newName));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("TagsUpdateTag", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Rename a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName">Current tag name</param>
-        /// <param name="newName">New tag name</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of void</returns>
-        public async Task TagsUpdateTagAsync(string tagName, string newName, string apiKey)
-        {
-            await TagsUpdateTagAsyncWithHttpInfo(tagName, newName, apiKey);
-        }
-
-        /// <summary>
-        ///     Rename a tag
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagName">Current tag name</param>
-        /// <param name="newName">New tag name</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async Task<ApiResponse<object>> TagsUpdateTagAsyncWithHttpInfo(string tagName, string newName,
-            string apiKey)
-        {
-            // verify the required parameter 'tagName' is set
-            if (tagName == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsUpdateTag");
-            }
-            // verify the required parameter 'newName' is set
-            if (newName == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'newName' when calling TagsApi->TagsUpdateTag");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsUpdateTag");
-            }
-
-            var localVarPath = "/v1/tags/{tag_name}/{new_name}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName));
-            // path parameter
-            localVarPathParams.Add("new_name", Configuration.ApiClient.ParameterToString(newName));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("TagsUpdateTag", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Sets the base path of the API client.
-        /// </summary>
-        /// <value>The base path</value>
-        [Obsolete(
-            "SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead."
-        )]
-        public void SetBasePath(string basePath)
-        {
-            // do nothing
-        }
-
-        /// <summary>
-        ///     Gets the default header.
+        /// Gets the default header.
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public Dictionary<string, string> DefaultHeader()
+        public IDictionary<String, String> DefaultHeader()
         {
-            return Configuration.DefaultHeader;
+            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
         }
 
         /// <summary>
-        ///     Add default header.
+        /// Add default header.
         /// </summary>
         /// <param name="key">Header field name.</param>
         /// <param name="value">Header field value.</param>
@@ -857,7 +307,632 @@ namespace ShipEngine.ApiClient.Api
         [Obsolete("AddDefaultHeader is deprecated, please use Configuration.AddDefaultHeader instead.")]
         public void AddDefaultHeader(string key, string value)
         {
-            Configuration.AddDefaultHeader(key, value);
+            this.Configuration.AddDefaultHeader(key, value);
         }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        public void TagsAddTag (string tagName, string apiKey)
+        {
+             TagsAddTagWithHttpInfo(tagName, apiKey);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> TagsAddTagWithHttpInfo (string tagName, string apiKey)
+        {
+            // verify the required parameter 'tagName' is set
+            if (tagName == null)
+                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsAddTag");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsAddTag");
+
+            var localVarPath = "/v1/tags/{tag_name}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (tagName != null) localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("TagsAddTag", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task TagsAddTagAsync (string tagName, string apiKey)
+        {
+             await TagsAddTagAsyncWithHttpInfo(tagName, apiKey);
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> TagsAddTagAsyncWithHttpInfo (string tagName, string apiKey)
+        {
+            // verify the required parameter 'tagName' is set
+            if (tagName == null)
+                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsAddTag");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsAddTag");
+
+            var localVarPath = "/v1/tags/{tag_name}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (tagName != null) localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("TagsAddTag", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ListTagResponse</returns>
+        public ListTagResponse TagsDelete (string tagName, string apiKey)
+        {
+             ApiResponse<ListTagResponse> localVarResponse = TagsDeleteWithHttpInfo(tagName, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of ListTagResponse</returns>
+        public ApiResponse< ListTagResponse > TagsDeleteWithHttpInfo (string tagName, string apiKey)
+        {
+            // verify the required parameter 'tagName' is set
+            if (tagName == null)
+                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsDelete");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsDelete");
+
+            var localVarPath = "/v1/tags/{tag_name}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (tagName != null) localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("TagsDelete", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ListTagResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ListTagResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListTagResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ListTagResponse</returns>
+        public async System.Threading.Tasks.Task<ListTagResponse> TagsDeleteAsync (string tagName, string apiKey)
+        {
+             ApiResponse<ListTagResponse> localVarResponse = await TagsDeleteAsyncWithHttpInfo(tagName, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (ListTagResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ListTagResponse>> TagsDeleteAsyncWithHttpInfo (string tagName, string apiKey)
+        {
+            // verify the required parameter 'tagName' is set
+            if (tagName == null)
+                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsDelete");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsDelete");
+
+            var localVarPath = "/v1/tags/{tag_name}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (tagName != null) localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("TagsDelete", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ListTagResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ListTagResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListTagResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ListTagResponse</returns>
+        public ListTagResponse TagsListTags (string apiKey)
+        {
+             ApiResponse<ListTagResponse> localVarResponse = TagsListTagsWithHttpInfo(apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of ListTagResponse</returns>
+        public ApiResponse< ListTagResponse > TagsListTagsWithHttpInfo (string apiKey)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsListTags");
+
+            var localVarPath = "/v1/tags";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("TagsListTags", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ListTagResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ListTagResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListTagResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ListTagResponse</returns>
+        public async System.Threading.Tasks.Task<ListTagResponse> TagsListTagsAsync (string apiKey)
+        {
+             ApiResponse<ListTagResponse> localVarResponse = await TagsListTagsAsyncWithHttpInfo(apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (ListTagResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ListTagResponse>> TagsListTagsAsyncWithHttpInfo (string apiKey)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsListTags");
+
+            var localVarPath = "/v1/tags";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("TagsListTags", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ListTagResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ListTagResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListTagResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="newName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        public void TagsUpdateTag (string tagName, string newName, string apiKey)
+        {
+             TagsUpdateTagWithHttpInfo(tagName, newName, apiKey);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="newName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> TagsUpdateTagWithHttpInfo (string tagName, string newName, string apiKey)
+        {
+            // verify the required parameter 'tagName' is set
+            if (tagName == null)
+                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsUpdateTag");
+            // verify the required parameter 'newName' is set
+            if (newName == null)
+                throw new ApiException(400, "Missing required parameter 'newName' when calling TagsApi->TagsUpdateTag");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsUpdateTag");
+
+            var localVarPath = "/v1/tags/{tag_name}/{new_name}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (tagName != null) localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName)); // path parameter
+            if (newName != null) localVarPathParams.Add("new_name", Configuration.ApiClient.ParameterToString(newName)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("TagsUpdateTag", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="newName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task TagsUpdateTagAsync (string tagName, string newName, string apiKey)
+        {
+             await TagsUpdateTagAsyncWithHttpInfo(tagName, newName, apiKey);
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagName"></param>
+        /// <param name="newName"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> TagsUpdateTagAsyncWithHttpInfo (string tagName, string newName, string apiKey)
+        {
+            // verify the required parameter 'tagName' is set
+            if (tagName == null)
+                throw new ApiException(400, "Missing required parameter 'tagName' when calling TagsApi->TagsUpdateTag");
+            // verify the required parameter 'newName' is set
+            if (newName == null)
+                throw new ApiException(400, "Missing required parameter 'newName' when calling TagsApi->TagsUpdateTag");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling TagsApi->TagsUpdateTag");
+
+            var localVarPath = "/v1/tags/{tag_name}/{new_name}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (tagName != null) localVarPathParams.Add("tag_name", Configuration.ApiClient.ParameterToString(tagName)); // path parameter
+            if (newName != null) localVarPathParams.Add("new_name", Configuration.ApiClient.ParameterToString(newName)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("TagsUpdateTag", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
     }
 }

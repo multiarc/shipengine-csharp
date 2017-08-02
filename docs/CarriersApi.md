@@ -4,18 +4,18 @@ All URIs are relative to *https://api.shipengine.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CarriersGet**](CarriersApi.md#carriersget) | **GET** /v1/carriers/{carrier_id} | Get a specific carrier
-[**CarriersGetOptions**](CarriersApi.md#carriersgetoptions) | **GET** /v1/carriers/{carrier_id}/options | Get advanced options for a carrier
-[**CarriersList**](CarriersApi.md#carrierslist) | **GET** /v1/carriers | Get carriers
-[**CarriersListPackages**](CarriersApi.md#carrierslistpackages) | **GET** /v1/carriers/{carrier_id}/packages | Get packages for a carrier
-[**CarriersListServices**](CarriersApi.md#carrierslistservices) | **GET** /v1/carriers/{carrier_id}/services | Get shipping services for a carrier
+[**CarriersGet**](CarriersApi.md#carriersget) | **GET** /v1/carriers/{carrier_id} | 
+[**CarriersGetOptions**](CarriersApi.md#carriersgetoptions) | **GET** /v1/carriers/{carrier_id}/options | 
+[**CarriersList**](CarriersApi.md#carrierslist) | **GET** /v1/carriers | 
+[**CarriersListPackages**](CarriersApi.md#carrierslistpackages) | **GET** /v1/carriers/{carrier_id}/packages | 
+[**CarriersListServices**](CarriersApi.md#carrierslistservices) | **GET** /v1/carriers/{carrier_id}/services | 
 
 
 <a name="carriersget"></a>
 # **CarriersGet**
 > Carrier CarriersGet (string carrierId, string apiKey)
 
-Get a specific carrier
+
 
 ### Example
 ```csharp
@@ -31,11 +31,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new CarriersApi();
             var carrierId = carrierId_example;  // string | 
@@ -43,7 +42,6 @@ namespace Example
 
             try
             {
-                // Get a specific carrier
                 Carrier result = apiInstance.CarriersGet(carrierId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -82,9 +80,7 @@ Name | Type | Description  | Notes
 # **CarriersGetOptions**
 > CarrierListOptionsResponse CarriersGetOptions (string carrierId, string apiKey)
 
-Get advanced options for a carrier
 
-Get advanced options (such as Saturday delivery, special handling, etc...) for a carrier
 
 ### Example
 ```csharp
@@ -100,11 +96,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new CarriersApi();
             var carrierId = carrierId_example;  // string | 
@@ -112,7 +107,6 @@ namespace Example
 
             try
             {
-                // Get advanced options for a carrier
                 CarrierListOptionsResponse result = apiInstance.CarriersGetOptions(carrierId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -151,9 +145,7 @@ Name | Type | Description  | Notes
 # **CarriersList**
 > CarrierListResponse CarriersList (string apiKey)
 
-Get carriers
 
-Get a list of carriers (carrier accounts)
 
 ### Example
 ```csharp
@@ -169,18 +161,16 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new CarriersApi();
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Get carriers
                 CarrierListResponse result = apiInstance.CarriersList(apiKey);
                 Debug.WriteLine(result);
             }
@@ -218,7 +208,7 @@ Name | Type | Description  | Notes
 # **CarriersListPackages**
 > CarrierListPackagesResponse CarriersListPackages (string carrierId, string apiKey)
 
-Get packages for a carrier
+
 
 ### Example
 ```csharp
@@ -234,11 +224,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new CarriersApi();
             var carrierId = carrierId_example;  // string | 
@@ -246,7 +235,6 @@ namespace Example
 
             try
             {
-                // Get packages for a carrier
                 CarrierListPackagesResponse result = apiInstance.CarriersListPackages(carrierId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -285,7 +273,7 @@ Name | Type | Description  | Notes
 # **CarriersListServices**
 > CarrierListServicesResponse CarriersListServices (string carrierId, string apiKey)
 
-Get shipping services for a carrier
+
 
 ### Example
 ```csharp
@@ -301,11 +289,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new CarriersApi();
             var carrierId = carrierId_example;  // string | 
@@ -313,7 +300,6 @@ namespace Example
 
             try
             {
-                // Get shipping services for a carrier
                 CarrierListServicesResponse result = apiInstance.CarriersListServices(carrierId, apiKey);
                 Debug.WriteLine(result);
             }

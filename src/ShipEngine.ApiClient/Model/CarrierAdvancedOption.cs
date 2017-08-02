@@ -9,90 +9,60 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     CarrierAdvancedOption
+    /// CarrierAdvancedOption
     /// </summary>
     [DataContract]
-    public class CarrierAdvancedOption : IEquatable<CarrierAdvancedOption>, IValidatableObject
+    public partial class CarrierAdvancedOption :  IEquatable<CarrierAdvancedOption>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CarrierAdvancedOption" /> class.
+        /// Initializes a new instance of the <see cref="CarrierAdvancedOption" /> class.
         /// </summary>
-        /// <param name="name">Name.</param>
-        /// <param name="defaultValue">DefaultValue.</param>
-        /// <param name="description">Description.</param>
-        public CarrierAdvancedOption(string name = default(string), string defaultValue = default(string),
-            string description = default(string))
+        /// <param name="Name">Name.</param>
+        /// <param name="DefaultValue">DefaultValue.</param>
+        /// <param name="Description">Description.</param>
+        public CarrierAdvancedOption(string Name = default(string), string DefaultValue = default(string), string Description = default(string))
         {
-            Name = name;
-            DefaultValue = defaultValue;
-            Description = description;
+            this.Name = Name;
+            this.DefaultValue = DefaultValue;
+            this.Description = Description;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets Name
+        /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
 
         /// <summary>
-        ///     Gets or Sets DefaultValue
+        /// Gets or Sets DefaultValue
         /// </summary>
-        [DataMember(Name = "default_value", EmitDefaultValue = false)]
+        [DataMember(Name="default_value", EmitDefaultValue=false)]
         public string DefaultValue { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Description
+        /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
 
         /// <summary>
-        ///     Returns true if CarrierAdvancedOption instances are equal
-        /// </summary>
-        /// <param name="other">Instance of CarrierAdvancedOption to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CarrierAdvancedOption other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    Name == other.Name ||
-                    Name != null &&
-                    Name.Equals(other.Name)
-                ) &&
-                (
-                    DefaultValue == other.DefaultValue ||
-                    DefaultValue != null &&
-                    DefaultValue.Equals(other.DefaultValue)
-                ) &&
-                (
-                    Description == other.Description ||
-                    Description != null &&
-                    Description.Equals(other.Description)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -105,9 +75,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -116,41 +86,71 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as CarrierAdvancedOption);
+            return this.Equals(input as CarrierAdvancedOption);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if CarrierAdvancedOption instances are equal
+        /// </summary>
+        /// <param name="input">Instance of CarrierAdvancedOption to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(CarrierAdvancedOption input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.DefaultValue == input.DefaultValue ||
+                    (this.DefaultValue != null &&
+                    this.DefaultValue.Equals(input.DefaultValue))
+                ) && 
+                (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Name != null)
-                {
-                    hash = hash * 59 + Name.GetHashCode();
-                }
-                if (DefaultValue != null)
-                {
-                    hash = hash * 59 + DefaultValue.GetHashCode();
-                }
-                if (Description != null)
-                {
-                    hash = hash * 59 + Description.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.DefaultValue != null)
+                    hashCode = hashCode * 59 + this.DefaultValue.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

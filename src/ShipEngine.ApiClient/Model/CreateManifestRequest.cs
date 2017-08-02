@@ -9,105 +9,68 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     CreateManifestRequest
+    /// CreateManifestRequest
     /// </summary>
     [DataContract]
-    public class CreateManifestRequest : IEquatable<CreateManifestRequest>, IValidatableObject
+    public partial class CreateManifestRequest :  IEquatable<CreateManifestRequest>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CreateManifestRequest" /> class.
+        /// Initializes a new instance of the <see cref="CreateManifestRequest" /> class.
         /// </summary>
-        /// <param name="carrierId">CarrierId.</param>
-        /// <param name="excludedLabelIds">ExcludedLabelIds.</param>
-        /// <param name="warehouseId">WarehouseId.</param>
-        /// <param name="shipDate">ShipDate.</param>
-        public CreateManifestRequest(string carrierId = default(string),
-            List<string> excludedLabelIds = default(List<string>), string warehouseId = default(string),
-            DateTime? shipDate = default(DateTime?))
+        /// <param name="CarrierId">CarrierId.</param>
+        /// <param name="ExcludedLabelIds">ExcludedLabelIds.</param>
+        /// <param name="WarehouseId">WarehouseId.</param>
+        /// <param name="ShipDate">ShipDate.</param>
+        public CreateManifestRequest(string CarrierId = default(string), List<string> ExcludedLabelIds = default(List<string>), string WarehouseId = default(string), DateTime? ShipDate = default(DateTime?))
         {
-            CarrierId = carrierId;
-            ExcludedLabelIds = excludedLabelIds;
-            WarehouseId = warehouseId;
-            ShipDate = shipDate;
+            this.CarrierId = CarrierId;
+            this.ExcludedLabelIds = ExcludedLabelIds;
+            this.WarehouseId = WarehouseId;
+            this.ShipDate = ShipDate;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets CarrierId
+        /// Gets or Sets CarrierId
         /// </summary>
-        [DataMember(Name = "carrier_id", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_id", EmitDefaultValue=false)]
         public string CarrierId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ExcludedLabelIds
+        /// Gets or Sets ExcludedLabelIds
         /// </summary>
-        [DataMember(Name = "excluded_label_ids", EmitDefaultValue = false)]
+        [DataMember(Name="excluded_label_ids", EmitDefaultValue=false)]
         public List<string> ExcludedLabelIds { get; set; }
 
         /// <summary>
-        ///     Gets or Sets WarehouseId
+        /// Gets or Sets WarehouseId
         /// </summary>
-        [DataMember(Name = "warehouse_id", EmitDefaultValue = false)]
+        [DataMember(Name="warehouse_id", EmitDefaultValue=false)]
         public string WarehouseId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShipDate
+        /// Gets or Sets ShipDate
         /// </summary>
-        [DataMember(Name = "ship_date", EmitDefaultValue = false)]
+        [DataMember(Name="ship_date", EmitDefaultValue=false)]
         public DateTime? ShipDate { get; set; }
 
         /// <summary>
-        ///     Returns true if CreateManifestRequest instances are equal
-        /// </summary>
-        /// <param name="other">Instance of CreateManifestRequest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CreateManifestRequest other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    CarrierId == other.CarrierId ||
-                    CarrierId != null &&
-                    CarrierId.Equals(other.CarrierId)
-                ) &&
-                (
-                    ExcludedLabelIds == other.ExcludedLabelIds ||
-                    ExcludedLabelIds != null &&
-                    ExcludedLabelIds.SequenceEqual(other.ExcludedLabelIds)
-                ) &&
-                (
-                    WarehouseId == other.WarehouseId ||
-                    WarehouseId != null &&
-                    WarehouseId.Equals(other.WarehouseId)
-                ) &&
-                (
-                    ShipDate == other.ShipDate ||
-                    ShipDate != null &&
-                    ShipDate.Equals(other.ShipDate)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -121,9 +84,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -132,45 +95,78 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as CreateManifestRequest);
+            return this.Equals(input as CreateManifestRequest);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if CreateManifestRequest instances are equal
+        /// </summary>
+        /// <param name="input">Instance of CreateManifestRequest to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(CreateManifestRequest input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.CarrierId == input.CarrierId ||
+                    (this.CarrierId != null &&
+                    this.CarrierId.Equals(input.CarrierId))
+                ) && 
+                (
+                    this.ExcludedLabelIds == input.ExcludedLabelIds ||
+                    (this.ExcludedLabelIds != null &&
+                    this.ExcludedLabelIds.SequenceEqual(input.ExcludedLabelIds))
+                ) && 
+                (
+                    this.WarehouseId == input.WarehouseId ||
+                    (this.WarehouseId != null &&
+                    this.WarehouseId.Equals(input.WarehouseId))
+                ) && 
+                (
+                    this.ShipDate == input.ShipDate ||
+                    (this.ShipDate != null &&
+                    this.ShipDate.Equals(input.ShipDate))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (CarrierId != null)
-                {
-                    hash = hash * 59 + CarrierId.GetHashCode();
-                }
-                if (ExcludedLabelIds != null)
-                {
-                    hash = hash * 59 + ExcludedLabelIds.GetHashCode();
-                }
-                if (WarehouseId != null)
-                {
-                    hash = hash * 59 + WarehouseId.GetHashCode();
-                }
-                if (ShipDate != null)
-                {
-                    hash = hash * 59 + ShipDate.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.CarrierId != null)
+                    hashCode = hashCode * 59 + this.CarrierId.GetHashCode();
+                if (this.ExcludedLabelIds != null)
+                    hashCode = hashCode * 59 + this.ExcludedLabelIds.GetHashCode();
+                if (this.WarehouseId != null)
+                    hashCode = hashCode * 59 + this.WarehouseId.GetHashCode();
+                if (this.ShipDate != null)
+                    hashCode = hashCode * 59 + this.ShipDate.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

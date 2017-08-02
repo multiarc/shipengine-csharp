@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **Confirmation** | **string** |  | [optional] 
 **Customs** | [**InternationalOptions**](InternationalOptions.md) |  | [optional] 
 **AdvancedOptions** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
-**InsuranceProvider** | **string** | Set the insurance provider for the entire shipment, insurance is defaulted to &#39;insurance_options_provider_enum.none&#39;.  To enable insurance, set the insurance provider insurance_options_provider_enum.  Insured amount, should be set inside the shipment.packages collection for each shipment_package. | [optional] 
+**InsuranceProvider** | **string** |  | [optional] 
 **Tags** | [**List&lt;TagResponse&gt;**](TagResponse.md) |  | [optional] 
 **TotalWeight** | [**Weight**](Weight.md) |  | [optional] 
 **Packages** | [**List&lt;ShipmentPackage&gt;**](ShipmentPackage.md) |  | [optional] 

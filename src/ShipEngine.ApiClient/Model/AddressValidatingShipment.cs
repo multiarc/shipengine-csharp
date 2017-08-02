@@ -9,450 +9,318 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     AddressValidatingShipment
+    /// AddressValidatingShipment
     /// </summary>
     [DataContract]
-    public class AddressValidatingShipment : IEquatable<AddressValidatingShipment>, IValidatableObject
+    public partial class AddressValidatingShipment :  IEquatable<AddressValidatingShipment>, IValidatableObject
     {
         /// <summary>
-        ///     Gets or Sets Confirmation
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ConfirmationEnum
-        {
-            /// <summary>
-            ///     Enum None for "none"
-            /// </summary>
-            [EnumMember(Value = "none")] None,
-
-            /// <summary>
-            ///     Enum Delivery for "delivery"
-            /// </summary>
-            [EnumMember(Value = "delivery")] Delivery,
-
-            /// <summary>
-            ///     Enum Signature for "signature"
-            /// </summary>
-            [EnumMember(Value = "signature")] Signature,
-
-            /// <summary>
-            ///     Enum Adultsignature for "adult_signature"
-            /// </summary>
-            [EnumMember(Value = "adult_signature")] Adultsignature,
-
-            /// <summary>
-            ///     Enum Directsignature for "direct_signature"
-            /// </summary>
-            [EnumMember(Value = "direct_signature")] Directsignature
-        }
-
-        /// <summary>
-        ///     Set the insurance provider for the entire shipment, insurance is defaulted to
-        ///     'insurance_options_provider_enum.none'.  To enable insurance, set the insurance provider
-        ///     insurance_options_provider_enum.  Insured amount, should be set inside the shipment.packages collection for each
-        ///     shipment_package.
-        /// </summary>
-        /// <value>
-        ///     Set the insurance provider for the entire shipment, insurance is defaulted to
-        ///     'insurance_options_provider_enum.none'.  To enable insurance, set the insurance provider
-        ///     insurance_options_provider_enum.  Insured amount, should be set inside the shipment.packages collection for each
-        ///     shipment_package.
-        /// </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum InsuranceProviderEnum
-        {
-            /// <summary>
-            ///     Enum None for "none"
-            /// </summary>
-            [EnumMember(Value = "none")] None,
-
-            /// <summary>
-            ///     Enum Shipsurance for "shipsurance"
-            /// </summary>
-            [EnumMember(Value = "shipsurance")] Shipsurance,
-
-            /// <summary>
-            ///     Enum Carrier for "carrier"
-            /// </summary>
-            [EnumMember(Value = "carrier")] Carrier
-        }
-
-        /// <summary>
-        ///     Gets or Sets ShipmentStatus
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ShipmentStatusEnum
-        {
-            /// <summary>
-            ///     Enum Pending for "pending"
-            /// </summary>
-            [EnumMember(Value = "pending")] Pending,
-
-            /// <summary>
-            ///     Enum Processing for "processing"
-            /// </summary>
-            [EnumMember(Value = "processing")] Processing,
-
-            /// <summary>
-            ///     Enum Labelpurchased for "label_purchased"
-            /// </summary>
-            [EnumMember(Value = "label_purchased")] Labelpurchased,
-
-            /// <summary>
-            ///     Enum Cancelled for "cancelled"
-            /// </summary>
-            [EnumMember(Value = "cancelled")] Cancelled
-        }
-
-        /// <summary>
-        ///     Gets or Sets ValidateAddress
+        /// Gets or Sets ValidateAddress
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ValidateAddressEnum
         {
+            
             /// <summary>
-            ///     Enum NoValidation for "noValidation"
+            /// Enum NoValidation for "noValidation"
             /// </summary>
-            [EnumMember(Value = "noValidation")] NoValidation,
-
+            [EnumMember(Value = "noValidation")]
+            NoValidation,
+            
             /// <summary>
-            ///     Enum ValidateOnly for "validateOnly"
+            /// Enum ValidateOnly for "validateOnly"
             /// </summary>
-            [EnumMember(Value = "validateOnly")] ValidateOnly,
-
+            [EnumMember(Value = "validateOnly")]
+            ValidateOnly,
+            
             /// <summary>
-            ///     Enum ValidateAndClean for "validateAndClean"
+            /// Enum ValidateAndClean for "validateAndClean"
             /// </summary>
-            [EnumMember(Value = "validateAndClean")] ValidateAndClean
+            [EnumMember(Value = "validateAndClean")]
+            ValidateAndClean
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="AddressValidatingShipment" /> class.
+        /// Gets or Sets ShipmentStatus
         /// </summary>
-        /// <param name="validateAddress">ValidateAddress.</param>
-        /// <param name="shipmentId">ShipmentId.</param>
-        /// <param name="carrierId">CarrierId.</param>
-        /// <param name="serviceCode">ServiceCode.</param>
-        /// <param name="externalShipmentId">ExternalShipmentId.</param>
-        /// <param name="shipDate">ShipDate.</param>
-        /// <param name="createdAt">CreatedAt.</param>
-        /// <param name="modifiedAt">ModifiedAt.</param>
-        /// <param name="shipmentStatus">ShipmentStatus.</param>
-        /// <param name="shipTo">ShipTo.</param>
-        /// <param name="shipFrom">ShipFrom.</param>
-        /// <param name="warehouseId">WarehouseId.</param>
-        /// <param name="returnTo">ReturnTo.</param>
-        /// <param name="confirmation">Confirmation.</param>
-        /// <param name="customs">Customs.</param>
-        /// <param name="advancedOptions">AdvancedOptions.</param>
-        /// <param name="insuranceProvider">
-        ///     Set the insurance provider for the entire shipment, insurance is defaulted to &#39;
-        ///     insurance_options_provider_enum.none&#39;.  To enable insurance, set the insurance provider
-        ///     insurance_options_provider_enum.  Insured amount, should be set inside the shipment.packages collection for each
-        ///     shipment_package..
-        /// </param>
-        /// <param name="tags">Tags.</param>
-        /// <param name="totalWeight">TotalWeight.</param>
-        /// <param name="packages">Packages.</param>
-        public AddressValidatingShipment(ValidateAddressEnum? validateAddress = default(ValidateAddressEnum?),
-            string shipmentId = default(string), string carrierId = default(string),
-            string serviceCode = default(string), string externalShipmentId = default(string),
-            DateTime? shipDate = default(DateTime?), DateTime? createdAt = default(DateTime?),
-            DateTime? modifiedAt = default(DateTime?), ShipmentStatusEnum? shipmentStatus = default(ShipmentStatusEnum?),
-            AddressDTO shipTo = default(AddressDTO), AddressDTO shipFrom = default(AddressDTO),
-            string warehouseId = default(string), AddressDTO returnTo = default(AddressDTO),
-            ConfirmationEnum? confirmation = default(ConfirmationEnum?),
-            InternationalOptions customs = default(InternationalOptions),
-            Dictionary<string, object> advancedOptions = default(Dictionary<string, object>),
-            InsuranceProviderEnum? insuranceProvider = default(InsuranceProviderEnum?),
-            List<TagResponse> tags = default(List<TagResponse>), Weight totalWeight = default(Weight),
-            List<ShipmentPackage> packages = default(List<ShipmentPackage>))
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ShipmentStatusEnum
         {
-            ValidateAddress = validateAddress;
-            ShipmentId = shipmentId;
-            CarrierId = carrierId;
-            ServiceCode = serviceCode;
-            ExternalShipmentId = externalShipmentId;
-            ShipDate = shipDate;
-            CreatedAt = createdAt;
-            ModifiedAt = modifiedAt;
-            ShipmentStatus = shipmentStatus;
-            ShipTo = shipTo;
-            ShipFrom = shipFrom;
-            WarehouseId = warehouseId;
-            ReturnTo = returnTo;
-            Confirmation = confirmation;
-            Customs = customs;
-            AdvancedOptions = advancedOptions;
-            InsuranceProvider = insuranceProvider;
-            Tags = tags;
-            TotalWeight = totalWeight;
-            Packages = packages;
+            
+            /// <summary>
+            /// Enum Pending for "pending"
+            /// </summary>
+            [EnumMember(Value = "pending")]
+            Pending,
+            
+            /// <summary>
+            /// Enum Processing for "processing"
+            /// </summary>
+            [EnumMember(Value = "processing")]
+            Processing,
+            
+            /// <summary>
+            /// Enum Labelpurchased for "label_purchased"
+            /// </summary>
+            [EnumMember(Value = "label_purchased")]
+            Labelpurchased,
+            
+            /// <summary>
+            /// Enum Cancelled for "cancelled"
+            /// </summary>
+            [EnumMember(Value = "cancelled")]
+            Cancelled
         }
 
         /// <summary>
-        ///     Gets or Sets ValidateAddress
+        /// Gets or Sets Confirmation
         /// </summary>
-        [DataMember(Name = "validate_address", EmitDefaultValue = false)]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ConfirmationEnum
+        {
+            
+            /// <summary>
+            /// Enum None for "none"
+            /// </summary>
+            [EnumMember(Value = "none")]
+            None,
+            
+            /// <summary>
+            /// Enum Delivery for "delivery"
+            /// </summary>
+            [EnumMember(Value = "delivery")]
+            Delivery,
+            
+            /// <summary>
+            /// Enum Signature for "signature"
+            /// </summary>
+            [EnumMember(Value = "signature")]
+            Signature,
+            
+            /// <summary>
+            /// Enum Adultsignature for "adult_signature"
+            /// </summary>
+            [EnumMember(Value = "adult_signature")]
+            Adultsignature,
+            
+            /// <summary>
+            /// Enum Directsignature for "direct_signature"
+            /// </summary>
+            [EnumMember(Value = "direct_signature")]
+            Directsignature
+        }
+
+        /// <summary>
+        /// Gets or Sets InsuranceProvider
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum InsuranceProviderEnum
+        {
+            
+            /// <summary>
+            /// Enum None for "none"
+            /// </summary>
+            [EnumMember(Value = "none")]
+            None,
+            
+            /// <summary>
+            /// Enum Shipsurance for "shipsurance"
+            /// </summary>
+            [EnumMember(Value = "shipsurance")]
+            Shipsurance,
+            
+            /// <summary>
+            /// Enum Carrier for "carrier"
+            /// </summary>
+            [EnumMember(Value = "carrier")]
+            Carrier
+        }
+
+        /// <summary>
+        /// Gets or Sets ValidateAddress
+        /// </summary>
+        [DataMember(Name="validate_address", EmitDefaultValue=false)]
         public ValidateAddressEnum? ValidateAddress { get; set; }
-
         /// <summary>
-        ///     Gets or Sets ShipmentStatus
+        /// Gets or Sets ShipmentStatus
         /// </summary>
-        [DataMember(Name = "shipment_status", EmitDefaultValue = false)]
+        [DataMember(Name="shipment_status", EmitDefaultValue=false)]
         public ShipmentStatusEnum? ShipmentStatus { get; set; }
-
         /// <summary>
-        ///     Gets or Sets Confirmation
+        /// Gets or Sets Confirmation
         /// </summary>
-        [DataMember(Name = "confirmation", EmitDefaultValue = false)]
+        [DataMember(Name="confirmation", EmitDefaultValue=false)]
         public ConfirmationEnum? Confirmation { get; set; }
-
         /// <summary>
-        ///     Set the insurance provider for the entire shipment, insurance is defaulted to
-        ///     'insurance_options_provider_enum.none'.  To enable insurance, set the insurance provider
-        ///     insurance_options_provider_enum.  Insured amount, should be set inside the shipment.packages collection for each
-        ///     shipment_package.
+        /// Gets or Sets InsuranceProvider
         /// </summary>
-        /// <value>
-        ///     Set the insurance provider for the entire shipment, insurance is defaulted to
-        ///     'insurance_options_provider_enum.none'.  To enable insurance, set the insurance provider
-        ///     insurance_options_provider_enum.  Insured amount, should be set inside the shipment.packages collection for each
-        ///     shipment_package.
-        /// </value>
-        [DataMember(Name = "insurance_provider", EmitDefaultValue = false)]
+        [DataMember(Name="insurance_provider", EmitDefaultValue=false)]
         public InsuranceProviderEnum? InsuranceProvider { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddressValidatingShipment" /> class.
+        /// </summary>
+        /// <param name="ValidateAddress">ValidateAddress.</param>
+        /// <param name="ShipmentId">ShipmentId.</param>
+        /// <param name="CarrierId">CarrierId.</param>
+        /// <param name="ServiceCode">ServiceCode.</param>
+        /// <param name="ExternalShipmentId">ExternalShipmentId.</param>
+        /// <param name="ShipDate">ShipDate.</param>
+        /// <param name="CreatedAt">CreatedAt.</param>
+        /// <param name="ModifiedAt">ModifiedAt.</param>
+        /// <param name="ShipmentStatus">ShipmentStatus.</param>
+        /// <param name="ShipTo">ShipTo.</param>
+        /// <param name="ShipFrom">ShipFrom.</param>
+        /// <param name="WarehouseId">WarehouseId.</param>
+        /// <param name="ReturnTo">ReturnTo.</param>
+        /// <param name="Confirmation">Confirmation.</param>
+        /// <param name="Customs">Customs.</param>
+        /// <param name="AdvancedOptions">AdvancedOptions.</param>
+        /// <param name="InsuranceProvider">InsuranceProvider.</param>
+        /// <param name="Tags">Tags.</param>
+        /// <param name="TotalWeight">TotalWeight.</param>
+        /// <param name="Packages">Packages.</param>
+        public AddressValidatingShipment(ValidateAddressEnum? ValidateAddress = default(ValidateAddressEnum?), string ShipmentId = default(string), string CarrierId = default(string), string ServiceCode = default(string), string ExternalShipmentId = default(string), DateTime? ShipDate = default(DateTime?), DateTime? CreatedAt = default(DateTime?), DateTime? ModifiedAt = default(DateTime?), ShipmentStatusEnum? ShipmentStatus = default(ShipmentStatusEnum?), AddressDTO ShipTo = default(AddressDTO), AddressDTO ShipFrom = default(AddressDTO), string WarehouseId = default(string), AddressDTO ReturnTo = default(AddressDTO), ConfirmationEnum? Confirmation = default(ConfirmationEnum?), InternationalOptions Customs = default(InternationalOptions), Dictionary<string, Object> AdvancedOptions = default(Dictionary<string, Object>), InsuranceProviderEnum? InsuranceProvider = default(InsuranceProviderEnum?), List<TagResponse> Tags = default(List<TagResponse>), Weight TotalWeight = default(Weight), List<ShipmentPackage> Packages = default(List<ShipmentPackage>))
+        {
+            this.ValidateAddress = ValidateAddress;
+            this.ShipmentId = ShipmentId;
+            this.CarrierId = CarrierId;
+            this.ServiceCode = ServiceCode;
+            this.ExternalShipmentId = ExternalShipmentId;
+            this.ShipDate = ShipDate;
+            this.CreatedAt = CreatedAt;
+            this.ModifiedAt = ModifiedAt;
+            this.ShipmentStatus = ShipmentStatus;
+            this.ShipTo = ShipTo;
+            this.ShipFrom = ShipFrom;
+            this.WarehouseId = WarehouseId;
+            this.ReturnTo = ReturnTo;
+            this.Confirmation = Confirmation;
+            this.Customs = Customs;
+            this.AdvancedOptions = AdvancedOptions;
+            this.InsuranceProvider = InsuranceProvider;
+            this.Tags = Tags;
+            this.TotalWeight = TotalWeight;
+            this.Packages = Packages;
+        }
+        
 
         /// <summary>
-        ///     Gets or Sets ShipmentId
+        /// Gets or Sets ShipmentId
         /// </summary>
-        [DataMember(Name = "shipment_id", EmitDefaultValue = false)]
+        [DataMember(Name="shipment_id", EmitDefaultValue=false)]
         public string ShipmentId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CarrierId
+        /// Gets or Sets CarrierId
         /// </summary>
-        [DataMember(Name = "carrier_id", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_id", EmitDefaultValue=false)]
         public string CarrierId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ServiceCode
+        /// Gets or Sets ServiceCode
         /// </summary>
-        [DataMember(Name = "service_code", EmitDefaultValue = false)]
+        [DataMember(Name="service_code", EmitDefaultValue=false)]
         public string ServiceCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ExternalShipmentId
+        /// Gets or Sets ExternalShipmentId
         /// </summary>
-        [DataMember(Name = "external_shipment_id", EmitDefaultValue = false)]
+        [DataMember(Name="external_shipment_id", EmitDefaultValue=false)]
         public string ExternalShipmentId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShipDate
+        /// Gets or Sets ShipDate
         /// </summary>
-        [DataMember(Name = "ship_date", EmitDefaultValue = false)]
+        [DataMember(Name="ship_date", EmitDefaultValue=false)]
         public DateTime? ShipDate { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CreatedAt
+        /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ModifiedAt
+        /// Gets or Sets ModifiedAt
         /// </summary>
-        [DataMember(Name = "modified_at", EmitDefaultValue = false)]
+        [DataMember(Name="modified_at", EmitDefaultValue=false)]
         public DateTime? ModifiedAt { get; set; }
 
+
         /// <summary>
-        ///     Gets or Sets ShipTo
+        /// Gets or Sets ShipTo
         /// </summary>
-        [DataMember(Name = "ship_to", EmitDefaultValue = false)]
+        [DataMember(Name="ship_to", EmitDefaultValue=false)]
         public AddressDTO ShipTo { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShipFrom
+        /// Gets or Sets ShipFrom
         /// </summary>
-        [DataMember(Name = "ship_from", EmitDefaultValue = false)]
+        [DataMember(Name="ship_from", EmitDefaultValue=false)]
         public AddressDTO ShipFrom { get; set; }
 
         /// <summary>
-        ///     Gets or Sets WarehouseId
+        /// Gets or Sets WarehouseId
         /// </summary>
-        [DataMember(Name = "warehouse_id", EmitDefaultValue = false)]
+        [DataMember(Name="warehouse_id", EmitDefaultValue=false)]
         public string WarehouseId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ReturnTo
+        /// Gets or Sets ReturnTo
         /// </summary>
-        [DataMember(Name = "return_to", EmitDefaultValue = false)]
+        [DataMember(Name="return_to", EmitDefaultValue=false)]
         public AddressDTO ReturnTo { get; set; }
 
+
         /// <summary>
-        ///     Gets or Sets Customs
+        /// Gets or Sets Customs
         /// </summary>
-        [DataMember(Name = "customs", EmitDefaultValue = false)]
+        [DataMember(Name="customs", EmitDefaultValue=false)]
         public InternationalOptions Customs { get; set; }
 
         /// <summary>
-        ///     Gets or Sets AdvancedOptions
+        /// Gets or Sets AdvancedOptions
         /// </summary>
-        [DataMember(Name = "advanced_options", EmitDefaultValue = false)]
-        public Dictionary<string, object> AdvancedOptions { get; set; }
+        [DataMember(Name="advanced_options", EmitDefaultValue=false)]
+        public Dictionary<string, Object> AdvancedOptions { get; set; }
+
 
         /// <summary>
-        ///     Gets or Sets Tags
+        /// Gets or Sets Tags
         /// </summary>
-        [DataMember(Name = "tags", EmitDefaultValue = false)]
+        [DataMember(Name="tags", EmitDefaultValue=false)]
         public List<TagResponse> Tags { get; set; }
 
         /// <summary>
-        ///     Gets or Sets TotalWeight
+        /// Gets or Sets TotalWeight
         /// </summary>
-        [DataMember(Name = "total_weight", EmitDefaultValue = false)]
+        [DataMember(Name="total_weight", EmitDefaultValue=false)]
         public Weight TotalWeight { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Packages
+        /// Gets or Sets Packages
         /// </summary>
-        [DataMember(Name = "packages", EmitDefaultValue = false)]
+        [DataMember(Name="packages", EmitDefaultValue=false)]
         public List<ShipmentPackage> Packages { get; set; }
 
         /// <summary>
-        ///     Returns true if AddressValidatingShipment instances are equal
-        /// </summary>
-        /// <param name="other">Instance of AddressValidatingShipment to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(AddressValidatingShipment other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    ValidateAddress == other.ValidateAddress ||
-                    ValidateAddress != null &&
-                    ValidateAddress.Equals(other.ValidateAddress)
-                ) &&
-                (
-                    ShipmentId == other.ShipmentId ||
-                    ShipmentId != null &&
-                    ShipmentId.Equals(other.ShipmentId)
-                ) &&
-                (
-                    CarrierId == other.CarrierId ||
-                    CarrierId != null &&
-                    CarrierId.Equals(other.CarrierId)
-                ) &&
-                (
-                    ServiceCode == other.ServiceCode ||
-                    ServiceCode != null &&
-                    ServiceCode.Equals(other.ServiceCode)
-                ) &&
-                (
-                    ExternalShipmentId == other.ExternalShipmentId ||
-                    ExternalShipmentId != null &&
-                    ExternalShipmentId.Equals(other.ExternalShipmentId)
-                ) &&
-                (
-                    ShipDate == other.ShipDate ||
-                    ShipDate != null &&
-                    ShipDate.Equals(other.ShipDate)
-                ) &&
-                (
-                    CreatedAt == other.CreatedAt ||
-                    CreatedAt != null &&
-                    CreatedAt.Equals(other.CreatedAt)
-                ) &&
-                (
-                    ModifiedAt == other.ModifiedAt ||
-                    ModifiedAt != null &&
-                    ModifiedAt.Equals(other.ModifiedAt)
-                ) &&
-                (
-                    ShipmentStatus == other.ShipmentStatus ||
-                    ShipmentStatus != null &&
-                    ShipmentStatus.Equals(other.ShipmentStatus)
-                ) &&
-                (
-                    Equals(ShipTo, other.ShipTo) ||
-                    ShipTo != null &&
-                    ShipTo.Equals(other.ShipTo)
-                ) &&
-                (
-                    Equals(ShipFrom, other.ShipFrom) ||
-                    ShipFrom != null &&
-                    ShipFrom.Equals(other.ShipFrom)
-                ) &&
-                (
-                    WarehouseId == other.WarehouseId ||
-                    WarehouseId != null &&
-                    WarehouseId.Equals(other.WarehouseId)
-                ) &&
-                (
-                    Equals(ReturnTo, other.ReturnTo) ||
-                    ReturnTo != null &&
-                    ReturnTo.Equals(other.ReturnTo)
-                ) &&
-                (
-                    Confirmation == other.Confirmation ||
-                    Confirmation != null &&
-                    Confirmation.Equals(other.Confirmation)
-                ) &&
-                (
-                    Equals(Customs, other.Customs) ||
-                    Customs != null &&
-                    Customs.Equals(other.Customs)
-                ) &&
-                (
-                    AdvancedOptions == other.AdvancedOptions ||
-                    AdvancedOptions != null &&
-                    AdvancedOptions.SequenceEqual(other.AdvancedOptions)
-                ) &&
-                (
-                    InsuranceProvider == other.InsuranceProvider ||
-                    InsuranceProvider != null &&
-                    InsuranceProvider.Equals(other.InsuranceProvider)
-                ) &&
-                (
-                    Tags == other.Tags ||
-                    Tags != null &&
-                    Tags.SequenceEqual(other.Tags)
-                ) &&
-                (
-                    Equals(TotalWeight, other.TotalWeight) ||
-                    TotalWeight != null &&
-                    TotalWeight.Equals(other.TotalWeight)
-                ) &&
-                (
-                    Packages == other.Packages ||
-                    Packages != null &&
-                    Packages.SequenceEqual(other.Packages)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -482,9 +350,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -493,109 +361,190 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as AddressValidatingShipment);
+            return this.Equals(input as AddressValidatingShipment);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if AddressValidatingShipment instances are equal
+        /// </summary>
+        /// <param name="input">Instance of AddressValidatingShipment to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(AddressValidatingShipment input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.ValidateAddress == input.ValidateAddress ||
+                    (this.ValidateAddress != null &&
+                    this.ValidateAddress.Equals(input.ValidateAddress))
+                ) && 
+                (
+                    this.ShipmentId == input.ShipmentId ||
+                    (this.ShipmentId != null &&
+                    this.ShipmentId.Equals(input.ShipmentId))
+                ) && 
+                (
+                    this.CarrierId == input.CarrierId ||
+                    (this.CarrierId != null &&
+                    this.CarrierId.Equals(input.CarrierId))
+                ) && 
+                (
+                    this.ServiceCode == input.ServiceCode ||
+                    (this.ServiceCode != null &&
+                    this.ServiceCode.Equals(input.ServiceCode))
+                ) && 
+                (
+                    this.ExternalShipmentId == input.ExternalShipmentId ||
+                    (this.ExternalShipmentId != null &&
+                    this.ExternalShipmentId.Equals(input.ExternalShipmentId))
+                ) && 
+                (
+                    this.ShipDate == input.ShipDate ||
+                    (this.ShipDate != null &&
+                    this.ShipDate.Equals(input.ShipDate))
+                ) && 
+                (
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
+                    this.ModifiedAt == input.ModifiedAt ||
+                    (this.ModifiedAt != null &&
+                    this.ModifiedAt.Equals(input.ModifiedAt))
+                ) && 
+                (
+                    this.ShipmentStatus == input.ShipmentStatus ||
+                    (this.ShipmentStatus != null &&
+                    this.ShipmentStatus.Equals(input.ShipmentStatus))
+                ) && 
+                (
+                    this.ShipTo == input.ShipTo ||
+                    (this.ShipTo != null &&
+                    this.ShipTo.Equals(input.ShipTo))
+                ) && 
+                (
+                    this.ShipFrom == input.ShipFrom ||
+                    (this.ShipFrom != null &&
+                    this.ShipFrom.Equals(input.ShipFrom))
+                ) && 
+                (
+                    this.WarehouseId == input.WarehouseId ||
+                    (this.WarehouseId != null &&
+                    this.WarehouseId.Equals(input.WarehouseId))
+                ) && 
+                (
+                    this.ReturnTo == input.ReturnTo ||
+                    (this.ReturnTo != null &&
+                    this.ReturnTo.Equals(input.ReturnTo))
+                ) && 
+                (
+                    this.Confirmation == input.Confirmation ||
+                    (this.Confirmation != null &&
+                    this.Confirmation.Equals(input.Confirmation))
+                ) && 
+                (
+                    this.Customs == input.Customs ||
+                    (this.Customs != null &&
+                    this.Customs.Equals(input.Customs))
+                ) && 
+                (
+                    this.AdvancedOptions == input.AdvancedOptions ||
+                    (this.AdvancedOptions != null &&
+                    this.AdvancedOptions.SequenceEqual(input.AdvancedOptions))
+                ) && 
+                (
+                    this.InsuranceProvider == input.InsuranceProvider ||
+                    (this.InsuranceProvider != null &&
+                    this.InsuranceProvider.Equals(input.InsuranceProvider))
+                ) && 
+                (
+                    this.Tags == input.Tags ||
+                    (this.Tags != null &&
+                    this.Tags.SequenceEqual(input.Tags))
+                ) && 
+                (
+                    this.TotalWeight == input.TotalWeight ||
+                    (this.TotalWeight != null &&
+                    this.TotalWeight.Equals(input.TotalWeight))
+                ) && 
+                (
+                    this.Packages == input.Packages ||
+                    (this.Packages != null &&
+                    this.Packages.SequenceEqual(input.Packages))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (ValidateAddress != null)
-                {
-                    hash = hash * 59 + ValidateAddress.GetHashCode();
-                }
-                if (ShipmentId != null)
-                {
-                    hash = hash * 59 + ShipmentId.GetHashCode();
-                }
-                if (CarrierId != null)
-                {
-                    hash = hash * 59 + CarrierId.GetHashCode();
-                }
-                if (ServiceCode != null)
-                {
-                    hash = hash * 59 + ServiceCode.GetHashCode();
-                }
-                if (ExternalShipmentId != null)
-                {
-                    hash = hash * 59 + ExternalShipmentId.GetHashCode();
-                }
-                if (ShipDate != null)
-                {
-                    hash = hash * 59 + ShipDate.GetHashCode();
-                }
-                if (CreatedAt != null)
-                {
-                    hash = hash * 59 + CreatedAt.GetHashCode();
-                }
-                if (ModifiedAt != null)
-                {
-                    hash = hash * 59 + ModifiedAt.GetHashCode();
-                }
-                if (ShipmentStatus != null)
-                {
-                    hash = hash * 59 + ShipmentStatus.GetHashCode();
-                }
-                if (ShipTo != null)
-                {
-                    hash = hash * 59 + ShipTo.GetHashCode();
-                }
-                if (ShipFrom != null)
-                {
-                    hash = hash * 59 + ShipFrom.GetHashCode();
-                }
-                if (WarehouseId != null)
-                {
-                    hash = hash * 59 + WarehouseId.GetHashCode();
-                }
-                if (ReturnTo != null)
-                {
-                    hash = hash * 59 + ReturnTo.GetHashCode();
-                }
-                if (Confirmation != null)
-                {
-                    hash = hash * 59 + Confirmation.GetHashCode();
-                }
-                if (Customs != null)
-                {
-                    hash = hash * 59 + Customs.GetHashCode();
-                }
-                if (AdvancedOptions != null)
-                {
-                    hash = hash * 59 + AdvancedOptions.GetHashCode();
-                }
-                if (InsuranceProvider != null)
-                {
-                    hash = hash * 59 + InsuranceProvider.GetHashCode();
-                }
-                if (Tags != null)
-                {
-                    hash = hash * 59 + Tags.GetHashCode();
-                }
-                if (TotalWeight != null)
-                {
-                    hash = hash * 59 + TotalWeight.GetHashCode();
-                }
-                if (Packages != null)
-                {
-                    hash = hash * 59 + Packages.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.ValidateAddress != null)
+                    hashCode = hashCode * 59 + this.ValidateAddress.GetHashCode();
+                if (this.ShipmentId != null)
+                    hashCode = hashCode * 59 + this.ShipmentId.GetHashCode();
+                if (this.CarrierId != null)
+                    hashCode = hashCode * 59 + this.CarrierId.GetHashCode();
+                if (this.ServiceCode != null)
+                    hashCode = hashCode * 59 + this.ServiceCode.GetHashCode();
+                if (this.ExternalShipmentId != null)
+                    hashCode = hashCode * 59 + this.ExternalShipmentId.GetHashCode();
+                if (this.ShipDate != null)
+                    hashCode = hashCode * 59 + this.ShipDate.GetHashCode();
+                if (this.CreatedAt != null)
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.ModifiedAt != null)
+                    hashCode = hashCode * 59 + this.ModifiedAt.GetHashCode();
+                if (this.ShipmentStatus != null)
+                    hashCode = hashCode * 59 + this.ShipmentStatus.GetHashCode();
+                if (this.ShipTo != null)
+                    hashCode = hashCode * 59 + this.ShipTo.GetHashCode();
+                if (this.ShipFrom != null)
+                    hashCode = hashCode * 59 + this.ShipFrom.GetHashCode();
+                if (this.WarehouseId != null)
+                    hashCode = hashCode * 59 + this.WarehouseId.GetHashCode();
+                if (this.ReturnTo != null)
+                    hashCode = hashCode * 59 + this.ReturnTo.GetHashCode();
+                if (this.Confirmation != null)
+                    hashCode = hashCode * 59 + this.Confirmation.GetHashCode();
+                if (this.Customs != null)
+                    hashCode = hashCode * 59 + this.Customs.GetHashCode();
+                if (this.AdvancedOptions != null)
+                    hashCode = hashCode * 59 + this.AdvancedOptions.GetHashCode();
+                if (this.InsuranceProvider != null)
+                    hashCode = hashCode * 59 + this.InsuranceProvider.GetHashCode();
+                if (this.Tags != null)
+                    hashCode = hashCode * 59 + this.Tags.GetHashCode();
+                if (this.TotalWeight != null)
+                    hashCode = hashCode * 59 + this.TotalWeight.GetHashCode();
+                if (this.Packages != null)
+                    hashCode = hashCode * 59 + this.Packages.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

@@ -9,199 +9,124 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     Carrier
+    /// Carrier
     /// </summary>
     [DataContract]
-    public class Carrier : IEquatable<Carrier>, IValidatableObject
+    public partial class Carrier :  IEquatable<Carrier>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Carrier" /> class.
+        /// Initializes a new instance of the <see cref="Carrier" /> class.
         /// </summary>
-        /// <param name="carrierId">CarrierId.</param>
-        /// <param name="carrierCode">CarrierCode.</param>
-        /// <param name="accountNumber">AccountNumber.</param>
-        /// <param name="requiresFundedAmount">RequiresFundedAmount.</param>
-        /// <param name="balance">Balance.</param>
-        /// <param name="nickname">Nickname.</param>
-        /// <param name="friendlyName">FriendlyName.</param>
-        /// <param name="primary">Primary.</param>
-        /// <param name="services">Services.</param>
-        /// <param name="packages">Packages.</param>
-        /// <param name="options">Options.</param>
-        public Carrier(string carrierId = default(string), string carrierCode = default(string),
-            string accountNumber = default(string), bool? requiresFundedAmount = default(bool?),
-            decimal? balance = default(decimal?), string nickname = default(string), string friendlyName = default(string),
-            bool? primary = default(bool?), List<Service> services = default(List<Service>),
-            List<Package> packages = default(List<Package>),
-            List<CarrierAdvancedOption> options = default(List<CarrierAdvancedOption>))
+        /// <param name="CarrierId">CarrierId.</param>
+        /// <param name="CarrierCode">CarrierCode.</param>
+        /// <param name="AccountNumber">AccountNumber.</param>
+        /// <param name="RequiresFundedAmount">RequiresFundedAmount.</param>
+        /// <param name="Balance">Balance.</param>
+        /// <param name="Nickname">Nickname.</param>
+        /// <param name="FriendlyName">FriendlyName.</param>
+        /// <param name="Primary">Primary.</param>
+        /// <param name="Services">Services.</param>
+        /// <param name="Packages">Packages.</param>
+        /// <param name="Options">Options.</param>
+        public Carrier(string CarrierId = default(string), string CarrierCode = default(string), string AccountNumber = default(string), bool? RequiresFundedAmount = default(bool?), double? Balance = default(double?), string Nickname = default(string), string FriendlyName = default(string), bool? Primary = default(bool?), List<Service> Services = default(List<Service>), List<Package> Packages = default(List<Package>), List<CarrierAdvancedOption> Options = default(List<CarrierAdvancedOption>))
         {
-            CarrierId = carrierId;
-            CarrierCode = carrierCode;
-            AccountNumber = accountNumber;
-            RequiresFundedAmount = requiresFundedAmount;
-            Balance = balance;
-            Nickname = nickname;
-            FriendlyName = friendlyName;
-            Primary = primary;
-            Services = services;
-            Packages = packages;
-            Options = options;
+            this.CarrierId = CarrierId;
+            this.CarrierCode = CarrierCode;
+            this.AccountNumber = AccountNumber;
+            this.RequiresFundedAmount = RequiresFundedAmount;
+            this.Balance = Balance;
+            this.Nickname = Nickname;
+            this.FriendlyName = FriendlyName;
+            this.Primary = Primary;
+            this.Services = Services;
+            this.Packages = Packages;
+            this.Options = Options;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets CarrierId
+        /// Gets or Sets CarrierId
         /// </summary>
-        [DataMember(Name = "carrier_id", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_id", EmitDefaultValue=false)]
         public string CarrierId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CarrierCode
+        /// Gets or Sets CarrierCode
         /// </summary>
-        [DataMember(Name = "carrier_code", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_code", EmitDefaultValue=false)]
         public string CarrierCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets AccountNumber
+        /// Gets or Sets AccountNumber
         /// </summary>
-        [DataMember(Name = "account_number", EmitDefaultValue = false)]
+        [DataMember(Name="account_number", EmitDefaultValue=false)]
         public string AccountNumber { get; set; }
 
         /// <summary>
-        ///     Gets or Sets RequiresFundedAmount
+        /// Gets or Sets RequiresFundedAmount
         /// </summary>
-        [DataMember(Name = "requires_funded_amount", EmitDefaultValue = false)]
+        [DataMember(Name="requires_funded_amount", EmitDefaultValue=false)]
         public bool? RequiresFundedAmount { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Balance
+        /// Gets or Sets Balance
         /// </summary>
-        [DataMember(Name = "balance", EmitDefaultValue = false)]
-        public decimal? Balance { get; set; }
+        [DataMember(Name="balance", EmitDefaultValue=false)]
+        public double? Balance { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Nickname
+        /// Gets or Sets Nickname
         /// </summary>
-        [DataMember(Name = "nickname", EmitDefaultValue = false)]
+        [DataMember(Name="nickname", EmitDefaultValue=false)]
         public string Nickname { get; set; }
 
         /// <summary>
-        ///     Gets or Sets FriendlyName
+        /// Gets or Sets FriendlyName
         /// </summary>
-        [DataMember(Name = "friendly_name", EmitDefaultValue = false)]
+        [DataMember(Name="friendly_name", EmitDefaultValue=false)]
         public string FriendlyName { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Primary
+        /// Gets or Sets Primary
         /// </summary>
-        [DataMember(Name = "primary", EmitDefaultValue = false)]
+        [DataMember(Name="primary", EmitDefaultValue=false)]
         public bool? Primary { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Services
+        /// Gets or Sets Services
         /// </summary>
-        [DataMember(Name = "services", EmitDefaultValue = false)]
+        [DataMember(Name="services", EmitDefaultValue=false)]
         public List<Service> Services { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Packages
+        /// Gets or Sets Packages
         /// </summary>
-        [DataMember(Name = "packages", EmitDefaultValue = false)]
+        [DataMember(Name="packages", EmitDefaultValue=false)]
         public List<Package> Packages { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Options
+        /// Gets or Sets Options
         /// </summary>
-        [DataMember(Name = "options", EmitDefaultValue = false)]
+        [DataMember(Name="options", EmitDefaultValue=false)]
         public List<CarrierAdvancedOption> Options { get; set; }
 
         /// <summary>
-        ///     Returns true if Carrier instances are equal
-        /// </summary>
-        /// <param name="other">Instance of Carrier to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Carrier other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    CarrierId == other.CarrierId ||
-                    CarrierId != null &&
-                    CarrierId.Equals(other.CarrierId)
-                ) &&
-                (
-                    CarrierCode == other.CarrierCode ||
-                    CarrierCode != null &&
-                    CarrierCode.Equals(other.CarrierCode)
-                ) &&
-                (
-                    AccountNumber == other.AccountNumber ||
-                    AccountNumber != null &&
-                    AccountNumber.Equals(other.AccountNumber)
-                ) &&
-                (
-                    RequiresFundedAmount == other.RequiresFundedAmount ||
-                    RequiresFundedAmount != null &&
-                    RequiresFundedAmount.Equals(other.RequiresFundedAmount)
-                ) &&
-                (
-                    Balance == other.Balance ||
-                    Balance != null &&
-                    Balance.Equals(other.Balance)
-                ) &&
-                (
-                    Nickname == other.Nickname ||
-                    Nickname != null &&
-                    Nickname.Equals(other.Nickname)
-                ) &&
-                (
-                    FriendlyName == other.FriendlyName ||
-                    FriendlyName != null &&
-                    FriendlyName.Equals(other.FriendlyName)
-                ) &&
-                (
-                    Primary == other.Primary ||
-                    Primary != null &&
-                    Primary.Equals(other.Primary)
-                ) &&
-                (
-                    Services == other.Services ||
-                    Services != null &&
-                    Services.SequenceEqual(other.Services)
-                ) &&
-                (
-                    Packages == other.Packages ||
-                    Packages != null &&
-                    Packages.SequenceEqual(other.Packages)
-                ) &&
-                (
-                    Options == other.Options ||
-                    Options != null &&
-                    Options.SequenceEqual(other.Options)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -222,9 +147,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -233,73 +158,127 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Carrier);
+            return this.Equals(input as Carrier);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if Carrier instances are equal
+        /// </summary>
+        /// <param name="input">Instance of Carrier to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(Carrier input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.CarrierId == input.CarrierId ||
+                    (this.CarrierId != null &&
+                    this.CarrierId.Equals(input.CarrierId))
+                ) && 
+                (
+                    this.CarrierCode == input.CarrierCode ||
+                    (this.CarrierCode != null &&
+                    this.CarrierCode.Equals(input.CarrierCode))
+                ) && 
+                (
+                    this.AccountNumber == input.AccountNumber ||
+                    (this.AccountNumber != null &&
+                    this.AccountNumber.Equals(input.AccountNumber))
+                ) && 
+                (
+                    this.RequiresFundedAmount == input.RequiresFundedAmount ||
+                    (this.RequiresFundedAmount != null &&
+                    this.RequiresFundedAmount.Equals(input.RequiresFundedAmount))
+                ) && 
+                (
+                    this.Balance == input.Balance ||
+                    (this.Balance != null &&
+                    this.Balance.Equals(input.Balance))
+                ) && 
+                (
+                    this.Nickname == input.Nickname ||
+                    (this.Nickname != null &&
+                    this.Nickname.Equals(input.Nickname))
+                ) && 
+                (
+                    this.FriendlyName == input.FriendlyName ||
+                    (this.FriendlyName != null &&
+                    this.FriendlyName.Equals(input.FriendlyName))
+                ) && 
+                (
+                    this.Primary == input.Primary ||
+                    (this.Primary != null &&
+                    this.Primary.Equals(input.Primary))
+                ) && 
+                (
+                    this.Services == input.Services ||
+                    (this.Services != null &&
+                    this.Services.SequenceEqual(input.Services))
+                ) && 
+                (
+                    this.Packages == input.Packages ||
+                    (this.Packages != null &&
+                    this.Packages.SequenceEqual(input.Packages))
+                ) && 
+                (
+                    this.Options == input.Options ||
+                    (this.Options != null &&
+                    this.Options.SequenceEqual(input.Options))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (CarrierId != null)
-                {
-                    hash = hash * 59 + CarrierId.GetHashCode();
-                }
-                if (CarrierCode != null)
-                {
-                    hash = hash * 59 + CarrierCode.GetHashCode();
-                }
-                if (AccountNumber != null)
-                {
-                    hash = hash * 59 + AccountNumber.GetHashCode();
-                }
-                if (RequiresFundedAmount != null)
-                {
-                    hash = hash * 59 + RequiresFundedAmount.GetHashCode();
-                }
-                if (Balance != null)
-                {
-                    hash = hash * 59 + Balance.GetHashCode();
-                }
-                if (Nickname != null)
-                {
-                    hash = hash * 59 + Nickname.GetHashCode();
-                }
-                if (FriendlyName != null)
-                {
-                    hash = hash * 59 + FriendlyName.GetHashCode();
-                }
-                if (Primary != null)
-                {
-                    hash = hash * 59 + Primary.GetHashCode();
-                }
-                if (Services != null)
-                {
-                    hash = hash * 59 + Services.GetHashCode();
-                }
-                if (Packages != null)
-                {
-                    hash = hash * 59 + Packages.GetHashCode();
-                }
-                if (Options != null)
-                {
-                    hash = hash * 59 + Options.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.CarrierId != null)
+                    hashCode = hashCode * 59 + this.CarrierId.GetHashCode();
+                if (this.CarrierCode != null)
+                    hashCode = hashCode * 59 + this.CarrierCode.GetHashCode();
+                if (this.AccountNumber != null)
+                    hashCode = hashCode * 59 + this.AccountNumber.GetHashCode();
+                if (this.RequiresFundedAmount != null)
+                    hashCode = hashCode * 59 + this.RequiresFundedAmount.GetHashCode();
+                if (this.Balance != null)
+                    hashCode = hashCode * 59 + this.Balance.GetHashCode();
+                if (this.Nickname != null)
+                    hashCode = hashCode * 59 + this.Nickname.GetHashCode();
+                if (this.FriendlyName != null)
+                    hashCode = hashCode * 59 + this.FriendlyName.GetHashCode();
+                if (this.Primary != null)
+                    hashCode = hashCode * 59 + this.Primary.GetHashCode();
+                if (this.Services != null)
+                    hashCode = hashCode * 59 + this.Services.GetHashCode();
+                if (this.Packages != null)
+                    hashCode = hashCode * 59 + this.Packages.GetHashCode();
+                if (this.Options != null)
+                    hashCode = hashCode * 59 + this.Options.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

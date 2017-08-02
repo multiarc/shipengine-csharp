@@ -4,21 +4,21 @@ All URIs are relative to *https://api.shipengine.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BatchesAddToBatch**](BatchesApi.md#batchesaddtobatch) | **POST** /v1/batches/{batch_id}/add | Add a shipment to a batch
-[**BatchesCreate**](BatchesApi.md#batchescreate) | **POST** /v1/batches | Create a batch
-[**BatchesGet**](BatchesApi.md#batchesget) | **GET** /v1/batches/{batch_id} | Get a specific batch
-[**BatchesGetByExternalId**](BatchesApi.md#batchesgetbyexternalid) | **GET** /v1/batches/external_batch_id/{external_batch_id} | Get a specific batch by an external id
-[**BatchesList**](BatchesApi.md#batcheslist) | **GET** /v1/batches | Get batches
+[**BatchesAddToBatch**](BatchesApi.md#batchesaddtobatch) | **POST** /v1/batches/{batch_id}/add | 
+[**BatchesCreate**](BatchesApi.md#batchescreate) | **POST** /v1/batches | 
+[**BatchesGet**](BatchesApi.md#batchesget) | **GET** /v1/batches/{batch_id} | 
+[**BatchesGetByExternalId**](BatchesApi.md#batchesgetbyexternalid) | **GET** /v1/batches/external_batch_id/{external_batch_id} | 
+[**BatchesList**](BatchesApi.md#batcheslist) | **GET** /v1/batches | 
 [**BatchesListErrors**](BatchesApi.md#batcheslisterrors) | **GET** /v1/batches/{batch_id}/errors | 
-[**BatchesProcess**](BatchesApi.md#batchesprocess) | **POST** /v1/batches/{batch_id}/process/labels | Process a batch
-[**BatchesRemoveFromBatch**](BatchesApi.md#batchesremovefrombatch) | **POST** /v1/batches/{batch_id}/remove | Remove a shipment from a batch
+[**BatchesProcess**](BatchesApi.md#batchesprocess) | **POST** /v1/batches/{batch_id}/process/labels | 
+[**BatchesRemoveFromBatch**](BatchesApi.md#batchesremovefrombatch) | **POST** /v1/batches/{batch_id}/remove | 
 
 
 <a name="batchesaddtobatch"></a>
 # **BatchesAddToBatch**
 > void BatchesAddToBatch (string batchId, ModifyBatchRequest request, string apiKey)
 
-Add a shipment to a batch
+
 
 ### Example
 ```csharp
@@ -34,11 +34,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new BatchesApi();
             var batchId = batchId_example;  // string | 
@@ -47,7 +46,6 @@ namespace Example
 
             try
             {
-                // Add a shipment to a batch
                 apiInstance.BatchesAddToBatch(batchId, request, apiKey);
             }
             catch (Exception e)
@@ -86,9 +84,7 @@ void (empty response body)
 # **BatchesCreate**
 > Batch BatchesCreate (CreateBatchRequest request, string apiKey)
 
-Create a batch
 
-Create a batch of shipments to rate and purchase labels in bulk
 
 ### Example
 ```csharp
@@ -104,11 +100,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new BatchesApi();
             var request = new CreateBatchRequest(); // CreateBatchRequest | 
@@ -116,7 +111,6 @@ namespace Example
 
             try
             {
-                // Create a batch
                 Batch result = apiInstance.BatchesCreate(request, apiKey);
                 Debug.WriteLine(result);
             }
@@ -155,7 +149,7 @@ Name | Type | Description  | Notes
 # **BatchesGet**
 > Batch BatchesGet (string batchId, string apiKey)
 
-Get a specific batch
+
 
 ### Example
 ```csharp
@@ -171,11 +165,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new BatchesApi();
             var batchId = batchId_example;  // string | 
@@ -183,7 +176,6 @@ namespace Example
 
             try
             {
-                // Get a specific batch
                 Batch result = apiInstance.BatchesGet(batchId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -222,7 +214,7 @@ Name | Type | Description  | Notes
 # **BatchesGetByExternalId**
 > void BatchesGetByExternalId (string externalBatchId, string apiKey)
 
-Get a specific batch by an external id
+
 
 ### Example
 ```csharp
@@ -238,11 +230,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new BatchesApi();
             var externalBatchId = externalBatchId_example;  // string | 
@@ -250,7 +241,6 @@ namespace Example
 
             try
             {
-                // Get a specific batch by an external id
                 apiInstance.BatchesGetByExternalId(externalBatchId, apiKey);
             }
             catch (Exception e)
@@ -288,9 +278,7 @@ void (empty response body)
 # **BatchesList**
 > ListBatchResponse BatchesList (string apiKey, string status = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
 
-Get batches
 
-Get a list of batches using optional criteria
 
 ### Example
 ```csharp
@@ -306,23 +294,21 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new BatchesApi();
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
-            var status = status_example;  // string | Status (optional) 
-            var page = 56;  // int? | Page number - Default: 1 (optional) 
+            var status = status_example;  // string |  (optional) 
+            var page = 56;  // int? |  (optional) 
             var pageSize = 56;  // int? |  (optional) 
             var sortDir = sortDir_example;  // string |  (optional) 
             var sortBy = sortBy_example;  // string |  (optional) 
 
             try
             {
-                // Get batches
                 ListBatchResponse result = apiInstance.BatchesList(apiKey, status, page, pageSize, sortDir, sortBy);
                 Debug.WriteLine(result);
             }
@@ -340,8 +326,8 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
- **status** | **string**| Status | [optional] 
- **page** | **int?**| Page number - Default: 1 | [optional] 
+ **status** | **string**|  | [optional] 
+ **page** | **int?**|  | [optional] 
  **pageSize** | **int?**|  | [optional] 
  **sortDir** | **string**|  | [optional] 
  **sortBy** | **string**|  | [optional] 
@@ -381,11 +367,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new BatchesApi();
             var batchId = batchId_example;  // string | 
@@ -435,9 +420,7 @@ Name | Type | Description  | Notes
 # **BatchesProcess**
 > void BatchesProcess (string batchId, ProcessBatchRequest processBatchRequest, string apiKey)
 
-Process a batch
 
-Generates labels for a batch
 
 ### Example
 ```csharp
@@ -453,11 +436,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new BatchesApi();
             var batchId = batchId_example;  // string | 
@@ -466,7 +448,6 @@ namespace Example
 
             try
             {
-                // Process a batch
                 apiInstance.BatchesProcess(batchId, processBatchRequest, apiKey);
             }
             catch (Exception e)
@@ -505,7 +486,7 @@ void (empty response body)
 # **BatchesRemoveFromBatch**
 > void BatchesRemoveFromBatch (string batchId, ModifyBatchRequest request, string apiKey)
 
-Remove a shipment from a batch
+
 
 ### Example
 ```csharp
@@ -521,11 +502,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new BatchesApi();
             var batchId = batchId_example;  // string | 
@@ -534,7 +514,6 @@ namespace Example
 
             try
             {
-                // Remove a shipment from a batch
                 apiInstance.BatchesRemoveFromBatch(batchId, request, apiKey);
             }
             catch (Exception e)

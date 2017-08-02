@@ -9,419 +9,280 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     Rate
+    /// Rate
     /// </summary>
     [DataContract]
-    public class Rate : IEquatable<Rate>, IValidatableObject
+    public partial class Rate :  IEquatable<Rate>, IValidatableObject
     {
         /// <summary>
-        ///     Gets or Sets RateType
+        /// Gets or Sets RateType
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum RateTypeEnum
         {
+            
             /// <summary>
-            ///     Enum Check for "check"
+            /// Enum Check for "check"
             /// </summary>
-            [EnumMember(Value = "check")] Check,
-
+            [EnumMember(Value = "check")]
+            Check,
+            
             /// <summary>
-            ///     Enum Shipment for "shipment"
+            /// Enum Shipment for "shipment"
             /// </summary>
-            [EnumMember(Value = "shipment")] Shipment
+            [EnumMember(Value = "shipment")]
+            Shipment
         }
 
         /// <summary>
-        ///     Gets or Sets ValidationStatus
+        /// Gets or Sets ValidationStatus
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ValidationStatusEnum
         {
+            
             /// <summary>
-            ///     Enum Valid for "valid"
+            /// Enum Valid for "valid"
             /// </summary>
-            [EnumMember(Value = "valid")] Valid,
-
+            [EnumMember(Value = "valid")]
+            Valid,
+            
             /// <summary>
-            ///     Enum Invalid for "invalid"
+            /// Enum Invalid for "invalid"
             /// </summary>
-            [EnumMember(Value = "invalid")] Invalid,
-
+            [EnumMember(Value = "invalid")]
+            Invalid,
+            
             /// <summary>
-            ///     Enum Haswarnings for "has_warnings"
+            /// Enum Haswarnings for "has_warnings"
             /// </summary>
-            [EnumMember(Value = "has_warnings")] Haswarnings,
-
+            [EnumMember(Value = "has_warnings")]
+            Haswarnings,
+            
             /// <summary>
-            ///     Enum Unknown for "unknown"
+            /// Enum Unknown for "unknown"
             /// </summary>
-            [EnumMember(Value = "unknown")] Unknown
+            [EnumMember(Value = "unknown")]
+            Unknown
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Rate" /> class.
+        /// Gets or Sets RateType
         /// </summary>
-        /// <param name="rateId">RateId.</param>
-        /// <param name="rateType">RateType.</param>
-        /// <param name="carrierId">CarrierId.</param>
-        /// <param name="shippingAmount">ShippingAmount.</param>
-        /// <param name="insuranceAmount">InsuranceAmount.</param>
-        /// <param name="confirmationAmount">ConfirmationAmount.</param>
-        /// <param name="otherAmount">OtherAmount.</param>
-        /// <param name="zone">Zone.</param>
-        /// <param name="packageType">PackageType.</param>
-        /// <param name="deliveryDays">DeliveryDays.</param>
-        /// <param name="guaranteedService">GuaranteedService.</param>
-        /// <param name="estimatedDeliveryDate">EstimatedDeliveryDate.</param>
-        /// <param name="carrierDeliveryDays">CarrierDeliveryDays.</param>
-        /// <param name="shipDate">ShipDate.</param>
-        /// <param name="negotiatedRate">NegotiatedRate.</param>
-        /// <param name="serviceType">ServiceType.</param>
-        /// <param name="serviceCode">ServiceCode.</param>
-        /// <param name="trackable">Trackable.</param>
-        /// <param name="validationStatus">ValidationStatus.</param>
-        /// <param name="warningMessages">WarningMessages.</param>
-        /// <param name="errorMessages">ErrorMessages.</param>
-        /// <param name="carrierCode">CarrierCode.</param>
-        /// <param name="carrierNickname">CarrierNickname.</param>
-        /// <param name="carrierFriendlyName">CarrierFriendlyName.</param>
-        public Rate(string rateId = default(string), RateTypeEnum? rateType = default(RateTypeEnum?),
-            string carrierId = default(string), MoneyDTO shippingAmount = default(MoneyDTO),
-            MoneyDTO insuranceAmount = default(MoneyDTO), MoneyDTO confirmationAmount = default(MoneyDTO),
-            MoneyDTO otherAmount = default(MoneyDTO), int? zone = default(int?), string packageType = default(string),
-            int? deliveryDays = default(int?), bool? guaranteedService = default(bool?),
-            DateTime? estimatedDeliveryDate = default(DateTime?), string carrierDeliveryDays = default(string),
-            DateTime? shipDate = default(DateTime?), bool? negotiatedRate = default(bool?),
-            string serviceType = default(string), string serviceCode = default(string), bool? trackable = default(bool?),
-            ValidationStatusEnum? validationStatus = default(ValidationStatusEnum?),
-            List<string> warningMessages = default(List<string>), List<string> errorMessages = default(List<string>),
-            string carrierCode = default(string), string carrierNickname = default(string),
-            string carrierFriendlyName = default(string))
-        {
-            RateId = rateId;
-            RateType = rateType;
-            CarrierId = carrierId;
-            ShippingAmount = shippingAmount;
-            InsuranceAmount = insuranceAmount;
-            ConfirmationAmount = confirmationAmount;
-            OtherAmount = otherAmount;
-            Zone = zone;
-            PackageType = packageType;
-            DeliveryDays = deliveryDays;
-            GuaranteedService = guaranteedService;
-            EstimatedDeliveryDate = estimatedDeliveryDate;
-            CarrierDeliveryDays = carrierDeliveryDays;
-            ShipDate = shipDate;
-            NegotiatedRate = negotiatedRate;
-            ServiceType = serviceType;
-            ServiceCode = serviceCode;
-            Trackable = trackable;
-            ValidationStatus = validationStatus;
-            WarningMessages = warningMessages;
-            ErrorMessages = errorMessages;
-            CarrierCode = carrierCode;
-            CarrierNickname = carrierNickname;
-            CarrierFriendlyName = carrierFriendlyName;
-        }
-
-        /// <summary>
-        ///     Gets or Sets RateType
-        /// </summary>
-        [DataMember(Name = "rate_type", EmitDefaultValue = false)]
+        [DataMember(Name="rate_type", EmitDefaultValue=false)]
         public RateTypeEnum? RateType { get; set; }
-
         /// <summary>
-        ///     Gets or Sets ValidationStatus
+        /// Gets or Sets ValidationStatus
         /// </summary>
-        [DataMember(Name = "validation_status", EmitDefaultValue = false)]
+        [DataMember(Name="validation_status", EmitDefaultValue=false)]
         public ValidationStatusEnum? ValidationStatus { get; set; }
-
         /// <summary>
-        ///     Gets or Sets RateId
+        /// Initializes a new instance of the <see cref="Rate" /> class.
         /// </summary>
-        [DataMember(Name = "rate_id", EmitDefaultValue = false)]
+        /// <param name="RateId">RateId.</param>
+        /// <param name="RateType">RateType.</param>
+        /// <param name="CarrierId">CarrierId.</param>
+        /// <param name="ShippingAmount">ShippingAmount.</param>
+        /// <param name="InsuranceAmount">InsuranceAmount.</param>
+        /// <param name="ConfirmationAmount">ConfirmationAmount.</param>
+        /// <param name="OtherAmount">OtherAmount.</param>
+        /// <param name="Zone">Zone.</param>
+        /// <param name="PackageType">PackageType.</param>
+        /// <param name="DeliveryDays">DeliveryDays.</param>
+        /// <param name="GuaranteedService">GuaranteedService.</param>
+        /// <param name="EstimatedDeliveryDate">EstimatedDeliveryDate.</param>
+        /// <param name="CarrierDeliveryDays">CarrierDeliveryDays.</param>
+        /// <param name="ShipDate">ShipDate.</param>
+        /// <param name="NegotiatedRate">NegotiatedRate.</param>
+        /// <param name="ServiceType">ServiceType.</param>
+        /// <param name="ServiceCode">ServiceCode.</param>
+        /// <param name="Trackable">Trackable.</param>
+        /// <param name="ValidationStatus">ValidationStatus.</param>
+        /// <param name="WarningMessages">WarningMessages.</param>
+        /// <param name="ErrorMessages">ErrorMessages.</param>
+        /// <param name="CarrierCode">CarrierCode.</param>
+        /// <param name="CarrierNickname">CarrierNickname.</param>
+        /// <param name="CarrierFriendlyName">CarrierFriendlyName.</param>
+        public Rate(string RateId = default(string), RateTypeEnum? RateType = default(RateTypeEnum?), string CarrierId = default(string), MoneyDTO ShippingAmount = default(MoneyDTO), MoneyDTO InsuranceAmount = default(MoneyDTO), MoneyDTO ConfirmationAmount = default(MoneyDTO), MoneyDTO OtherAmount = default(MoneyDTO), int? Zone = default(int?), string PackageType = default(string), int? DeliveryDays = default(int?), bool? GuaranteedService = default(bool?), DateTime? EstimatedDeliveryDate = default(DateTime?), string CarrierDeliveryDays = default(string), DateTime? ShipDate = default(DateTime?), bool? NegotiatedRate = default(bool?), string ServiceType = default(string), string ServiceCode = default(string), bool? Trackable = default(bool?), ValidationStatusEnum? ValidationStatus = default(ValidationStatusEnum?), List<string> WarningMessages = default(List<string>), List<string> ErrorMessages = default(List<string>), string CarrierCode = default(string), string CarrierNickname = default(string), string CarrierFriendlyName = default(string))
+        {
+            this.RateId = RateId;
+            this.RateType = RateType;
+            this.CarrierId = CarrierId;
+            this.ShippingAmount = ShippingAmount;
+            this.InsuranceAmount = InsuranceAmount;
+            this.ConfirmationAmount = ConfirmationAmount;
+            this.OtherAmount = OtherAmount;
+            this.Zone = Zone;
+            this.PackageType = PackageType;
+            this.DeliveryDays = DeliveryDays;
+            this.GuaranteedService = GuaranteedService;
+            this.EstimatedDeliveryDate = EstimatedDeliveryDate;
+            this.CarrierDeliveryDays = CarrierDeliveryDays;
+            this.ShipDate = ShipDate;
+            this.NegotiatedRate = NegotiatedRate;
+            this.ServiceType = ServiceType;
+            this.ServiceCode = ServiceCode;
+            this.Trackable = Trackable;
+            this.ValidationStatus = ValidationStatus;
+            this.WarningMessages = WarningMessages;
+            this.ErrorMessages = ErrorMessages;
+            this.CarrierCode = CarrierCode;
+            this.CarrierNickname = CarrierNickname;
+            this.CarrierFriendlyName = CarrierFriendlyName;
+        }
+        
+        /// <summary>
+        /// Gets or Sets RateId
+        /// </summary>
+        [DataMember(Name="rate_id", EmitDefaultValue=false)]
         public string RateId { get; set; }
 
+
         /// <summary>
-        ///     Gets or Sets CarrierId
+        /// Gets or Sets CarrierId
         /// </summary>
-        [DataMember(Name = "carrier_id", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_id", EmitDefaultValue=false)]
         public string CarrierId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShippingAmount
+        /// Gets or Sets ShippingAmount
         /// </summary>
-        [DataMember(Name = "shipping_amount", EmitDefaultValue = false)]
+        [DataMember(Name="shipping_amount", EmitDefaultValue=false)]
         public MoneyDTO ShippingAmount { get; set; }
 
         /// <summary>
-        ///     Gets or Sets InsuranceAmount
+        /// Gets or Sets InsuranceAmount
         /// </summary>
-        [DataMember(Name = "insurance_amount", EmitDefaultValue = false)]
+        [DataMember(Name="insurance_amount", EmitDefaultValue=false)]
         public MoneyDTO InsuranceAmount { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ConfirmationAmount
+        /// Gets or Sets ConfirmationAmount
         /// </summary>
-        [DataMember(Name = "confirmation_amount", EmitDefaultValue = false)]
+        [DataMember(Name="confirmation_amount", EmitDefaultValue=false)]
         public MoneyDTO ConfirmationAmount { get; set; }
 
         /// <summary>
-        ///     Gets or Sets OtherAmount
+        /// Gets or Sets OtherAmount
         /// </summary>
-        [DataMember(Name = "other_amount", EmitDefaultValue = false)]
+        [DataMember(Name="other_amount", EmitDefaultValue=false)]
         public MoneyDTO OtherAmount { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Zone
+        /// Gets or Sets Zone
         /// </summary>
-        [DataMember(Name = "zone", EmitDefaultValue = false)]
+        [DataMember(Name="zone", EmitDefaultValue=false)]
         public int? Zone { get; set; }
 
         /// <summary>
-        ///     Gets or Sets PackageType
+        /// Gets or Sets PackageType
         /// </summary>
-        [DataMember(Name = "package_type", EmitDefaultValue = false)]
+        [DataMember(Name="package_type", EmitDefaultValue=false)]
         public string PackageType { get; set; }
 
         /// <summary>
-        ///     Gets or Sets DeliveryDays
+        /// Gets or Sets DeliveryDays
         /// </summary>
-        [DataMember(Name = "delivery_days", EmitDefaultValue = false)]
+        [DataMember(Name="delivery_days", EmitDefaultValue=false)]
         public int? DeliveryDays { get; set; }
 
         /// <summary>
-        ///     Gets or Sets GuaranteedService
+        /// Gets or Sets GuaranteedService
         /// </summary>
-        [DataMember(Name = "guaranteed_service", EmitDefaultValue = false)]
+        [DataMember(Name="guaranteed_service", EmitDefaultValue=false)]
         public bool? GuaranteedService { get; set; }
 
         /// <summary>
-        ///     Gets or Sets EstimatedDeliveryDate
+        /// Gets or Sets EstimatedDeliveryDate
         /// </summary>
-        [DataMember(Name = "estimated_delivery_date", EmitDefaultValue = false)]
+        [DataMember(Name="estimated_delivery_date", EmitDefaultValue=false)]
         public DateTime? EstimatedDeliveryDate { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CarrierDeliveryDays
+        /// Gets or Sets CarrierDeliveryDays
         /// </summary>
-        [DataMember(Name = "carrier_delivery_days", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_delivery_days", EmitDefaultValue=false)]
         public string CarrierDeliveryDays { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShipDate
+        /// Gets or Sets ShipDate
         /// </summary>
-        [DataMember(Name = "ship_date", EmitDefaultValue = false)]
+        [DataMember(Name="ship_date", EmitDefaultValue=false)]
         public DateTime? ShipDate { get; set; }
 
         /// <summary>
-        ///     Gets or Sets NegotiatedRate
+        /// Gets or Sets NegotiatedRate
         /// </summary>
-        [DataMember(Name = "negotiated_rate", EmitDefaultValue = false)]
+        [DataMember(Name="negotiated_rate", EmitDefaultValue=false)]
         public bool? NegotiatedRate { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ServiceType
+        /// Gets or Sets ServiceType
         /// </summary>
-        [DataMember(Name = "service_type", EmitDefaultValue = false)]
+        [DataMember(Name="service_type", EmitDefaultValue=false)]
         public string ServiceType { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ServiceCode
+        /// Gets or Sets ServiceCode
         /// </summary>
-        [DataMember(Name = "service_code", EmitDefaultValue = false)]
+        [DataMember(Name="service_code", EmitDefaultValue=false)]
         public string ServiceCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Trackable
+        /// Gets or Sets Trackable
         /// </summary>
-        [DataMember(Name = "trackable", EmitDefaultValue = false)]
+        [DataMember(Name="trackable", EmitDefaultValue=false)]
         public bool? Trackable { get; set; }
 
+
         /// <summary>
-        ///     Gets or Sets WarningMessages
+        /// Gets or Sets WarningMessages
         /// </summary>
-        [DataMember(Name = "warning_messages", EmitDefaultValue = false)]
+        [DataMember(Name="warning_messages", EmitDefaultValue=false)]
         public List<string> WarningMessages { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ErrorMessages
+        /// Gets or Sets ErrorMessages
         /// </summary>
-        [DataMember(Name = "error_messages", EmitDefaultValue = false)]
+        [DataMember(Name="error_messages", EmitDefaultValue=false)]
         public List<string> ErrorMessages { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CarrierCode
+        /// Gets or Sets CarrierCode
         /// </summary>
-        [DataMember(Name = "carrier_code", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_code", EmitDefaultValue=false)]
         public string CarrierCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CarrierNickname
+        /// Gets or Sets CarrierNickname
         /// </summary>
-        [DataMember(Name = "carrier_nickname", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_nickname", EmitDefaultValue=false)]
         public string CarrierNickname { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CarrierFriendlyName
+        /// Gets or Sets CarrierFriendlyName
         /// </summary>
-        [DataMember(Name = "carrier_friendly_name", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_friendly_name", EmitDefaultValue=false)]
         public string CarrierFriendlyName { get; set; }
 
         /// <summary>
-        ///     Returns true if Rate instances are equal
-        /// </summary>
-        /// <param name="other">Instance of Rate to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Rate other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    RateId == other.RateId ||
-                    RateId != null &&
-                    RateId.Equals(other.RateId)
-                ) &&
-                (
-                    RateType == other.RateType ||
-                    RateType != null &&
-                    RateType.Equals(other.RateType)
-                ) &&
-                (
-                    CarrierId == other.CarrierId ||
-                    CarrierId != null &&
-                    CarrierId.Equals(other.CarrierId)
-                ) &&
-                (
-                    Equals(ShippingAmount, other.ShippingAmount) ||
-                    ShippingAmount != null &&
-                    ShippingAmount.Equals(other.ShippingAmount)
-                ) &&
-                (
-                    Equals(InsuranceAmount, other.InsuranceAmount) ||
-                    InsuranceAmount != null &&
-                    InsuranceAmount.Equals(other.InsuranceAmount)
-                ) &&
-                (
-                    Equals(ConfirmationAmount, other.ConfirmationAmount) ||
-                    ConfirmationAmount != null &&
-                    ConfirmationAmount.Equals(other.ConfirmationAmount)
-                ) &&
-                (
-                    Equals(OtherAmount, other.OtherAmount) ||
-                    OtherAmount != null &&
-                    OtherAmount.Equals(other.OtherAmount)
-                ) &&
-                (
-                    Zone == other.Zone ||
-                    Zone != null &&
-                    Zone.Equals(other.Zone)
-                ) &&
-                (
-                    PackageType == other.PackageType ||
-                    PackageType != null &&
-                    PackageType.Equals(other.PackageType)
-                ) &&
-                (
-                    DeliveryDays == other.DeliveryDays ||
-                    DeliveryDays != null &&
-                    DeliveryDays.Equals(other.DeliveryDays)
-                ) &&
-                (
-                    GuaranteedService == other.GuaranteedService ||
-                    GuaranteedService != null &&
-                    GuaranteedService.Equals(other.GuaranteedService)
-                ) &&
-                (
-                    EstimatedDeliveryDate == other.EstimatedDeliveryDate ||
-                    EstimatedDeliveryDate != null &&
-                    EstimatedDeliveryDate.Equals(other.EstimatedDeliveryDate)
-                ) &&
-                (
-                    CarrierDeliveryDays == other.CarrierDeliveryDays ||
-                    CarrierDeliveryDays != null &&
-                    CarrierDeliveryDays.Equals(other.CarrierDeliveryDays)
-                ) &&
-                (
-                    ShipDate == other.ShipDate ||
-                    ShipDate != null &&
-                    ShipDate.Equals(other.ShipDate)
-                ) &&
-                (
-                    NegotiatedRate == other.NegotiatedRate ||
-                    NegotiatedRate != null &&
-                    NegotiatedRate.Equals(other.NegotiatedRate)
-                ) &&
-                (
-                    ServiceType == other.ServiceType ||
-                    ServiceType != null &&
-                    ServiceType.Equals(other.ServiceType)
-                ) &&
-                (
-                    ServiceCode == other.ServiceCode ||
-                    ServiceCode != null &&
-                    ServiceCode.Equals(other.ServiceCode)
-                ) &&
-                (
-                    Trackable == other.Trackable ||
-                    Trackable != null &&
-                    Trackable.Equals(other.Trackable)
-                ) &&
-                (
-                    ValidationStatus == other.ValidationStatus ||
-                    ValidationStatus != null &&
-                    ValidationStatus.Equals(other.ValidationStatus)
-                ) &&
-                (
-                    WarningMessages == other.WarningMessages ||
-                    WarningMessages != null &&
-                    WarningMessages.SequenceEqual(other.WarningMessages)
-                ) &&
-                (
-                    ErrorMessages == other.ErrorMessages ||
-                    ErrorMessages != null &&
-                    ErrorMessages.SequenceEqual(other.ErrorMessages)
-                ) &&
-                (
-                    CarrierCode == other.CarrierCode ||
-                    CarrierCode != null &&
-                    CarrierCode.Equals(other.CarrierCode)
-                ) &&
-                (
-                    CarrierNickname == other.CarrierNickname ||
-                    CarrierNickname != null &&
-                    CarrierNickname.Equals(other.CarrierNickname)
-                ) &&
-                (
-                    CarrierFriendlyName == other.CarrierFriendlyName ||
-                    CarrierFriendlyName != null &&
-                    CarrierFriendlyName.Equals(other.CarrierFriendlyName)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -455,9 +316,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -466,125 +327,218 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Rate);
+            return this.Equals(input as Rate);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if Rate instances are equal
+        /// </summary>
+        /// <param name="input">Instance of Rate to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(Rate input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.RateId == input.RateId ||
+                    (this.RateId != null &&
+                    this.RateId.Equals(input.RateId))
+                ) && 
+                (
+                    this.RateType == input.RateType ||
+                    (this.RateType != null &&
+                    this.RateType.Equals(input.RateType))
+                ) && 
+                (
+                    this.CarrierId == input.CarrierId ||
+                    (this.CarrierId != null &&
+                    this.CarrierId.Equals(input.CarrierId))
+                ) && 
+                (
+                    this.ShippingAmount == input.ShippingAmount ||
+                    (this.ShippingAmount != null &&
+                    this.ShippingAmount.Equals(input.ShippingAmount))
+                ) && 
+                (
+                    this.InsuranceAmount == input.InsuranceAmount ||
+                    (this.InsuranceAmount != null &&
+                    this.InsuranceAmount.Equals(input.InsuranceAmount))
+                ) && 
+                (
+                    this.ConfirmationAmount == input.ConfirmationAmount ||
+                    (this.ConfirmationAmount != null &&
+                    this.ConfirmationAmount.Equals(input.ConfirmationAmount))
+                ) && 
+                (
+                    this.OtherAmount == input.OtherAmount ||
+                    (this.OtherAmount != null &&
+                    this.OtherAmount.Equals(input.OtherAmount))
+                ) && 
+                (
+                    this.Zone == input.Zone ||
+                    (this.Zone != null &&
+                    this.Zone.Equals(input.Zone))
+                ) && 
+                (
+                    this.PackageType == input.PackageType ||
+                    (this.PackageType != null &&
+                    this.PackageType.Equals(input.PackageType))
+                ) && 
+                (
+                    this.DeliveryDays == input.DeliveryDays ||
+                    (this.DeliveryDays != null &&
+                    this.DeliveryDays.Equals(input.DeliveryDays))
+                ) && 
+                (
+                    this.GuaranteedService == input.GuaranteedService ||
+                    (this.GuaranteedService != null &&
+                    this.GuaranteedService.Equals(input.GuaranteedService))
+                ) && 
+                (
+                    this.EstimatedDeliveryDate == input.EstimatedDeliveryDate ||
+                    (this.EstimatedDeliveryDate != null &&
+                    this.EstimatedDeliveryDate.Equals(input.EstimatedDeliveryDate))
+                ) && 
+                (
+                    this.CarrierDeliveryDays == input.CarrierDeliveryDays ||
+                    (this.CarrierDeliveryDays != null &&
+                    this.CarrierDeliveryDays.Equals(input.CarrierDeliveryDays))
+                ) && 
+                (
+                    this.ShipDate == input.ShipDate ||
+                    (this.ShipDate != null &&
+                    this.ShipDate.Equals(input.ShipDate))
+                ) && 
+                (
+                    this.NegotiatedRate == input.NegotiatedRate ||
+                    (this.NegotiatedRate != null &&
+                    this.NegotiatedRate.Equals(input.NegotiatedRate))
+                ) && 
+                (
+                    this.ServiceType == input.ServiceType ||
+                    (this.ServiceType != null &&
+                    this.ServiceType.Equals(input.ServiceType))
+                ) && 
+                (
+                    this.ServiceCode == input.ServiceCode ||
+                    (this.ServiceCode != null &&
+                    this.ServiceCode.Equals(input.ServiceCode))
+                ) && 
+                (
+                    this.Trackable == input.Trackable ||
+                    (this.Trackable != null &&
+                    this.Trackable.Equals(input.Trackable))
+                ) && 
+                (
+                    this.ValidationStatus == input.ValidationStatus ||
+                    (this.ValidationStatus != null &&
+                    this.ValidationStatus.Equals(input.ValidationStatus))
+                ) && 
+                (
+                    this.WarningMessages == input.WarningMessages ||
+                    (this.WarningMessages != null &&
+                    this.WarningMessages.SequenceEqual(input.WarningMessages))
+                ) && 
+                (
+                    this.ErrorMessages == input.ErrorMessages ||
+                    (this.ErrorMessages != null &&
+                    this.ErrorMessages.SequenceEqual(input.ErrorMessages))
+                ) && 
+                (
+                    this.CarrierCode == input.CarrierCode ||
+                    (this.CarrierCode != null &&
+                    this.CarrierCode.Equals(input.CarrierCode))
+                ) && 
+                (
+                    this.CarrierNickname == input.CarrierNickname ||
+                    (this.CarrierNickname != null &&
+                    this.CarrierNickname.Equals(input.CarrierNickname))
+                ) && 
+                (
+                    this.CarrierFriendlyName == input.CarrierFriendlyName ||
+                    (this.CarrierFriendlyName != null &&
+                    this.CarrierFriendlyName.Equals(input.CarrierFriendlyName))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (RateId != null)
-                {
-                    hash = hash * 59 + RateId.GetHashCode();
-                }
-                if (RateType != null)
-                {
-                    hash = hash * 59 + RateType.GetHashCode();
-                }
-                if (CarrierId != null)
-                {
-                    hash = hash * 59 + CarrierId.GetHashCode();
-                }
-                if (ShippingAmount != null)
-                {
-                    hash = hash * 59 + ShippingAmount.GetHashCode();
-                }
-                if (InsuranceAmount != null)
-                {
-                    hash = hash * 59 + InsuranceAmount.GetHashCode();
-                }
-                if (ConfirmationAmount != null)
-                {
-                    hash = hash * 59 + ConfirmationAmount.GetHashCode();
-                }
-                if (OtherAmount != null)
-                {
-                    hash = hash * 59 + OtherAmount.GetHashCode();
-                }
-                if (Zone != null)
-                {
-                    hash = hash * 59 + Zone.GetHashCode();
-                }
-                if (PackageType != null)
-                {
-                    hash = hash * 59 + PackageType.GetHashCode();
-                }
-                if (DeliveryDays != null)
-                {
-                    hash = hash * 59 + DeliveryDays.GetHashCode();
-                }
-                if (GuaranteedService != null)
-                {
-                    hash = hash * 59 + GuaranteedService.GetHashCode();
-                }
-                if (EstimatedDeliveryDate != null)
-                {
-                    hash = hash * 59 + EstimatedDeliveryDate.GetHashCode();
-                }
-                if (CarrierDeliveryDays != null)
-                {
-                    hash = hash * 59 + CarrierDeliveryDays.GetHashCode();
-                }
-                if (ShipDate != null)
-                {
-                    hash = hash * 59 + ShipDate.GetHashCode();
-                }
-                if (NegotiatedRate != null)
-                {
-                    hash = hash * 59 + NegotiatedRate.GetHashCode();
-                }
-                if (ServiceType != null)
-                {
-                    hash = hash * 59 + ServiceType.GetHashCode();
-                }
-                if (ServiceCode != null)
-                {
-                    hash = hash * 59 + ServiceCode.GetHashCode();
-                }
-                if (Trackable != null)
-                {
-                    hash = hash * 59 + Trackable.GetHashCode();
-                }
-                if (ValidationStatus != null)
-                {
-                    hash = hash * 59 + ValidationStatus.GetHashCode();
-                }
-                if (WarningMessages != null)
-                {
-                    hash = hash * 59 + WarningMessages.GetHashCode();
-                }
-                if (ErrorMessages != null)
-                {
-                    hash = hash * 59 + ErrorMessages.GetHashCode();
-                }
-                if (CarrierCode != null)
-                {
-                    hash = hash * 59 + CarrierCode.GetHashCode();
-                }
-                if (CarrierNickname != null)
-                {
-                    hash = hash * 59 + CarrierNickname.GetHashCode();
-                }
-                if (CarrierFriendlyName != null)
-                {
-                    hash = hash * 59 + CarrierFriendlyName.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.RateId != null)
+                    hashCode = hashCode * 59 + this.RateId.GetHashCode();
+                if (this.RateType != null)
+                    hashCode = hashCode * 59 + this.RateType.GetHashCode();
+                if (this.CarrierId != null)
+                    hashCode = hashCode * 59 + this.CarrierId.GetHashCode();
+                if (this.ShippingAmount != null)
+                    hashCode = hashCode * 59 + this.ShippingAmount.GetHashCode();
+                if (this.InsuranceAmount != null)
+                    hashCode = hashCode * 59 + this.InsuranceAmount.GetHashCode();
+                if (this.ConfirmationAmount != null)
+                    hashCode = hashCode * 59 + this.ConfirmationAmount.GetHashCode();
+                if (this.OtherAmount != null)
+                    hashCode = hashCode * 59 + this.OtherAmount.GetHashCode();
+                if (this.Zone != null)
+                    hashCode = hashCode * 59 + this.Zone.GetHashCode();
+                if (this.PackageType != null)
+                    hashCode = hashCode * 59 + this.PackageType.GetHashCode();
+                if (this.DeliveryDays != null)
+                    hashCode = hashCode * 59 + this.DeliveryDays.GetHashCode();
+                if (this.GuaranteedService != null)
+                    hashCode = hashCode * 59 + this.GuaranteedService.GetHashCode();
+                if (this.EstimatedDeliveryDate != null)
+                    hashCode = hashCode * 59 + this.EstimatedDeliveryDate.GetHashCode();
+                if (this.CarrierDeliveryDays != null)
+                    hashCode = hashCode * 59 + this.CarrierDeliveryDays.GetHashCode();
+                if (this.ShipDate != null)
+                    hashCode = hashCode * 59 + this.ShipDate.GetHashCode();
+                if (this.NegotiatedRate != null)
+                    hashCode = hashCode * 59 + this.NegotiatedRate.GetHashCode();
+                if (this.ServiceType != null)
+                    hashCode = hashCode * 59 + this.ServiceType.GetHashCode();
+                if (this.ServiceCode != null)
+                    hashCode = hashCode * 59 + this.ServiceCode.GetHashCode();
+                if (this.Trackable != null)
+                    hashCode = hashCode * 59 + this.Trackable.GetHashCode();
+                if (this.ValidationStatus != null)
+                    hashCode = hashCode * 59 + this.ValidationStatus.GetHashCode();
+                if (this.WarningMessages != null)
+                    hashCode = hashCode * 59 + this.WarningMessages.GetHashCode();
+                if (this.ErrorMessages != null)
+                    hashCode = hashCode * 59 + this.ErrorMessages.GetHashCode();
+                if (this.CarrierCode != null)
+                    hashCode = hashCode * 59 + this.CarrierCode.GetHashCode();
+                if (this.CarrierNickname != null)
+                    hashCode = hashCode * 59 + this.CarrierNickname.GetHashCode();
+                if (this.CarrierFriendlyName != null)
+                    hashCode = hashCode * 59 + this.CarrierFriendlyName.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

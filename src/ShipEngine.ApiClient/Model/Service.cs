@@ -9,130 +9,84 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     Service
+    /// Service
     /// </summary>
     [DataContract]
-    public class Service : IEquatable<Service>, IValidatableObject
+    public partial class Service :  IEquatable<Service>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Service" /> class.
+        /// Initializes a new instance of the <see cref="Service" /> class.
         /// </summary>
-        /// <param name="carrierId">CarrierId.</param>
-        /// <param name="carrierCode">CarrierCode.</param>
-        /// <param name="serviceCode">ServiceCode.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="domestic">Domestic.</param>
-        /// <param name="international">International.</param>
-        public Service(string carrierId = default(string), string carrierCode = default(string),
-            string serviceCode = default(string), string name = default(string), bool? domestic = default(bool?),
-            bool? international = default(bool?))
+        /// <param name="CarrierId">CarrierId.</param>
+        /// <param name="CarrierCode">CarrierCode.</param>
+        /// <param name="ServiceCode">ServiceCode.</param>
+        /// <param name="Name">Name.</param>
+        /// <param name="Domestic">Domestic.</param>
+        /// <param name="International">International.</param>
+        public Service(string CarrierId = default(string), string CarrierCode = default(string), string ServiceCode = default(string), string Name = default(string), bool? Domestic = default(bool?), bool? International = default(bool?))
         {
-            CarrierId = carrierId;
-            CarrierCode = carrierCode;
-            ServiceCode = serviceCode;
-            Name = name;
-            Domestic = domestic;
-            International = international;
+            this.CarrierId = CarrierId;
+            this.CarrierCode = CarrierCode;
+            this.ServiceCode = ServiceCode;
+            this.Name = Name;
+            this.Domestic = Domestic;
+            this.International = International;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets CarrierId
+        /// Gets or Sets CarrierId
         /// </summary>
-        [DataMember(Name = "carrier_id", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_id", EmitDefaultValue=false)]
         public string CarrierId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CarrierCode
+        /// Gets or Sets CarrierCode
         /// </summary>
-        [DataMember(Name = "carrier_code", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_code", EmitDefaultValue=false)]
         public string CarrierCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ServiceCode
+        /// Gets or Sets ServiceCode
         /// </summary>
-        [DataMember(Name = "service_code", EmitDefaultValue = false)]
+        [DataMember(Name="service_code", EmitDefaultValue=false)]
         public string ServiceCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Name
+        /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Domestic
+        /// Gets or Sets Domestic
         /// </summary>
-        [DataMember(Name = "domestic", EmitDefaultValue = false)]
+        [DataMember(Name="domestic", EmitDefaultValue=false)]
         public bool? Domestic { get; set; }
 
         /// <summary>
-        ///     Gets or Sets International
+        /// Gets or Sets International
         /// </summary>
-        [DataMember(Name = "international", EmitDefaultValue = false)]
+        [DataMember(Name="international", EmitDefaultValue=false)]
         public bool? International { get; set; }
 
         /// <summary>
-        ///     Returns true if Service instances are equal
-        /// </summary>
-        /// <param name="other">Instance of Service to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Service other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    CarrierId == other.CarrierId ||
-                    CarrierId != null &&
-                    CarrierId.Equals(other.CarrierId)
-                ) &&
-                (
-                    CarrierCode == other.CarrierCode ||
-                    CarrierCode != null &&
-                    CarrierCode.Equals(other.CarrierCode)
-                ) &&
-                (
-                    ServiceCode == other.ServiceCode ||
-                    ServiceCode != null &&
-                    ServiceCode.Equals(other.ServiceCode)
-                ) &&
-                (
-                    Name == other.Name ||
-                    Name != null &&
-                    Name.Equals(other.Name)
-                ) &&
-                (
-                    Domestic == other.Domestic ||
-                    Domestic != null &&
-                    Domestic.Equals(other.Domestic)
-                ) &&
-                (
-                    International == other.International ||
-                    International != null &&
-                    International.Equals(other.International)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -148,9 +102,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -159,53 +113,92 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Service);
+            return this.Equals(input as Service);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if Service instances are equal
+        /// </summary>
+        /// <param name="input">Instance of Service to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(Service input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.CarrierId == input.CarrierId ||
+                    (this.CarrierId != null &&
+                    this.CarrierId.Equals(input.CarrierId))
+                ) && 
+                (
+                    this.CarrierCode == input.CarrierCode ||
+                    (this.CarrierCode != null &&
+                    this.CarrierCode.Equals(input.CarrierCode))
+                ) && 
+                (
+                    this.ServiceCode == input.ServiceCode ||
+                    (this.ServiceCode != null &&
+                    this.ServiceCode.Equals(input.ServiceCode))
+                ) && 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.Domestic == input.Domestic ||
+                    (this.Domestic != null &&
+                    this.Domestic.Equals(input.Domestic))
+                ) && 
+                (
+                    this.International == input.International ||
+                    (this.International != null &&
+                    this.International.Equals(input.International))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (CarrierId != null)
-                {
-                    hash = hash * 59 + CarrierId.GetHashCode();
-                }
-                if (CarrierCode != null)
-                {
-                    hash = hash * 59 + CarrierCode.GetHashCode();
-                }
-                if (ServiceCode != null)
-                {
-                    hash = hash * 59 + ServiceCode.GetHashCode();
-                }
-                if (Name != null)
-                {
-                    hash = hash * 59 + Name.GetHashCode();
-                }
-                if (Domestic != null)
-                {
-                    hash = hash * 59 + Domestic.GetHashCode();
-                }
-                if (International != null)
-                {
-                    hash = hash * 59 + International.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.CarrierId != null)
+                    hashCode = hashCode * 59 + this.CarrierId.GetHashCode();
+                if (this.CarrierCode != null)
+                    hashCode = hashCode * 59 + this.CarrierCode.GetHashCode();
+                if (this.ServiceCode != null)
+                    hashCode = hashCode * 59 + this.ServiceCode.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Domestic != null)
+                    hashCode = hashCode * 59 + this.Domestic.GetHashCode();
+                if (this.International != null)
+                    hashCode = hashCode * 59 + this.International.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

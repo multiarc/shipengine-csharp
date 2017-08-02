@@ -9,444 +9,318 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     Label
+    /// Label
     /// </summary>
     [DataContract]
-    public class Label : IEquatable<Label>, IValidatableObject
+    public partial class Label :  IEquatable<Label>, IValidatableObject
     {
         /// <summary>
-        ///     Gets or Sets LabelFormat
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum LabelFormatEnum
-        {
-            /// <summary>
-            ///     Enum Pdf for "pdf"
-            /// </summary>
-            [EnumMember(Value = "pdf")] Pdf,
-
-            /// <summary>
-            ///     Enum Zpl for "zpl"
-            /// </summary>
-            [EnumMember(Value = "zpl")] Zpl
-        }
-
-        /// <summary>
-        ///     Gets or Sets Status
+        /// Gets or Sets Status
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
+            
             /// <summary>
-            ///     Enum Processing for "processing"
+            /// Enum Processing for "processing"
             /// </summary>
-            [EnumMember(Value = "processing")] Processing,
-
+            [EnumMember(Value = "processing")]
+            Processing,
+            
             /// <summary>
-            ///     Enum Completed for "completed"
+            /// Enum Completed for "completed"
             /// </summary>
-            [EnumMember(Value = "completed")] Completed,
-
+            [EnumMember(Value = "completed")]
+            Completed,
+            
             /// <summary>
-            ///     Enum Error for "error"
+            /// Enum Error for "error"
             /// </summary>
-            [EnumMember(Value = "error")] Error,
-
+            [EnumMember(Value = "error")]
+            Error,
+            
             /// <summary>
-            ///     Enum Voided for "voided"
+            /// Enum Voided for "voided"
             /// </summary>
-            [EnumMember(Value = "voided")] Voided
+            [EnumMember(Value = "voided")]
+            Voided
         }
 
         /// <summary>
-        ///     Gets or Sets TrackingStatus
+        /// Gets or Sets LabelFormat
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum LabelFormatEnum
+        {
+            
+            /// <summary>
+            /// Enum Pdf for "pdf"
+            /// </summary>
+            [EnumMember(Value = "pdf")]
+            Pdf,
+            
+            /// <summary>
+            /// Enum Zpl for "zpl"
+            /// </summary>
+            [EnumMember(Value = "zpl")]
+            Zpl,
+            
+            /// <summary>
+            /// Enum Png for "png"
+            /// </summary>
+            [EnumMember(Value = "png")]
+            Png
+        }
+
+        /// <summary>
+        /// Gets or Sets TrackingStatus
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TrackingStatusEnum
         {
+            
             /// <summary>
-            ///     Enum Unknown for "unknown"
+            /// Enum Unknown for "unknown"
             /// </summary>
-            [EnumMember(Value = "unknown")] Unknown,
-
+            [EnumMember(Value = "unknown")]
+            Unknown,
+            
             /// <summary>
-            ///     Enum Intransit for "in_transit"
+            /// Enum Intransit for "in_transit"
             /// </summary>
-            [EnumMember(Value = "in_transit")] Intransit,
-
+            [EnumMember(Value = "in_transit")]
+            Intransit,
+            
             /// <summary>
-            ///     Enum Error for "error"
+            /// Enum Error for "error"
             /// </summary>
-            [EnumMember(Value = "error")] Error,
-
+            [EnumMember(Value = "error")]
+            Error,
+            
             /// <summary>
-            ///     Enum Delivered for "delivered"
+            /// Enum Delivered for "delivered"
             /// </summary>
-            [EnumMember(Value = "delivered")] Delivered
+            [EnumMember(Value = "delivered")]
+            Delivered
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Label" /> class.
+        /// Gets or Sets Status
         /// </summary>
-        /// <param name="labelId">LabelId.</param>
-        /// <param name="status">Status.</param>
-        /// <param name="shipmentId">ShipmentId.</param>
-        /// <param name="shipDate">ShipDate.</param>
-        /// <param name="createdAt">CreatedAt.</param>
-        /// <param name="shipmentCost">ShipmentCost.</param>
-        /// <param name="insuranceCost">InsuranceCost.</param>
-        /// <param name="trackingNumber">TrackingNumber.</param>
-        /// <param name="isReturnLabel">IsReturnLabel.</param>
-        /// <param name="isInternational">IsInternational.</param>
-        /// <param name="batchId">BatchId.</param>
-        /// <param name="carrierId">CarrierId.</param>
-        /// <param name="serviceCode">ServiceCode.</param>
-        /// <param name="packageCode">PackageCode.</param>
-        /// <param name="voided">Voided.</param>
-        /// <param name="voidedAt">VoidedAt.</param>
-        /// <param name="labelFormat">LabelFormat.</param>
-        /// <param name="labelLayout">LabelLayout.</param>
-        /// <param name="trackable">Trackable.</param>
-        /// <param name="carrierCode">CarrierCode.</param>
-        /// <param name="trackingStatus">TrackingStatus.</param>
-        /// <param name="labelDownload">LabelDownload.</param>
-        /// <param name="formDownload">FormDownload.</param>
-        /// <param name="insuranceClaim">InsuranceClaim.</param>
-        public Label(string labelId = default(string), StatusEnum? status = default(StatusEnum?),
-            string shipmentId = default(string), DateTime? shipDate = default(DateTime?),
-            DateTime? createdAt = default(DateTime?), MoneyDTO shipmentCost = default(MoneyDTO),
-            MoneyDTO insuranceCost = default(MoneyDTO), string trackingNumber = default(string),
-            bool? isReturnLabel = default(bool?), bool? isInternational = default(bool?),
-            string batchId = default(string), string carrierId = default(string), string serviceCode = default(string),
-            string packageCode = default(string), bool? voided = default(bool?), DateTime? voidedAt = default(DateTime?),
-            LabelFormatEnum? labelFormat = default(LabelFormatEnum?), string labelLayout = default(string),
-            bool? trackable = default(bool?), string carrierCode = default(string),
-            TrackingStatusEnum? trackingStatus = default(TrackingStatusEnum?), LinkDTO labelDownload = default(LinkDTO),
-            LinkDTO formDownload = default(LinkDTO), LinkDTO insuranceClaim = default(LinkDTO))
-        {
-            LabelId = labelId;
-            Status = status;
-            ShipmentId = shipmentId;
-            ShipDate = shipDate;
-            CreatedAt = createdAt;
-            ShipmentCost = shipmentCost;
-            InsuranceCost = insuranceCost;
-            TrackingNumber = trackingNumber;
-            IsReturnLabel = isReturnLabel;
-            IsInternational = isInternational;
-            BatchId = batchId;
-            CarrierId = carrierId;
-            ServiceCode = serviceCode;
-            PackageCode = packageCode;
-            Voided = voided;
-            VoidedAt = voidedAt;
-            LabelFormat = labelFormat;
-            LabelLayout = labelLayout;
-            Trackable = trackable;
-            CarrierCode = carrierCode;
-            TrackingStatus = trackingStatus;
-            LabelDownload = labelDownload;
-            FormDownload = formDownload;
-            InsuranceClaim = insuranceClaim;
-        }
-
-        /// <summary>
-        ///     Gets or Sets Status
-        /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
+        [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
-
         /// <summary>
-        ///     Gets or Sets LabelFormat
+        /// Gets or Sets LabelFormat
         /// </summary>
-        [DataMember(Name = "label_format", EmitDefaultValue = false)]
+        [DataMember(Name="label_format", EmitDefaultValue=false)]
         public LabelFormatEnum? LabelFormat { get; set; }
-
         /// <summary>
-        ///     Gets or Sets TrackingStatus
+        /// Gets or Sets TrackingStatus
         /// </summary>
-        [DataMember(Name = "tracking_status", EmitDefaultValue = false)]
+        [DataMember(Name="tracking_status", EmitDefaultValue=false)]
         public TrackingStatusEnum? TrackingStatus { get; set; }
-
         /// <summary>
-        ///     Gets or Sets LabelId
+        /// Initializes a new instance of the <see cref="Label" /> class.
         /// </summary>
-        [DataMember(Name = "label_id", EmitDefaultValue = false)]
+        /// <param name="LabelId">LabelId.</param>
+        /// <param name="Status">Status.</param>
+        /// <param name="ShipmentId">ShipmentId.</param>
+        /// <param name="ShipDate">ShipDate.</param>
+        /// <param name="CreatedAt">CreatedAt.</param>
+        /// <param name="ShipmentCost">ShipmentCost.</param>
+        /// <param name="InsuranceCost">InsuranceCost.</param>
+        /// <param name="TrackingNumber">TrackingNumber.</param>
+        /// <param name="IsReturnLabel">IsReturnLabel.</param>
+        /// <param name="IsInternational">IsInternational.</param>
+        /// <param name="BatchId">BatchId.</param>
+        /// <param name="CarrierId">CarrierId.</param>
+        /// <param name="ServiceCode">ServiceCode.</param>
+        /// <param name="PackageCode">PackageCode.</param>
+        /// <param name="Voided">Voided.</param>
+        /// <param name="VoidedAt">VoidedAt.</param>
+        /// <param name="LabelFormat">LabelFormat.</param>
+        /// <param name="LabelLayout">LabelLayout.</param>
+        /// <param name="Trackable">Trackable.</param>
+        /// <param name="CarrierCode">CarrierCode.</param>
+        /// <param name="TrackingStatus">TrackingStatus.</param>
+        /// <param name="LabelDownload">LabelDownload.</param>
+        /// <param name="FormDownload">FormDownload.</param>
+        /// <param name="InsuranceClaim">InsuranceClaim.</param>
+        public Label(string LabelId = default(string), StatusEnum? Status = default(StatusEnum?), string ShipmentId = default(string), DateTime? ShipDate = default(DateTime?), DateTime? CreatedAt = default(DateTime?), MoneyDTO ShipmentCost = default(MoneyDTO), MoneyDTO InsuranceCost = default(MoneyDTO), string TrackingNumber = default(string), bool? IsReturnLabel = default(bool?), bool? IsInternational = default(bool?), string BatchId = default(string), string CarrierId = default(string), string ServiceCode = default(string), string PackageCode = default(string), bool? Voided = default(bool?), DateTime? VoidedAt = default(DateTime?), LabelFormatEnum? LabelFormat = default(LabelFormatEnum?), string LabelLayout = default(string), bool? Trackable = default(bool?), string CarrierCode = default(string), TrackingStatusEnum? TrackingStatus = default(TrackingStatusEnum?), LinkDTO LabelDownload = default(LinkDTO), LinkDTO FormDownload = default(LinkDTO), LinkDTO InsuranceClaim = default(LinkDTO))
+        {
+            this.LabelId = LabelId;
+            this.Status = Status;
+            this.ShipmentId = ShipmentId;
+            this.ShipDate = ShipDate;
+            this.CreatedAt = CreatedAt;
+            this.ShipmentCost = ShipmentCost;
+            this.InsuranceCost = InsuranceCost;
+            this.TrackingNumber = TrackingNumber;
+            this.IsReturnLabel = IsReturnLabel;
+            this.IsInternational = IsInternational;
+            this.BatchId = BatchId;
+            this.CarrierId = CarrierId;
+            this.ServiceCode = ServiceCode;
+            this.PackageCode = PackageCode;
+            this.Voided = Voided;
+            this.VoidedAt = VoidedAt;
+            this.LabelFormat = LabelFormat;
+            this.LabelLayout = LabelLayout;
+            this.Trackable = Trackable;
+            this.CarrierCode = CarrierCode;
+            this.TrackingStatus = TrackingStatus;
+            this.LabelDownload = LabelDownload;
+            this.FormDownload = FormDownload;
+            this.InsuranceClaim = InsuranceClaim;
+        }
+        
+        /// <summary>
+        /// Gets or Sets LabelId
+        /// </summary>
+        [DataMember(Name="label_id", EmitDefaultValue=false)]
         public string LabelId { get; set; }
 
+
         /// <summary>
-        ///     Gets or Sets ShipmentId
+        /// Gets or Sets ShipmentId
         /// </summary>
-        [DataMember(Name = "shipment_id", EmitDefaultValue = false)]
+        [DataMember(Name="shipment_id", EmitDefaultValue=false)]
         public string ShipmentId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShipDate
+        /// Gets or Sets ShipDate
         /// </summary>
-        [DataMember(Name = "ship_date", EmitDefaultValue = false)]
+        [DataMember(Name="ship_date", EmitDefaultValue=false)]
         public DateTime? ShipDate { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CreatedAt
+        /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShipmentCost
+        /// Gets or Sets ShipmentCost
         /// </summary>
-        [DataMember(Name = "shipment_cost", EmitDefaultValue = false)]
+        [DataMember(Name="shipment_cost", EmitDefaultValue=false)]
         public MoneyDTO ShipmentCost { get; set; }
 
         /// <summary>
-        ///     Gets or Sets InsuranceCost
+        /// Gets or Sets InsuranceCost
         /// </summary>
-        [DataMember(Name = "insurance_cost", EmitDefaultValue = false)]
+        [DataMember(Name="insurance_cost", EmitDefaultValue=false)]
         public MoneyDTO InsuranceCost { get; set; }
 
         /// <summary>
-        ///     Gets or Sets TrackingNumber
+        /// Gets or Sets TrackingNumber
         /// </summary>
-        [DataMember(Name = "tracking_number", EmitDefaultValue = false)]
+        [DataMember(Name="tracking_number", EmitDefaultValue=false)]
         public string TrackingNumber { get; set; }
 
         /// <summary>
-        ///     Gets or Sets IsReturnLabel
+        /// Gets or Sets IsReturnLabel
         /// </summary>
-        [DataMember(Name = "is_return_label", EmitDefaultValue = false)]
+        [DataMember(Name="is_return_label", EmitDefaultValue=false)]
         public bool? IsReturnLabel { get; set; }
 
         /// <summary>
-        ///     Gets or Sets IsInternational
+        /// Gets or Sets IsInternational
         /// </summary>
-        [DataMember(Name = "is_international", EmitDefaultValue = false)]
+        [DataMember(Name="is_international", EmitDefaultValue=false)]
         public bool? IsInternational { get; set; }
 
         /// <summary>
-        ///     Gets or Sets BatchId
+        /// Gets or Sets BatchId
         /// </summary>
-        [DataMember(Name = "batch_id", EmitDefaultValue = false)]
+        [DataMember(Name="batch_id", EmitDefaultValue=false)]
         public string BatchId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CarrierId
+        /// Gets or Sets CarrierId
         /// </summary>
-        [DataMember(Name = "carrier_id", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_id", EmitDefaultValue=false)]
         public string CarrierId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ServiceCode
+        /// Gets or Sets ServiceCode
         /// </summary>
-        [DataMember(Name = "service_code", EmitDefaultValue = false)]
+        [DataMember(Name="service_code", EmitDefaultValue=false)]
         public string ServiceCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets PackageCode
+        /// Gets or Sets PackageCode
         /// </summary>
-        [DataMember(Name = "package_code", EmitDefaultValue = false)]
+        [DataMember(Name="package_code", EmitDefaultValue=false)]
         public string PackageCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Voided
+        /// Gets or Sets Voided
         /// </summary>
-        [DataMember(Name = "voided", EmitDefaultValue = false)]
+        [DataMember(Name="voided", EmitDefaultValue=false)]
         public bool? Voided { get; set; }
 
         /// <summary>
-        ///     Gets or Sets VoidedAt
+        /// Gets or Sets VoidedAt
         /// </summary>
-        [DataMember(Name = "voided_at", EmitDefaultValue = false)]
+        [DataMember(Name="voided_at", EmitDefaultValue=false)]
         public DateTime? VoidedAt { get; set; }
 
+
         /// <summary>
-        ///     Gets or Sets LabelLayout
+        /// Gets or Sets LabelLayout
         /// </summary>
-        [DataMember(Name = "label_layout", EmitDefaultValue = false)]
+        [DataMember(Name="label_layout", EmitDefaultValue=false)]
         public string LabelLayout { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Trackable
+        /// Gets or Sets Trackable
         /// </summary>
-        [DataMember(Name = "trackable", EmitDefaultValue = false)]
+        [DataMember(Name="trackable", EmitDefaultValue=false)]
         public bool? Trackable { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CarrierCode
+        /// Gets or Sets CarrierCode
         /// </summary>
-        [DataMember(Name = "carrier_code", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_code", EmitDefaultValue=false)]
         public string CarrierCode { get; set; }
 
+
         /// <summary>
-        ///     Gets or Sets LabelDownload
+        /// Gets or Sets LabelDownload
         /// </summary>
-        [DataMember(Name = "label_download", EmitDefaultValue = false)]
+        [DataMember(Name="label_download", EmitDefaultValue=false)]
         public LinkDTO LabelDownload { get; set; }
 
         /// <summary>
-        ///     Gets or Sets FormDownload
+        /// Gets or Sets FormDownload
         /// </summary>
-        [DataMember(Name = "form_download", EmitDefaultValue = false)]
+        [DataMember(Name="form_download", EmitDefaultValue=false)]
         public LinkDTO FormDownload { get; set; }
 
         /// <summary>
-        ///     Gets or Sets InsuranceClaim
+        /// Gets or Sets InsuranceClaim
         /// </summary>
-        [DataMember(Name = "insurance_claim", EmitDefaultValue = false)]
+        [DataMember(Name="insurance_claim", EmitDefaultValue=false)]
         public LinkDTO InsuranceClaim { get; set; }
 
         /// <summary>
-        ///     Returns true if Label instances are equal
-        /// </summary>
-        /// <param name="other">Instance of Label to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Label other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    LabelId == other.LabelId ||
-                    LabelId != null &&
-                    LabelId.Equals(other.LabelId)
-                ) &&
-                (
-                    Status == other.Status ||
-                    Status != null &&
-                    Status.Equals(other.Status)
-                ) &&
-                (
-                    ShipmentId == other.ShipmentId ||
-                    ShipmentId != null &&
-                    ShipmentId.Equals(other.ShipmentId)
-                ) &&
-                (
-                    ShipDate == other.ShipDate ||
-                    ShipDate != null &&
-                    ShipDate.Equals(other.ShipDate)
-                ) &&
-                (
-                    CreatedAt == other.CreatedAt ||
-                    CreatedAt != null &&
-                    CreatedAt.Equals(other.CreatedAt)
-                ) &&
-                (
-                    Equals(ShipmentCost, other.ShipmentCost) ||
-                    ShipmentCost != null &&
-                    ShipmentCost.Equals(other.ShipmentCost)
-                ) &&
-                (
-                    Equals(InsuranceCost, other.InsuranceCost) ||
-                    InsuranceCost != null &&
-                    InsuranceCost.Equals(other.InsuranceCost)
-                ) &&
-                (
-                    TrackingNumber == other.TrackingNumber ||
-                    TrackingNumber != null &&
-                    TrackingNumber.Equals(other.TrackingNumber)
-                ) &&
-                (
-                    IsReturnLabel == other.IsReturnLabel ||
-                    IsReturnLabel != null &&
-                    IsReturnLabel.Equals(other.IsReturnLabel)
-                ) &&
-                (
-                    IsInternational == other.IsInternational ||
-                    IsInternational != null &&
-                    IsInternational.Equals(other.IsInternational)
-                ) &&
-                (
-                    BatchId == other.BatchId ||
-                    BatchId != null &&
-                    BatchId.Equals(other.BatchId)
-                ) &&
-                (
-                    CarrierId == other.CarrierId ||
-                    CarrierId != null &&
-                    CarrierId.Equals(other.CarrierId)
-                ) &&
-                (
-                    ServiceCode == other.ServiceCode ||
-                    ServiceCode != null &&
-                    ServiceCode.Equals(other.ServiceCode)
-                ) &&
-                (
-                    PackageCode == other.PackageCode ||
-                    PackageCode != null &&
-                    PackageCode.Equals(other.PackageCode)
-                ) &&
-                (
-                    Voided == other.Voided ||
-                    Voided != null &&
-                    Voided.Equals(other.Voided)
-                ) &&
-                (
-                    VoidedAt == other.VoidedAt ||
-                    VoidedAt != null &&
-                    VoidedAt.Equals(other.VoidedAt)
-                ) &&
-                (
-                    LabelFormat == other.LabelFormat ||
-                    LabelFormat != null &&
-                    LabelFormat.Equals(other.LabelFormat)
-                ) &&
-                (
-                    LabelLayout == other.LabelLayout ||
-                    LabelLayout != null &&
-                    LabelLayout.Equals(other.LabelLayout)
-                ) &&
-                (
-                    Trackable == other.Trackable ||
-                    Trackable != null &&
-                    Trackable.Equals(other.Trackable)
-                ) &&
-                (
-                    CarrierCode == other.CarrierCode ||
-                    CarrierCode != null &&
-                    CarrierCode.Equals(other.CarrierCode)
-                ) &&
-                (
-                    TrackingStatus == other.TrackingStatus ||
-                    TrackingStatus != null &&
-                    TrackingStatus.Equals(other.TrackingStatus)
-                ) &&
-                (
-                    Equals(LabelDownload, other.LabelDownload) ||
-                    LabelDownload != null &&
-                    LabelDownload.Equals(other.LabelDownload)
-                ) &&
-                (
-                    Equals(FormDownload, other.FormDownload) ||
-                    FormDownload != null &&
-                    FormDownload.Equals(other.FormDownload)
-                ) &&
-                (
-                    Equals(InsuranceClaim, other.InsuranceClaim) ||
-                    InsuranceClaim != null &&
-                    InsuranceClaim.Equals(other.InsuranceClaim)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -480,9 +354,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -491,125 +365,218 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Label);
+            return this.Equals(input as Label);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if Label instances are equal
+        /// </summary>
+        /// <param name="input">Instance of Label to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(Label input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.LabelId == input.LabelId ||
+                    (this.LabelId != null &&
+                    this.LabelId.Equals(input.LabelId))
+                ) && 
+                (
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
+                ) && 
+                (
+                    this.ShipmentId == input.ShipmentId ||
+                    (this.ShipmentId != null &&
+                    this.ShipmentId.Equals(input.ShipmentId))
+                ) && 
+                (
+                    this.ShipDate == input.ShipDate ||
+                    (this.ShipDate != null &&
+                    this.ShipDate.Equals(input.ShipDate))
+                ) && 
+                (
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
+                    this.ShipmentCost == input.ShipmentCost ||
+                    (this.ShipmentCost != null &&
+                    this.ShipmentCost.Equals(input.ShipmentCost))
+                ) && 
+                (
+                    this.InsuranceCost == input.InsuranceCost ||
+                    (this.InsuranceCost != null &&
+                    this.InsuranceCost.Equals(input.InsuranceCost))
+                ) && 
+                (
+                    this.TrackingNumber == input.TrackingNumber ||
+                    (this.TrackingNumber != null &&
+                    this.TrackingNumber.Equals(input.TrackingNumber))
+                ) && 
+                (
+                    this.IsReturnLabel == input.IsReturnLabel ||
+                    (this.IsReturnLabel != null &&
+                    this.IsReturnLabel.Equals(input.IsReturnLabel))
+                ) && 
+                (
+                    this.IsInternational == input.IsInternational ||
+                    (this.IsInternational != null &&
+                    this.IsInternational.Equals(input.IsInternational))
+                ) && 
+                (
+                    this.BatchId == input.BatchId ||
+                    (this.BatchId != null &&
+                    this.BatchId.Equals(input.BatchId))
+                ) && 
+                (
+                    this.CarrierId == input.CarrierId ||
+                    (this.CarrierId != null &&
+                    this.CarrierId.Equals(input.CarrierId))
+                ) && 
+                (
+                    this.ServiceCode == input.ServiceCode ||
+                    (this.ServiceCode != null &&
+                    this.ServiceCode.Equals(input.ServiceCode))
+                ) && 
+                (
+                    this.PackageCode == input.PackageCode ||
+                    (this.PackageCode != null &&
+                    this.PackageCode.Equals(input.PackageCode))
+                ) && 
+                (
+                    this.Voided == input.Voided ||
+                    (this.Voided != null &&
+                    this.Voided.Equals(input.Voided))
+                ) && 
+                (
+                    this.VoidedAt == input.VoidedAt ||
+                    (this.VoidedAt != null &&
+                    this.VoidedAt.Equals(input.VoidedAt))
+                ) && 
+                (
+                    this.LabelFormat == input.LabelFormat ||
+                    (this.LabelFormat != null &&
+                    this.LabelFormat.Equals(input.LabelFormat))
+                ) && 
+                (
+                    this.LabelLayout == input.LabelLayout ||
+                    (this.LabelLayout != null &&
+                    this.LabelLayout.Equals(input.LabelLayout))
+                ) && 
+                (
+                    this.Trackable == input.Trackable ||
+                    (this.Trackable != null &&
+                    this.Trackable.Equals(input.Trackable))
+                ) && 
+                (
+                    this.CarrierCode == input.CarrierCode ||
+                    (this.CarrierCode != null &&
+                    this.CarrierCode.Equals(input.CarrierCode))
+                ) && 
+                (
+                    this.TrackingStatus == input.TrackingStatus ||
+                    (this.TrackingStatus != null &&
+                    this.TrackingStatus.Equals(input.TrackingStatus))
+                ) && 
+                (
+                    this.LabelDownload == input.LabelDownload ||
+                    (this.LabelDownload != null &&
+                    this.LabelDownload.Equals(input.LabelDownload))
+                ) && 
+                (
+                    this.FormDownload == input.FormDownload ||
+                    (this.FormDownload != null &&
+                    this.FormDownload.Equals(input.FormDownload))
+                ) && 
+                (
+                    this.InsuranceClaim == input.InsuranceClaim ||
+                    (this.InsuranceClaim != null &&
+                    this.InsuranceClaim.Equals(input.InsuranceClaim))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (LabelId != null)
-                {
-                    hash = hash * 59 + LabelId.GetHashCode();
-                }
-                if (Status != null)
-                {
-                    hash = hash * 59 + Status.GetHashCode();
-                }
-                if (ShipmentId != null)
-                {
-                    hash = hash * 59 + ShipmentId.GetHashCode();
-                }
-                if (ShipDate != null)
-                {
-                    hash = hash * 59 + ShipDate.GetHashCode();
-                }
-                if (CreatedAt != null)
-                {
-                    hash = hash * 59 + CreatedAt.GetHashCode();
-                }
-                if (ShipmentCost != null)
-                {
-                    hash = hash * 59 + ShipmentCost.GetHashCode();
-                }
-                if (InsuranceCost != null)
-                {
-                    hash = hash * 59 + InsuranceCost.GetHashCode();
-                }
-                if (TrackingNumber != null)
-                {
-                    hash = hash * 59 + TrackingNumber.GetHashCode();
-                }
-                if (IsReturnLabel != null)
-                {
-                    hash = hash * 59 + IsReturnLabel.GetHashCode();
-                }
-                if (IsInternational != null)
-                {
-                    hash = hash * 59 + IsInternational.GetHashCode();
-                }
-                if (BatchId != null)
-                {
-                    hash = hash * 59 + BatchId.GetHashCode();
-                }
-                if (CarrierId != null)
-                {
-                    hash = hash * 59 + CarrierId.GetHashCode();
-                }
-                if (ServiceCode != null)
-                {
-                    hash = hash * 59 + ServiceCode.GetHashCode();
-                }
-                if (PackageCode != null)
-                {
-                    hash = hash * 59 + PackageCode.GetHashCode();
-                }
-                if (Voided != null)
-                {
-                    hash = hash * 59 + Voided.GetHashCode();
-                }
-                if (VoidedAt != null)
-                {
-                    hash = hash * 59 + VoidedAt.GetHashCode();
-                }
-                if (LabelFormat != null)
-                {
-                    hash = hash * 59 + LabelFormat.GetHashCode();
-                }
-                if (LabelLayout != null)
-                {
-                    hash = hash * 59 + LabelLayout.GetHashCode();
-                }
-                if (Trackable != null)
-                {
-                    hash = hash * 59 + Trackable.GetHashCode();
-                }
-                if (CarrierCode != null)
-                {
-                    hash = hash * 59 + CarrierCode.GetHashCode();
-                }
-                if (TrackingStatus != null)
-                {
-                    hash = hash * 59 + TrackingStatus.GetHashCode();
-                }
-                if (LabelDownload != null)
-                {
-                    hash = hash * 59 + LabelDownload.GetHashCode();
-                }
-                if (FormDownload != null)
-                {
-                    hash = hash * 59 + FormDownload.GetHashCode();
-                }
-                if (InsuranceClaim != null)
-                {
-                    hash = hash * 59 + InsuranceClaim.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.LabelId != null)
+                    hashCode = hashCode * 59 + this.LabelId.GetHashCode();
+                if (this.Status != null)
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                if (this.ShipmentId != null)
+                    hashCode = hashCode * 59 + this.ShipmentId.GetHashCode();
+                if (this.ShipDate != null)
+                    hashCode = hashCode * 59 + this.ShipDate.GetHashCode();
+                if (this.CreatedAt != null)
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.ShipmentCost != null)
+                    hashCode = hashCode * 59 + this.ShipmentCost.GetHashCode();
+                if (this.InsuranceCost != null)
+                    hashCode = hashCode * 59 + this.InsuranceCost.GetHashCode();
+                if (this.TrackingNumber != null)
+                    hashCode = hashCode * 59 + this.TrackingNumber.GetHashCode();
+                if (this.IsReturnLabel != null)
+                    hashCode = hashCode * 59 + this.IsReturnLabel.GetHashCode();
+                if (this.IsInternational != null)
+                    hashCode = hashCode * 59 + this.IsInternational.GetHashCode();
+                if (this.BatchId != null)
+                    hashCode = hashCode * 59 + this.BatchId.GetHashCode();
+                if (this.CarrierId != null)
+                    hashCode = hashCode * 59 + this.CarrierId.GetHashCode();
+                if (this.ServiceCode != null)
+                    hashCode = hashCode * 59 + this.ServiceCode.GetHashCode();
+                if (this.PackageCode != null)
+                    hashCode = hashCode * 59 + this.PackageCode.GetHashCode();
+                if (this.Voided != null)
+                    hashCode = hashCode * 59 + this.Voided.GetHashCode();
+                if (this.VoidedAt != null)
+                    hashCode = hashCode * 59 + this.VoidedAt.GetHashCode();
+                if (this.LabelFormat != null)
+                    hashCode = hashCode * 59 + this.LabelFormat.GetHashCode();
+                if (this.LabelLayout != null)
+                    hashCode = hashCode * 59 + this.LabelLayout.GetHashCode();
+                if (this.Trackable != null)
+                    hashCode = hashCode * 59 + this.Trackable.GetHashCode();
+                if (this.CarrierCode != null)
+                    hashCode = hashCode * 59 + this.CarrierCode.GetHashCode();
+                if (this.TrackingStatus != null)
+                    hashCode = hashCode * 59 + this.TrackingStatus.GetHashCode();
+                if (this.LabelDownload != null)
+                    hashCode = hashCode * 59 + this.LabelDownload.GetHashCode();
+                if (this.FormDownload != null)
+                    hashCode = hashCode * 59 + this.FormDownload.GetHashCode();
+                if (this.InsuranceClaim != null)
+                    hashCode = hashCode * 59 + this.InsuranceClaim.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

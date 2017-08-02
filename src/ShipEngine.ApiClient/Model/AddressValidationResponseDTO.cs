@@ -9,160 +9,116 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     AddressValidationResponseDTO
+    /// AddressValidationResponseDTO
     /// </summary>
     [DataContract]
-    public class AddressValidationResponseDTO : IEquatable<AddressValidationResponseDTO>, IValidatableObject
+    public partial class AddressValidationResponseDTO :  IEquatable<AddressValidationResponseDTO>, IValidatableObject
     {
         /// <summary>
-        ///     Gets or Sets Status
+        /// Gets or Sets Status
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
+            
             /// <summary>
-            ///     Enum Unverified for "unverified"
+            /// Enum Unverified for "unverified"
             /// </summary>
-            [EnumMember(Value = "unverified")] Unverified,
-
+            [EnumMember(Value = "unverified")]
+            Unverified,
+            
             /// <summary>
-            ///     Enum Verified for "verified"
+            /// Enum Verified for "verified"
             /// </summary>
-            [EnumMember(Value = "verified")] Verified,
-
+            [EnumMember(Value = "verified")]
+            Verified,
+            
             /// <summary>
-            ///     Enum Warning for "warning"
+            /// Enum Warning for "warning"
             /// </summary>
-            [EnumMember(Value = "warning")] Warning,
-
+            [EnumMember(Value = "warning")]
+            Warning,
+            
             /// <summary>
-            ///     Enum Error for "error"
+            /// Enum Error for "error"
             /// </summary>
-            [EnumMember(Value = "error")] Error
+            [EnumMember(Value = "error")]
+            Error
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="AddressValidationResponseDTO" /> class.
+        /// Gets or Sets Status
         /// </summary>
-        /// <param name="status">Status.</param>
-        /// <param name="originalAddress">OriginalAddress.</param>
-        /// <param name="matchedAddress">MatchedAddress.</param>
-        /// <param name="messages">Messages.</param>
-        /// <param name="nativeMatchedParsedAddress">NativeMatchedParsedAddress.</param>
-        /// <param name="outputNotes">OutputNotes.</param>
-        public AddressValidationResponseDTO(StatusEnum? status = default(StatusEnum?),
-            AddressDTO originalAddress = default(AddressDTO), AddressDTO matchedAddress = default(AddressDTO),
-            List<ResponseMessageDTO> messages = default(List<ResponseMessageDTO>),
-            object nativeMatchedParsedAddress = default(object), string outputNotes = default(string))
-        {
-            Status = status;
-            OriginalAddress = originalAddress;
-            MatchedAddress = matchedAddress;
-            Messages = messages;
-            NativeMatchedParsedAddress = nativeMatchedParsedAddress;
-            OutputNotes = outputNotes;
-        }
-
-        /// <summary>
-        ///     Gets or Sets Status
-        /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
+        [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddressValidationResponseDTO" /> class.
+        /// </summary>
+        /// <param name="Status">Status.</param>
+        /// <param name="OriginalAddress">OriginalAddress.</param>
+        /// <param name="MatchedAddress">MatchedAddress.</param>
+        /// <param name="Messages">Messages.</param>
+        /// <param name="NativeMatchedParsedAddress">NativeMatchedParsedAddress.</param>
+        /// <param name="OutputNotes">OutputNotes.</param>
+        public AddressValidationResponseDTO(StatusEnum? Status = default(StatusEnum?), AddressDTO OriginalAddress = default(AddressDTO), AddressDTO MatchedAddress = default(AddressDTO), List<ResponseMessageDTO> Messages = default(List<ResponseMessageDTO>), Object NativeMatchedParsedAddress = default(Object), string OutputNotes = default(string))
+        {
+            this.Status = Status;
+            this.OriginalAddress = OriginalAddress;
+            this.MatchedAddress = MatchedAddress;
+            this.Messages = Messages;
+            this.NativeMatchedParsedAddress = NativeMatchedParsedAddress;
+            this.OutputNotes = OutputNotes;
+        }
+        
 
         /// <summary>
-        ///     Gets or Sets OriginalAddress
+        /// Gets or Sets OriginalAddress
         /// </summary>
-        [DataMember(Name = "original_address", EmitDefaultValue = false)]
+        [DataMember(Name="original_address", EmitDefaultValue=false)]
         public AddressDTO OriginalAddress { get; set; }
 
         /// <summary>
-        ///     Gets or Sets MatchedAddress
+        /// Gets or Sets MatchedAddress
         /// </summary>
-        [DataMember(Name = "matched_address", EmitDefaultValue = false)]
+        [DataMember(Name="matched_address", EmitDefaultValue=false)]
         public AddressDTO MatchedAddress { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Messages
+        /// Gets or Sets Messages
         /// </summary>
-        [DataMember(Name = "messages", EmitDefaultValue = false)]
+        [DataMember(Name="messages", EmitDefaultValue=false)]
         public List<ResponseMessageDTO> Messages { get; set; }
 
         /// <summary>
-        ///     Gets or Sets NativeMatchedParsedAddress
+        /// Gets or Sets NativeMatchedParsedAddress
         /// </summary>
-        [DataMember(Name = "native_matched_parsed_address", EmitDefaultValue = false)]
-        public object NativeMatchedParsedAddress { get; set; }
+        [DataMember(Name="native_matched_parsed_address", EmitDefaultValue=false)]
+        public Object NativeMatchedParsedAddress { get; set; }
 
         /// <summary>
-        ///     Gets or Sets OutputNotes
+        /// Gets or Sets OutputNotes
         /// </summary>
-        [DataMember(Name = "output_notes", EmitDefaultValue = false)]
+        [DataMember(Name="output_notes", EmitDefaultValue=false)]
         public string OutputNotes { get; set; }
 
         /// <summary>
-        ///     Returns true if AddressValidationResponseDTO instances are equal
-        /// </summary>
-        /// <param name="other">Instance of AddressValidationResponseDTO to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(AddressValidationResponseDTO other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    Status == other.Status ||
-                    Status != null &&
-                    Status.Equals(other.Status)
-                ) &&
-                (
-                    Equals(OriginalAddress, other.OriginalAddress) ||
-                    OriginalAddress != null &&
-                    OriginalAddress.Equals(other.OriginalAddress)
-                ) &&
-                (
-                    Equals(MatchedAddress, other.MatchedAddress) ||
-                    MatchedAddress != null &&
-                    MatchedAddress.Equals(other.MatchedAddress)
-                ) &&
-                (
-                    Messages == other.Messages ||
-                    Messages != null &&
-                    Messages.SequenceEqual(other.Messages)
-                ) &&
-                (
-                    NativeMatchedParsedAddress == other.NativeMatchedParsedAddress ||
-                    NativeMatchedParsedAddress != null &&
-                    NativeMatchedParsedAddress.Equals(other.NativeMatchedParsedAddress)
-                ) &&
-                (
-                    OutputNotes == other.OutputNotes ||
-                    OutputNotes != null &&
-                    OutputNotes.Equals(other.OutputNotes)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -178,9 +134,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -189,53 +145,92 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as AddressValidationResponseDTO);
+            return this.Equals(input as AddressValidationResponseDTO);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if AddressValidationResponseDTO instances are equal
+        /// </summary>
+        /// <param name="input">Instance of AddressValidationResponseDTO to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(AddressValidationResponseDTO input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
+                ) && 
+                (
+                    this.OriginalAddress == input.OriginalAddress ||
+                    (this.OriginalAddress != null &&
+                    this.OriginalAddress.Equals(input.OriginalAddress))
+                ) && 
+                (
+                    this.MatchedAddress == input.MatchedAddress ||
+                    (this.MatchedAddress != null &&
+                    this.MatchedAddress.Equals(input.MatchedAddress))
+                ) && 
+                (
+                    this.Messages == input.Messages ||
+                    (this.Messages != null &&
+                    this.Messages.SequenceEqual(input.Messages))
+                ) && 
+                (
+                    this.NativeMatchedParsedAddress == input.NativeMatchedParsedAddress ||
+                    (this.NativeMatchedParsedAddress != null &&
+                    this.NativeMatchedParsedAddress.Equals(input.NativeMatchedParsedAddress))
+                ) && 
+                (
+                    this.OutputNotes == input.OutputNotes ||
+                    (this.OutputNotes != null &&
+                    this.OutputNotes.Equals(input.OutputNotes))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Status != null)
-                {
-                    hash = hash * 59 + Status.GetHashCode();
-                }
-                if (OriginalAddress != null)
-                {
-                    hash = hash * 59 + OriginalAddress.GetHashCode();
-                }
-                if (MatchedAddress != null)
-                {
-                    hash = hash * 59 + MatchedAddress.GetHashCode();
-                }
-                if (Messages != null)
-                {
-                    hash = hash * 59 + Messages.GetHashCode();
-                }
-                if (NativeMatchedParsedAddress != null)
-                {
-                    hash = hash * 59 + NativeMatchedParsedAddress.GetHashCode();
-                }
-                if (OutputNotes != null)
-                {
-                    hash = hash * 59 + OutputNotes.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Status != null)
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                if (this.OriginalAddress != null)
+                    hashCode = hashCode * 59 + this.OriginalAddress.GetHashCode();
+                if (this.MatchedAddress != null)
+                    hashCode = hashCode * 59 + this.MatchedAddress.GetHashCode();
+                if (this.Messages != null)
+                    hashCode = hashCode * 59 + this.Messages.GetHashCode();
+                if (this.NativeMatchedParsedAddress != null)
+                    hashCode = hashCode * 59 + this.NativeMatchedParsedAddress.GetHashCode();
+                if (this.OutputNotes != null)
+                    hashCode = hashCode * 59 + this.OutputNotes.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

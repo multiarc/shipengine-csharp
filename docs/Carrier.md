@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CarrierCode** | **string** |  | [optional] 
 **AccountNumber** | **string** |  | [optional] 
 **RequiresFundedAmount** | **bool?** |  | [optional] 
-**Balance** | **decimal?** |  | [optional] 
+**Balance** | **double?** |  | [optional] 
 **Nickname** | **string** |  | [optional] 
 **FriendlyName** | **string** |  | [optional] 
 **Primary** | **bool?** |  | [optional] 
