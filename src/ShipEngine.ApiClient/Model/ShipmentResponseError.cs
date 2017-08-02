@@ -9,90 +9,60 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     ShipmentResponseError
+    /// ShipmentResponseError
     /// </summary>
     [DataContract]
-    public class ShipmentResponseError : IEquatable<ShipmentResponseError>, IValidatableObject
+    public partial class ShipmentResponseError :  IEquatable<ShipmentResponseError>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ShipmentResponseError" /> class.
+        /// Initializes a new instance of the <see cref="ShipmentResponseError" /> class.
         /// </summary>
-        /// <param name="error">Error.</param>
-        /// <param name="shipmentId">ShipmentId.</param>
-        /// <param name="externalShipmentId">ExternalShipmentId.</param>
-        public ShipmentResponseError(string error = default(string), string shipmentId = default(string),
-            string externalShipmentId = default(string))
+        /// <param name="Error">Error.</param>
+        /// <param name="ShipmentId">ShipmentId.</param>
+        /// <param name="ExternalShipmentId">ExternalShipmentId.</param>
+        public ShipmentResponseError(string Error = default(string), string ShipmentId = default(string), string ExternalShipmentId = default(string))
         {
-            Error = error;
-            ShipmentId = shipmentId;
-            ExternalShipmentId = externalShipmentId;
+            this.Error = Error;
+            this.ShipmentId = ShipmentId;
+            this.ExternalShipmentId = ExternalShipmentId;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets Error
+        /// Gets or Sets Error
         /// </summary>
-        [DataMember(Name = "error", EmitDefaultValue = false)]
+        [DataMember(Name="error", EmitDefaultValue=false)]
         public string Error { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShipmentId
+        /// Gets or Sets ShipmentId
         /// </summary>
-        [DataMember(Name = "shipment_id", EmitDefaultValue = false)]
+        [DataMember(Name="shipment_id", EmitDefaultValue=false)]
         public string ShipmentId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ExternalShipmentId
+        /// Gets or Sets ExternalShipmentId
         /// </summary>
-        [DataMember(Name = "external_shipment_id", EmitDefaultValue = false)]
+        [DataMember(Name="external_shipment_id", EmitDefaultValue=false)]
         public string ExternalShipmentId { get; set; }
 
         /// <summary>
-        ///     Returns true if ShipmentResponseError instances are equal
-        /// </summary>
-        /// <param name="other">Instance of ShipmentResponseError to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ShipmentResponseError other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    Error == other.Error ||
-                    Error != null &&
-                    Error.Equals(other.Error)
-                ) &&
-                (
-                    ShipmentId == other.ShipmentId ||
-                    ShipmentId != null &&
-                    ShipmentId.Equals(other.ShipmentId)
-                ) &&
-                (
-                    ExternalShipmentId == other.ExternalShipmentId ||
-                    ExternalShipmentId != null &&
-                    ExternalShipmentId.Equals(other.ExternalShipmentId)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -105,9 +75,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -116,41 +86,71 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as ShipmentResponseError);
+            return this.Equals(input as ShipmentResponseError);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if ShipmentResponseError instances are equal
+        /// </summary>
+        /// <param name="input">Instance of ShipmentResponseError to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(ShipmentResponseError input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Error == input.Error ||
+                    (this.Error != null &&
+                    this.Error.Equals(input.Error))
+                ) && 
+                (
+                    this.ShipmentId == input.ShipmentId ||
+                    (this.ShipmentId != null &&
+                    this.ShipmentId.Equals(input.ShipmentId))
+                ) && 
+                (
+                    this.ExternalShipmentId == input.ExternalShipmentId ||
+                    (this.ExternalShipmentId != null &&
+                    this.ExternalShipmentId.Equals(input.ExternalShipmentId))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Error != null)
-                {
-                    hash = hash * 59 + Error.GetHashCode();
-                }
-                if (ShipmentId != null)
-                {
-                    hash = hash * 59 + ShipmentId.GetHashCode();
-                }
-                if (ExternalShipmentId != null)
-                {
-                    hash = hash * 59 + ExternalShipmentId.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Error != null)
+                    hashCode = hashCode * 59 + this.Error.GetHashCode();
+                if (this.ShipmentId != null)
+                    hashCode = hashCode * 59 + this.ShipmentId.GetHashCode();
+                if (this.ExternalShipmentId != null)
+                    hashCode = hashCode * 59 + this.ExternalShipmentId.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

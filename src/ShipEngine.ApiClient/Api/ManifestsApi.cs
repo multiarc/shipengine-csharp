@@ -10,77 +10,254 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using RestSharp;
-using ShipEngine.ApiClient.Api.Interfaces;
 using ShipEngine.ApiClient.Client;
 using ShipEngine.ApiClient.Model;
 
 namespace ShipEngine.ApiClient.Api
 {
     /// <summary>
-    ///     Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class ManifestsApi : IManifestsApi
+    public interface IManifestsApi : IApiAccessor
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        #region Synchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Manifest</returns>
+        Manifest ManifestsCreate (CreateManifestRequest request, string apiKey);
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ManifestsApi" /> class.
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Manifest</returns>
+        ApiResponse<Manifest> ManifestsCreateWithHttpInfo (CreateManifestRequest request, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="manifestId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Manifest</returns>
+        Manifest ManifestsGet (string manifestId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="manifestId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Manifest</returns>
+        ApiResponse<Manifest> ManifestsGetWithHttpInfo (string manifestId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="shipDateStart"> (optional)</param>
+        /// <param name="shipDateEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <returns>ManifestsListResponse</returns>
+        ManifestsListResponse ManifestsList (string apiKey, string warehouseId = null, DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="shipDateStart"> (optional)</param>
+        /// <param name="shipDateEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <returns>ApiResponse of ManifestsListResponse</returns>
+        ApiResponse<ManifestsListResponse> ManifestsListWithHttpInfo (string apiKey, string warehouseId = null, DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null);
+        #endregion Synchronous Operations
+        #region Asynchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Manifest</returns>
+        System.Threading.Tasks.Task<Manifest> ManifestsCreateAsync (CreateManifestRequest request, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Manifest)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Manifest>> ManifestsCreateAsyncWithHttpInfo (CreateManifestRequest request, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="manifestId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Manifest</returns>
+        System.Threading.Tasks.Task<Manifest> ManifestsGetAsync (string manifestId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="manifestId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Manifest)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Manifest>> ManifestsGetAsyncWithHttpInfo (string manifestId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="shipDateStart"> (optional)</param>
+        /// <param name="shipDateEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <returns>Task of ManifestsListResponse</returns>
+        System.Threading.Tasks.Task<ManifestsListResponse> ManifestsListAsync (string apiKey, string warehouseId = null, DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="shipDateStart"> (optional)</param>
+        /// <param name="shipDateEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <returns>Task of ApiResponse (ManifestsListResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ManifestsListResponse>> ManifestsListAsyncWithHttpInfo (string apiKey, string warehouseId = null, DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null);
+        #endregion Asynchronous Operations
+    }
+
+    /// <summary>
+    /// Represents a collection of functions to interact with the API endpoints
+    /// </summary>
+    public partial class ManifestsApi : IManifestsApi
+    {
+        private ShipEngine.ApiClient.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ManifestsApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public ManifestsApi(string basePath)
+        public ManifestsApi(String basePath)
         {
-            Configuration = new Configuration(new Client.ApiClient(basePath));
+            this.Configuration = new Configuration { BasePath = basePath };
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ManifestsApi" /> class
-        ///     using Configuration object
+        /// Initializes a new instance of the <see cref="ManifestsApi"/> class
+        /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
         public ManifestsApi(Configuration configuration = null)
         {
-            Configuration = configuration ?? Configuration.Default;
+            if (configuration == null) // use the default one in Configuration
+                this.Configuration = Configuration.Default;
+            else
+                this.Configuration = configuration;
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Gets the base path of the API client.
+        /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public string GetBasePath()
+        public String GetBasePath()
         {
-            return Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
         }
 
         /// <summary>
-        ///     Gets or sets the configuration object
+        /// Sets the base path of the API client.
         /// </summary>
-        /// <value>An instance of the Configuration</value>
-        public Configuration Configuration { get; set; }
+        /// <value>The base path</value>
+        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        public void SetBasePath(String basePath)
+        {
+            // do nothing
+        }
 
         /// <summary>
-        ///     Provides a factory method hook for the creation of exceptions.
+        /// Gets or sets the configuration object
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        /// <value>An instance of the Configuration</value>
+        public Configuration Configuration {get; set;}
+
+        /// <summary>
+        /// Provides a factory method hook for the creation of exceptions.
+        /// </summary>
+        public ShipEngine.ApiClient.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -94,712 +271,17 @@ namespace ShipEngine.ApiClient.Api
         }
 
         /// <summary>
-        ///     Create a manifest Create/generate a manifest for a specific shipping provider and date
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Manifest</returns>
-        public Manifest ManifestsCreate(CreateManifestRequest request, string apiKey)
-        {
-            var localVarResponse = ManifestsCreateWithHttpInfo(request, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Create a manifest Create/generate a manifest for a specific shipping provider and date
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Manifest</returns>
-        public ApiResponse<Manifest> ManifestsCreateWithHttpInfo(CreateManifestRequest request, string apiKey)
-        {
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling ManifestsApi->ManifestsCreate");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsCreate");
-            }
-
-            var localVarPath = "/v1/manifests";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ManifestsCreate", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Manifest>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Manifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Manifest)));
-        }
-
-        /// <summary>
-        ///     Create a manifest Create/generate a manifest for a specific shipping provider and date
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Manifest</returns>
-        public async Task<Manifest> ManifestsCreateAsync(CreateManifestRequest request, string apiKey)
-        {
-            var localVarResponse = await ManifestsCreateAsyncWithHttpInfo(request, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Create a manifest Create/generate a manifest for a specific shipping provider and date
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="request"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Manifest)</returns>
-        public async Task<ApiResponse<Manifest>> ManifestsCreateAsyncWithHttpInfo(CreateManifestRequest request,
-            string apiKey)
-        {
-            // verify the required parameter 'request' is set
-            if (request == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'request' when calling ManifestsApi->ManifestsCreate");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsCreate");
-            }
-
-            var localVarPath = "/v1/manifests";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (request.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = request; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ManifestsCreate", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Manifest>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Manifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Manifest)));
-        }
-
-        /// <summary>
-        ///     Get a specific manifest
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="manifestId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Manifest</returns>
-        public Manifest ManifestsGet(string manifestId, string apiKey)
-        {
-            var localVarResponse = ManifestsGetWithHttpInfo(manifestId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific manifest
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="manifestId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Manifest</returns>
-        public ApiResponse<Manifest> ManifestsGetWithHttpInfo(string manifestId, string apiKey)
-        {
-            // verify the required parameter 'manifestId' is set
-            if (manifestId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'manifestId' when calling ManifestsApi->ManifestsGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsGet");
-            }
-
-            var localVarPath = "/v1/manifests/{manifest_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ManifestsGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Manifest>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Manifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Manifest)));
-        }
-
-        /// <summary>
-        ///     Get a specific manifest
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="manifestId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Manifest</returns>
-        public async Task<Manifest> ManifestsGetAsync(string manifestId, string apiKey)
-        {
-            var localVarResponse = await ManifestsGetAsyncWithHttpInfo(manifestId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific manifest
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="manifestId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Manifest)</returns>
-        public async Task<ApiResponse<Manifest>> ManifestsGetAsyncWithHttpInfo(string manifestId, string apiKey)
-        {
-            // verify the required parameter 'manifestId' is set
-            if (manifestId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'manifestId' when calling ManifestsApi->ManifestsGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsGet");
-            }
-
-            var localVarPath = "/v1/manifests/{manifest_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ManifestsGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Manifest>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Manifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Manifest)));
-        }
-
-        /// <summary>
-        ///     Get manifests Get a list of manifests using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="warehouseId"> (optional)</param>
-        /// <param name="shipDateStart"> (optional)</param>
-        /// <param name="shipDateEnd"> (optional)</param>
-        /// <param name="createdAtStart"> (optional)</param>
-        /// <param name="createdAtEnd"> (optional)</param>
-        /// <param name="carrierId">Carrier ID (optional)</param>
-        /// <param name="page"> (optional)</param>
-        /// <param name="pageSize"> (optional)</param>
-        /// <returns>ManifestsListResponse</returns>
-        public ManifestsListResponse ManifestsList(string apiKey, string warehouseId = null,
-            DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null,
-            DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null)
-        {
-            var localVarResponse = ManifestsListWithHttpInfo(apiKey, warehouseId, shipDateStart, shipDateEnd,
-                createdAtStart, createdAtEnd, carrierId, page, pageSize);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get manifests Get a list of manifests using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="warehouseId"> (optional)</param>
-        /// <param name="shipDateStart"> (optional)</param>
-        /// <param name="shipDateEnd"> (optional)</param>
-        /// <param name="createdAtStart"> (optional)</param>
-        /// <param name="createdAtEnd"> (optional)</param>
-        /// <param name="carrierId">Carrier ID (optional)</param>
-        /// <param name="page"> (optional)</param>
-        /// <param name="pageSize"> (optional)</param>
-        /// <returns>ApiResponse of ManifestsListResponse</returns>
-        public ApiResponse<ManifestsListResponse> ManifestsListWithHttpInfo(string apiKey, string warehouseId = null,
-            DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null,
-            DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsList");
-            }
-
-            var localVarPath = "/v1/manifests";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (warehouseId != null)
-            {
-                localVarQueryParams.Add("warehouse_id", Configuration.ApiClient.ParameterToString(warehouseId));
-                    // query parameter
-            }
-            if (shipDateStart != null)
-            {
-                localVarQueryParams.Add("ship_date_start", Configuration.ApiClient.ParameterToString(shipDateStart));
-                    // query parameter
-            }
-            if (shipDateEnd != null)
-            {
-                localVarQueryParams.Add("ship_date_end", Configuration.ApiClient.ParameterToString(shipDateEnd));
-                    // query parameter
-            }
-            if (createdAtStart != null)
-            {
-                localVarQueryParams.Add("created_at_start", Configuration.ApiClient.ParameterToString(createdAtStart));
-                    // query parameter
-            }
-            if (createdAtEnd != null)
-            {
-                localVarQueryParams.Add("created_at_end", Configuration.ApiClient.ParameterToString(createdAtEnd));
-                    // query parameter
-            }
-            if (carrierId != null)
-            {
-                localVarQueryParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-                    // query parameter
-            }
-            if (page != null)
-            {
-                localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
-            }
-            if (pageSize != null)
-            {
-                localVarQueryParams.Add("page_size", Configuration.ApiClient.ParameterToString(pageSize));
-                    // query parameter
-            }
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ManifestsList", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ManifestsListResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ManifestsListResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(ManifestsListResponse)));
-        }
-
-        /// <summary>
-        ///     Get manifests Get a list of manifests using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="warehouseId"> (optional)</param>
-        /// <param name="shipDateStart"> (optional)</param>
-        /// <param name="shipDateEnd"> (optional)</param>
-        /// <param name="createdAtStart"> (optional)</param>
-        /// <param name="createdAtEnd"> (optional)</param>
-        /// <param name="carrierId">Carrier ID (optional)</param>
-        /// <param name="page"> (optional)</param>
-        /// <param name="pageSize"> (optional)</param>
-        /// <returns>Task of ManifestsListResponse</returns>
-        public async Task<ManifestsListResponse> ManifestsListAsync(string apiKey, string warehouseId = null,
-            DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null,
-            DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null)
-        {
-            var localVarResponse = await ManifestsListAsyncWithHttpInfo(apiKey, warehouseId, shipDateStart, shipDateEnd,
-                createdAtStart, createdAtEnd, carrierId, page, pageSize);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get manifests Get a list of manifests using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="warehouseId"> (optional)</param>
-        /// <param name="shipDateStart"> (optional)</param>
-        /// <param name="shipDateEnd"> (optional)</param>
-        /// <param name="createdAtStart"> (optional)</param>
-        /// <param name="createdAtEnd"> (optional)</param>
-        /// <param name="carrierId">Carrier ID (optional)</param>
-        /// <param name="page"> (optional)</param>
-        /// <param name="pageSize"> (optional)</param>
-        /// <returns>Task of ApiResponse (ManifestsListResponse)</returns>
-        public async Task<ApiResponse<ManifestsListResponse>> ManifestsListAsyncWithHttpInfo(string apiKey,
-            string warehouseId = null, DateTime? shipDateStart = null, DateTime? shipDateEnd = null,
-            DateTime? createdAtStart = null, DateTime? createdAtEnd = null, string carrierId = null, int? page = null,
-            int? pageSize = null)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsList");
-            }
-
-            var localVarPath = "/v1/manifests";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (warehouseId != null)
-            {
-                localVarQueryParams.Add("warehouse_id", Configuration.ApiClient.ParameterToString(warehouseId));
-                    // query parameter
-            }
-            if (shipDateStart != null)
-            {
-                localVarQueryParams.Add("ship_date_start", Configuration.ApiClient.ParameterToString(shipDateStart));
-                    // query parameter
-            }
-            if (shipDateEnd != null)
-            {
-                localVarQueryParams.Add("ship_date_end", Configuration.ApiClient.ParameterToString(shipDateEnd));
-                    // query parameter
-            }
-            if (createdAtStart != null)
-            {
-                localVarQueryParams.Add("created_at_start", Configuration.ApiClient.ParameterToString(createdAtStart));
-                    // query parameter
-            }
-            if (createdAtEnd != null)
-            {
-                localVarQueryParams.Add("created_at_end", Configuration.ApiClient.ParameterToString(createdAtEnd));
-                    // query parameter
-            }
-            if (carrierId != null)
-            {
-                localVarQueryParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId));
-                    // query parameter
-            }
-            if (page != null)
-            {
-                localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
-            }
-            if (pageSize != null)
-            {
-                localVarQueryParams.Add("page_size", Configuration.ApiClient.ParameterToString(pageSize));
-                    // query parameter
-            }
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ManifestsList", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ManifestsListResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ManifestsListResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(ManifestsListResponse)));
-        }
-
-        /// <summary>
-        ///     Sets the base path of the API client.
-        /// </summary>
-        /// <value>The base path</value>
-        [Obsolete(
-            "SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead."
-        )]
-        public void SetBasePath(string basePath)
-        {
-            // do nothing
-        }
-
-        /// <summary>
-        ///     Gets the default header.
+        /// Gets the default header.
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public Dictionary<string, string> DefaultHeader()
+        public IDictionary<String, String> DefaultHeader()
         {
-            return Configuration.DefaultHeader;
+            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
         }
 
         /// <summary>
-        ///     Add default header.
+        /// Add default header.
         /// </summary>
         /// <param name="key">Header field name.</param>
         /// <param name="value">Header field value.</param>
@@ -807,7 +289,533 @@ namespace ShipEngine.ApiClient.Api
         [Obsolete("AddDefaultHeader is deprecated, please use Configuration.AddDefaultHeader instead.")]
         public void AddDefaultHeader(string key, string value)
         {
-            Configuration.AddDefaultHeader(key, value);
+            this.Configuration.AddDefaultHeader(key, value);
         }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Manifest</returns>
+        public Manifest ManifestsCreate (CreateManifestRequest request, string apiKey)
+        {
+             ApiResponse<Manifest> localVarResponse = ManifestsCreateWithHttpInfo(request, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Manifest</returns>
+        public ApiResponse< Manifest > ManifestsCreateWithHttpInfo (CreateManifestRequest request, string apiKey)
+        {
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling ManifestsApi->ManifestsCreate");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsCreate");
+
+            var localVarPath = "/v1/manifests";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ManifestsCreate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Manifest>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Manifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Manifest)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Manifest</returns>
+        public async System.Threading.Tasks.Task<Manifest> ManifestsCreateAsync (CreateManifestRequest request, string apiKey)
+        {
+             ApiResponse<Manifest> localVarResponse = await ManifestsCreateAsyncWithHttpInfo(request, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="request"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Manifest)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Manifest>> ManifestsCreateAsyncWithHttpInfo (CreateManifestRequest request, string apiKey)
+        {
+            // verify the required parameter 'request' is set
+            if (request == null)
+                throw new ApiException(400, "Missing required parameter 'request' when calling ManifestsApi->ManifestsCreate");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsCreate");
+
+            var localVarPath = "/v1/manifests";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (request != null && request.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(request); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = request; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ManifestsCreate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Manifest>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Manifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Manifest)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="manifestId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Manifest</returns>
+        public Manifest ManifestsGet (string manifestId, string apiKey)
+        {
+             ApiResponse<Manifest> localVarResponse = ManifestsGetWithHttpInfo(manifestId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="manifestId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Manifest</returns>
+        public ApiResponse< Manifest > ManifestsGetWithHttpInfo (string manifestId, string apiKey)
+        {
+            // verify the required parameter 'manifestId' is set
+            if (manifestId == null)
+                throw new ApiException(400, "Missing required parameter 'manifestId' when calling ManifestsApi->ManifestsGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsGet");
+
+            var localVarPath = "/v1/manifests/{manifest_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (manifestId != null) localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ManifestsGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Manifest>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Manifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Manifest)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="manifestId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Manifest</returns>
+        public async System.Threading.Tasks.Task<Manifest> ManifestsGetAsync (string manifestId, string apiKey)
+        {
+             ApiResponse<Manifest> localVarResponse = await ManifestsGetAsyncWithHttpInfo(manifestId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="manifestId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Manifest)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Manifest>> ManifestsGetAsyncWithHttpInfo (string manifestId, string apiKey)
+        {
+            // verify the required parameter 'manifestId' is set
+            if (manifestId == null)
+                throw new ApiException(400, "Missing required parameter 'manifestId' when calling ManifestsApi->ManifestsGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsGet");
+
+            var localVarPath = "/v1/manifests/{manifest_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (manifestId != null) localVarPathParams.Add("manifest_id", Configuration.ApiClient.ParameterToString(manifestId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ManifestsGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Manifest>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Manifest) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Manifest)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="shipDateStart"> (optional)</param>
+        /// <param name="shipDateEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <returns>ManifestsListResponse</returns>
+        public ManifestsListResponse ManifestsList (string apiKey, string warehouseId = null, DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null)
+        {
+             ApiResponse<ManifestsListResponse> localVarResponse = ManifestsListWithHttpInfo(apiKey, warehouseId, shipDateStart, shipDateEnd, createdAtStart, createdAtEnd, carrierId, page, pageSize);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="shipDateStart"> (optional)</param>
+        /// <param name="shipDateEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <returns>ApiResponse of ManifestsListResponse</returns>
+        public ApiResponse< ManifestsListResponse > ManifestsListWithHttpInfo (string apiKey, string warehouseId = null, DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsList");
+
+            var localVarPath = "/v1/manifests";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (warehouseId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "warehouse_id", warehouseId)); // query parameter
+            if (shipDateStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "ship_date_start", shipDateStart)); // query parameter
+            if (shipDateEnd != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "ship_date_end", shipDateEnd)); // query parameter
+            if (createdAtStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_start", createdAtStart)); // query parameter
+            if (createdAtEnd != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_end", createdAtEnd)); // query parameter
+            if (carrierId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "carrier_id", carrierId)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ManifestsList", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ManifestsListResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ManifestsListResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ManifestsListResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="shipDateStart"> (optional)</param>
+        /// <param name="shipDateEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <returns>Task of ManifestsListResponse</returns>
+        public async System.Threading.Tasks.Task<ManifestsListResponse> ManifestsListAsync (string apiKey, string warehouseId = null, DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null)
+        {
+             ApiResponse<ManifestsListResponse> localVarResponse = await ManifestsListAsyncWithHttpInfo(apiKey, warehouseId, shipDateStart, shipDateEnd, createdAtStart, createdAtEnd, carrierId, page, pageSize);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="warehouseId"> (optional)</param>
+        /// <param name="shipDateStart"> (optional)</param>
+        /// <param name="shipDateEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="carrierId"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <returns>Task of ApiResponse (ManifestsListResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ManifestsListResponse>> ManifestsListAsyncWithHttpInfo (string apiKey, string warehouseId = null, DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ManifestsApi->ManifestsList");
+
+            var localVarPath = "/v1/manifests";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (warehouseId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "warehouse_id", warehouseId)); // query parameter
+            if (shipDateStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "ship_date_start", shipDateStart)); // query parameter
+            if (shipDateEnd != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "ship_date_end", shipDateEnd)); // query parameter
+            if (createdAtStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_start", createdAtStart)); // query parameter
+            if (createdAtEnd != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_end", createdAtEnd)); // query parameter
+            if (carrierId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "carrier_id", carrierId)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ManifestsList", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ManifestsListResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ManifestsListResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ManifestsListResponse)));
+        }
+
     }
 }

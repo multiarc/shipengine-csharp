@@ -9,78 +9,52 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     ModifyBatchRequest
+    /// ModifyBatchRequest
     /// </summary>
     [DataContract]
-    public class ModifyBatchRequest : IEquatable<ModifyBatchRequest>, IValidatableObject
+    public partial class ModifyBatchRequest :  IEquatable<ModifyBatchRequest>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ModifyBatchRequest" /> class.
+        /// Initializes a new instance of the <see cref="ModifyBatchRequest" /> class.
         /// </summary>
-        /// <param name="shipmentIds">ShipmentIds.</param>
-        /// <param name="rateIds">RateIds.</param>
-        public ModifyBatchRequest(List<string> shipmentIds = default(List<string>),
-            List<string> rateIds = default(List<string>))
+        /// <param name="ShipmentIds">ShipmentIds.</param>
+        /// <param name="RateIds">RateIds.</param>
+        public ModifyBatchRequest(List<string> ShipmentIds = default(List<string>), List<string> RateIds = default(List<string>))
         {
-            ShipmentIds = shipmentIds;
-            RateIds = rateIds;
+            this.ShipmentIds = ShipmentIds;
+            this.RateIds = RateIds;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets ShipmentIds
+        /// Gets or Sets ShipmentIds
         /// </summary>
-        [DataMember(Name = "shipment_ids", EmitDefaultValue = false)]
+        [DataMember(Name="shipment_ids", EmitDefaultValue=false)]
         public List<string> ShipmentIds { get; set; }
 
         /// <summary>
-        ///     Gets or Sets RateIds
+        /// Gets or Sets RateIds
         /// </summary>
-        [DataMember(Name = "rate_ids", EmitDefaultValue = false)]
+        [DataMember(Name="rate_ids", EmitDefaultValue=false)]
         public List<string> RateIds { get; set; }
 
         /// <summary>
-        ///     Returns true if ModifyBatchRequest instances are equal
-        /// </summary>
-        /// <param name="other">Instance of ModifyBatchRequest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ModifyBatchRequest other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    ShipmentIds == other.ShipmentIds ||
-                    ShipmentIds != null &&
-                    ShipmentIds.SequenceEqual(other.ShipmentIds)
-                ) &&
-                (
-                    RateIds == other.RateIds ||
-                    RateIds != null &&
-                    RateIds.SequenceEqual(other.RateIds)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -92,9 +66,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -103,37 +77,64 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as ModifyBatchRequest);
+            return this.Equals(input as ModifyBatchRequest);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if ModifyBatchRequest instances are equal
+        /// </summary>
+        /// <param name="input">Instance of ModifyBatchRequest to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(ModifyBatchRequest input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.ShipmentIds == input.ShipmentIds ||
+                    (this.ShipmentIds != null &&
+                    this.ShipmentIds.SequenceEqual(input.ShipmentIds))
+                ) && 
+                (
+                    this.RateIds == input.RateIds ||
+                    (this.RateIds != null &&
+                    this.RateIds.SequenceEqual(input.RateIds))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (ShipmentIds != null)
-                {
-                    hash = hash * 59 + ShipmentIds.GetHashCode();
-                }
-                if (RateIds != null)
-                {
-                    hash = hash * 59 + RateIds.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.ShipmentIds != null)
+                    hashCode = hashCode * 59 + this.ShipmentIds.GetHashCode();
+                if (this.RateIds != null)
+                    hashCode = hashCode * 59 + this.RateIds.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

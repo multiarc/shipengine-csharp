@@ -9,131 +9,89 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     Package
+    /// Package
     /// </summary>
     [DataContract]
-    public class Package : IEquatable<Package>, IValidatableObject
+    public partial class Package :  IEquatable<Package>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Package" /> class.
+        /// Initializes a new instance of the <see cref="Package" /> class.
         /// </summary>
-        [JsonConstructor]
-        protected Package()
-        {
-        }
-
+        [JsonConstructorAttribute]
+        protected Package() { }
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Package" /> class.
+        /// Initializes a new instance of the <see cref="Package" /> class.
         /// </summary>
-        /// <param name="packageId">PackageId.</param>
-        /// <param name="packageCode">PackageCode.</param>
-        /// <param name="name">Name (required).</param>
-        /// <param name="dimensions">Dimensions.</param>
-        /// <param name="description">Description.</param>
-        public Package(string packageId = default(string), string packageCode = default(string),
-            string name = default(string), Dimensions dimensions = default(Dimensions),
-            string description = default(string))
+        /// <param name="PackageId">PackageId.</param>
+        /// <param name="PackageCode">PackageCode.</param>
+        /// <param name="Name">Name (required).</param>
+        /// <param name="Dimensions">Dimensions.</param>
+        /// <param name="Description">Description.</param>
+        public Package(string PackageId = default(string), string PackageCode = default(string), string Name = default(string), Dimensions Dimensions = default(Dimensions), string Description = default(string))
         {
             // to ensure "Name" is required (not null)
-            if (name == null)
+            if (Name == null)
             {
                 throw new InvalidDataException("Name is a required property for Package and cannot be null");
             }
-            Name = name;
-            PackageId = packageId;
-            PackageCode = packageCode;
-            Dimensions = dimensions;
-            Description = description;
+            else
+            {
+                this.Name = Name;
+            }
+            this.PackageId = PackageId;
+            this.PackageCode = PackageCode;
+            this.Dimensions = Dimensions;
+            this.Description = Description;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets PackageId
+        /// Gets or Sets PackageId
         /// </summary>
-        [DataMember(Name = "package_id", EmitDefaultValue = false)]
+        [DataMember(Name="package_id", EmitDefaultValue=false)]
         public string PackageId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets PackageCode
+        /// Gets or Sets PackageCode
         /// </summary>
-        [DataMember(Name = "package_code", EmitDefaultValue = false)]
+        [DataMember(Name="package_code", EmitDefaultValue=false)]
         public string PackageCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Name
+        /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Dimensions
+        /// Gets or Sets Dimensions
         /// </summary>
-        [DataMember(Name = "dimensions", EmitDefaultValue = false)]
+        [DataMember(Name="dimensions", EmitDefaultValue=false)]
         public Dimensions Dimensions { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Description
+        /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
 
         /// <summary>
-        ///     Returns true if Package instances are equal
-        /// </summary>
-        /// <param name="other">Instance of Package to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Package other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    PackageId == other.PackageId ||
-                    PackageId != null &&
-                    PackageId.Equals(other.PackageId)
-                ) &&
-                (
-                    PackageCode == other.PackageCode ||
-                    PackageCode != null &&
-                    PackageCode.Equals(other.PackageCode)
-                ) &&
-                (
-                    Name == other.Name ||
-                    Name != null &&
-                    Name.Equals(other.Name)
-                ) &&
-                (
-                    Equals(Dimensions, other.Dimensions) ||
-                    Dimensions != null &&
-                    Dimensions.Equals(other.Dimensions)
-                ) &&
-                (
-                    Description == other.Description ||
-                    Description != null &&
-                    Description.Equals(other.Description)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -148,9 +106,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -159,49 +117,85 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Package);
+            return this.Equals(input as Package);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if Package instances are equal
+        /// </summary>
+        /// <param name="input">Instance of Package to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(Package input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.PackageId == input.PackageId ||
+                    (this.PackageId != null &&
+                    this.PackageId.Equals(input.PackageId))
+                ) && 
+                (
+                    this.PackageCode == input.PackageCode ||
+                    (this.PackageCode != null &&
+                    this.PackageCode.Equals(input.PackageCode))
+                ) && 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.Dimensions == input.Dimensions ||
+                    (this.Dimensions != null &&
+                    this.Dimensions.Equals(input.Dimensions))
+                ) && 
+                (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (PackageId != null)
-                {
-                    hash = hash * 59 + PackageId.GetHashCode();
-                }
-                if (PackageCode != null)
-                {
-                    hash = hash * 59 + PackageCode.GetHashCode();
-                }
-                if (Name != null)
-                {
-                    hash = hash * 59 + Name.GetHashCode();
-                }
-                if (Dimensions != null)
-                {
-                    hash = hash * 59 + Dimensions.GetHashCode();
-                }
-                if (Description != null)
-                {
-                    hash = hash * 59 + Description.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.PackageId != null)
+                    hashCode = hashCode * 59 + this.PackageId.GetHashCode();
+                if (this.PackageCode != null)
+                    hashCode = hashCode * 59 + this.PackageCode.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Dimensions != null)
+                    hashCode = hashCode * 59 + this.Dimensions.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

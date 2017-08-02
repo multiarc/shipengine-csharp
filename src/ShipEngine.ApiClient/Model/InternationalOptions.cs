@@ -9,142 +9,118 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     InternationalOptions
+    /// InternationalOptions
     /// </summary>
     [DataContract]
-    public class InternationalOptions : IEquatable<InternationalOptions>, IValidatableObject
+    public partial class InternationalOptions :  IEquatable<InternationalOptions>, IValidatableObject
     {
         /// <summary>
-        ///     Gets or Sets Contents
+        /// Gets or Sets Contents
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ContentsEnum
         {
+            
             /// <summary>
-            ///     Enum Merchandise for "merchandise"
+            /// Enum Merchandise for "merchandise"
             /// </summary>
-            [EnumMember(Value = "merchandise")] Merchandise,
-
+            [EnumMember(Value = "merchandise")]
+            Merchandise,
+            
             /// <summary>
-            ///     Enum Documents for "documents"
+            /// Enum Documents for "documents"
             /// </summary>
-            [EnumMember(Value = "documents")] Documents,
-
+            [EnumMember(Value = "documents")]
+            Documents,
+            
             /// <summary>
-            ///     Enum Gift for "gift"
+            /// Enum Gift for "gift"
             /// </summary>
-            [EnumMember(Value = "gift")] Gift,
-
+            [EnumMember(Value = "gift")]
+            Gift,
+            
             /// <summary>
-            ///     Enum Returnedgoods for "returned_goods"
+            /// Enum Returnedgoods for "returned_goods"
             /// </summary>
-            [EnumMember(Value = "returned_goods")] Returnedgoods,
-
+            [EnumMember(Value = "returned_goods")]
+            Returnedgoods,
+            
             /// <summary>
-            ///     Enum Sample for "sample"
+            /// Enum Sample for "sample"
             /// </summary>
-            [EnumMember(Value = "sample")] Sample
+            [EnumMember(Value = "sample")]
+            Sample
         }
 
         /// <summary>
-        ///     Gets or Sets NonDelivery
+        /// Gets or Sets NonDelivery
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum NonDeliveryEnum
         {
+            
             /// <summary>
-            ///     Enum Returntosender for "return_to_sender"
+            /// Enum Returntosender for "return_to_sender"
             /// </summary>
-            [EnumMember(Value = "return_to_sender")] Returntosender,
-
+            [EnumMember(Value = "return_to_sender")]
+            Returntosender,
+            
             /// <summary>
-            ///     Enum Treatasabandoned for "treat_as_abandoned"
+            /// Enum Treatasabandoned for "treat_as_abandoned"
             /// </summary>
-            [EnumMember(Value = "treat_as_abandoned")] Treatasabandoned
+            [EnumMember(Value = "treat_as_abandoned")]
+            Treatasabandoned
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="InternationalOptions" /> class.
+        /// Gets or Sets Contents
         /// </summary>
-        /// <param name="contents">Contents.</param>
-        /// <param name="customsItems">CustomsItems.</param>
-        /// <param name="nonDelivery">NonDelivery.</param>
-        public InternationalOptions(ContentsEnum? contents = default(ContentsEnum?),
-            List<CustomsItem> customsItems = default(List<CustomsItem>),
-            NonDeliveryEnum? nonDelivery = default(NonDeliveryEnum?))
-        {
-            Contents = contents;
-            CustomsItems = customsItems;
-            NonDelivery = nonDelivery;
-        }
-
-        /// <summary>
-        ///     Gets or Sets Contents
-        /// </summary>
-        [DataMember(Name = "contents", EmitDefaultValue = false)]
+        [DataMember(Name="contents", EmitDefaultValue=false)]
         public ContentsEnum? Contents { get; set; }
-
         /// <summary>
-        ///     Gets or Sets NonDelivery
+        /// Gets or Sets NonDelivery
         /// </summary>
-        [DataMember(Name = "non_delivery", EmitDefaultValue = false)]
+        [DataMember(Name="non_delivery", EmitDefaultValue=false)]
         public NonDeliveryEnum? NonDelivery { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InternationalOptions" /> class.
+        /// </summary>
+        /// <param name="Contents">Contents.</param>
+        /// <param name="CustomsItems">CustomsItems.</param>
+        /// <param name="NonDelivery">NonDelivery.</param>
+        public InternationalOptions(ContentsEnum? Contents = default(ContentsEnum?), List<CustomsItem> CustomsItems = default(List<CustomsItem>), NonDeliveryEnum? NonDelivery = default(NonDeliveryEnum?))
+        {
+            this.Contents = Contents;
+            this.CustomsItems = CustomsItems;
+            this.NonDelivery = NonDelivery;
+        }
+        
 
         /// <summary>
-        ///     Gets or Sets CustomsItems
+        /// Gets or Sets CustomsItems
         /// </summary>
-        [DataMember(Name = "customs_items", EmitDefaultValue = false)]
+        [DataMember(Name="customs_items", EmitDefaultValue=false)]
         public List<CustomsItem> CustomsItems { get; set; }
 
-        /// <summary>
-        ///     Returns true if InternationalOptions instances are equal
-        /// </summary>
-        /// <param name="other">Instance of InternationalOptions to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(InternationalOptions other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    Contents == other.Contents ||
-                    Contents != null &&
-                    Contents.Equals(other.Contents)
-                ) &&
-                (
-                    CustomsItems == other.CustomsItems ||
-                    CustomsItems != null &&
-                    CustomsItems.SequenceEqual(other.CustomsItems)
-                ) &&
-                (
-                    NonDelivery == other.NonDelivery ||
-                    NonDelivery != null &&
-                    NonDelivery.Equals(other.NonDelivery)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
 
         /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -157,9 +133,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -168,41 +144,71 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as InternationalOptions);
+            return this.Equals(input as InternationalOptions);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if InternationalOptions instances are equal
+        /// </summary>
+        /// <param name="input">Instance of InternationalOptions to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(InternationalOptions input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Contents == input.Contents ||
+                    (this.Contents != null &&
+                    this.Contents.Equals(input.Contents))
+                ) && 
+                (
+                    this.CustomsItems == input.CustomsItems ||
+                    (this.CustomsItems != null &&
+                    this.CustomsItems.SequenceEqual(input.CustomsItems))
+                ) && 
+                (
+                    this.NonDelivery == input.NonDelivery ||
+                    (this.NonDelivery != null &&
+                    this.NonDelivery.Equals(input.NonDelivery))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Contents != null)
-                {
-                    hash = hash * 59 + Contents.GetHashCode();
-                }
-                if (CustomsItems != null)
-                {
-                    hash = hash * 59 + CustomsItems.GetHashCode();
-                }
-                if (NonDelivery != null)
-                {
-                    hash = hash * 59 + NonDelivery.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Contents != null)
+                    hashCode = hashCode * 59 + this.Contents.GetHashCode();
+                if (this.CustomsItems != null)
+                    hashCode = hashCode * 59 + this.CustomsItems.GetHashCode();
+                if (this.NonDelivery != null)
+                    hashCode = hashCode * 59 + this.NonDelivery.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

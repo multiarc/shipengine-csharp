@@ -9,173 +9,124 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     RateResponse
+    /// RateResponse
     /// </summary>
     [DataContract]
-    public class RateResponse : IEquatable<RateResponse>, IValidatableObject
+    public partial class RateResponse :  IEquatable<RateResponse>, IValidatableObject
     {
         /// <summary>
-        ///     Gets or Sets Status
+        /// Gets or Sets Status
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
+            
             /// <summary>
-            ///     Enum Working for "working"
+            /// Enum Working for "working"
             /// </summary>
-            [EnumMember(Value = "working")] Working,
-
+            [EnumMember(Value = "working")]
+            Working,
+            
             /// <summary>
-            ///     Enum Completed for "completed"
+            /// Enum Completed for "completed"
             /// </summary>
-            [EnumMember(Value = "completed")] Completed,
-
+            [EnumMember(Value = "completed")]
+            Completed,
+            
             /// <summary>
-            ///     Enum Partial for "partial"
+            /// Enum Partial for "partial"
             /// </summary>
-            [EnumMember(Value = "partial")] Partial,
-
+            [EnumMember(Value = "partial")]
+            Partial,
+            
             /// <summary>
-            ///     Enum Error for "error"
+            /// Enum Error for "error"
             /// </summary>
-            [EnumMember(Value = "error")] Error
+            [EnumMember(Value = "error")]
+            Error
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="RateResponse" /> class.
+        /// Gets or Sets Status
         /// </summary>
-        /// <param name="rates">Rates.</param>
-        /// <param name="invalidRates">InvalidRates.</param>
-        /// <param name="errors">Errors.</param>
-        /// <param name="rateRequestId">RateRequestId.</param>
-        /// <param name="shipmentId">ShipmentId.</param>
-        /// <param name="createdAt">CreatedAt.</param>
-        /// <param name="status">Status.</param>
-        public RateResponse(List<Rate> rates = default(List<Rate>), List<Rate> invalidRates = default(List<Rate>),
-            List<ProviderError> errors = default(List<ProviderError>), string rateRequestId = default(string),
-            string shipmentId = default(string), DateTime? createdAt = default(DateTime?),
-            StatusEnum? status = default(StatusEnum?))
-        {
-            Rates = rates;
-            InvalidRates = invalidRates;
-            Errors = errors;
-            RateRequestId = rateRequestId;
-            ShipmentId = shipmentId;
-            CreatedAt = createdAt;
-            Status = status;
-        }
-
-        /// <summary>
-        ///     Gets or Sets Status
-        /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
+        [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
-
         /// <summary>
-        ///     Gets or Sets Rates
+        /// Initializes a new instance of the <see cref="RateResponse" /> class.
         /// </summary>
-        [DataMember(Name = "rates", EmitDefaultValue = false)]
+        /// <param name="Rates">Rates.</param>
+        /// <param name="InvalidRates">InvalidRates.</param>
+        /// <param name="Errors">Errors.</param>
+        /// <param name="RateRequestId">RateRequestId.</param>
+        /// <param name="ShipmentId">ShipmentId.</param>
+        /// <param name="CreatedAt">CreatedAt.</param>
+        /// <param name="Status">Status.</param>
+        public RateResponse(List<Rate> Rates = default(List<Rate>), List<Rate> InvalidRates = default(List<Rate>), List<ProviderError> Errors = default(List<ProviderError>), string RateRequestId = default(string), string ShipmentId = default(string), DateTime? CreatedAt = default(DateTime?), StatusEnum? Status = default(StatusEnum?))
+        {
+            this.Rates = Rates;
+            this.InvalidRates = InvalidRates;
+            this.Errors = Errors;
+            this.RateRequestId = RateRequestId;
+            this.ShipmentId = ShipmentId;
+            this.CreatedAt = CreatedAt;
+            this.Status = Status;
+        }
+        
+        /// <summary>
+        /// Gets or Sets Rates
+        /// </summary>
+        [DataMember(Name="rates", EmitDefaultValue=false)]
         public List<Rate> Rates { get; set; }
 
         /// <summary>
-        ///     Gets or Sets InvalidRates
+        /// Gets or Sets InvalidRates
         /// </summary>
-        [DataMember(Name = "invalid_rates", EmitDefaultValue = false)]
+        [DataMember(Name="invalid_rates", EmitDefaultValue=false)]
         public List<Rate> InvalidRates { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Errors
+        /// Gets or Sets Errors
         /// </summary>
-        [DataMember(Name = "errors", EmitDefaultValue = false)]
+        [DataMember(Name="errors", EmitDefaultValue=false)]
         public List<ProviderError> Errors { get; set; }
 
         /// <summary>
-        ///     Gets or Sets RateRequestId
+        /// Gets or Sets RateRequestId
         /// </summary>
-        [DataMember(Name = "rate_request_id", EmitDefaultValue = false)]
+        [DataMember(Name="rate_request_id", EmitDefaultValue=false)]
         public string RateRequestId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShipmentId
+        /// Gets or Sets ShipmentId
         /// </summary>
-        [DataMember(Name = "shipment_id", EmitDefaultValue = false)]
+        [DataMember(Name="shipment_id", EmitDefaultValue=false)]
         public string ShipmentId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CreatedAt
+        /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
 
-        /// <summary>
-        ///     Returns true if RateResponse instances are equal
-        /// </summary>
-        /// <param name="other">Instance of RateResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(RateResponse other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    Rates == other.Rates ||
-                    Rates != null &&
-                    Rates.SequenceEqual(other.Rates)
-                ) &&
-                (
-                    InvalidRates == other.InvalidRates ||
-                    InvalidRates != null &&
-                    InvalidRates.SequenceEqual(other.InvalidRates)
-                ) &&
-                (
-                    Errors == other.Errors ||
-                    Errors != null &&
-                    Errors.SequenceEqual(other.Errors)
-                ) &&
-                (
-                    RateRequestId == other.RateRequestId ||
-                    RateRequestId != null &&
-                    RateRequestId.Equals(other.RateRequestId)
-                ) &&
-                (
-                    ShipmentId == other.ShipmentId ||
-                    ShipmentId != null &&
-                    ShipmentId.Equals(other.ShipmentId)
-                ) &&
-                (
-                    CreatedAt == other.CreatedAt ||
-                    CreatedAt != null &&
-                    CreatedAt.Equals(other.CreatedAt)
-                ) &&
-                (
-                    Status == other.Status ||
-                    Status != null &&
-                    Status.Equals(other.Status)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
 
         /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -192,9 +143,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -203,57 +154,99 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as RateResponse);
+            return this.Equals(input as RateResponse);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if RateResponse instances are equal
+        /// </summary>
+        /// <param name="input">Instance of RateResponse to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(RateResponse input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Rates == input.Rates ||
+                    (this.Rates != null &&
+                    this.Rates.SequenceEqual(input.Rates))
+                ) && 
+                (
+                    this.InvalidRates == input.InvalidRates ||
+                    (this.InvalidRates != null &&
+                    this.InvalidRates.SequenceEqual(input.InvalidRates))
+                ) && 
+                (
+                    this.Errors == input.Errors ||
+                    (this.Errors != null &&
+                    this.Errors.SequenceEqual(input.Errors))
+                ) && 
+                (
+                    this.RateRequestId == input.RateRequestId ||
+                    (this.RateRequestId != null &&
+                    this.RateRequestId.Equals(input.RateRequestId))
+                ) && 
+                (
+                    this.ShipmentId == input.ShipmentId ||
+                    (this.ShipmentId != null &&
+                    this.ShipmentId.Equals(input.ShipmentId))
+                ) && 
+                (
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Rates != null)
-                {
-                    hash = hash * 59 + Rates.GetHashCode();
-                }
-                if (InvalidRates != null)
-                {
-                    hash = hash * 59 + InvalidRates.GetHashCode();
-                }
-                if (Errors != null)
-                {
-                    hash = hash * 59 + Errors.GetHashCode();
-                }
-                if (RateRequestId != null)
-                {
-                    hash = hash * 59 + RateRequestId.GetHashCode();
-                }
-                if (ShipmentId != null)
-                {
-                    hash = hash * 59 + ShipmentId.GetHashCode();
-                }
-                if (CreatedAt != null)
-                {
-                    hash = hash * 59 + CreatedAt.GetHashCode();
-                }
-                if (Status != null)
-                {
-                    hash = hash * 59 + Status.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Rates != null)
+                    hashCode = hashCode * 59 + this.Rates.GetHashCode();
+                if (this.InvalidRates != null)
+                    hashCode = hashCode * 59 + this.InvalidRates.GetHashCode();
+                if (this.Errors != null)
+                    hashCode = hashCode * 59 + this.Errors.GetHashCode();
+                if (this.RateRequestId != null)
+                    hashCode = hashCode * 59 + this.RateRequestId.GetHashCode();
+                if (this.ShipmentId != null)
+                    hashCode = hashCode * 59 + this.ShipmentId.GetHashCode();
+                if (this.CreatedAt != null)
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.Status != null)
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

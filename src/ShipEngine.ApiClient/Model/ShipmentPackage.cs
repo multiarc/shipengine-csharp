@@ -9,103 +9,68 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     Used as a package that is part of a Shipment, every Shipment must have at least one package.
+    /// ShipmentPackage
     /// </summary>
     [DataContract]
-    public class ShipmentPackage : IEquatable<ShipmentPackage>, IValidatableObject
+    public partial class ShipmentPackage :  IEquatable<ShipmentPackage>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ShipmentPackage" /> class.
+        /// Initializes a new instance of the <see cref="ShipmentPackage" /> class.
         /// </summary>
-        /// <param name="packageCode">PackageCode.</param>
-        /// <param name="weight">Weight.</param>
-        /// <param name="dimensions">Dimensions.</param>
-        /// <param name="insuredValue">InsuredValue.</param>
-        public ShipmentPackage(string packageCode = default(string), Weight weight = default(Weight),
-            Dimensions dimensions = default(Dimensions), MoneyDTO insuredValue = default(MoneyDTO))
+        /// <param name="PackageCode">PackageCode.</param>
+        /// <param name="Weight">Weight.</param>
+        /// <param name="Dimensions">Dimensions.</param>
+        /// <param name="InsuredValue">InsuredValue.</param>
+        public ShipmentPackage(string PackageCode = default(string), Weight Weight = default(Weight), Dimensions Dimensions = default(Dimensions), MoneyDTO InsuredValue = default(MoneyDTO))
         {
-            PackageCode = packageCode;
-            Weight = weight;
-            Dimensions = dimensions;
-            InsuredValue = insuredValue;
+            this.PackageCode = PackageCode;
+            this.Weight = Weight;
+            this.Dimensions = Dimensions;
+            this.InsuredValue = InsuredValue;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets PackageCode
+        /// Gets or Sets PackageCode
         /// </summary>
-        [DataMember(Name = "package_code", EmitDefaultValue = false)]
+        [DataMember(Name="package_code", EmitDefaultValue=false)]
         public string PackageCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Weight
+        /// Gets or Sets Weight
         /// </summary>
-        [DataMember(Name = "weight", EmitDefaultValue = false)]
+        [DataMember(Name="weight", EmitDefaultValue=false)]
         public Weight Weight { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Dimensions
+        /// Gets or Sets Dimensions
         /// </summary>
-        [DataMember(Name = "dimensions", EmitDefaultValue = false)]
+        [DataMember(Name="dimensions", EmitDefaultValue=false)]
         public Dimensions Dimensions { get; set; }
 
         /// <summary>
-        ///     Gets or Sets InsuredValue
+        /// Gets or Sets InsuredValue
         /// </summary>
-        [DataMember(Name = "insured_value", EmitDefaultValue = false)]
+        [DataMember(Name="insured_value", EmitDefaultValue=false)]
         public MoneyDTO InsuredValue { get; set; }
 
         /// <summary>
-        ///     Returns true if ShipmentPackage instances are equal
-        /// </summary>
-        /// <param name="other">Instance of ShipmentPackage to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ShipmentPackage other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    PackageCode == other.PackageCode ||
-                    PackageCode != null &&
-                    PackageCode.Equals(other.PackageCode)
-                ) &&
-                (
-                    Equals(Weight, other.Weight) ||
-                    Weight != null &&
-                    Weight.Equals(other.Weight)
-                ) &&
-                (
-                    Equals(Dimensions, other.Dimensions) ||
-                    Dimensions != null &&
-                    Dimensions.Equals(other.Dimensions)
-                ) &&
-                (
-                    Equals(InsuredValue, other.InsuredValue) ||
-                    InsuredValue != null &&
-                    InsuredValue.Equals(other.InsuredValue)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -119,9 +84,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -130,45 +95,78 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as ShipmentPackage);
+            return this.Equals(input as ShipmentPackage);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if ShipmentPackage instances are equal
+        /// </summary>
+        /// <param name="input">Instance of ShipmentPackage to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(ShipmentPackage input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.PackageCode == input.PackageCode ||
+                    (this.PackageCode != null &&
+                    this.PackageCode.Equals(input.PackageCode))
+                ) && 
+                (
+                    this.Weight == input.Weight ||
+                    (this.Weight != null &&
+                    this.Weight.Equals(input.Weight))
+                ) && 
+                (
+                    this.Dimensions == input.Dimensions ||
+                    (this.Dimensions != null &&
+                    this.Dimensions.Equals(input.Dimensions))
+                ) && 
+                (
+                    this.InsuredValue == input.InsuredValue ||
+                    (this.InsuredValue != null &&
+                    this.InsuredValue.Equals(input.InsuredValue))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (PackageCode != null)
-                {
-                    hash = hash * 59 + PackageCode.GetHashCode();
-                }
-                if (Weight != null)
-                {
-                    hash = hash * 59 + Weight.GetHashCode();
-                }
-                if (Dimensions != null)
-                {
-                    hash = hash * 59 + Dimensions.GetHashCode();
-                }
-                if (InsuredValue != null)
-                {
-                    hash = hash * 59 + InsuredValue.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.PackageCode != null)
+                    hashCode = hashCode * 59 + this.PackageCode.GetHashCode();
+                if (this.Weight != null)
+                    hashCode = hashCode * 59 + this.Weight.GetHashCode();
+                if (this.Dimensions != null)
+                    hashCode = hashCode * 59 + this.Dimensions.GetHashCode();
+                if (this.InsuredValue != null)
+                    hashCode = hashCode * 59 + this.InsuredValue.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

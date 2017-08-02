@@ -9,104 +9,68 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     CreateBatchRequest
+    /// CreateBatchRequest
     /// </summary>
     [DataContract]
-    public class CreateBatchRequest : IEquatable<CreateBatchRequest>, IValidatableObject
+    public partial class CreateBatchRequest :  IEquatable<CreateBatchRequest>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CreateBatchRequest" /> class.
+        /// Initializes a new instance of the <see cref="CreateBatchRequest" /> class.
         /// </summary>
-        /// <param name="externalBatchId">ExternalBatchId.</param>
-        /// <param name="batchNotes">BatchNotes.</param>
-        /// <param name="shipmentIds">ShipmentIds.</param>
-        /// <param name="rateIds">RateIds.</param>
-        public CreateBatchRequest(string externalBatchId = default(string), string batchNotes = default(string),
-            List<string> shipmentIds = default(List<string>), List<string> rateIds = default(List<string>))
+        /// <param name="ExternalBatchId">ExternalBatchId.</param>
+        /// <param name="BatchNotes">BatchNotes.</param>
+        /// <param name="ShipmentIds">ShipmentIds.</param>
+        /// <param name="RateIds">RateIds.</param>
+        public CreateBatchRequest(string ExternalBatchId = default(string), string BatchNotes = default(string), List<string> ShipmentIds = default(List<string>), List<string> RateIds = default(List<string>))
         {
-            ExternalBatchId = externalBatchId;
-            BatchNotes = batchNotes;
-            ShipmentIds = shipmentIds;
-            RateIds = rateIds;
+            this.ExternalBatchId = ExternalBatchId;
+            this.BatchNotes = BatchNotes;
+            this.ShipmentIds = ShipmentIds;
+            this.RateIds = RateIds;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets ExternalBatchId
+        /// Gets or Sets ExternalBatchId
         /// </summary>
-        [DataMember(Name = "external_batch_id", EmitDefaultValue = false)]
+        [DataMember(Name="external_batch_id", EmitDefaultValue=false)]
         public string ExternalBatchId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets BatchNotes
+        /// Gets or Sets BatchNotes
         /// </summary>
-        [DataMember(Name = "batch_notes", EmitDefaultValue = false)]
+        [DataMember(Name="batch_notes", EmitDefaultValue=false)]
         public string BatchNotes { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShipmentIds
+        /// Gets or Sets ShipmentIds
         /// </summary>
-        [DataMember(Name = "shipment_ids", EmitDefaultValue = false)]
+        [DataMember(Name="shipment_ids", EmitDefaultValue=false)]
         public List<string> ShipmentIds { get; set; }
 
         /// <summary>
-        ///     Gets or Sets RateIds
+        /// Gets or Sets RateIds
         /// </summary>
-        [DataMember(Name = "rate_ids", EmitDefaultValue = false)]
+        [DataMember(Name="rate_ids", EmitDefaultValue=false)]
         public List<string> RateIds { get; set; }
 
         /// <summary>
-        ///     Returns true if CreateBatchRequest instances are equal
-        /// </summary>
-        /// <param name="other">Instance of CreateBatchRequest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CreateBatchRequest other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    ExternalBatchId == other.ExternalBatchId ||
-                    ExternalBatchId != null &&
-                    ExternalBatchId.Equals(other.ExternalBatchId)
-                ) &&
-                (
-                    BatchNotes == other.BatchNotes ||
-                    BatchNotes != null &&
-                    BatchNotes.Equals(other.BatchNotes)
-                ) &&
-                (
-                    ShipmentIds == other.ShipmentIds ||
-                    ShipmentIds != null &&
-                    ShipmentIds.SequenceEqual(other.ShipmentIds)
-                ) &&
-                (
-                    RateIds == other.RateIds ||
-                    RateIds != null &&
-                    RateIds.SequenceEqual(other.RateIds)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -120,9 +84,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -131,45 +95,78 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as CreateBatchRequest);
+            return this.Equals(input as CreateBatchRequest);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if CreateBatchRequest instances are equal
+        /// </summary>
+        /// <param name="input">Instance of CreateBatchRequest to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(CreateBatchRequest input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.ExternalBatchId == input.ExternalBatchId ||
+                    (this.ExternalBatchId != null &&
+                    this.ExternalBatchId.Equals(input.ExternalBatchId))
+                ) && 
+                (
+                    this.BatchNotes == input.BatchNotes ||
+                    (this.BatchNotes != null &&
+                    this.BatchNotes.Equals(input.BatchNotes))
+                ) && 
+                (
+                    this.ShipmentIds == input.ShipmentIds ||
+                    (this.ShipmentIds != null &&
+                    this.ShipmentIds.SequenceEqual(input.ShipmentIds))
+                ) && 
+                (
+                    this.RateIds == input.RateIds ||
+                    (this.RateIds != null &&
+                    this.RateIds.SequenceEqual(input.RateIds))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (ExternalBatchId != null)
-                {
-                    hash = hash * 59 + ExternalBatchId.GetHashCode();
-                }
-                if (BatchNotes != null)
-                {
-                    hash = hash * 59 + BatchNotes.GetHashCode();
-                }
-                if (ShipmentIds != null)
-                {
-                    hash = hash * 59 + ShipmentIds.GetHashCode();
-                }
-                if (RateIds != null)
-                {
-                    hash = hash * 59 + RateIds.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.ExternalBatchId != null)
+                    hashCode = hashCode * 59 + this.ExternalBatchId.GetHashCode();
+                if (this.BatchNotes != null)
+                    hashCode = hashCode * 59 + this.BatchNotes.GetHashCode();
+                if (this.ShipmentIds != null)
+                    hashCode = hashCode * 59 + this.ShipmentIds.GetHashCode();
+                if (this.RateIds != null)
+                    hashCode = hashCode * 59 + this.RateIds.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

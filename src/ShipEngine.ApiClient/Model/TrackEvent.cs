@@ -9,157 +9,100 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     TrackEvent
+    /// TrackEvent
     /// </summary>
     [DataContract]
-    public class TrackEvent : IEquatable<TrackEvent>, IValidatableObject
+    public partial class TrackEvent :  IEquatable<TrackEvent>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="TrackEvent" /> class.
+        /// Initializes a new instance of the <see cref="TrackEvent" /> class.
         /// </summary>
-        /// <param name="occurredAt">OccurredAt.</param>
-        /// <param name="description">Description.</param>
-        /// <param name="cityLocality">CityLocality.</param>
-        /// <param name="stateProvince">StateProvince.</param>
-        /// <param name="postalCode">PostalCode.</param>
-        /// <param name="countryCode">CountryCode.</param>
-        /// <param name="companyName">CompanyName.</param>
-        /// <param name="signer">Signer.</param>
-        public TrackEvent(DateTime? occurredAt = default(DateTime?), string description = default(string),
-            string cityLocality = default(string), string stateProvince = default(string),
-            string postalCode = default(string), string countryCode = default(string),
-            string companyName = default(string), string signer = default(string))
+        /// <param name="OccurredAt">OccurredAt.</param>
+        /// <param name="Description">Description.</param>
+        /// <param name="CityLocality">CityLocality.</param>
+        /// <param name="StateProvince">StateProvince.</param>
+        /// <param name="PostalCode">PostalCode.</param>
+        /// <param name="CountryCode">CountryCode.</param>
+        /// <param name="CompanyName">CompanyName.</param>
+        /// <param name="Signer">Signer.</param>
+        public TrackEvent(DateTime? OccurredAt = default(DateTime?), string Description = default(string), string CityLocality = default(string), string StateProvince = default(string), string PostalCode = default(string), string CountryCode = default(string), string CompanyName = default(string), string Signer = default(string))
         {
-            OccurredAt = occurredAt;
-            Description = description;
-            CityLocality = cityLocality;
-            StateProvince = stateProvince;
-            PostalCode = postalCode;
-            CountryCode = countryCode;
-            CompanyName = companyName;
-            Signer = signer;
+            this.OccurredAt = OccurredAt;
+            this.Description = Description;
+            this.CityLocality = CityLocality;
+            this.StateProvince = StateProvince;
+            this.PostalCode = PostalCode;
+            this.CountryCode = CountryCode;
+            this.CompanyName = CompanyName;
+            this.Signer = Signer;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets OccurredAt
+        /// Gets or Sets OccurredAt
         /// </summary>
-        [DataMember(Name = "occurred_at", EmitDefaultValue = false)]
+        [DataMember(Name="occurred_at", EmitDefaultValue=false)]
         public DateTime? OccurredAt { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Description
+        /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CityLocality
+        /// Gets or Sets CityLocality
         /// </summary>
-        [DataMember(Name = "city_locality", EmitDefaultValue = false)]
+        [DataMember(Name="city_locality", EmitDefaultValue=false)]
         public string CityLocality { get; set; }
 
         /// <summary>
-        ///     Gets or Sets StateProvince
+        /// Gets or Sets StateProvince
         /// </summary>
-        [DataMember(Name = "state_province", EmitDefaultValue = false)]
+        [DataMember(Name="state_province", EmitDefaultValue=false)]
         public string StateProvince { get; set; }
 
         /// <summary>
-        ///     Gets or Sets PostalCode
+        /// Gets or Sets PostalCode
         /// </summary>
-        [DataMember(Name = "postal_code", EmitDefaultValue = false)]
+        [DataMember(Name="postal_code", EmitDefaultValue=false)]
         public string PostalCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CountryCode
+        /// Gets or Sets CountryCode
         /// </summary>
-        [DataMember(Name = "country_code", EmitDefaultValue = false)]
+        [DataMember(Name="country_code", EmitDefaultValue=false)]
         public string CountryCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CompanyName
+        /// Gets or Sets CompanyName
         /// </summary>
-        [DataMember(Name = "company_name", EmitDefaultValue = false)]
+        [DataMember(Name="company_name", EmitDefaultValue=false)]
         public string CompanyName { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Signer
+        /// Gets or Sets Signer
         /// </summary>
-        [DataMember(Name = "signer", EmitDefaultValue = false)]
+        [DataMember(Name="signer", EmitDefaultValue=false)]
         public string Signer { get; set; }
 
         /// <summary>
-        ///     Returns true if TrackEvent instances are equal
-        /// </summary>
-        /// <param name="other">Instance of TrackEvent to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TrackEvent other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    OccurredAt == other.OccurredAt ||
-                    OccurredAt != null &&
-                    OccurredAt.Equals(other.OccurredAt)
-                ) &&
-                (
-                    Description == other.Description ||
-                    Description != null &&
-                    Description.Equals(other.Description)
-                ) &&
-                (
-                    CityLocality == other.CityLocality ||
-                    CityLocality != null &&
-                    CityLocality.Equals(other.CityLocality)
-                ) &&
-                (
-                    StateProvince == other.StateProvince ||
-                    StateProvince != null &&
-                    StateProvince.Equals(other.StateProvince)
-                ) &&
-                (
-                    PostalCode == other.PostalCode ||
-                    PostalCode != null &&
-                    PostalCode.Equals(other.PostalCode)
-                ) &&
-                (
-                    CountryCode == other.CountryCode ||
-                    CountryCode != null &&
-                    CountryCode.Equals(other.CountryCode)
-                ) &&
-                (
-                    CompanyName == other.CompanyName ||
-                    CompanyName != null &&
-                    CompanyName.Equals(other.CompanyName)
-                ) &&
-                (
-                    Signer == other.Signer ||
-                    Signer != null &&
-                    Signer.Equals(other.Signer)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -177,9 +120,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -188,61 +131,106 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as TrackEvent);
+            return this.Equals(input as TrackEvent);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if TrackEvent instances are equal
+        /// </summary>
+        /// <param name="input">Instance of TrackEvent to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(TrackEvent input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.OccurredAt == input.OccurredAt ||
+                    (this.OccurredAt != null &&
+                    this.OccurredAt.Equals(input.OccurredAt))
+                ) && 
+                (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                ) && 
+                (
+                    this.CityLocality == input.CityLocality ||
+                    (this.CityLocality != null &&
+                    this.CityLocality.Equals(input.CityLocality))
+                ) && 
+                (
+                    this.StateProvince == input.StateProvince ||
+                    (this.StateProvince != null &&
+                    this.StateProvince.Equals(input.StateProvince))
+                ) && 
+                (
+                    this.PostalCode == input.PostalCode ||
+                    (this.PostalCode != null &&
+                    this.PostalCode.Equals(input.PostalCode))
+                ) && 
+                (
+                    this.CountryCode == input.CountryCode ||
+                    (this.CountryCode != null &&
+                    this.CountryCode.Equals(input.CountryCode))
+                ) && 
+                (
+                    this.CompanyName == input.CompanyName ||
+                    (this.CompanyName != null &&
+                    this.CompanyName.Equals(input.CompanyName))
+                ) && 
+                (
+                    this.Signer == input.Signer ||
+                    (this.Signer != null &&
+                    this.Signer.Equals(input.Signer))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (OccurredAt != null)
-                {
-                    hash = hash * 59 + OccurredAt.GetHashCode();
-                }
-                if (Description != null)
-                {
-                    hash = hash * 59 + Description.GetHashCode();
-                }
-                if (CityLocality != null)
-                {
-                    hash = hash * 59 + CityLocality.GetHashCode();
-                }
-                if (StateProvince != null)
-                {
-                    hash = hash * 59 + StateProvince.GetHashCode();
-                }
-                if (PostalCode != null)
-                {
-                    hash = hash * 59 + PostalCode.GetHashCode();
-                }
-                if (CountryCode != null)
-                {
-                    hash = hash * 59 + CountryCode.GetHashCode();
-                }
-                if (CompanyName != null)
-                {
-                    hash = hash * 59 + CompanyName.GetHashCode();
-                }
-                if (Signer != null)
-                {
-                    hash = hash * 59 + Signer.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.OccurredAt != null)
+                    hashCode = hashCode * 59 + this.OccurredAt.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.CityLocality != null)
+                    hashCode = hashCode * 59 + this.CityLocality.GetHashCode();
+                if (this.StateProvince != null)
+                    hashCode = hashCode * 59 + this.StateProvince.GetHashCode();
+                if (this.PostalCode != null)
+                    hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
+                if (this.CountryCode != null)
+                    hashCode = hashCode * 59 + this.CountryCode.GetHashCode();
+                if (this.CompanyName != null)
+                    hashCode = hashCode * 59 + this.CompanyName.GetHashCode();
+                if (this.Signer != null)
+                    hashCode = hashCode * 59 + this.Signer.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

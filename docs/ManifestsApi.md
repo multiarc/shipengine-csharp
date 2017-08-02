@@ -4,18 +4,16 @@ All URIs are relative to *https://api.shipengine.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ManifestsCreate**](ManifestsApi.md#manifestscreate) | **POST** /v1/manifests | Create a manifest
-[**ManifestsGet**](ManifestsApi.md#manifestsget) | **GET** /v1/manifests/{manifest_id} | Get a specific manifest
-[**ManifestsList**](ManifestsApi.md#manifestslist) | **GET** /v1/manifests | Get manifests
+[**ManifestsCreate**](ManifestsApi.md#manifestscreate) | **POST** /v1/manifests | 
+[**ManifestsGet**](ManifestsApi.md#manifestsget) | **GET** /v1/manifests/{manifest_id} | 
+[**ManifestsList**](ManifestsApi.md#manifestslist) | **GET** /v1/manifests | 
 
 
 <a name="manifestscreate"></a>
 # **ManifestsCreate**
 > Manifest ManifestsCreate (CreateManifestRequest request, string apiKey)
 
-Create a manifest
 
-Create/generate a manifest for a specific shipping provider and date
 
 ### Example
 ```csharp
@@ -31,11 +29,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ManifestsApi();
             var request = new CreateManifestRequest(); // CreateManifestRequest | 
@@ -43,7 +40,6 @@ namespace Example
 
             try
             {
-                // Create a manifest
                 Manifest result = apiInstance.ManifestsCreate(request, apiKey);
                 Debug.WriteLine(result);
             }
@@ -82,7 +78,7 @@ Name | Type | Description  | Notes
 # **ManifestsGet**
 > Manifest ManifestsGet (string manifestId, string apiKey)
 
-Get a specific manifest
+
 
 ### Example
 ```csharp
@@ -98,11 +94,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ManifestsApi();
             var manifestId = manifestId_example;  // string | 
@@ -110,7 +105,6 @@ namespace Example
 
             try
             {
-                // Get a specific manifest
                 Manifest result = apiInstance.ManifestsGet(manifestId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -149,9 +143,7 @@ Name | Type | Description  | Notes
 # **ManifestsList**
 > ManifestsListResponse ManifestsList (string apiKey, string warehouseId = null, DateTime? shipDateStart = null, DateTime? shipDateEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, string carrierId = null, int? page = null, int? pageSize = null)
 
-Get manifests
 
-Get a list of manifests using optional criteria
 
 ### Example
 ```csharp
@@ -167,11 +159,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new ManifestsApi();
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
@@ -180,13 +171,12 @@ namespace Example
             var shipDateEnd = 2013-10-20T19:20:30+01:00;  // DateTime? |  (optional) 
             var createdAtStart = 2013-10-20T19:20:30+01:00;  // DateTime? |  (optional) 
             var createdAtEnd = 2013-10-20T19:20:30+01:00;  // DateTime? |  (optional) 
-            var carrierId = carrierId_example;  // string | Carrier ID (optional) 
+            var carrierId = carrierId_example;  // string |  (optional) 
             var page = 56;  // int? |  (optional) 
             var pageSize = 56;  // int? |  (optional) 
 
             try
             {
-                // Get manifests
                 ManifestsListResponse result = apiInstance.ManifestsList(apiKey, warehouseId, shipDateStart, shipDateEnd, createdAtStart, createdAtEnd, carrierId, page, pageSize);
                 Debug.WriteLine(result);
             }
@@ -209,7 +199,7 @@ Name | Type | Description  | Notes
  **shipDateEnd** | **DateTime?**|  | [optional] 
  **createdAtStart** | **DateTime?**|  | [optional] 
  **createdAtEnd** | **DateTime?**|  | [optional] 
- **carrierId** | **string**| Carrier ID | [optional] 
+ **carrierId** | **string**|  | [optional] 
  **page** | **int?**|  | [optional] 
  **pageSize** | **int?**|  | [optional] 
 

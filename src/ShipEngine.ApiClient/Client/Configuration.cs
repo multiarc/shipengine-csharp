@@ -9,75 +9,159 @@
  */
 
 using System;
+using System.Reflection;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Text;
 
 namespace ShipEngine.ApiClient.Client
 {
     /// <summary>
-    ///     Represents a set of configuration settings
+    /// Represents a set of configuration settings
     /// </summary>
-    public class Configuration
+    public class Configuration : IReadableConfiguration
     {
+        #region Constants
+
         /// <summary>
-        ///     Version of the package.
+        /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
         public const string Version = "1.0.0";
 
-        private const string Iso8601DatetimeFormat = "o";
-
         /// <summary>
-        ///     Gets or sets the default Configuration.
+        /// Identifier for ISO 8601 DateTime Format
         /// </summary>
-        /// <value>Configuration.</value>
-        public static Configuration Default = new Configuration();
+        /// <remarks>See https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx#Anchor_8 for more information.</remarks>
+        // ReSharper disable once InconsistentNaming
+        public const string ISO8601_DATETIME_FORMAT = "o";
+
+        #endregion Constants
+
+        #region Static Members
+
+        private static readonly object GlobalConfigSync = new { };
+        private static Configuration _globalConfiguration;
 
         /// <summary>
-        ///     Default creation of exceptions for a given method name and response object
+        /// Default creation of exceptions for a given method name and response object
         /// </summary>
         public static readonly ExceptionFactory DefaultExceptionFactory = (methodName, response) =>
         {
-            var status = (int) response.StatusCode;
+            var status = (int)response.StatusCode;
             if (status >= 400)
             {
-                return new ApiException(status, $"Error calling {methodName}: {response.Content}",
+                return new ApiException(status,
+                    string.Format("Error calling {0}: {1}", methodName, response.Content),
                     response.Content);
             }
             if (status == 0)
             {
                 return new ApiException(status,
-                    $"Error calling {methodName}: {response.ErrorMessage}", response.ErrorMessage);
+                    string.Format("Error calling {0}: {1}", methodName, response.ErrorMessage), response.ErrorMessage);
             }
             return null;
         };
 
-        private string _dateTimeFormat = Iso8601DatetimeFormat;
-
-        private string _tempFolderPath;
-
         /// <summary>
-        ///     Gets or sets the default API client for making HTTP calls.
+        /// Gets or sets the default Configuration.
         /// </summary>
-        /// <value>The API client.</value>
-        public ApiClient ApiClient;
+        /// <value>Configuration.</value>
+        public static Configuration Default
+        {
+            get { return _globalConfiguration; }
+            set
+            {
+                lock (GlobalConfigSync)
+                {
+                    _globalConfiguration = value;
+                }
+            }
+        }
+
+        #endregion Static Members
+
+        #region Private Members
 
         /// <summary>
-        ///     Gets or sets the API key based on the authentication name.
+        /// Gets or sets the API key based on the authentication name.
         /// </summary>
         /// <value>The API key.</value>
-        public Dictionary<string, string> ApiKey = new Dictionary<string, string>();
+        private IDictionary<string, string> _apiKey = null;
 
         /// <summary>
-        ///     Gets or sets the prefix (e.g. Token) of the API key based on the authentication name.
+        /// Gets or sets the prefix (e.g. Token) of the API key based on the authentication name.
         /// </summary>
         /// <value>The prefix of the API key.</value>
-        public Dictionary<string, string> ApiKeyPrefix = new Dictionary<string, string>();
+        private IDictionary<string, string> _apiKeyPrefix = null;
+
+        private string _dateTimeFormat = ISO8601_DATETIME_FORMAT;
+        private string _tempFolderPath = Path.GetTempPath();
+
+        #endregion Private Members
+
+        #region Constructors
+
+        static Configuration()
+        {
+            _globalConfiguration = new GlobalConfiguration();
+        }
 
         /// <summary>
-        ///     Initializes a new instance of the Configuration class with different settings
+        /// Initializes a new instance of the <see cref="Configuration" /> class
+        /// </summary>
+        public Configuration()
+        {
+            UserAgent = "Swagger-Codegen/1.0.0/csharp";
+            BasePath = "https://api.shipengine.com";
+            DefaultHeader = new ConcurrentDictionary<string, string>();
+            ApiKey = new ConcurrentDictionary<string, string>();
+            ApiKeyPrefix = new ConcurrentDictionary<string, string>();
+
+            // Setting Timeout has side effects (forces ApiClient creation).
+            Timeout = 100000;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Configuration" /> class
+        /// </summary>
+        public Configuration(
+            IDictionary<string, string> defaultHeader,
+            IDictionary<string, string> apiKey,
+            IDictionary<string, string> apiKeyPrefix,
+            string basePath = "https://api.shipengine.com") : this()
+        {
+            if (string.IsNullOrWhiteSpace(basePath))
+                throw new ArgumentException("The provided basePath is invalid.", "basePath");
+            if (defaultHeader == null)
+                throw new ArgumentNullException("defaultHeader");
+            if (apiKey == null)
+                throw new ArgumentNullException("apiKey");
+            if (apiKeyPrefix == null)
+                throw new ArgumentNullException("apiKeyPrefix");
+
+            BasePath = basePath;
+
+            foreach (var keyValuePair in defaultHeader)
+            {
+                DefaultHeader.Add(keyValuePair);
+            }
+
+            foreach (var keyValuePair in apiKey)
+            {
+                ApiKey.Add(keyValuePair);
+            }
+
+            foreach (var keyValuePair in apiKeyPrefix)
+            {
+                ApiKeyPrefix.Add(keyValuePair);
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Configuration" /> class with different settings
         /// </summary>
         /// <param name="apiClient">Api client</param>
         /// <param name="defaultHeader">Dictionary of default HTTP header</param>
@@ -90,120 +174,139 @@ namespace ShipEngine.ApiClient.Client
         /// <param name="dateTimeFormat">DateTime format string</param>
         /// <param name="timeout">HTTP connection timeout (in milliseconds)</param>
         /// <param name="userAgent">HTTP user agent</param>
-        public Configuration(ApiClient apiClient = null,
-            Dictionary<string, string> defaultHeader = null,
+        [Obsolete("Use explicit object construction and setting of properties.", true)]
+        public Configuration(
+            // ReSharper disable UnusedParameter.Local
+            ApiClient apiClient = null,
+            IDictionary<string, string> defaultHeader = null,
             string username = null,
             string password = null,
             string accessToken = null,
-            Dictionary<string, string> apiKey = null,
-            Dictionary<string, string> apiKeyPrefix = null,
+            IDictionary<string, string> apiKey = null,
+            IDictionary<string, string> apiKeyPrefix = null,
             string tempFolderPath = null,
             string dateTimeFormat = null,
             int timeout = 100000,
             string userAgent = "Swagger-Codegen/1.0.0/csharp"
-        )
+            // ReSharper restore UnusedParameter.Local
+            )
         {
-            SetApiClientUsingDefault(apiClient);
 
-            Username = username;
-            Password = password;
-            AccessToken = accessToken;
-            UserAgent = userAgent;
-
-            if (defaultHeader != null)
-            {
-                DefaultHeader = defaultHeader;
-            }
-            if (apiKey != null)
-            {
-                ApiKey = apiKey;
-            }
-            if (apiKeyPrefix != null)
-            {
-                ApiKeyPrefix = apiKeyPrefix;
-            }
-
-            TempFolderPath = tempFolderPath;
-            DateTimeFormat = dateTimeFormat;
-            Timeout = timeout;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the Configuration class.
+        /// Initializes a new instance of the Configuration class.
         /// </summary>
         /// <param name="apiClient">Api client.</param>
+        [Obsolete("This constructor caused unexpected sharing of static data. It is no longer supported.", true)]
+        // ReSharper disable once UnusedParameter.Local
         public Configuration(ApiClient apiClient)
         {
-            SetApiClientUsingDefault(apiClient);
+
         }
 
-        /// <summary>
-        ///     Gets or sets the HTTP timeout (milliseconds) of ApiClient. Default to 100000 milliseconds.
-        /// </summary>
-        /// <value>Timeout.</value>
-        public int Timeout
-        {
-            get { return ApiClient.RestClient.Timeout; }
+        #endregion Constructors
 
-            set
-            {
-                if (ApiClient != null)
-                {
-                    ApiClient.RestClient.Timeout = value;
-                }
-            }
-        }
 
-        /// <summary>
-        ///     Gets or sets the default header.
-        /// </summary>
-        public Dictionary<string, string> DefaultHeader { get; set; } = new Dictionary<string, string>();
+        #region Properties
 
+        private ApiClient _apiClient = null;
         /// <summary>
-        ///     Gets or sets the HTTP user agent.
+        /// Gets an instance of an ApiClient for this configuration
         /// </summary>
-        /// <value>Http user agent.</value>
-        public string UserAgent { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the username (HTTP basic authentication).
-        /// </summary>
-        /// <value>The username.</value>
-        public string Username { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the password (HTTP basic authentication).
-        /// </summary>
-        /// <value>The password.</value>
-        public string Password { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the access token for OAuth2 authentication.
-        /// </summary>
-        /// <value>The access token.</value>
-        public string AccessToken { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the temporary folder path to store the files downloaded from the server.
-        /// </summary>
-        /// <value>Folder path.</value>
-        public string TempFolderPath
+        public virtual ApiClient ApiClient
         {
             get
             {
-                // default to Path.GetTempPath() if _tempFolderPath is not set
-                if (string.IsNullOrEmpty(_tempFolderPath))
-                {
-                    _tempFolderPath = Path.GetTempPath();
-                }
-                return _tempFolderPath;
+                if (_apiClient == null) _apiClient = CreateApiClient();
+                return _apiClient;
             }
+        }
+
+        private String _basePath = null;
+        /// <summary>
+        /// Gets or sets the base path for API access.
+        /// </summary>
+        public virtual string BasePath {
+            get { return _basePath; }
+            set {
+                _basePath = value;
+                // pass-through to ApiClient if it's set.
+                if(_apiClient != null) {
+                    _apiClient.RestClient.BaseUrl = new Uri(_basePath);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the default header.
+        /// </summary>
+        public virtual IDictionary<string, string> DefaultHeader { get; set; }
+
+        /// <summary>
+        /// Gets or sets the HTTP timeout (milliseconds) of ApiClient. Default to 100000 milliseconds.
+        /// </summary>
+        public virtual int Timeout
+        {
+            
+            get { return ApiClient.RestClient.Timeout; }
+            set { ApiClient.RestClient.Timeout = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the HTTP user agent.
+        /// </summary>
+        /// <value>Http user agent.</value>
+        public virtual string UserAgent { get; set; }
+
+        /// <summary>
+        /// Gets or sets the username (HTTP basic authentication).
+        /// </summary>
+        /// <value>The username.</value>
+        public virtual string Username { get; set; }
+
+        /// <summary>
+        /// Gets or sets the password (HTTP basic authentication).
+        /// </summary>
+        /// <value>The password.</value>
+        public virtual string Password { get; set; }
+
+        /// <summary>
+        /// Gets the API key with prefix.
+        /// </summary>
+        /// <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
+        /// <returns>API key with prefix.</returns>
+        public string GetApiKeyWithPrefix(string apiKeyIdentifier)
+        {
+            var apiKeyValue = "";
+            ApiKey.TryGetValue (apiKeyIdentifier, out apiKeyValue);
+            var apiKeyPrefix = "";
+            if (ApiKeyPrefix.TryGetValue (apiKeyIdentifier, out apiKeyPrefix))
+                return apiKeyPrefix + " " + apiKeyValue;
+            else
+                return apiKeyValue;
+        }
+
+        /// <summary>
+        /// Gets or sets the access token for OAuth2 authentication.
+        /// </summary>
+        /// <value>The access token.</value>
+        public virtual string AccessToken { get; set; }
+
+        /// <summary>
+        /// Gets or sets the temporary folder path to store the files downloaded from the server.
+        /// </summary>
+        /// <value>Folder path.</value>
+        public virtual string TempFolderPath
+        {
+            get { return _tempFolderPath; }
 
             set
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    _tempFolderPath = value;
+                    // Possible breaking change since swagger-codegen 2.2.1, enforce a valid temporary path on set.
+                    _tempFolderPath = Path.GetTempPath();
                     return;
                 }
 
@@ -226,14 +329,14 @@ namespace ShipEngine.ApiClient.Client
         }
 
         /// <summary>
-        ///     Gets or sets the the date time format used when serializing in the ApiClient
-        ///     By default, it's set to ISO 8601 - "o", for others see:
-        ///     https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx
-        ///     and https://msdn.microsoft.com/en-us/library/8kb3ddd4(v=vs.110).aspx
-        ///     No validation is done to ensure that the string you're providing is valid
+        /// Gets or sets the the date time format used when serializing in the ApiClient
+        /// By default, it's set to ISO 8601 - "o", for others see:
+        /// https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx
+        /// and https://msdn.microsoft.com/en-us/library/8kb3ddd4(v=vs.110).aspx
+        /// No validation is done to ensure that the string you're providing is valid
         /// </summary>
         /// <value>The DateTimeFormat string</value>
-        public string DateTimeFormat
+        public virtual string DateTimeFormat
         {
             get { return _dateTimeFormat; }
             set
@@ -241,7 +344,7 @@ namespace ShipEngine.ApiClient.Client
                 if (string.IsNullOrEmpty(value))
                 {
                     // Never allow a blank or null string, go back to the default
-                    _dateTimeFormat = Iso8601DatetimeFormat;
+                    _dateTimeFormat = ISO8601_DATETIME_FORMAT;
                     return;
                 }
 
@@ -252,34 +355,45 @@ namespace ShipEngine.ApiClient.Client
         }
 
         /// <summary>
-        ///     Set the ApiClient using Default or ApiClient instance.
+        /// Gets or sets the prefix (e.g. Token) of the API key based on the authentication name.
         /// </summary>
-        /// <param name="apiClient">An instance of ApiClient.</param>
-        /// <returns></returns>
-        public void SetApiClientUsingDefault(ApiClient apiClient = null)
+        /// <value>The prefix of the API key.</value>
+        public virtual IDictionary<string, string> ApiKeyPrefix
         {
-            if (apiClient == null)
+            get { return _apiKeyPrefix; }
+            set
             {
-                if (Default != null && Default.ApiClient == null)
+                if (value == null)
                 {
-                    Default.ApiClient = new ApiClient();
+                    throw new InvalidOperationException("ApiKeyPrefix collection may not be null.");
                 }
-
-                ApiClient = Default != null ? Default.ApiClient : new ApiClient();
-            }
-            else
-            {
-                if (Default != null && Default.ApiClient == null)
-                {
-                    Default.ApiClient = apiClient;
-                }
-
-                ApiClient = apiClient;
+                _apiKeyPrefix = value;
             }
         }
 
         /// <summary>
-        ///     Add default header.
+        /// Gets or sets the API key based on the authentication name.
+        /// </summary>
+        /// <value>The API key.</value>
+        public virtual IDictionary<string, string> ApiKey
+        {
+            get { return _apiKey; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new InvalidOperationException("ApiKey collection may not be null.");
+                }
+                _apiKey = value;
+            }
+        }
+
+        #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// Add default header.
         /// </summary>
         /// <param name="key">Header field name.</param>
         /// <param name="value">Header field value.</param>
@@ -290,7 +404,31 @@ namespace ShipEngine.ApiClient.Client
         }
 
         /// <summary>
-        ///     Add Api Key Header.
+        /// Creates a new <see cref="ApiClient" /> based on this <see cref="Configuration" /> instance.
+        /// </summary>
+        /// <returns></returns>
+        public ApiClient CreateApiClient()
+        {
+            return new ApiClient(BasePath) { Configuration = this };
+        }
+
+
+        /// <summary>
+        /// Returns a string with essential information for debugging.
+        /// </summary>
+        public static String ToDebugReport()
+        {
+            String report = "C# SDK (ShipEngine.ApiClient) Debug Report:\n";
+            report += "    OS: " + System.Environment.OSVersion + "\n";
+            report += "    .NET Framework Version: " + System.Environment.Version  + "\n";
+            report += "    Version of the API: v1\n";
+            report += "    SDK Package Version: 1.0.0\n";
+
+            return report;
+        }
+
+        /// <summary>
+        /// Add Api Key Header.
         /// </summary>
         /// <param name="key">Api Key name.</param>
         /// <param name="value">Api Key value.</param>
@@ -301,7 +439,7 @@ namespace ShipEngine.ApiClient.Client
         }
 
         /// <summary>
-        ///     Sets the API key prefix.
+        /// Sets the API key prefix.
         /// </summary>
         /// <param name="key">Api Key name.</param>
         /// <param name="value">Api Key value.</param>
@@ -310,37 +448,6 @@ namespace ShipEngine.ApiClient.Client
             ApiKeyPrefix[key] = value;
         }
 
-        /// <summary>
-        ///     Get the API key with prefix.
-        /// </summary>
-        /// <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
-        /// <returns>API key with prefix.</returns>
-        public string GetApiKeyWithPrefix(string apiKeyIdentifier)
-        {
-            string apiKeyValue;
-            ApiKey.TryGetValue(apiKeyIdentifier, out apiKeyValue);
-            string apiKeyPrefix;
-            if (ApiKeyPrefix.TryGetValue(apiKeyIdentifier, out apiKeyPrefix))
-            {
-                return apiKeyPrefix + " " + apiKeyValue;
-            }
-            return apiKeyValue;
-        }
-
-        /// <summary>
-        ///     Returns a string with essential information for debugging.
-        /// </summary>
-        public static string ToDebugReport()
-        {
-            var report = "C# SDK (ShipEngine.ApiClient) Debug Report:\n";
-            report += "    OS: " + Environment.OSVersion + "\n";
-            report += "    .NET Framework Version: " + Assembly
-                          .GetExecutingAssembly()
-                          .GetReferencedAssemblies().First(x => x.Name == "System.Core").Version + "\n";
-            report += "    Version of the API: v1\n";
-            report += "    SDK Package Version: 1.0.0\n";
-
-            return report;
-        }
+        #endregion Methods
     }
 }

@@ -9,185 +9,116 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     TrackingInformation
+    /// TrackingInformation
     /// </summary>
     [DataContract]
-    public class TrackingInformation : IEquatable<TrackingInformation>, IValidatableObject
+    public partial class TrackingInformation :  IEquatable<TrackingInformation>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="TrackingInformation" /> class.
+        /// Initializes a new instance of the <see cref="TrackingInformation" /> class.
         /// </summary>
-        /// <param name="trackingNumber">TrackingNumber.</param>
-        /// <param name="statusCode">StatusCode.</param>
-        /// <param name="statusDescription">StatusDescription.</param>
-        /// <param name="carrierStatusCode">CarrierStatusCode.</param>
-        /// <param name="carrierStatusDescription">CarrierStatusDescription.</param>
-        /// <param name="shipDate">ShipDate.</param>
-        /// <param name="estimatedDeliveryDate">EstimatedDeliveryDate.</param>
-        /// <param name="actualDeliveryDate">ActualDeliveryDate.</param>
-        /// <param name="exceptionDescription">ExceptionDescription.</param>
-        /// <param name="events">Events.</param>
-        public TrackingInformation(string trackingNumber = default(string), string statusCode = default(string),
-            string statusDescription = default(string), string carrierStatusCode = default(string),
-            string carrierStatusDescription = default(string), DateTime? shipDate = default(DateTime?),
-            DateTime? estimatedDeliveryDate = default(DateTime?), DateTime? actualDeliveryDate = default(DateTime?),
-            string exceptionDescription = default(string), List<TrackEvent> events = default(List<TrackEvent>))
+        /// <param name="TrackingNumber">TrackingNumber.</param>
+        /// <param name="StatusCode">StatusCode.</param>
+        /// <param name="StatusDescription">StatusDescription.</param>
+        /// <param name="CarrierStatusCode">CarrierStatusCode.</param>
+        /// <param name="CarrierStatusDescription">CarrierStatusDescription.</param>
+        /// <param name="ShipDate">ShipDate.</param>
+        /// <param name="EstimatedDeliveryDate">EstimatedDeliveryDate.</param>
+        /// <param name="ActualDeliveryDate">ActualDeliveryDate.</param>
+        /// <param name="ExceptionDescription">ExceptionDescription.</param>
+        /// <param name="Events">Events.</param>
+        public TrackingInformation(string TrackingNumber = default(string), string StatusCode = default(string), string StatusDescription = default(string), string CarrierStatusCode = default(string), string CarrierStatusDescription = default(string), DateTime? ShipDate = default(DateTime?), DateTime? EstimatedDeliveryDate = default(DateTime?), DateTime? ActualDeliveryDate = default(DateTime?), string ExceptionDescription = default(string), List<TrackEvent> Events = default(List<TrackEvent>))
         {
-            TrackingNumber = trackingNumber;
-            StatusCode = statusCode;
-            StatusDescription = statusDescription;
-            CarrierStatusCode = carrierStatusCode;
-            CarrierStatusDescription = carrierStatusDescription;
-            ShipDate = shipDate;
-            EstimatedDeliveryDate = estimatedDeliveryDate;
-            ActualDeliveryDate = actualDeliveryDate;
-            ExceptionDescription = exceptionDescription;
-            Events = events;
+            this.TrackingNumber = TrackingNumber;
+            this.StatusCode = StatusCode;
+            this.StatusDescription = StatusDescription;
+            this.CarrierStatusCode = CarrierStatusCode;
+            this.CarrierStatusDescription = CarrierStatusDescription;
+            this.ShipDate = ShipDate;
+            this.EstimatedDeliveryDate = EstimatedDeliveryDate;
+            this.ActualDeliveryDate = ActualDeliveryDate;
+            this.ExceptionDescription = ExceptionDescription;
+            this.Events = Events;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets TrackingNumber
+        /// Gets or Sets TrackingNumber
         /// </summary>
-        [DataMember(Name = "tracking_number", EmitDefaultValue = false)]
+        [DataMember(Name="tracking_number", EmitDefaultValue=false)]
         public string TrackingNumber { get; set; }
 
         /// <summary>
-        ///     Gets or Sets StatusCode
+        /// Gets or Sets StatusCode
         /// </summary>
-        [DataMember(Name = "status_code", EmitDefaultValue = false)]
+        [DataMember(Name="status_code", EmitDefaultValue=false)]
         public string StatusCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets StatusDescription
+        /// Gets or Sets StatusDescription
         /// </summary>
-        [DataMember(Name = "status_description", EmitDefaultValue = false)]
+        [DataMember(Name="status_description", EmitDefaultValue=false)]
         public string StatusDescription { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CarrierStatusCode
+        /// Gets or Sets CarrierStatusCode
         /// </summary>
-        [DataMember(Name = "carrier_status_code", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_status_code", EmitDefaultValue=false)]
         public string CarrierStatusCode { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CarrierStatusDescription
+        /// Gets or Sets CarrierStatusDescription
         /// </summary>
-        [DataMember(Name = "carrier_status_description", EmitDefaultValue = false)]
+        [DataMember(Name="carrier_status_description", EmitDefaultValue=false)]
         public string CarrierStatusDescription { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShipDate
+        /// Gets or Sets ShipDate
         /// </summary>
-        [DataMember(Name = "ship_date", EmitDefaultValue = false)]
+        [DataMember(Name="ship_date", EmitDefaultValue=false)]
         public DateTime? ShipDate { get; set; }
 
         /// <summary>
-        ///     Gets or Sets EstimatedDeliveryDate
+        /// Gets or Sets EstimatedDeliveryDate
         /// </summary>
-        [DataMember(Name = "estimated_delivery_date", EmitDefaultValue = false)]
+        [DataMember(Name="estimated_delivery_date", EmitDefaultValue=false)]
         public DateTime? EstimatedDeliveryDate { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ActualDeliveryDate
+        /// Gets or Sets ActualDeliveryDate
         /// </summary>
-        [DataMember(Name = "actual_delivery_date", EmitDefaultValue = false)]
+        [DataMember(Name="actual_delivery_date", EmitDefaultValue=false)]
         public DateTime? ActualDeliveryDate { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ExceptionDescription
+        /// Gets or Sets ExceptionDescription
         /// </summary>
-        [DataMember(Name = "exception_description", EmitDefaultValue = false)]
+        [DataMember(Name="exception_description", EmitDefaultValue=false)]
         public string ExceptionDescription { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Events
+        /// Gets or Sets Events
         /// </summary>
-        [DataMember(Name = "events", EmitDefaultValue = false)]
+        [DataMember(Name="events", EmitDefaultValue=false)]
         public List<TrackEvent> Events { get; set; }
 
         /// <summary>
-        ///     Returns true if TrackingInformation instances are equal
-        /// </summary>
-        /// <param name="other">Instance of TrackingInformation to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TrackingInformation other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    TrackingNumber == other.TrackingNumber ||
-                    TrackingNumber != null &&
-                    TrackingNumber.Equals(other.TrackingNumber)
-                ) &&
-                (
-                    StatusCode == other.StatusCode ||
-                    StatusCode != null &&
-                    StatusCode.Equals(other.StatusCode)
-                ) &&
-                (
-                    StatusDescription == other.StatusDescription ||
-                    StatusDescription != null &&
-                    StatusDescription.Equals(other.StatusDescription)
-                ) &&
-                (
-                    CarrierStatusCode == other.CarrierStatusCode ||
-                    CarrierStatusCode != null &&
-                    CarrierStatusCode.Equals(other.CarrierStatusCode)
-                ) &&
-                (
-                    CarrierStatusDescription == other.CarrierStatusDescription ||
-                    CarrierStatusDescription != null &&
-                    CarrierStatusDescription.Equals(other.CarrierStatusDescription)
-                ) &&
-                (
-                    ShipDate == other.ShipDate ||
-                    ShipDate != null &&
-                    ShipDate.Equals(other.ShipDate)
-                ) &&
-                (
-                    EstimatedDeliveryDate == other.EstimatedDeliveryDate ||
-                    EstimatedDeliveryDate != null &&
-                    EstimatedDeliveryDate.Equals(other.EstimatedDeliveryDate)
-                ) &&
-                (
-                    ActualDeliveryDate == other.ActualDeliveryDate ||
-                    ActualDeliveryDate != null &&
-                    ActualDeliveryDate.Equals(other.ActualDeliveryDate)
-                ) &&
-                (
-                    ExceptionDescription == other.ExceptionDescription ||
-                    ExceptionDescription != null &&
-                    ExceptionDescription.Equals(other.ExceptionDescription)
-                ) &&
-                (
-                    Events == other.Events ||
-                    Events != null &&
-                    Events.SequenceEqual(other.Events)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -207,9 +138,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -218,69 +149,120 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as TrackingInformation);
+            return this.Equals(input as TrackingInformation);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if TrackingInformation instances are equal
+        /// </summary>
+        /// <param name="input">Instance of TrackingInformation to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(TrackingInformation input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.TrackingNumber == input.TrackingNumber ||
+                    (this.TrackingNumber != null &&
+                    this.TrackingNumber.Equals(input.TrackingNumber))
+                ) && 
+                (
+                    this.StatusCode == input.StatusCode ||
+                    (this.StatusCode != null &&
+                    this.StatusCode.Equals(input.StatusCode))
+                ) && 
+                (
+                    this.StatusDescription == input.StatusDescription ||
+                    (this.StatusDescription != null &&
+                    this.StatusDescription.Equals(input.StatusDescription))
+                ) && 
+                (
+                    this.CarrierStatusCode == input.CarrierStatusCode ||
+                    (this.CarrierStatusCode != null &&
+                    this.CarrierStatusCode.Equals(input.CarrierStatusCode))
+                ) && 
+                (
+                    this.CarrierStatusDescription == input.CarrierStatusDescription ||
+                    (this.CarrierStatusDescription != null &&
+                    this.CarrierStatusDescription.Equals(input.CarrierStatusDescription))
+                ) && 
+                (
+                    this.ShipDate == input.ShipDate ||
+                    (this.ShipDate != null &&
+                    this.ShipDate.Equals(input.ShipDate))
+                ) && 
+                (
+                    this.EstimatedDeliveryDate == input.EstimatedDeliveryDate ||
+                    (this.EstimatedDeliveryDate != null &&
+                    this.EstimatedDeliveryDate.Equals(input.EstimatedDeliveryDate))
+                ) && 
+                (
+                    this.ActualDeliveryDate == input.ActualDeliveryDate ||
+                    (this.ActualDeliveryDate != null &&
+                    this.ActualDeliveryDate.Equals(input.ActualDeliveryDate))
+                ) && 
+                (
+                    this.ExceptionDescription == input.ExceptionDescription ||
+                    (this.ExceptionDescription != null &&
+                    this.ExceptionDescription.Equals(input.ExceptionDescription))
+                ) && 
+                (
+                    this.Events == input.Events ||
+                    (this.Events != null &&
+                    this.Events.SequenceEqual(input.Events))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (TrackingNumber != null)
-                {
-                    hash = hash * 59 + TrackingNumber.GetHashCode();
-                }
-                if (StatusCode != null)
-                {
-                    hash = hash * 59 + StatusCode.GetHashCode();
-                }
-                if (StatusDescription != null)
-                {
-                    hash = hash * 59 + StatusDescription.GetHashCode();
-                }
-                if (CarrierStatusCode != null)
-                {
-                    hash = hash * 59 + CarrierStatusCode.GetHashCode();
-                }
-                if (CarrierStatusDescription != null)
-                {
-                    hash = hash * 59 + CarrierStatusDescription.GetHashCode();
-                }
-                if (ShipDate != null)
-                {
-                    hash = hash * 59 + ShipDate.GetHashCode();
-                }
-                if (EstimatedDeliveryDate != null)
-                {
-                    hash = hash * 59 + EstimatedDeliveryDate.GetHashCode();
-                }
-                if (ActualDeliveryDate != null)
-                {
-                    hash = hash * 59 + ActualDeliveryDate.GetHashCode();
-                }
-                if (ExceptionDescription != null)
-                {
-                    hash = hash * 59 + ExceptionDescription.GetHashCode();
-                }
-                if (Events != null)
-                {
-                    hash = hash * 59 + Events.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.TrackingNumber != null)
+                    hashCode = hashCode * 59 + this.TrackingNumber.GetHashCode();
+                if (this.StatusCode != null)
+                    hashCode = hashCode * 59 + this.StatusCode.GetHashCode();
+                if (this.StatusDescription != null)
+                    hashCode = hashCode * 59 + this.StatusDescription.GetHashCode();
+                if (this.CarrierStatusCode != null)
+                    hashCode = hashCode * 59 + this.CarrierStatusCode.GetHashCode();
+                if (this.CarrierStatusDescription != null)
+                    hashCode = hashCode * 59 + this.CarrierStatusDescription.GetHashCode();
+                if (this.ShipDate != null)
+                    hashCode = hashCode * 59 + this.ShipDate.GetHashCode();
+                if (this.EstimatedDeliveryDate != null)
+                    hashCode = hashCode * 59 + this.EstimatedDeliveryDate.GetHashCode();
+                if (this.ActualDeliveryDate != null)
+                    hashCode = hashCode * 59 + this.ActualDeliveryDate.GetHashCode();
+                if (this.ExceptionDescription != null)
+                    hashCode = hashCode * 59 + this.ExceptionDescription.GetHashCode();
+                if (this.Events != null)
+                    hashCode = hashCode * 59 + this.Events.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

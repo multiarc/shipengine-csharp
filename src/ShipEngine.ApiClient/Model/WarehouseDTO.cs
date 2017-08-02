@@ -9,117 +9,76 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     WarehouseDTO
+    /// WarehouseDTO
     /// </summary>
     [DataContract]
-    public class WarehouseDTO : IEquatable<WarehouseDTO>, IValidatableObject
+    public partial class WarehouseDTO :  IEquatable<WarehouseDTO>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="WarehouseDTO" /> class.
+        /// Initializes a new instance of the <see cref="WarehouseDTO" /> class.
         /// </summary>
-        /// <param name="warehouseId">WarehouseId.</param>
-        /// <param name="name">Name.</param>
-        /// <param name="createdAt">CreatedAt.</param>
-        /// <param name="originAddress">OriginAddress.</param>
-        /// <param name="returnAddress">ReturnAddress.</param>
-        public WarehouseDTO(string warehouseId = default(string), string name = default(string),
-            DateTime? createdAt = default(DateTime?), AddressDTO originAddress = default(AddressDTO),
-            AddressDTO returnAddress = default(AddressDTO))
+        /// <param name="WarehouseId">WarehouseId.</param>
+        /// <param name="Name">Name.</param>
+        /// <param name="CreatedAt">CreatedAt.</param>
+        /// <param name="OriginAddress">OriginAddress.</param>
+        /// <param name="ReturnAddress">ReturnAddress.</param>
+        public WarehouseDTO(string WarehouseId = default(string), string Name = default(string), DateTime? CreatedAt = default(DateTime?), AddressDTO OriginAddress = default(AddressDTO), AddressDTO ReturnAddress = default(AddressDTO))
         {
-            WarehouseId = warehouseId;
-            Name = name;
-            CreatedAt = createdAt;
-            OriginAddress = originAddress;
-            ReturnAddress = returnAddress;
+            this.WarehouseId = WarehouseId;
+            this.Name = Name;
+            this.CreatedAt = CreatedAt;
+            this.OriginAddress = OriginAddress;
+            this.ReturnAddress = ReturnAddress;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets WarehouseId
+        /// Gets or Sets WarehouseId
         /// </summary>
-        [DataMember(Name = "warehouse_id", EmitDefaultValue = false)]
+        [DataMember(Name="warehouse_id", EmitDefaultValue=false)]
         public string WarehouseId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Name
+        /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CreatedAt
+        /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        ///     Gets or Sets OriginAddress
+        /// Gets or Sets OriginAddress
         /// </summary>
-        [DataMember(Name = "origin_address", EmitDefaultValue = false)]
+        [DataMember(Name="origin_address", EmitDefaultValue=false)]
         public AddressDTO OriginAddress { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ReturnAddress
+        /// Gets or Sets ReturnAddress
         /// </summary>
-        [DataMember(Name = "return_address", EmitDefaultValue = false)]
+        [DataMember(Name="return_address", EmitDefaultValue=false)]
         public AddressDTO ReturnAddress { get; set; }
 
         /// <summary>
-        ///     Returns true if WarehouseDTO instances are equal
-        /// </summary>
-        /// <param name="other">Instance of WarehouseDTO to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(WarehouseDTO other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    WarehouseId == other.WarehouseId ||
-                    WarehouseId != null &&
-                    WarehouseId.Equals(other.WarehouseId)
-                ) &&
-                (
-                    Name == other.Name ||
-                    Name != null &&
-                    Name.Equals(other.Name)
-                ) &&
-                (
-                    CreatedAt == other.CreatedAt ||
-                    CreatedAt != null &&
-                    CreatedAt.Equals(other.CreatedAt)
-                ) &&
-                (
-                    Equals(OriginAddress, other.OriginAddress) ||
-                    OriginAddress != null &&
-                    OriginAddress.Equals(other.OriginAddress)
-                ) &&
-                (
-                    Equals(ReturnAddress, other.ReturnAddress) ||
-                    ReturnAddress != null &&
-                    ReturnAddress.Equals(other.ReturnAddress)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -134,9 +93,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -145,49 +104,85 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as WarehouseDTO);
+            return this.Equals(input as WarehouseDTO);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if WarehouseDTO instances are equal
+        /// </summary>
+        /// <param name="input">Instance of WarehouseDTO to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(WarehouseDTO input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.WarehouseId == input.WarehouseId ||
+                    (this.WarehouseId != null &&
+                    this.WarehouseId.Equals(input.WarehouseId))
+                ) && 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
+                    this.OriginAddress == input.OriginAddress ||
+                    (this.OriginAddress != null &&
+                    this.OriginAddress.Equals(input.OriginAddress))
+                ) && 
+                (
+                    this.ReturnAddress == input.ReturnAddress ||
+                    (this.ReturnAddress != null &&
+                    this.ReturnAddress.Equals(input.ReturnAddress))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (WarehouseId != null)
-                {
-                    hash = hash * 59 + WarehouseId.GetHashCode();
-                }
-                if (Name != null)
-                {
-                    hash = hash * 59 + Name.GetHashCode();
-                }
-                if (CreatedAt != null)
-                {
-                    hash = hash * 59 + CreatedAt.GetHashCode();
-                }
-                if (OriginAddress != null)
-                {
-                    hash = hash * 59 + OriginAddress.GetHashCode();
-                }
-                if (ReturnAddress != null)
-                {
-                    hash = hash * 59 + ReturnAddress.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.WarehouseId != null)
+                    hashCode = hashCode * 59 + this.WarehouseId.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.CreatedAt != null)
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.OriginAddress != null)
+                    hashCode = hashCode * 59 + this.OriginAddress.GetHashCode();
+                if (this.ReturnAddress != null)
+                    hashCode = hashCode * 59 + this.ReturnAddress.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

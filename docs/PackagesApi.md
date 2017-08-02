@@ -4,18 +4,18 @@ All URIs are relative to *https://api.shipengine.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PackagesCreate**](PackagesApi.md#packagescreate) | **POST** /v1/packages | Create a package
-[**PackagesDelete**](PackagesApi.md#packagesdelete) | **DELETE** /v1/packages/{package_id} | Delete a package
-[**PackagesGet**](PackagesApi.md#packagesget) | **GET** /v1/packages/{package_id} | Get a specific package
-[**PackagesList**](PackagesApi.md#packageslist) | **GET** /v1/packages | Get packages
-[**PackagesUpdate**](PackagesApi.md#packagesupdate) | **PUT** /v1/packages/{package_id} | Update a package
+[**PackagesCreate**](PackagesApi.md#packagescreate) | **POST** /v1/packages | 
+[**PackagesDelete**](PackagesApi.md#packagesdelete) | **DELETE** /v1/packages/{package_id} | 
+[**PackagesGet**](PackagesApi.md#packagesget) | **GET** /v1/packages/{package_id} | 
+[**PackagesList**](PackagesApi.md#packageslist) | **GET** /v1/packages | 
+[**PackagesUpdate**](PackagesApi.md#packagesupdate) | **PUT** /v1/packages/{package_id} | 
 
 
 <a name="packagescreate"></a>
 # **PackagesCreate**
 > Package PackagesCreate (Package package, string apiKey)
 
-Create a package
+
 
 ### Example
 ```csharp
@@ -31,11 +31,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new PackagesApi();
             var package = new Package(); // Package | 
@@ -43,7 +42,6 @@ namespace Example
 
             try
             {
-                // Create a package
                 Package result = apiInstance.PackagesCreate(package, apiKey);
                 Debug.WriteLine(result);
             }
@@ -82,7 +80,7 @@ Name | Type | Description  | Notes
 # **PackagesDelete**
 > void PackagesDelete (string packageId, string apiKey)
 
-Delete a package
+
 
 ### Example
 ```csharp
@@ -98,11 +96,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new PackagesApi();
             var packageId = packageId_example;  // string | 
@@ -110,7 +107,6 @@ namespace Example
 
             try
             {
-                // Delete a package
                 apiInstance.PackagesDelete(packageId, apiKey);
             }
             catch (Exception e)
@@ -148,7 +144,7 @@ void (empty response body)
 # **PackagesGet**
 > Package PackagesGet (string packageId, string apiKey)
 
-Get a specific package
+
 
 ### Example
 ```csharp
@@ -164,11 +160,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new PackagesApi();
             var packageId = packageId_example;  // string | 
@@ -176,7 +171,6 @@ namespace Example
 
             try
             {
-                // Get a specific package
                 Package result = apiInstance.PackagesGet(packageId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -215,9 +209,7 @@ Name | Type | Description  | Notes
 # **PackagesList**
 > PackagesListResponse PackagesList (string apiKey)
 
-Get packages
 
-Get a list of packages
 
 ### Example
 ```csharp
@@ -233,18 +225,16 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new PackagesApi();
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Get packages
                 PackagesListResponse result = apiInstance.PackagesList(apiKey);
                 Debug.WriteLine(result);
             }
@@ -282,7 +272,7 @@ Name | Type | Description  | Notes
 # **PackagesUpdate**
 > void PackagesUpdate (string packageId, Package package, string apiKey)
 
-Update a package
+
 
 ### Example
 ```csharp
@@ -298,20 +288,18 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new PackagesApi();
-            var packageId = packageId_example;  // string | Package ID
+            var packageId = packageId_example;  // string | 
             var package = new Package(); // Package | 
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Update a package
                 apiInstance.PackagesUpdate(packageId, package, apiKey);
             }
             catch (Exception e)
@@ -327,7 +315,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **packageId** | **string**| Package ID | 
+ **packageId** | **string**|  | 
  **package** | [**Package**](Package.md)|  | 
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
 

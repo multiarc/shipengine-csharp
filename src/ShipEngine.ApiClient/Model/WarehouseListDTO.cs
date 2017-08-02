@@ -9,62 +9,44 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     WarehouseListDTO
+    /// WarehouseListDTO
     /// </summary>
     [DataContract]
-    public class WarehouseListDTO : IEquatable<WarehouseListDTO>, IValidatableObject
+    public partial class WarehouseListDTO :  IEquatable<WarehouseListDTO>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="WarehouseListDTO" /> class.
+        /// Initializes a new instance of the <see cref="WarehouseListDTO" /> class.
         /// </summary>
-        /// <param name="warehouses">Warehouses.</param>
-        public WarehouseListDTO(List<WarehouseDTO> warehouses = default(List<WarehouseDTO>))
+        /// <param name="Warehouses">Warehouses.</param>
+        public WarehouseListDTO(List<WarehouseDTO> Warehouses = default(List<WarehouseDTO>))
         {
-            Warehouses = warehouses;
+            this.Warehouses = Warehouses;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets Warehouses
+        /// Gets or Sets Warehouses
         /// </summary>
-        [DataMember(Name = "warehouses", EmitDefaultValue = false)]
+        [DataMember(Name="warehouses", EmitDefaultValue=false)]
         public List<WarehouseDTO> Warehouses { get; set; }
 
         /// <summary>
-        ///     Returns true if WarehouseListDTO instances are equal
-        /// </summary>
-        /// <param name="other">Instance of WarehouseListDTO to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(WarehouseListDTO other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                Warehouses == other.Warehouses ||
-                Warehouses != null &&
-                Warehouses.SequenceEqual(other.Warehouses);
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -75,9 +57,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -86,33 +68,57 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as WarehouseListDTO);
+            return this.Equals(input as WarehouseListDTO);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if WarehouseListDTO instances are equal
+        /// </summary>
+        /// <param name="input">Instance of WarehouseListDTO to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(WarehouseListDTO input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Warehouses == input.Warehouses ||
+                    (this.Warehouses != null &&
+                    this.Warehouses.SequenceEqual(input.Warehouses))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Warehouses != null)
-                {
-                    hash = hash * 59 + Warehouses.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Warehouses != null)
+                    hashCode = hashCode * 59 + this.Warehouses.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

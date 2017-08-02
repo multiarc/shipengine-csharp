@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="addressvalidationvalidateaddresses"></a>
 # **AddressValidationValidateAddresses**
-> List&lt;AddressValidationResponseDTO&gt; AddressValidationValidateAddresses (List<AddressDTO> addresses, string apiKey)
+> List<AddressValidationResponseDTO> AddressValidationValidateAddresses (List<AddressDTO> addresses, string apiKey)
 
 
 
@@ -27,11 +27,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new AddressValidationApi();
             var addresses = new List<AddressDTO>(); // List<AddressDTO> | 
@@ -39,7 +38,7 @@ namespace Example
 
             try
             {
-                List<AddressValidationResponseDTO> result = apiInstance.AddressValidationValidateAddresses(addresses, apiKey);
+                List&lt;AddressValidationResponseDTO&gt; result = apiInstance.AddressValidationValidateAddresses(addresses, apiKey);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -60,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;AddressValidationResponseDTO&gt;**](AddressValidationResponseDTO.md)
+[**List<AddressValidationResponseDTO>**](AddressValidationResponseDTO.md)
 
 ### Authorization
 

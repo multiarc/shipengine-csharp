@@ -9,106 +9,84 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     Weight
+    /// Weight
     /// </summary>
     [DataContract]
-    public class Weight : IEquatable<Weight>, IValidatableObject
+    public partial class Weight :  IEquatable<Weight>, IValidatableObject
     {
         /// <summary>
-        ///     This is a stringified version of ShipEngine.Core.DTO.Measurement.WeightUnits
+        /// Gets or Sets Unit
         /// </summary>
-        /// <value>This is a stringified version of ShipEngine.Core.DTO.Measurement.WeightUnits</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum UnitEnum
         {
+            
             /// <summary>
-            ///     Enum Pound for "pound"
+            /// Enum Pound for "pound"
             /// </summary>
-            [EnumMember(Value = "pound")] Pound,
-
+            [EnumMember(Value = "pound")]
+            Pound,
+            
             /// <summary>
-            ///     Enum Ounce for "ounce"
+            /// Enum Ounce for "ounce"
             /// </summary>
-            [EnumMember(Value = "ounce")] Ounce,
-
+            [EnumMember(Value = "ounce")]
+            Ounce,
+            
             /// <summary>
-            ///     Enum Gram for "gram"
+            /// Enum Gram for "gram"
             /// </summary>
-            [EnumMember(Value = "gram")] Gram,
-
+            [EnumMember(Value = "gram")]
+            Gram,
+            
             /// <summary>
-            ///     Enum Kilogram for "kilogram"
+            /// Enum Kilogram for "kilogram"
             /// </summary>
-            [EnumMember(Value = "kilogram")] Kilogram
+            [EnumMember(Value = "kilogram")]
+            Kilogram
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Weight" /> class.
+        /// Gets or Sets Unit
         /// </summary>
-        /// <param name="value">Value.</param>
-        /// <param name="unit">This is a stringified version of ShipEngine.Core.DTO.Measurement.WeightUnits.</param>
-        public Weight(decimal? value = default(decimal?), UnitEnum? unit = default(UnitEnum?))
-        {
-            Value = value;
-            Unit = unit;
-        }
-
-        /// <summary>
-        ///     This is a stringified version of ShipEngine.Core.DTO.Measurement.WeightUnits
-        /// </summary>
-        /// <value>This is a stringified version of ShipEngine.Core.DTO.Measurement.WeightUnits</value>
-        [DataMember(Name = "unit", EmitDefaultValue = false)]
+        [DataMember(Name="unit", EmitDefaultValue=false)]
         public UnitEnum? Unit { get; set; }
-
         /// <summary>
-        ///     Gets or Sets Value
+        /// Initializes a new instance of the <see cref="Weight" /> class.
         /// </summary>
-        [DataMember(Name = "value", EmitDefaultValue = false)]
-        public decimal? Value { get; set; }
-
+        /// <param name="Value">Value.</param>
+        /// <param name="Unit">Unit.</param>
+        public Weight(double? Value = default(double?), UnitEnum? Unit = default(UnitEnum?))
+        {
+            this.Value = Value;
+            this.Unit = Unit;
+        }
+        
         /// <summary>
-        ///     Returns true if Weight instances are equal
+        /// Gets or Sets Value
         /// </summary>
-        /// <param name="other">Instance of Weight to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Weight other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
+        [DataMember(Name="value", EmitDefaultValue=false)]
+        public double? Value { get; set; }
 
-            return
-                (
-                    Value == other.Value ||
-                    Value != null &&
-                    Value.Equals(other.Value)
-                ) &&
-                (
-                    Unit == other.Unit ||
-                    Unit != null &&
-                    Unit.Equals(other.Unit)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
 
         /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -120,9 +98,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -131,37 +109,64 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Weight);
+            return this.Equals(input as Weight);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if Weight instances are equal
+        /// </summary>
+        /// <param name="input">Instance of Weight to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(Weight input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Value == input.Value ||
+                    (this.Value != null &&
+                    this.Value.Equals(input.Value))
+                ) && 
+                (
+                    this.Unit == input.Unit ||
+                    (this.Unit != null &&
+                    this.Unit.Equals(input.Unit))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Value != null)
-                {
-                    hash = hash * 59 + Value.GetHashCode();
-                }
-                if (Unit != null)
-                {
-                    hash = hash * 59 + Unit.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Value != null)
+                    hashCode = hashCode * 59 + this.Value.GetHashCode();
+                if (this.Unit != null)
+                    hashCode = hashCode * 59 + this.Unit.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

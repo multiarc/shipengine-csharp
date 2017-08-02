@@ -4,17 +4,17 @@ All URIs are relative to *https://api.shipengine.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RatesEstimate**](RatesApi.md#ratesestimate) | **POST** /v1/rates/estimate | Get a rate quote
-[**RatesGet**](RatesApi.md#ratesget) | **GET** /v1/rates/{rate_id} | Get a rate
+[**RatesEstimate**](RatesApi.md#ratesestimate) | **POST** /v1/rates/estimate | 
+[**RatesGet**](RatesApi.md#ratesget) | **GET** /v1/rates/{rate_id} | 
 [**RatesRateShipment**](RatesApi.md#ratesrateshipment) | **POST** /v1/rates | 
-[**RatesRateShipmentsBulk**](RatesApi.md#ratesrateshipmentsbulk) | **POST** /v1/rates/bulk | Rate shipments asynchronously
+[**RatesRateShipmentsAsync**](RatesApi.md#ratesrateshipmentsasync) | **POST** /v1/rates/bulk | 
 
 
 <a name="ratesestimate"></a>
 # **RatesEstimate**
 > List<Rate> RatesEstimate (RateEstimateRequest estimateRequest, string apiKey)
 
-Get a rate quote
+
 
 ### Example
 ```csharp
@@ -30,19 +30,17 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new RatesApi();
-            var estimateRequest = new RateEstimateRequest(); // RateEstimateRequest | Get a rate quote without creating a shipment
+            var estimateRequest = new RateEstimateRequest(); // RateEstimateRequest | 
             var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
 
             try
             {
-                // Get a rate quote
                 List&lt;Rate&gt; result = apiInstance.RatesEstimate(estimateRequest, apiKey);
                 Debug.WriteLine(result);
             }
@@ -59,7 +57,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **estimateRequest** | [**RateEstimateRequest**](RateEstimateRequest.md)| Get a rate quote without creating a shipment | 
+ **estimateRequest** | [**RateEstimateRequest**](RateEstimateRequest.md)|  | 
  **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
 
 ### Return type
@@ -81,7 +79,7 @@ Name | Type | Description  | Notes
 # **RatesGet**
 > Rate RatesGet (string rateId, string apiKey)
 
-Get a rate
+
 
 ### Example
 ```csharp
@@ -97,11 +95,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new RatesApi();
             var rateId = rateId_example;  // string | 
@@ -109,7 +106,6 @@ namespace Example
 
             try
             {
-                // Get a rate
                 Rate result = apiInstance.RatesGet(rateId, apiKey);
                 Debug.WriteLine(result);
             }
@@ -164,11 +160,10 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new RatesApi();
             var request = new RateShipmentRequest(); // RateShipmentRequest | 
@@ -210,11 +205,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="ratesrateshipmentsbulk"></a>
-# **RatesRateShipmentsBulk**
-> void RatesRateShipmentsBulk (RateShipmentsRequest request, string apiKey)
+<a name="ratesrateshipmentsasync"></a>
+# **RatesRateShipmentsAsync**
+> List<RateResponseAsync> RatesRateShipmentsAsync (RateShipmentsRequest request, string apiKey)
 
-Rate shipments asynchronously
+
 
 ### Example
 ```csharp
@@ -226,15 +221,14 @@ using ShipEngine.ApiClient.Model;
 
 namespace Example
 {
-    public class RatesRateShipmentsBulkExample
+    public class RatesRateShipmentsAsyncExample
     {
         public void main()
         {
-            
             // Configure API key authorization: api-key
-            Configuration.Default.ApiKey.Add("api-key", "YOUR_API_KEY");
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("api-key", "Bearer");
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
 
             var apiInstance = new RatesApi();
             var request = new RateShipmentsRequest(); // RateShipmentsRequest | 
@@ -242,12 +236,12 @@ namespace Example
 
             try
             {
-                // Rate shipments asynchronously
-                apiInstance.RatesRateShipmentsBulk(request, apiKey);
+                List&lt;RateResponseAsync&gt; result = apiInstance.RatesRateShipmentsAsync(request, apiKey);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling RatesApi.RatesRateShipmentsBulk: " + e.Message );
+                Debug.Print("Exception when calling RatesApi.RatesRateShipmentsAsync: " + e.Message );
             }
         }
     }
@@ -263,7 +257,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**List<RateResponseAsync>**](RateResponseAsync.md)
 
 ### Authorization
 

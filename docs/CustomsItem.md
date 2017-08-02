@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **CustomsItemId** | **string** |  | [optional] 
 **Description** | **string** |  | [optional] 
 **Quantity** | **int?** |  | [optional] 
-**Value** | **decimal?** |  | [optional] 
+**Value** | **double?** |  | [optional] 
 **HarmonizedTariffCode** | **string** |  | [optional] 
 **CountryOfOrigin** | **string** |  | [optional] 
 

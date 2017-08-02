@@ -9,78 +9,52 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     ApiErrorResponseDTO
+    /// ApiErrorResponseDTO
     /// </summary>
     [DataContract]
-    public class ApiErrorResponseDTO : IEquatable<ApiErrorResponseDTO>, IValidatableObject
+    public partial class ApiErrorResponseDTO :  IEquatable<ApiErrorResponseDTO>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ApiErrorResponseDTO" /> class.
+        /// Initializes a new instance of the <see cref="ApiErrorResponseDTO" /> class.
         /// </summary>
-        /// <param name="requestId">RequestId.</param>
-        /// <param name="errors">Errors.</param>
-        public ApiErrorResponseDTO(Guid? requestId = default(Guid?),
-            List<ApiErrorDTO> errors = default(List<ApiErrorDTO>))
+        /// <param name="RequestId">RequestId.</param>
+        /// <param name="Errors">Errors.</param>
+        public ApiErrorResponseDTO(Guid? RequestId = default(Guid?), List<ApiErrorDTO> Errors = default(List<ApiErrorDTO>))
         {
-            RequestId = requestId;
-            Errors = errors;
+            this.RequestId = RequestId;
+            this.Errors = Errors;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets RequestId
+        /// Gets or Sets RequestId
         /// </summary>
-        [DataMember(Name = "request_id", EmitDefaultValue = false)]
+        [DataMember(Name="request_id", EmitDefaultValue=false)]
         public Guid? RequestId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Errors
+        /// Gets or Sets Errors
         /// </summary>
-        [DataMember(Name = "errors", EmitDefaultValue = false)]
+        [DataMember(Name="errors", EmitDefaultValue=false)]
         public List<ApiErrorDTO> Errors { get; set; }
 
         /// <summary>
-        ///     Returns true if ApiErrorResponseDTO instances are equal
-        /// </summary>
-        /// <param name="other">Instance of ApiErrorResponseDTO to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ApiErrorResponseDTO other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    RequestId == other.RequestId ||
-                    RequestId != null &&
-                    RequestId.Equals(other.RequestId)
-                ) &&
-                (
-                    Errors == other.Errors ||
-                    Errors != null &&
-                    Errors.SequenceEqual(other.Errors)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -92,9 +66,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -103,37 +77,64 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as ApiErrorResponseDTO);
+            return this.Equals(input as ApiErrorResponseDTO);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if ApiErrorResponseDTO instances are equal
+        /// </summary>
+        /// <param name="input">Instance of ApiErrorResponseDTO to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(ApiErrorResponseDTO input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.RequestId == input.RequestId ||
+                    (this.RequestId != null &&
+                    this.RequestId.Equals(input.RequestId))
+                ) && 
+                (
+                    this.Errors == input.Errors ||
+                    (this.Errors != null &&
+                    this.Errors.SequenceEqual(input.Errors))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (RequestId != null)
-                {
-                    hash = hash * 59 + RequestId.GetHashCode();
-                }
-                if (Errors != null)
-                {
-                    hash = hash * 59 + Errors.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.RequestId != null)
+                    hashCode = hashCode * 59 + this.RequestId.GetHashCode();
+                if (this.Errors != null)
+                    hashCode = hashCode * 59 + this.Errors.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

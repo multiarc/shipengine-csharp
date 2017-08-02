@@ -9,78 +9,52 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     BatchResponseErrors
+    /// BatchResponseErrors
     /// </summary>
     [DataContract]
-    public class BatchResponseErrors : IEquatable<BatchResponseErrors>, IValidatableObject
+    public partial class BatchResponseErrors :  IEquatable<BatchResponseErrors>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="BatchResponseErrors" /> class.
+        /// Initializes a new instance of the <see cref="BatchResponseErrors" /> class.
         /// </summary>
-        /// <param name="errors">Errors.</param>
-        /// <param name="links">Links.</param>
-        public BatchResponseErrors(List<BatchResponseError> errors = default(List<BatchResponseError>),
-            PaginationLinkDTO links = default(PaginationLinkDTO))
+        /// <param name="Errors">Errors.</param>
+        /// <param name="Links">Links.</param>
+        public BatchResponseErrors(List<BatchResponseError> Errors = default(List<BatchResponseError>), PaginationLinkDTO Links = default(PaginationLinkDTO))
         {
-            Errors = errors;
-            Links = links;
+            this.Errors = Errors;
+            this.Links = Links;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets Errors
+        /// Gets or Sets Errors
         /// </summary>
-        [DataMember(Name = "errors", EmitDefaultValue = false)]
+        [DataMember(Name="errors", EmitDefaultValue=false)]
         public List<BatchResponseError> Errors { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Links
+        /// Gets or Sets Links
         /// </summary>
-        [DataMember(Name = "links", EmitDefaultValue = false)]
+        [DataMember(Name="links", EmitDefaultValue=false)]
         public PaginationLinkDTO Links { get; set; }
 
         /// <summary>
-        ///     Returns true if BatchResponseErrors instances are equal
-        /// </summary>
-        /// <param name="other">Instance of BatchResponseErrors to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(BatchResponseErrors other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    Errors == other.Errors ||
-                    Errors != null &&
-                    Errors.SequenceEqual(other.Errors)
-                ) &&
-                (
-                    Equals(Links, other.Links) ||
-                    Links != null &&
-                    Links.Equals(other.Links)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -92,9 +66,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -103,37 +77,64 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as BatchResponseErrors);
+            return this.Equals(input as BatchResponseErrors);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if BatchResponseErrors instances are equal
+        /// </summary>
+        /// <param name="input">Instance of BatchResponseErrors to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(BatchResponseErrors input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.Errors == input.Errors ||
+                    (this.Errors != null &&
+                    this.Errors.SequenceEqual(input.Errors))
+                ) && 
+                (
+                    this.Links == input.Links ||
+                    (this.Links != null &&
+                    this.Links.Equals(input.Links))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (Errors != null)
-                {
-                    hash = hash * 59 + Errors.GetHashCode();
-                }
-                if (Links != null)
-                {
-                    hash = hash * 59 + Links.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.Errors != null)
+                    hashCode = hashCode * 59 + this.Errors.GetHashCode();
+                if (this.Links != null)
+                    hashCode = hashCode * 59 + this.Links.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

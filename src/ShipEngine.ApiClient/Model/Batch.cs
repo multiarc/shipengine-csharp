@@ -9,312 +9,220 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     Batch
+    /// Batch
     /// </summary>
     [DataContract]
-    public class Batch : IEquatable<Batch>, IValidatableObject
+    public partial class Batch :  IEquatable<Batch>, IValidatableObject
     {
         /// <summary>
-        ///     Gets or Sets Status
+        /// Gets or Sets Status
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
+            
             /// <summary>
-            ///     Enum Open for "open"
+            /// Enum Open for "open"
             /// </summary>
-            [EnumMember(Value = "open")] Open,
-
+            [EnumMember(Value = "open")]
+            Open,
+            
             /// <summary>
-            ///     Enum Queued for "queued"
+            /// Enum Queued for "queued"
             /// </summary>
-            [EnumMember(Value = "queued")] Queued,
-
+            [EnumMember(Value = "queued")]
+            Queued,
+            
             /// <summary>
-            ///     Enum Processing for "processing"
+            /// Enum Processing for "processing"
             /// </summary>
-            [EnumMember(Value = "processing")] Processing,
-
+            [EnumMember(Value = "processing")]
+            Processing,
+            
             /// <summary>
-            ///     Enum Completed for "completed"
+            /// Enum Completed for "completed"
             /// </summary>
-            [EnumMember(Value = "completed")] Completed,
-
+            [EnumMember(Value = "completed")]
+            Completed,
+            
             /// <summary>
-            ///     Enum Completedwitherrors for "completed_with_errors"
+            /// Enum Completedwitherrors for "completed_with_errors"
             /// </summary>
-            [EnumMember(Value = "completed_with_errors")] Completedwitherrors,
-
+            [EnumMember(Value = "completed_with_errors")]
+            Completedwitherrors,
+            
             /// <summary>
-            ///     Enum Archived for "archived"
+            /// Enum Archived for "archived"
             /// </summary>
-            [EnumMember(Value = "archived")] Archived,
-
+            [EnumMember(Value = "archived")]
+            Archived,
+            
             /// <summary>
-            ///     Enum Notifying for "notifying"
+            /// Enum Notifying for "notifying"
             /// </summary>
-            [EnumMember(Value = "notifying")] Notifying,
-
+            [EnumMember(Value = "notifying")]
+            Notifying,
+            
             /// <summary>
-            ///     Enum Invalid for "invalid"
+            /// Enum Invalid for "invalid"
             /// </summary>
-            [EnumMember(Value = "invalid")] Invalid
+            [EnumMember(Value = "invalid")]
+            Invalid
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Batch" /> class.
+        /// Gets or Sets Status
         /// </summary>
-        /// <param name="batchId">BatchId.</param>
-        /// <param name="externalBatchId">ExternalBatchId.</param>
-        /// <param name="batchNotes">BatchNotes.</param>
-        /// <param name="createdAt">CreatedAt.</param>
-        /// <param name="processedAt">ProcessedAt.</param>
-        /// <param name="errors">Errors.</param>
-        /// <param name="warnings">Warnings.</param>
-        /// <param name="completed">Completed.</param>
-        /// <param name="forms">Forms.</param>
-        /// <param name="count">Count.</param>
-        /// <param name="batchShipmentsUrl">BatchShipmentsUrl.</param>
-        /// <param name="batchLabelsUrl">BatchLabelsUrl.</param>
-        /// <param name="batchErrorsUrl">BatchErrorsUrl.</param>
-        /// <param name="labelDownload">LabelDownload.</param>
-        /// <param name="formDownload">FormDownload.</param>
-        /// <param name="status">Status.</param>
-        public Batch(string batchId = default(string), string externalBatchId = default(string),
-            string batchNotes = default(string), DateTime? createdAt = default(DateTime?),
-            DateTime? processedAt = default(DateTime?), int? errors = default(int?), int? warnings = default(int?),
-            int? completed = default(int?), int? forms = default(int?), int? count = default(int?),
-            LinkDTO batchShipmentsUrl = default(LinkDTO), LinkDTO batchLabelsUrl = default(LinkDTO),
-            LinkDTO batchErrorsUrl = default(LinkDTO), LinkDTO labelDownload = default(LinkDTO),
-            LinkDTO formDownload = default(LinkDTO), StatusEnum? status = default(StatusEnum?))
-        {
-            BatchId = batchId;
-            ExternalBatchId = externalBatchId;
-            BatchNotes = batchNotes;
-            CreatedAt = createdAt;
-            ProcessedAt = processedAt;
-            Errors = errors;
-            Warnings = warnings;
-            Completed = completed;
-            Forms = forms;
-            Count = count;
-            BatchShipmentsUrl = batchShipmentsUrl;
-            BatchLabelsUrl = batchLabelsUrl;
-            BatchErrorsUrl = batchErrorsUrl;
-            LabelDownload = labelDownload;
-            FormDownload = formDownload;
-            Status = status;
-        }
-
-        /// <summary>
-        ///     Gets or Sets Status
-        /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
+        [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
-
         /// <summary>
-        ///     Gets or Sets BatchId
+        /// Initializes a new instance of the <see cref="Batch" /> class.
         /// </summary>
-        [DataMember(Name = "batch_id", EmitDefaultValue = false)]
+        /// <param name="BatchId">BatchId.</param>
+        /// <param name="ExternalBatchId">ExternalBatchId.</param>
+        /// <param name="BatchNotes">BatchNotes.</param>
+        /// <param name="CreatedAt">CreatedAt.</param>
+        /// <param name="ProcessedAt">ProcessedAt.</param>
+        /// <param name="Errors">Errors.</param>
+        /// <param name="Warnings">Warnings.</param>
+        /// <param name="Completed">Completed.</param>
+        /// <param name="Forms">Forms.</param>
+        /// <param name="Count">Count.</param>
+        /// <param name="BatchShipmentsUrl">BatchShipmentsUrl.</param>
+        /// <param name="BatchLabelsUrl">BatchLabelsUrl.</param>
+        /// <param name="BatchErrorsUrl">BatchErrorsUrl.</param>
+        /// <param name="LabelDownload">LabelDownload.</param>
+        /// <param name="FormDownload">FormDownload.</param>
+        /// <param name="Status">Status.</param>
+        public Batch(string BatchId = default(string), string ExternalBatchId = default(string), string BatchNotes = default(string), DateTime? CreatedAt = default(DateTime?), DateTime? ProcessedAt = default(DateTime?), int? Errors = default(int?), int? Warnings = default(int?), int? Completed = default(int?), int? Forms = default(int?), int? Count = default(int?), LinkDTO BatchShipmentsUrl = default(LinkDTO), LinkDTO BatchLabelsUrl = default(LinkDTO), LinkDTO BatchErrorsUrl = default(LinkDTO), LinkDTO LabelDownload = default(LinkDTO), LinkDTO FormDownload = default(LinkDTO), StatusEnum? Status = default(StatusEnum?))
+        {
+            this.BatchId = BatchId;
+            this.ExternalBatchId = ExternalBatchId;
+            this.BatchNotes = BatchNotes;
+            this.CreatedAt = CreatedAt;
+            this.ProcessedAt = ProcessedAt;
+            this.Errors = Errors;
+            this.Warnings = Warnings;
+            this.Completed = Completed;
+            this.Forms = Forms;
+            this.Count = Count;
+            this.BatchShipmentsUrl = BatchShipmentsUrl;
+            this.BatchLabelsUrl = BatchLabelsUrl;
+            this.BatchErrorsUrl = BatchErrorsUrl;
+            this.LabelDownload = LabelDownload;
+            this.FormDownload = FormDownload;
+            this.Status = Status;
+        }
+        
+        /// <summary>
+        /// Gets or Sets BatchId
+        /// </summary>
+        [DataMember(Name="batch_id", EmitDefaultValue=false)]
         public string BatchId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ExternalBatchId
+        /// Gets or Sets ExternalBatchId
         /// </summary>
-        [DataMember(Name = "external_batch_id", EmitDefaultValue = false)]
+        [DataMember(Name="external_batch_id", EmitDefaultValue=false)]
         public string ExternalBatchId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets BatchNotes
+        /// Gets or Sets BatchNotes
         /// </summary>
-        [DataMember(Name = "batch_notes", EmitDefaultValue = false)]
+        [DataMember(Name="batch_notes", EmitDefaultValue=false)]
         public string BatchNotes { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CreatedAt
+        /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ProcessedAt
+        /// Gets or Sets ProcessedAt
         /// </summary>
-        [DataMember(Name = "processed_at", EmitDefaultValue = false)]
+        [DataMember(Name="processed_at", EmitDefaultValue=false)]
         public DateTime? ProcessedAt { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Errors
+        /// Gets or Sets Errors
         /// </summary>
-        [DataMember(Name = "errors", EmitDefaultValue = false)]
+        [DataMember(Name="errors", EmitDefaultValue=false)]
         public int? Errors { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Warnings
+        /// Gets or Sets Warnings
         /// </summary>
-        [DataMember(Name = "warnings", EmitDefaultValue = false)]
+        [DataMember(Name="warnings", EmitDefaultValue=false)]
         public int? Warnings { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Completed
+        /// Gets or Sets Completed
         /// </summary>
-        [DataMember(Name = "completed", EmitDefaultValue = false)]
+        [DataMember(Name="completed", EmitDefaultValue=false)]
         public int? Completed { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Forms
+        /// Gets or Sets Forms
         /// </summary>
-        [DataMember(Name = "forms", EmitDefaultValue = false)]
+        [DataMember(Name="forms", EmitDefaultValue=false)]
         public int? Forms { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Count
+        /// Gets or Sets Count
         /// </summary>
-        [DataMember(Name = "count", EmitDefaultValue = false)]
+        [DataMember(Name="count", EmitDefaultValue=false)]
         public int? Count { get; set; }
 
         /// <summary>
-        ///     Gets or Sets BatchShipmentsUrl
+        /// Gets or Sets BatchShipmentsUrl
         /// </summary>
-        [DataMember(Name = "batch_shipments_url", EmitDefaultValue = false)]
+        [DataMember(Name="batch_shipments_url", EmitDefaultValue=false)]
         public LinkDTO BatchShipmentsUrl { get; set; }
 
         /// <summary>
-        ///     Gets or Sets BatchLabelsUrl
+        /// Gets or Sets BatchLabelsUrl
         /// </summary>
-        [DataMember(Name = "batch_labels_url", EmitDefaultValue = false)]
+        [DataMember(Name="batch_labels_url", EmitDefaultValue=false)]
         public LinkDTO BatchLabelsUrl { get; set; }
 
         /// <summary>
-        ///     Gets or Sets BatchErrorsUrl
+        /// Gets or Sets BatchErrorsUrl
         /// </summary>
-        [DataMember(Name = "batch_errors_url", EmitDefaultValue = false)]
+        [DataMember(Name="batch_errors_url", EmitDefaultValue=false)]
         public LinkDTO BatchErrorsUrl { get; set; }
 
         /// <summary>
-        ///     Gets or Sets LabelDownload
+        /// Gets or Sets LabelDownload
         /// </summary>
-        [DataMember(Name = "label_download", EmitDefaultValue = false)]
+        [DataMember(Name="label_download", EmitDefaultValue=false)]
         public LinkDTO LabelDownload { get; set; }
 
         /// <summary>
-        ///     Gets or Sets FormDownload
+        /// Gets or Sets FormDownload
         /// </summary>
-        [DataMember(Name = "form_download", EmitDefaultValue = false)]
+        [DataMember(Name="form_download", EmitDefaultValue=false)]
         public LinkDTO FormDownload { get; set; }
 
-        /// <summary>
-        ///     Returns true if Batch instances are equal
-        /// </summary>
-        /// <param name="other">Instance of Batch to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Batch other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    BatchId == other.BatchId ||
-                    BatchId != null &&
-                    BatchId.Equals(other.BatchId)
-                ) &&
-                (
-                    ExternalBatchId == other.ExternalBatchId ||
-                    ExternalBatchId != null &&
-                    ExternalBatchId.Equals(other.ExternalBatchId)
-                ) &&
-                (
-                    BatchNotes == other.BatchNotes ||
-                    BatchNotes != null &&
-                    BatchNotes.Equals(other.BatchNotes)
-                ) &&
-                (
-                    CreatedAt == other.CreatedAt ||
-                    CreatedAt != null &&
-                    CreatedAt.Equals(other.CreatedAt)
-                ) &&
-                (
-                    ProcessedAt == other.ProcessedAt ||
-                    ProcessedAt != null &&
-                    ProcessedAt.Equals(other.ProcessedAt)
-                ) &&
-                (
-                    Errors == other.Errors ||
-                    Errors != null &&
-                    Errors.Equals(other.Errors)
-                ) &&
-                (
-                    Warnings == other.Warnings ||
-                    Warnings != null &&
-                    Warnings.Equals(other.Warnings)
-                ) &&
-                (
-                    Completed == other.Completed ||
-                    Completed != null &&
-                    Completed.Equals(other.Completed)
-                ) &&
-                (
-                    Forms == other.Forms ||
-                    Forms != null &&
-                    Forms.Equals(other.Forms)
-                ) &&
-                (
-                    Count == other.Count ||
-                    Count != null &&
-                    Count.Equals(other.Count)
-                ) &&
-                (
-                    Equals(BatchShipmentsUrl, other.BatchShipmentsUrl) ||
-                    BatchShipmentsUrl != null &&
-                    BatchShipmentsUrl.Equals(other.BatchShipmentsUrl)
-                ) &&
-                (
-                    Equals(BatchLabelsUrl, other.BatchLabelsUrl) ||
-                    BatchLabelsUrl != null &&
-                    BatchLabelsUrl.Equals(other.BatchLabelsUrl)
-                ) &&
-                (
-                    Equals(BatchErrorsUrl, other.BatchErrorsUrl) ||
-                    BatchErrorsUrl != null &&
-                    BatchErrorsUrl.Equals(other.BatchErrorsUrl)
-                ) &&
-                (
-                    Equals(LabelDownload, other.LabelDownload) ||
-                    LabelDownload != null &&
-                    LabelDownload.Equals(other.LabelDownload)
-                ) &&
-                (
-                    Equals(FormDownload, other.FormDownload) ||
-                    FormDownload != null &&
-                    FormDownload.Equals(other.FormDownload)
-                ) &&
-                (
-                    Status == other.Status ||
-                    Status != null &&
-                    Status.Equals(other.Status)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
 
         /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -340,9 +248,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -351,93 +259,162 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Batch);
+            return this.Equals(input as Batch);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if Batch instances are equal
+        /// </summary>
+        /// <param name="input">Instance of Batch to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(Batch input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.BatchId == input.BatchId ||
+                    (this.BatchId != null &&
+                    this.BatchId.Equals(input.BatchId))
+                ) && 
+                (
+                    this.ExternalBatchId == input.ExternalBatchId ||
+                    (this.ExternalBatchId != null &&
+                    this.ExternalBatchId.Equals(input.ExternalBatchId))
+                ) && 
+                (
+                    this.BatchNotes == input.BatchNotes ||
+                    (this.BatchNotes != null &&
+                    this.BatchNotes.Equals(input.BatchNotes))
+                ) && 
+                (
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
+                    this.ProcessedAt == input.ProcessedAt ||
+                    (this.ProcessedAt != null &&
+                    this.ProcessedAt.Equals(input.ProcessedAt))
+                ) && 
+                (
+                    this.Errors == input.Errors ||
+                    (this.Errors != null &&
+                    this.Errors.Equals(input.Errors))
+                ) && 
+                (
+                    this.Warnings == input.Warnings ||
+                    (this.Warnings != null &&
+                    this.Warnings.Equals(input.Warnings))
+                ) && 
+                (
+                    this.Completed == input.Completed ||
+                    (this.Completed != null &&
+                    this.Completed.Equals(input.Completed))
+                ) && 
+                (
+                    this.Forms == input.Forms ||
+                    (this.Forms != null &&
+                    this.Forms.Equals(input.Forms))
+                ) && 
+                (
+                    this.Count == input.Count ||
+                    (this.Count != null &&
+                    this.Count.Equals(input.Count))
+                ) && 
+                (
+                    this.BatchShipmentsUrl == input.BatchShipmentsUrl ||
+                    (this.BatchShipmentsUrl != null &&
+                    this.BatchShipmentsUrl.Equals(input.BatchShipmentsUrl))
+                ) && 
+                (
+                    this.BatchLabelsUrl == input.BatchLabelsUrl ||
+                    (this.BatchLabelsUrl != null &&
+                    this.BatchLabelsUrl.Equals(input.BatchLabelsUrl))
+                ) && 
+                (
+                    this.BatchErrorsUrl == input.BatchErrorsUrl ||
+                    (this.BatchErrorsUrl != null &&
+                    this.BatchErrorsUrl.Equals(input.BatchErrorsUrl))
+                ) && 
+                (
+                    this.LabelDownload == input.LabelDownload ||
+                    (this.LabelDownload != null &&
+                    this.LabelDownload.Equals(input.LabelDownload))
+                ) && 
+                (
+                    this.FormDownload == input.FormDownload ||
+                    (this.FormDownload != null &&
+                    this.FormDownload.Equals(input.FormDownload))
+                ) && 
+                (
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (BatchId != null)
-                {
-                    hash = hash * 59 + BatchId.GetHashCode();
-                }
-                if (ExternalBatchId != null)
-                {
-                    hash = hash * 59 + ExternalBatchId.GetHashCode();
-                }
-                if (BatchNotes != null)
-                {
-                    hash = hash * 59 + BatchNotes.GetHashCode();
-                }
-                if (CreatedAt != null)
-                {
-                    hash = hash * 59 + CreatedAt.GetHashCode();
-                }
-                if (ProcessedAt != null)
-                {
-                    hash = hash * 59 + ProcessedAt.GetHashCode();
-                }
-                if (Errors != null)
-                {
-                    hash = hash * 59 + Errors.GetHashCode();
-                }
-                if (Warnings != null)
-                {
-                    hash = hash * 59 + Warnings.GetHashCode();
-                }
-                if (Completed != null)
-                {
-                    hash = hash * 59 + Completed.GetHashCode();
-                }
-                if (Forms != null)
-                {
-                    hash = hash * 59 + Forms.GetHashCode();
-                }
-                if (Count != null)
-                {
-                    hash = hash * 59 + Count.GetHashCode();
-                }
-                if (BatchShipmentsUrl != null)
-                {
-                    hash = hash * 59 + BatchShipmentsUrl.GetHashCode();
-                }
-                if (BatchLabelsUrl != null)
-                {
-                    hash = hash * 59 + BatchLabelsUrl.GetHashCode();
-                }
-                if (BatchErrorsUrl != null)
-                {
-                    hash = hash * 59 + BatchErrorsUrl.GetHashCode();
-                }
-                if (LabelDownload != null)
-                {
-                    hash = hash * 59 + LabelDownload.GetHashCode();
-                }
-                if (FormDownload != null)
-                {
-                    hash = hash * 59 + FormDownload.GetHashCode();
-                }
-                if (Status != null)
-                {
-                    hash = hash * 59 + Status.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.BatchId != null)
+                    hashCode = hashCode * 59 + this.BatchId.GetHashCode();
+                if (this.ExternalBatchId != null)
+                    hashCode = hashCode * 59 + this.ExternalBatchId.GetHashCode();
+                if (this.BatchNotes != null)
+                    hashCode = hashCode * 59 + this.BatchNotes.GetHashCode();
+                if (this.CreatedAt != null)
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.ProcessedAt != null)
+                    hashCode = hashCode * 59 + this.ProcessedAt.GetHashCode();
+                if (this.Errors != null)
+                    hashCode = hashCode * 59 + this.Errors.GetHashCode();
+                if (this.Warnings != null)
+                    hashCode = hashCode * 59 + this.Warnings.GetHashCode();
+                if (this.Completed != null)
+                    hashCode = hashCode * 59 + this.Completed.GetHashCode();
+                if (this.Forms != null)
+                    hashCode = hashCode * 59 + this.Forms.GetHashCode();
+                if (this.Count != null)
+                    hashCode = hashCode * 59 + this.Count.GetHashCode();
+                if (this.BatchShipmentsUrl != null)
+                    hashCode = hashCode * 59 + this.BatchShipmentsUrl.GetHashCode();
+                if (this.BatchLabelsUrl != null)
+                    hashCode = hashCode * 59 + this.BatchLabelsUrl.GetHashCode();
+                if (this.BatchErrorsUrl != null)
+                    hashCode = hashCode * 59 + this.BatchErrorsUrl.GetHashCode();
+                if (this.LabelDownload != null)
+                    hashCode = hashCode * 59 + this.LabelDownload.GetHashCode();
+                if (this.FormDownload != null)
+                    hashCode = hashCode * 59 + this.FormDownload.GetHashCode();
+                if (this.Status != null)
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

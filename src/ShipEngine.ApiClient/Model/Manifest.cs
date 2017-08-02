@@ -9,157 +9,100 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
+using SwaggerDateConverter = ShipEngine.ApiClient.Client.SwaggerDateConverter;
 
 namespace ShipEngine.ApiClient.Model
 {
     /// <summary>
-    ///     Manifest
+    /// Manifest
     /// </summary>
     [DataContract]
-    public class Manifest : IEquatable<Manifest>, IValidatableObject
+    public partial class Manifest :  IEquatable<Manifest>, IValidatableObject
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Manifest" /> class.
+        /// Initializes a new instance of the <see cref="Manifest" /> class.
         /// </summary>
-        /// <param name="manifestId">ManifestId.</param>
-        /// <param name="formId">FormId.</param>
-        /// <param name="createdAt">CreatedAt.</param>
-        /// <param name="shipDate">ShipDate.</param>
-        /// <param name="shipments">Shipments.</param>
-        /// <param name="warehouseId">WarehouseId.</param>
-        /// <param name="submissionId">SubmissionId.</param>
-        /// <param name="manifestDownload">ManifestDownload.</param>
-        public Manifest(string manifestId = default(string), string formId = default(string),
-            DateTime? createdAt = default(DateTime?), DateTime? shipDate = default(DateTime?),
-            int? shipments = default(int?), string warehouseId = default(string), string submissionId = default(string),
-            LinkDTO manifestDownload = default(LinkDTO))
+        /// <param name="ManifestId">ManifestId.</param>
+        /// <param name="FormId">FormId.</param>
+        /// <param name="CreatedAt">CreatedAt.</param>
+        /// <param name="ShipDate">ShipDate.</param>
+        /// <param name="Shipments">Shipments.</param>
+        /// <param name="WarehouseId">WarehouseId.</param>
+        /// <param name="SubmissionId">SubmissionId.</param>
+        /// <param name="ManifestDownload">ManifestDownload.</param>
+        public Manifest(string ManifestId = default(string), string FormId = default(string), DateTime? CreatedAt = default(DateTime?), DateTime? ShipDate = default(DateTime?), int? Shipments = default(int?), string WarehouseId = default(string), string SubmissionId = default(string), LinkDTO ManifestDownload = default(LinkDTO))
         {
-            ManifestId = manifestId;
-            FormId = formId;
-            CreatedAt = createdAt;
-            ShipDate = shipDate;
-            Shipments = shipments;
-            WarehouseId = warehouseId;
-            SubmissionId = submissionId;
-            ManifestDownload = manifestDownload;
+            this.ManifestId = ManifestId;
+            this.FormId = FormId;
+            this.CreatedAt = CreatedAt;
+            this.ShipDate = ShipDate;
+            this.Shipments = Shipments;
+            this.WarehouseId = WarehouseId;
+            this.SubmissionId = SubmissionId;
+            this.ManifestDownload = ManifestDownload;
         }
-
+        
         /// <summary>
-        ///     Gets or Sets ManifestId
+        /// Gets or Sets ManifestId
         /// </summary>
-        [DataMember(Name = "manifest_id", EmitDefaultValue = false)]
+        [DataMember(Name="manifest_id", EmitDefaultValue=false)]
         public string ManifestId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets FormId
+        /// Gets or Sets FormId
         /// </summary>
-        [DataMember(Name = "form_id", EmitDefaultValue = false)]
+        [DataMember(Name="form_id", EmitDefaultValue=false)]
         public string FormId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets CreatedAt
+        /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "created_at", EmitDefaultValue = false)]
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ShipDate
+        /// Gets or Sets ShipDate
         /// </summary>
-        [DataMember(Name = "ship_date", EmitDefaultValue = false)]
+        [DataMember(Name="ship_date", EmitDefaultValue=false)]
         public DateTime? ShipDate { get; set; }
 
         /// <summary>
-        ///     Gets or Sets Shipments
+        /// Gets or Sets Shipments
         /// </summary>
-        [DataMember(Name = "shipments", EmitDefaultValue = false)]
+        [DataMember(Name="shipments", EmitDefaultValue=false)]
         public int? Shipments { get; set; }
 
         /// <summary>
-        ///     Gets or Sets WarehouseId
+        /// Gets or Sets WarehouseId
         /// </summary>
-        [DataMember(Name = "warehouse_id", EmitDefaultValue = false)]
+        [DataMember(Name="warehouse_id", EmitDefaultValue=false)]
         public string WarehouseId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets SubmissionId
+        /// Gets or Sets SubmissionId
         /// </summary>
-        [DataMember(Name = "submission_id", EmitDefaultValue = false)]
+        [DataMember(Name="submission_id", EmitDefaultValue=false)]
         public string SubmissionId { get; set; }
 
         /// <summary>
-        ///     Gets or Sets ManifestDownload
+        /// Gets or Sets ManifestDownload
         /// </summary>
-        [DataMember(Name = "manifest_download", EmitDefaultValue = false)]
+        [DataMember(Name="manifest_download", EmitDefaultValue=false)]
         public LinkDTO ManifestDownload { get; set; }
 
         /// <summary>
-        ///     Returns true if Manifest instances are equal
-        /// </summary>
-        /// <param name="other">Instance of Manifest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Manifest other)
-        {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            if (other == null)
-            {
-                return false;
-            }
-
-            return
-                (
-                    ManifestId == other.ManifestId ||
-                    ManifestId != null &&
-                    ManifestId.Equals(other.ManifestId)
-                ) &&
-                (
-                    FormId == other.FormId ||
-                    FormId != null &&
-                    FormId.Equals(other.FormId)
-                ) &&
-                (
-                    CreatedAt == other.CreatedAt ||
-                    CreatedAt != null &&
-                    CreatedAt.Equals(other.CreatedAt)
-                ) &&
-                (
-                    ShipDate == other.ShipDate ||
-                    ShipDate != null &&
-                    ShipDate.Equals(other.ShipDate)
-                ) &&
-                (
-                    Shipments == other.Shipments ||
-                    Shipments != null &&
-                    Shipments.Equals(other.Shipments)
-                ) &&
-                (
-                    WarehouseId == other.WarehouseId ||
-                    WarehouseId != null &&
-                    WarehouseId.Equals(other.WarehouseId)
-                ) &&
-                (
-                    SubmissionId == other.SubmissionId ||
-                    SubmissionId != null &&
-                    SubmissionId.Equals(other.SubmissionId)
-                ) &&
-                (
-                    Equals(ManifestDownload, other.ManifestDownload) ||
-                    ManifestDownload != null &&
-                    ManifestDownload.Equals(other.ManifestDownload)
-                );
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
-
-        /// <summary>
-        ///     Returns the string presentation of the object
+        /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
@@ -177,9 +120,9 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
-        ///     Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
         public string ToJson()
@@ -188,61 +131,106 @@ namespace ShipEngine.ApiClient.Model
         }
 
         /// <summary>
-        ///     Returns true if objects are equal
+        /// Returns true if objects are equal
         /// </summary>
-        /// <param name="obj">Object to be compared</param>
+        /// <param name="input">Object to be compared</param>
         /// <returns>Boolean</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object input)
         {
-            // credit: http://stackoverflow.com/a/10454552/677735
-            return Equals(obj as Manifest);
+            return this.Equals(input as Manifest);
         }
 
         /// <summary>
-        ///     Gets the hash code
+        /// Returns true if Manifest instances are equal
+        /// </summary>
+        /// <param name="input">Instance of Manifest to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(Manifest input)
+        {
+            if (input == null)
+                return false;
+
+            return 
+                (
+                    this.ManifestId == input.ManifestId ||
+                    (this.ManifestId != null &&
+                    this.ManifestId.Equals(input.ManifestId))
+                ) && 
+                (
+                    this.FormId == input.FormId ||
+                    (this.FormId != null &&
+                    this.FormId.Equals(input.FormId))
+                ) && 
+                (
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
+                    this.ShipDate == input.ShipDate ||
+                    (this.ShipDate != null &&
+                    this.ShipDate.Equals(input.ShipDate))
+                ) && 
+                (
+                    this.Shipments == input.Shipments ||
+                    (this.Shipments != null &&
+                    this.Shipments.Equals(input.Shipments))
+                ) && 
+                (
+                    this.WarehouseId == input.WarehouseId ||
+                    (this.WarehouseId != null &&
+                    this.WarehouseId.Equals(input.WarehouseId))
+                ) && 
+                (
+                    this.SubmissionId == input.SubmissionId ||
+                    (this.SubmissionId != null &&
+                    this.SubmissionId.Equals(input.SubmissionId))
+                ) && 
+                (
+                    this.ManifestDownload == input.ManifestDownload ||
+                    (this.ManifestDownload != null &&
+                    this.ManifestDownload.Equals(input.ManifestDownload))
+                );
+        }
+
+        /// <summary>
+        /// Gets the hash code
         /// </summary>
         /// <returns>Hash code</returns>
         public override int GetHashCode()
         {
-            // credit: http://stackoverflow.com/a/263416/677735
             unchecked // Overflow is fine, just wrap
             {
-                var hash = 41;
-                // Suitable nullity checks etc, of course :)
-                if (ManifestId != null)
-                {
-                    hash = hash * 59 + ManifestId.GetHashCode();
-                }
-                if (FormId != null)
-                {
-                    hash = hash * 59 + FormId.GetHashCode();
-                }
-                if (CreatedAt != null)
-                {
-                    hash = hash * 59 + CreatedAt.GetHashCode();
-                }
-                if (ShipDate != null)
-                {
-                    hash = hash * 59 + ShipDate.GetHashCode();
-                }
-                if (Shipments != null)
-                {
-                    hash = hash * 59 + Shipments.GetHashCode();
-                }
-                if (WarehouseId != null)
-                {
-                    hash = hash * 59 + WarehouseId.GetHashCode();
-                }
-                if (SubmissionId != null)
-                {
-                    hash = hash * 59 + SubmissionId.GetHashCode();
-                }
-                if (ManifestDownload != null)
-                {
-                    hash = hash * 59 + ManifestDownload.GetHashCode();
-                }
-                return hash;
+                int hashCode = 41;
+                if (this.ManifestId != null)
+                    hashCode = hashCode * 59 + this.ManifestId.GetHashCode();
+                if (this.FormId != null)
+                    hashCode = hashCode * 59 + this.FormId.GetHashCode();
+                if (this.CreatedAt != null)
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.ShipDate != null)
+                    hashCode = hashCode * 59 + this.ShipDate.GetHashCode();
+                if (this.Shipments != null)
+                    hashCode = hashCode * 59 + this.Shipments.GetHashCode();
+                if (this.WarehouseId != null)
+                    hashCode = hashCode * 59 + this.WarehouseId.GetHashCode();
+                if (this.SubmissionId != null)
+                    hashCode = hashCode * 59 + this.SubmissionId.GetHashCode();
+                if (this.ManifestDownload != null)
+                    hashCode = hashCode * 59 + this.ManifestDownload.GetHashCode();
+                return hashCode;
             }
         }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
+
 }

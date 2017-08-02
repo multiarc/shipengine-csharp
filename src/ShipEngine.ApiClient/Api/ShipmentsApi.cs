@@ -10,626 +10,612 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using RestSharp;
-using ShipEngine.ApiClient.Api.Interfaces;
 using ShipEngine.ApiClient.Client;
 using ShipEngine.ApiClient.Model;
 
 namespace ShipEngine.ApiClient.Api
 {
     /// <summary>
-    ///     Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
     public interface IShipmentsApi : IApiAccessor
     {
         #region Synchronous Operations
-
         /// <summary>
-        ///     Add a tag to a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
+        /// <param name="tag"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>ShipmentAddTagResponse</returns>
-        ShipmentAddTagResponse ShipmentsAddTag(string shipmentId, string tag, string apiKey);
+        ShipmentAddTagResponse ShipmentsAddTag (string shipmentId, string tag, string apiKey);
 
         /// <summary>
-        ///     Add a tag to a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
+        /// <param name="tag"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>ApiResponse of ShipmentAddTagResponse</returns>
-        ApiResponse<ShipmentAddTagResponse> ShipmentsAddTagWithHttpInfo(string shipmentId, string tag, string apiKey);
-
+        ApiResponse<ShipmentAddTagResponse> ShipmentsAddTagWithHttpInfo (string shipmentId, string tag, string apiKey);
         /// <summary>
-        ///     Cancel a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
+        /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns></returns>
-        void ShipmentsCancel(string shipmentId, string apiKey);
+        void ShipmentsCancel (string shipmentId, string apiKey);
 
         /// <summary>
-        ///     Cancel a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
+        /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<object> ShipmentsCancelWithHttpInfo(string shipmentId, string apiKey);
-
+        ApiResponse<Object> ShipmentsCancelWithHttpInfo (string shipmentId, string apiKey);
         /// <summary>
-        ///     Create multiple shipments
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentsRequest"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>CreateShipmentsResponse</returns>
-        CreateShipmentsResponse ShipmentsCreateShipments(CreateShipmentsRequest shipmentsRequest, string apiKey);
+        CreateShipmentsResponse ShipmentsCreateShipments (CreateShipmentsRequest shipmentsRequest, string apiKey);
 
         /// <summary>
-        ///     Create multiple shipments
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentsRequest"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>ApiResponse of CreateShipmentsResponse</returns>
-        ApiResponse<CreateShipmentsResponse> ShipmentsCreateShipmentsWithHttpInfo(
-            CreateShipmentsRequest shipmentsRequest, string apiKey);
-
+        ApiResponse<CreateShipmentsResponse> ShipmentsCreateShipmentsWithHttpInfo (CreateShipmentsRequest shipmentsRequest, string apiKey);
         /// <summary>
-        ///     Get a specific shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Shipment</returns>
-        Shipment ShipmentsGet(string shipmentId, string apiKey);
+        Shipment ShipmentsGet (string shipmentId, string apiKey);
 
         /// <summary>
-        ///     Get a specific shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>ApiResponse of Shipment</returns>
-        ApiResponse<Shipment> ShipmentsGetWithHttpInfo(string shipmentId, string apiKey);
-
+        ApiResponse<Shipment> ShipmentsGetWithHttpInfo (string shipmentId, string apiKey);
         /// <summary>
-        ///     Get a specific shipment by an external id
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="externalShipmentId">External Shipment Id</param>
+        /// <param name="externalShipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Shipment</returns>
-        Shipment ShipmentsGetByExternalId(string externalShipmentId, string apiKey);
+        Shipment ShipmentsGetByExternalId (string externalShipmentId, string apiKey);
 
         /// <summary>
-        ///     Get a specific shipment by an external id
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="externalShipmentId">External Shipment Id</param>
+        /// <param name="externalShipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>ApiResponse of Shipment</returns>
-        ApiResponse<Shipment> ShipmentsGetByExternalIdWithHttpInfo(string externalShipmentId, string apiKey);
-
+        ApiResponse<Shipment> ShipmentsGetByExternalIdWithHttpInfo (string externalShipmentId, string apiKey);
         /// <summary>
-        ///     Get rates for a specific shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <param name="createdAtStart"> (optional)</param>
         /// <returns>RateResponse</returns>
-        RateResponse ShipmentsGetRatesForShipment(string shipmentId, string apiKey, DateTime? createdAtStart = null);
+        RateResponse ShipmentsGetRatesForShipment (string shipmentId, string apiKey, DateTime? createdAtStart = null);
 
         /// <summary>
-        ///     Get rates for a specific shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <param name="createdAtStart"> (optional)</param>
         /// <returns>ApiResponse of RateResponse</returns>
-        ApiResponse<RateResponse> ShipmentsGetRatesForShipmentWithHttpInfo(string shipmentId, string apiKey,
-            DateTime? createdAtStart = null);
-
+        ApiResponse<RateResponse> ShipmentsGetRatesForShipmentWithHttpInfo (string shipmentId, string apiKey, DateTime? createdAtStart = null);
         /// <summary>
-        ///     Get shipments
+        /// 
         /// </summary>
         /// <remarks>
-        ///     Get a list of shipments using optional criteria
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Retrieve shipments in the specified batch_id (optional)</param>
-        /// <param name="tag">Retrieve shipments by associated tag (optional)</param>
-        /// <param name="shipmentStatus">Shipment status (optional)</param>
-        /// <param name="modifiedAtStart">Modify date range start (optional)</param>
-        /// <param name="modifiedAtEnd">Modify date range end (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="tag"> (optional)</param>
+        /// <param name="shipmentStatus"> (optional)</param>
+        /// <param name="modifiedAtStart"> (optional)</param>
+        /// <param name="modifiedAtEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
         /// <returns>ListShipmentResponse</returns>
-        ListShipmentResponse ShipmentsList(string apiKey, string batchId = null, string tag = null,
-            string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null,
-            DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null,
-            string sortDir = null, string sortBy = null);
+        ListShipmentResponse ShipmentsList (string apiKey, string batchId = null, string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null);
 
         /// <summary>
-        ///     Get shipments
+        /// 
         /// </summary>
         /// <remarks>
-        ///     Get a list of shipments using optional criteria
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Retrieve shipments in the specified batch_id (optional)</param>
-        /// <param name="tag">Retrieve shipments by associated tag (optional)</param>
-        /// <param name="shipmentStatus">Shipment status (optional)</param>
-        /// <param name="modifiedAtStart">Modify date range start (optional)</param>
-        /// <param name="modifiedAtEnd">Modify date range end (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="tag"> (optional)</param>
+        /// <param name="shipmentStatus"> (optional)</param>
+        /// <param name="modifiedAtStart"> (optional)</param>
+        /// <param name="modifiedAtEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
         /// <returns>ApiResponse of ListShipmentResponse</returns>
-        ApiResponse<ListShipmentResponse> ShipmentsListWithHttpInfo(string apiKey, string batchId = null,
-            string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null,
-            DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null,
-            int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null);
-
+        ApiResponse<ListShipmentResponse> ShipmentsListWithHttpInfo (string apiKey, string batchId = null, string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null);
         /// <summary>
-        ///     Lists the errors.
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
-        /// <param name="page">The page. (optional)</param>
+        /// <param name="page"> (optional)</param>
         /// <param name="pagesize"> (optional)</param>
         /// <returns>ShipmentResponseErrors</returns>
-        ShipmentResponseErrors ShipmentsListErrors(string shipmentId, string apiKey, int? page = null,
-            int? pagesize = null);
+        ShipmentResponseErrors ShipmentsListErrors (string shipmentId, string apiKey, int? page = null, int? pagesize = null);
 
         /// <summary>
-        ///     Lists the errors.
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
-        /// <param name="page">The page. (optional)</param>
+        /// <param name="page"> (optional)</param>
         /// <param name="pagesize"> (optional)</param>
         /// <returns>ApiResponse of ShipmentResponseErrors</returns>
-        ApiResponse<ShipmentResponseErrors> ShipmentsListErrorsWithHttpInfo(string shipmentId, string apiKey,
-            int? page = null, int? pagesize = null);
-
+        ApiResponse<ShipmentResponseErrors> ShipmentsListErrorsWithHttpInfo (string shipmentId, string apiKey, int? page = null, int? pagesize = null);
         /// <summary>
-        ///     Remove a tag from a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
+        /// <param name="tag"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns></returns>
-        void ShipmentsRemoveTag(string shipmentId, string tag, string apiKey);
+        void ShipmentsRemoveTag (string shipmentId, string tag, string apiKey);
 
         /// <summary>
-        ///     Remove a tag from a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
+        /// <param name="tag"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<object> ShipmentsRemoveTagWithHttpInfo(string shipmentId, string tag, string apiKey);
-
+        ApiResponse<Object> ShipmentsRemoveTagWithHttpInfo (string shipmentId, string tag, string apiKey);
         /// <summary>
-        ///     Update a shipment
+        /// 
         /// </summary>
         /// <remarks>
-        /// </remarks>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="shipment">Shipment</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>CreateShipmentResponse</returns>
-        CreateShipmentResponse ShipmentsUpdateShipment(string shipmentId, AddressValidatingShipment shipment,
-            string apiKey);
-
-        /// <summary>
-        ///     Update a shipment
-        /// </summary>
-        /// <remarks>
-        /// </remarks>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="shipment">Shipment</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of CreateShipmentResponse</returns>
-        ApiResponse<CreateShipmentResponse> ShipmentsUpdateShipmentWithHttpInfo(string shipmentId,
-            AddressValidatingShipment shipment, string apiKey);
-
-        #endregion Synchronous Operations
-
-        #region Asynchronous Operations
-
-        /// <summary>
-        ///     Add a tag to a shipment
-        /// </summary>
-        /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
+        /// <param name="shipment"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        void ShipmentsUpdateShipment (string shipmentId, AddressValidatingShipment shipment, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="shipment"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> ShipmentsUpdateShipmentWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey);
+        #endregion Synchronous Operations
+        #region Asynchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="tag"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ShipmentAddTagResponse</returns>
-        Task<ShipmentAddTagResponse> ShipmentsAddTagAsync(string shipmentId, string tag, string apiKey);
+        System.Threading.Tasks.Task<ShipmentAddTagResponse> ShipmentsAddTagAsync (string shipmentId, string tag, string apiKey);
 
         /// <summary>
-        ///     Add a tag to a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
+        /// <param name="tag"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ApiResponse (ShipmentAddTagResponse)</returns>
-        Task<ApiResponse<ShipmentAddTagResponse>> ShipmentsAddTagAsyncWithHttpInfo(string shipmentId, string tag,
-            string apiKey);
-
+        System.Threading.Tasks.Task<ApiResponse<ShipmentAddTagResponse>> ShipmentsAddTagAsyncWithHttpInfo (string shipmentId, string tag, string apiKey);
         /// <summary>
-        ///     Cancel a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
+        /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of void</returns>
-        Task ShipmentsCancelAsync(string shipmentId, string apiKey);
+        System.Threading.Tasks.Task ShipmentsCancelAsync (string shipmentId, string apiKey);
 
         /// <summary>
-        ///     Cancel a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
+        /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ApiResponse</returns>
-        Task<ApiResponse<object>> ShipmentsCancelAsyncWithHttpInfo(string shipmentId, string apiKey);
-
+        System.Threading.Tasks.Task<ApiResponse<Object>> ShipmentsCancelAsyncWithHttpInfo (string shipmentId, string apiKey);
         /// <summary>
-        ///     Create multiple shipments
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentsRequest"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of CreateShipmentsResponse</returns>
-        Task<CreateShipmentsResponse> ShipmentsCreateShipmentsAsync(CreateShipmentsRequest shipmentsRequest,
-            string apiKey);
+        System.Threading.Tasks.Task<CreateShipmentsResponse> ShipmentsCreateShipmentsAsync (CreateShipmentsRequest shipmentsRequest, string apiKey);
 
         /// <summary>
-        ///     Create multiple shipments
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentsRequest"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ApiResponse (CreateShipmentsResponse)</returns>
-        Task<ApiResponse<CreateShipmentsResponse>> ShipmentsCreateShipmentsAsyncWithHttpInfo(
-            CreateShipmentsRequest shipmentsRequest, string apiKey);
-
+        System.Threading.Tasks.Task<ApiResponse<CreateShipmentsResponse>> ShipmentsCreateShipmentsAsyncWithHttpInfo (CreateShipmentsRequest shipmentsRequest, string apiKey);
         /// <summary>
-        ///     Get a specific shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of Shipment</returns>
-        Task<Shipment> ShipmentsGetAsync(string shipmentId, string apiKey);
+        System.Threading.Tasks.Task<Shipment> ShipmentsGetAsync (string shipmentId, string apiKey);
 
         /// <summary>
-        ///     Get a specific shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ApiResponse (Shipment)</returns>
-        Task<ApiResponse<Shipment>> ShipmentsGetAsyncWithHttpInfo(string shipmentId, string apiKey);
-
+        System.Threading.Tasks.Task<ApiResponse<Shipment>> ShipmentsGetAsyncWithHttpInfo (string shipmentId, string apiKey);
         /// <summary>
-        ///     Get a specific shipment by an external id
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="externalShipmentId">External Shipment Id</param>
+        /// <param name="externalShipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of Shipment</returns>
-        Task<Shipment> ShipmentsGetByExternalIdAsync(string externalShipmentId, string apiKey);
+        System.Threading.Tasks.Task<Shipment> ShipmentsGetByExternalIdAsync (string externalShipmentId, string apiKey);
 
         /// <summary>
-        ///     Get a specific shipment by an external id
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="externalShipmentId">External Shipment Id</param>
+        /// <param name="externalShipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ApiResponse (Shipment)</returns>
-        Task<ApiResponse<Shipment>> ShipmentsGetByExternalIdAsyncWithHttpInfo(string externalShipmentId, string apiKey);
-
+        System.Threading.Tasks.Task<ApiResponse<Shipment>> ShipmentsGetByExternalIdAsyncWithHttpInfo (string externalShipmentId, string apiKey);
         /// <summary>
-        ///     Get rates for a specific shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <param name="createdAtStart"> (optional)</param>
         /// <returns>Task of RateResponse</returns>
-        Task<RateResponse> ShipmentsGetRatesForShipmentAsync(string shipmentId, string apiKey,
-            DateTime? createdAtStart = null);
+        System.Threading.Tasks.Task<RateResponse> ShipmentsGetRatesForShipmentAsync (string shipmentId, string apiKey, DateTime? createdAtStart = null);
 
         /// <summary>
-        ///     Get rates for a specific shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
         /// <param name="createdAtStart"> (optional)</param>
         /// <returns>Task of ApiResponse (RateResponse)</returns>
-        Task<ApiResponse<RateResponse>> ShipmentsGetRatesForShipmentAsyncWithHttpInfo(string shipmentId, string apiKey,
-            DateTime? createdAtStart = null);
-
+        System.Threading.Tasks.Task<ApiResponse<RateResponse>> ShipmentsGetRatesForShipmentAsyncWithHttpInfo (string shipmentId, string apiKey, DateTime? createdAtStart = null);
         /// <summary>
-        ///     Get shipments
+        /// 
         /// </summary>
         /// <remarks>
-        ///     Get a list of shipments using optional criteria
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Retrieve shipments in the specified batch_id (optional)</param>
-        /// <param name="tag">Retrieve shipments by associated tag (optional)</param>
-        /// <param name="shipmentStatus">Shipment status (optional)</param>
-        /// <param name="modifiedAtStart">Modify date range start (optional)</param>
-        /// <param name="modifiedAtEnd">Modify date range end (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="tag"> (optional)</param>
+        /// <param name="shipmentStatus"> (optional)</param>
+        /// <param name="modifiedAtStart"> (optional)</param>
+        /// <param name="modifiedAtEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
         /// <returns>Task of ListShipmentResponse</returns>
-        Task<ListShipmentResponse> ShipmentsListAsync(string apiKey, string batchId = null, string tag = null,
-            string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null,
-            DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null,
-            string sortDir = null, string sortBy = null);
+        System.Threading.Tasks.Task<ListShipmentResponse> ShipmentsListAsync (string apiKey, string batchId = null, string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null);
 
         /// <summary>
-        ///     Get shipments
+        /// 
         /// </summary>
         /// <remarks>
-        ///     Get a list of shipments using optional criteria
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Retrieve shipments in the specified batch_id (optional)</param>
-        /// <param name="tag">Retrieve shipments by associated tag (optional)</param>
-        /// <param name="shipmentStatus">Shipment status (optional)</param>
-        /// <param name="modifiedAtStart">Modify date range start (optional)</param>
-        /// <param name="modifiedAtEnd">Modify date range end (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="tag"> (optional)</param>
+        /// <param name="shipmentStatus"> (optional)</param>
+        /// <param name="modifiedAtStart"> (optional)</param>
+        /// <param name="modifiedAtEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
         /// <returns>Task of ApiResponse (ListShipmentResponse)</returns>
-        Task<ApiResponse<ListShipmentResponse>> ShipmentsListAsyncWithHttpInfo(string apiKey, string batchId = null,
-            string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null,
-            DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null,
-            int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null);
-
+        System.Threading.Tasks.Task<ApiResponse<ListShipmentResponse>> ShipmentsListAsyncWithHttpInfo (string apiKey, string batchId = null, string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null);
         /// <summary>
-        ///     Lists the errors.
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
-        /// <param name="page">The page. (optional)</param>
+        /// <param name="page"> (optional)</param>
         /// <param name="pagesize"> (optional)</param>
         /// <returns>Task of ShipmentResponseErrors</returns>
-        Task<ShipmentResponseErrors> ShipmentsListErrorsAsync(string shipmentId, string apiKey, int? page = null,
-            int? pagesize = null);
+        System.Threading.Tasks.Task<ShipmentResponseErrors> ShipmentsListErrorsAsync (string shipmentId, string apiKey, int? page = null, int? pagesize = null);
 
         /// <summary>
-        ///     Lists the errors.
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
         /// <param name="apiKey">API Key</param>
-        /// <param name="page">The page. (optional)</param>
+        /// <param name="page"> (optional)</param>
         /// <param name="pagesize"> (optional)</param>
         /// <returns>Task of ApiResponse (ShipmentResponseErrors)</returns>
-        Task<ApiResponse<ShipmentResponseErrors>> ShipmentsListErrorsAsyncWithHttpInfo(string shipmentId, string apiKey,
-            int? page = null, int? pagesize = null);
-
+        System.Threading.Tasks.Task<ApiResponse<ShipmentResponseErrors>> ShipmentsListErrorsAsyncWithHttpInfo (string shipmentId, string apiKey, int? page = null, int? pagesize = null);
         /// <summary>
-        ///     Remove a tag from a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
+        /// <param name="tag"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of void</returns>
-        Task ShipmentsRemoveTagAsync(string shipmentId, string tag, string apiKey);
+        System.Threading.Tasks.Task ShipmentsRemoveTagAsync (string shipmentId, string tag, string apiKey);
 
         /// <summary>
-        ///     Remove a tag from a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
+        /// <param name="tag"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ApiResponse</returns>
-        Task<ApiResponse<object>> ShipmentsRemoveTagAsyncWithHttpInfo(string shipmentId, string tag, string apiKey);
-
+        System.Threading.Tasks.Task<ApiResponse<Object>> ShipmentsRemoveTagAsyncWithHttpInfo (string shipmentId, string tag, string apiKey);
         /// <summary>
-        ///     Update a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="shipment">Shipment</param>
+        /// <param name="shipmentId"></param>
+        /// <param name="shipment"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of CreateShipmentResponse</returns>
-        Task<CreateShipmentResponse> ShipmentsUpdateShipmentAsync(string shipmentId, AddressValidatingShipment shipment,
-            string apiKey);
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task ShipmentsUpdateShipmentAsync (string shipmentId, AddressValidatingShipment shipment, string apiKey);
 
         /// <summary>
-        ///     Update a shipment
+        /// 
         /// </summary>
         /// <remarks>
+        /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="shipment">Shipment</param>
+        /// <param name="shipmentId"></param>
+        /// <param name="shipment"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (CreateShipmentResponse)</returns>
-        Task<ApiResponse<CreateShipmentResponse>> ShipmentsUpdateShipmentAsyncWithHttpInfo(string shipmentId,
-            AddressValidatingShipment shipment, string apiKey);
-
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> ShipmentsUpdateShipmentAsyncWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey);
         #endregion Asynchronous Operations
     }
 
     /// <summary>
-    ///     Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class ShipmentsApi : IShipmentsApi
+    public partial class ShipmentsApi : IShipmentsApi
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ShipEngine.ApiClient.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ShipmentsApi" /> class.
+        /// Initializes a new instance of the <see cref="ShipmentsApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public ShipmentsApi(string basePath)
+        public ShipmentsApi(String basePath)
         {
-            Configuration = new Configuration(new Client.ApiClient(basePath));
+            this.Configuration = new Configuration { BasePath = basePath };
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ShipmentsApi" /> class
-        ///     using Configuration object
+        /// Initializes a new instance of the <see cref="ShipmentsApi"/> class
+        /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
         public ShipmentsApi(Configuration configuration = null)
         {
-            Configuration = configuration ?? Configuration.Default;
+            if (configuration == null) // use the default one in Configuration
+                this.Configuration = Configuration.Default;
+            else
+                this.Configuration = configuration;
 
-            ExceptionFactory = Configuration.DefaultExceptionFactory;
-
-            // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
-            {
-                Configuration.ApiClient.Configuration = Configuration;
-            }
+            ExceptionFactory = ShipEngine.ApiClient.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        ///     Gets the base path of the API client.
+        /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public string GetBasePath()
+        public String GetBasePath()
         {
-            return Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
         }
 
         /// <summary>
-        ///     Gets or sets the configuration object
+        /// Sets the base path of the API client.
         /// </summary>
-        /// <value>An instance of the Configuration</value>
-        public Configuration Configuration { get; set; }
+        /// <value>The base path</value>
+        [Obsolete("SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead.")]
+        public void SetBasePath(String basePath)
+        {
+            // do nothing
+        }
 
         /// <summary>
-        ///     Provides a factory method hook for the creation of exceptions.
+        /// Gets or sets the configuration object
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        /// <value>An instance of the Configuration</value>
+        public Configuration Configuration {get; set;}
+
+        /// <summary>
+        /// Provides a factory method hook for the creation of exceptions.
+        /// </summary>
+        public ShipEngine.ApiClient.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -643,2213 +629,17 @@ namespace ShipEngine.ApiClient.Api
         }
 
         /// <summary>
-        ///     Add a tag to a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ShipmentAddTagResponse</returns>
-        public ShipmentAddTagResponse ShipmentsAddTag(string shipmentId, string tag, string apiKey)
-        {
-            var localVarResponse = ShipmentsAddTagWithHttpInfo(shipmentId, tag, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Add a tag to a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of ShipmentAddTagResponse</returns>
-        public ApiResponse<ShipmentAddTagResponse> ShipmentsAddTagWithHttpInfo(string shipmentId, string tag,
-            string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsAddTag");
-            }
-            // verify the required parameter 'tag' is set
-            if (tag == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'tag' when calling ShipmentsApi->ShipmentsAddTag");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsAddTag");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}/tags/{tag}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarPathParams.Add("tag", Configuration.ApiClient.ParameterToString(tag)); // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsAddTag", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ShipmentAddTagResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ShipmentAddTagResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(ShipmentAddTagResponse)));
-        }
-
-        /// <summary>
-        ///     Add a tag to a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ShipmentAddTagResponse</returns>
-        public async Task<ShipmentAddTagResponse> ShipmentsAddTagAsync(string shipmentId, string tag, string apiKey)
-        {
-            var localVarResponse = await ShipmentsAddTagAsyncWithHttpInfo(shipmentId, tag, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Add a tag to a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (ShipmentAddTagResponse)</returns>
-        public async Task<ApiResponse<ShipmentAddTagResponse>> ShipmentsAddTagAsyncWithHttpInfo(string shipmentId,
-            string tag, string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsAddTag");
-            }
-            // verify the required parameter 'tag' is set
-            if (tag == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'tag' when calling ShipmentsApi->ShipmentsAddTag");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsAddTag");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}/tags/{tag}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarPathParams.Add("tag", Configuration.ApiClient.ParameterToString(tag)); // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsAddTag", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ShipmentAddTagResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ShipmentAddTagResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(ShipmentAddTagResponse)));
-        }
-
-        /// <summary>
-        ///     Cancel a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns></returns>
-        public void ShipmentsCancel(string shipmentId, string apiKey)
-        {
-            ShipmentsCancelWithHttpInfo(shipmentId, apiKey);
-        }
-
-        /// <summary>
-        ///     Cancel a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<object> ShipmentsCancelWithHttpInfo(string shipmentId, string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsCancel");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsCancel");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}/cancel";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsCancel", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Cancel a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of void</returns>
-        public async Task ShipmentsCancelAsync(string shipmentId, string apiKey)
-        {
-            await ShipmentsCancelAsyncWithHttpInfo(shipmentId, apiKey);
-        }
-
-        /// <summary>
-        ///     Cancel a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async Task<ApiResponse<object>> ShipmentsCancelAsyncWithHttpInfo(string shipmentId, string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsCancel");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsCancel");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}/cancel";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsCancel", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Create multiple shipments
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentsRequest"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>CreateShipmentsResponse</returns>
-        public CreateShipmentsResponse ShipmentsCreateShipments(CreateShipmentsRequest shipmentsRequest, string apiKey)
-        {
-            var localVarResponse = ShipmentsCreateShipmentsWithHttpInfo(shipmentsRequest, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Create multiple shipments
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentsRequest"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of CreateShipmentsResponse</returns>
-        public ApiResponse<CreateShipmentsResponse> ShipmentsCreateShipmentsWithHttpInfo(
-            CreateShipmentsRequest shipmentsRequest, string apiKey)
-        {
-            // verify the required parameter 'shipmentsRequest' is set
-            if (shipmentsRequest == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentsRequest' when calling ShipmentsApi->ShipmentsCreateShipments");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsCreateShipments");
-            }
-
-            var localVarPath = "/v1/shipments";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (shipmentsRequest.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(shipmentsRequest); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = shipmentsRequest; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsCreateShipments", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CreateShipmentsResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CreateShipmentsResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateShipmentsResponse)));
-        }
-
-        /// <summary>
-        ///     Create multiple shipments
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentsRequest"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of CreateShipmentsResponse</returns>
-        public async Task<CreateShipmentsResponse> ShipmentsCreateShipmentsAsync(
-            CreateShipmentsRequest shipmentsRequest, string apiKey)
-        {
-            var localVarResponse = await ShipmentsCreateShipmentsAsyncWithHttpInfo(shipmentsRequest, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Create multiple shipments
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentsRequest"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (CreateShipmentsResponse)</returns>
-        public async Task<ApiResponse<CreateShipmentsResponse>> ShipmentsCreateShipmentsAsyncWithHttpInfo(
-            CreateShipmentsRequest shipmentsRequest, string apiKey)
-        {
-            // verify the required parameter 'shipmentsRequest' is set
-            if (shipmentsRequest == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentsRequest' when calling ShipmentsApi->ShipmentsCreateShipments");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsCreateShipments");
-            }
-
-            var localVarPath = "/v1/shipments";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (shipmentsRequest.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(shipmentsRequest); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = shipmentsRequest; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsCreateShipments", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CreateShipmentsResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CreateShipmentsResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateShipmentsResponse)));
-        }
-
-        /// <summary>
-        ///     Get a specific shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Shipment</returns>
-        public Shipment ShipmentsGet(string shipmentId, string apiKey)
-        {
-            var localVarResponse = ShipmentsGetWithHttpInfo(shipmentId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Shipment</returns>
-        public ApiResponse<Shipment> ShipmentsGetWithHttpInfo(string shipmentId, string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGet");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Shipment>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Shipment) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)));
-        }
-
-        /// <summary>
-        ///     Get a specific shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Shipment</returns>
-        public async Task<Shipment> ShipmentsGetAsync(string shipmentId, string apiKey)
-        {
-            var localVarResponse = await ShipmentsGetAsyncWithHttpInfo(shipmentId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Shipment)</returns>
-        public async Task<ApiResponse<Shipment>> ShipmentsGetAsyncWithHttpInfo(string shipmentId, string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsGet");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGet");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsGet", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Shipment>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Shipment) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)));
-        }
-
-        /// <summary>
-        ///     Get a specific shipment by an external id
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="externalShipmentId">External Shipment Id</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Shipment</returns>
-        public Shipment ShipmentsGetByExternalId(string externalShipmentId, string apiKey)
-        {
-            var localVarResponse = ShipmentsGetByExternalIdWithHttpInfo(externalShipmentId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific shipment by an external id
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="externalShipmentId">External Shipment Id</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Shipment</returns>
-        public ApiResponse<Shipment> ShipmentsGetByExternalIdWithHttpInfo(string externalShipmentId, string apiKey)
-        {
-            // verify the required parameter 'externalShipmentId' is set
-            if (externalShipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'externalShipmentId' when calling ShipmentsApi->ShipmentsGetByExternalId");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGetByExternalId");
-            }
-
-            var localVarPath = "/v1/shipments/external_shipment_id/{external_shipment_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("external_shipment_id",
-                Configuration.ApiClient.ParameterToString(externalShipmentId)); // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsGetByExternalId", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Shipment>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Shipment) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)));
-        }
-
-        /// <summary>
-        ///     Get a specific shipment by an external id
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="externalShipmentId">External Shipment Id</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Shipment</returns>
-        public async Task<Shipment> ShipmentsGetByExternalIdAsync(string externalShipmentId, string apiKey)
-        {
-            var localVarResponse = await ShipmentsGetByExternalIdAsyncWithHttpInfo(externalShipmentId, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get a specific shipment by an external id
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="externalShipmentId">External Shipment Id</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Shipment)</returns>
-        public async Task<ApiResponse<Shipment>> ShipmentsGetByExternalIdAsyncWithHttpInfo(string externalShipmentId,
-            string apiKey)
-        {
-            // verify the required parameter 'externalShipmentId' is set
-            if (externalShipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'externalShipmentId' when calling ShipmentsApi->ShipmentsGetByExternalId");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGetByExternalId");
-            }
-
-            var localVarPath = "/v1/shipments/external_shipment_id/{external_shipment_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("external_shipment_id",
-                Configuration.ApiClient.ParameterToString(externalShipmentId)); // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsGetByExternalId", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<Shipment>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Shipment) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)));
-        }
-
-        /// <summary>
-        ///     Get rates for a specific shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="createdAtStart"> (optional)</param>
-        /// <returns>RateResponse</returns>
-        public RateResponse ShipmentsGetRatesForShipment(string shipmentId, string apiKey,
-            DateTime? createdAtStart = null)
-        {
-            var localVarResponse = ShipmentsGetRatesForShipmentWithHttpInfo(shipmentId, apiKey, createdAtStart);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get rates for a specific shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="createdAtStart"> (optional)</param>
-        /// <returns>ApiResponse of RateResponse</returns>
-        public ApiResponse<RateResponse> ShipmentsGetRatesForShipmentWithHttpInfo(string shipmentId, string apiKey,
-            DateTime? createdAtStart = null)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsGetRatesForShipment");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGetRatesForShipment");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}/rates";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            if (createdAtStart != null)
-            {
-                localVarQueryParams.Add("created_at_start", Configuration.ApiClient.ParameterToString(createdAtStart));
-                    // query parameter
-            }
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsGetRatesForShipment", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<RateResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (RateResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(RateResponse)));
-        }
-
-        /// <summary>
-        ///     Get rates for a specific shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="createdAtStart"> (optional)</param>
-        /// <returns>Task of RateResponse</returns>
-        public async Task<RateResponse> ShipmentsGetRatesForShipmentAsync(string shipmentId, string apiKey,
-            DateTime? createdAtStart = null)
-        {
-            var localVarResponse = await ShipmentsGetRatesForShipmentAsyncWithHttpInfo(shipmentId, apiKey,
-                createdAtStart);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get rates for a specific shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="createdAtStart"> (optional)</param>
-        /// <returns>Task of ApiResponse (RateResponse)</returns>
-        public async Task<ApiResponse<RateResponse>> ShipmentsGetRatesForShipmentAsyncWithHttpInfo(string shipmentId,
-            string apiKey, DateTime? createdAtStart = null)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsGetRatesForShipment");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGetRatesForShipment");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}/rates";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            if (createdAtStart != null)
-            {
-                localVarQueryParams.Add("created_at_start", Configuration.ApiClient.ParameterToString(createdAtStart));
-                    // query parameter
-            }
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsGetRatesForShipment", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<RateResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (RateResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(RateResponse)));
-        }
-
-        /// <summary>
-        ///     Get shipments Get a list of shipments using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Retrieve shipments in the specified batch_id (optional)</param>
-        /// <param name="tag">Retrieve shipments by associated tag (optional)</param>
-        /// <param name="shipmentStatus">Shipment status (optional)</param>
-        /// <param name="modifiedAtStart">Modify date range start (optional)</param>
-        /// <param name="modifiedAtEnd">Modify date range end (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
-        /// <returns>ListShipmentResponse</returns>
-        public ListShipmentResponse ShipmentsList(string apiKey, string batchId = null, string tag = null,
-            string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null,
-            DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null,
-            string sortDir = null, string sortBy = null)
-        {
-            var localVarResponse = ShipmentsListWithHttpInfo(apiKey, batchId, tag, shipmentStatus, modifiedAtStart,
-                modifiedAtEnd, createdAtStart, createdAtEnd, page, pageSize, sortDir, sortBy);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get shipments Get a list of shipments using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Retrieve shipments in the specified batch_id (optional)</param>
-        /// <param name="tag">Retrieve shipments by associated tag (optional)</param>
-        /// <param name="shipmentStatus">Shipment status (optional)</param>
-        /// <param name="modifiedAtStart">Modify date range start (optional)</param>
-        /// <param name="modifiedAtEnd">Modify date range end (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
-        /// <returns>ApiResponse of ListShipmentResponse</returns>
-        public ApiResponse<ListShipmentResponse> ShipmentsListWithHttpInfo(string apiKey, string batchId = null,
-            string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null,
-            DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null,
-            int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsList");
-            }
-
-            var localVarPath = "/v1/shipments";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (batchId != null)
-            {
-                localVarQueryParams.Add("batch_id", Configuration.ApiClient.ParameterToString(batchId));
-                    // query parameter
-            }
-            if (tag != null)
-            {
-                localVarQueryParams.Add("tag", Configuration.ApiClient.ParameterToString(tag)); // query parameter
-            }
-            if (shipmentStatus != null)
-            {
-                localVarQueryParams.Add("shipment_status", Configuration.ApiClient.ParameterToString(shipmentStatus));
-                    // query parameter
-            }
-            if (modifiedAtStart != null)
-            {
-                localVarQueryParams.Add("modified_at_start", Configuration.ApiClient.ParameterToString(modifiedAtStart));
-                    // query parameter
-            }
-            if (modifiedAtEnd != null)
-            {
-                localVarQueryParams.Add("modified_at_end", Configuration.ApiClient.ParameterToString(modifiedAtEnd));
-                    // query parameter
-            }
-            if (createdAtStart != null)
-            {
-                localVarQueryParams.Add("created_at_start", Configuration.ApiClient.ParameterToString(createdAtStart));
-                    // query parameter
-            }
-            if (createdAtEnd != null)
-            {
-                localVarQueryParams.Add("created_at_end", Configuration.ApiClient.ParameterToString(createdAtEnd));
-                    // query parameter
-            }
-            if (page != null)
-            {
-                localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
-            }
-            if (pageSize != null)
-            {
-                localVarQueryParams.Add("page_size", Configuration.ApiClient.ParameterToString(pageSize));
-                    // query parameter
-            }
-            if (sortDir != null)
-            {
-                localVarQueryParams.Add("sort_dir", Configuration.ApiClient.ParameterToString(sortDir));
-                    // query parameter
-            }
-            if (sortBy != null)
-            {
-                localVarQueryParams.Add("sort_by", Configuration.ApiClient.ParameterToString(sortBy));
-                    // query parameter
-            }
-            if (apiKey != null)
-            {
-                localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-                    // header parameter
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsList", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ListShipmentResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ListShipmentResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListShipmentResponse)));
-        }
-
-        /// <summary>
-        ///     Get shipments Get a list of shipments using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Retrieve shipments in the specified batch_id (optional)</param>
-        /// <param name="tag">Retrieve shipments by associated tag (optional)</param>
-        /// <param name="shipmentStatus">Shipment status (optional)</param>
-        /// <param name="modifiedAtStart">Modify date range start (optional)</param>
-        /// <param name="modifiedAtEnd">Modify date range end (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
-        /// <returns>Task of ListShipmentResponse</returns>
-        public async Task<ListShipmentResponse> ShipmentsListAsync(string apiKey, string batchId = null,
-            string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null,
-            DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null,
-            int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
-        {
-            var localVarResponse = await ShipmentsListAsyncWithHttpInfo(apiKey, batchId, tag, shipmentStatus,
-                modifiedAtStart, modifiedAtEnd, createdAtStart, createdAtEnd, page, pageSize, sortDir, sortBy);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Get shipments Get a list of shipments using optional criteria
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="batchId">Retrieve shipments in the specified batch_id (optional)</param>
-        /// <param name="tag">Retrieve shipments by associated tag (optional)</param>
-        /// <param name="shipmentStatus">Shipment status (optional)</param>
-        /// <param name="modifiedAtStart">Modify date range start (optional)</param>
-        /// <param name="modifiedAtEnd">Modify date range end (optional)</param>
-        /// <param name="createdAtStart">Create date range start (optional)</param>
-        /// <param name="createdAtEnd">Create date range end (optional)</param>
-        /// <param name="page">Page number (optional)</param>
-        /// <param name="pageSize">Number of records per page (optional)</param>
-        /// <param name="sortDir">Sort direction (optional)</param>
-        /// <param name="sortBy">Sort by item (optional)</param>
-        /// <returns>Task of ApiResponse (ListShipmentResponse)</returns>
-        public async Task<ApiResponse<ListShipmentResponse>> ShipmentsListAsyncWithHttpInfo(string apiKey,
-            string batchId = null, string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null,
-            DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null,
-            int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
-        {
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsList");
-            }
-
-            var localVarPath = "/v1/shipments";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (batchId != null)
-            {
-                localVarQueryParams.Add("batch_id", Configuration.ApiClient.ParameterToString(batchId));
-                    // query parameter
-            }
-            if (tag != null)
-            {
-                localVarQueryParams.Add("tag", Configuration.ApiClient.ParameterToString(tag)); // query parameter
-            }
-            if (shipmentStatus != null)
-            {
-                localVarQueryParams.Add("shipment_status", Configuration.ApiClient.ParameterToString(shipmentStatus));
-                    // query parameter
-            }
-            if (modifiedAtStart != null)
-            {
-                localVarQueryParams.Add("modified_at_start", Configuration.ApiClient.ParameterToString(modifiedAtStart));
-                    // query parameter
-            }
-            if (modifiedAtEnd != null)
-            {
-                localVarQueryParams.Add("modified_at_end", Configuration.ApiClient.ParameterToString(modifiedAtEnd));
-                    // query parameter
-            }
-            if (createdAtStart != null)
-            {
-                localVarQueryParams.Add("created_at_start", Configuration.ApiClient.ParameterToString(createdAtStart));
-                    // query parameter
-            }
-            if (createdAtEnd != null)
-            {
-                localVarQueryParams.Add("created_at_end", Configuration.ApiClient.ParameterToString(createdAtEnd));
-                    // query parameter
-            }
-            if (page != null)
-            {
-                localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
-            }
-            if (pageSize != null)
-            {
-                localVarQueryParams.Add("page_size", Configuration.ApiClient.ParameterToString(pageSize));
-                    // query parameter
-            }
-            if (sortDir != null)
-            {
-                localVarQueryParams.Add("sort_dir", Configuration.ApiClient.ParameterToString(sortDir));
-                    // query parameter
-            }
-            if (sortBy != null)
-            {
-                localVarQueryParams.Add("sort_by", Configuration.ApiClient.ParameterToString(sortBy));
-                    // query parameter
-            }
-            if (apiKey != null)
-            {
-                localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-                    // header parameter
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsList", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ListShipmentResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ListShipmentResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListShipmentResponse)));
-        }
-
-        /// <summary>
-        ///     Lists the errors.
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="page">The page. (optional)</param>
-        /// <param name="pagesize"> (optional)</param>
-        /// <returns>ShipmentResponseErrors</returns>
-        public ShipmentResponseErrors ShipmentsListErrors(string shipmentId, string apiKey, int? page = null,
-            int? pagesize = null)
-        {
-            var localVarResponse = ShipmentsListErrorsWithHttpInfo(shipmentId, apiKey, page, pagesize);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Lists the errors.
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="page">The page. (optional)</param>
-        /// <param name="pagesize"> (optional)</param>
-        /// <returns>ApiResponse of ShipmentResponseErrors</returns>
-        public ApiResponse<ShipmentResponseErrors> ShipmentsListErrorsWithHttpInfo(string shipmentId, string apiKey,
-            int? page = null, int? pagesize = null)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsListErrors");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsListErrors");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}/errors";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            if (page != null)
-            {
-                localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
-            }
-            if (pagesize != null)
-            {
-                localVarQueryParams.Add("pagesize", Configuration.ApiClient.ParameterToString(pagesize));
-                    // query parameter
-            }
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsListErrors", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ShipmentResponseErrors>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ShipmentResponseErrors)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(ShipmentResponseErrors)));
-        }
-
-        /// <summary>
-        ///     Lists the errors.
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="page">The page. (optional)</param>
-        /// <param name="pagesize"> (optional)</param>
-        /// <returns>Task of ShipmentResponseErrors</returns>
-        public async Task<ShipmentResponseErrors> ShipmentsListErrorsAsync(string shipmentId, string apiKey,
-            int? page = null, int? pagesize = null)
-        {
-            var localVarResponse = await ShipmentsListErrorsAsyncWithHttpInfo(shipmentId, apiKey, page, pagesize);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Lists the errors.
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="apiKey">API Key</param>
-        /// <param name="page">The page. (optional)</param>
-        /// <param name="pagesize"> (optional)</param>
-        /// <returns>Task of ApiResponse (ShipmentResponseErrors)</returns>
-        public async Task<ApiResponse<ShipmentResponseErrors>> ShipmentsListErrorsAsyncWithHttpInfo(string shipmentId,
-            string apiKey, int? page = null, int? pagesize = null)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsListErrors");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsListErrors");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}/errors";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            if (page != null)
-            {
-                localVarQueryParams.Add("page", Configuration.ApiClient.ParameterToString(page)); // query parameter
-            }
-            if (pagesize != null)
-            {
-                localVarQueryParams.Add("pagesize", Configuration.ApiClient.ParameterToString(pagesize));
-                    // query parameter
-            }
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsListErrors", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<ShipmentResponseErrors>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ShipmentResponseErrors)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(ShipmentResponseErrors)));
-        }
-
-        /// <summary>
-        ///     Remove a tag from a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns></returns>
-        public void ShipmentsRemoveTag(string shipmentId, string tag, string apiKey)
-        {
-            ShipmentsRemoveTagWithHttpInfo(shipmentId, tag, apiKey);
-        }
-
-        /// <summary>
-        ///     Remove a tag from a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<object> ShipmentsRemoveTagWithHttpInfo(string shipmentId, string tag, string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsRemoveTag");
-            }
-            // verify the required parameter 'tag' is set
-            if (tag == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'tag' when calling ShipmentsApi->ShipmentsRemoveTag");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsRemoveTag");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}/tags/{tag}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarPathParams.Add("tag", Configuration.ApiClient.ParameterToString(tag)); // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsRemoveTag", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Remove a tag from a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of void</returns>
-        public async Task ShipmentsRemoveTagAsync(string shipmentId, string tag, string apiKey)
-        {
-            await ShipmentsRemoveTagAsyncWithHttpInfo(shipmentId, tag, apiKey);
-        }
-
-        /// <summary>
-        ///     Remove a tag from a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId"></param>
-        /// <param name="tag">Tag</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async Task<ApiResponse<object>> ShipmentsRemoveTagAsyncWithHttpInfo(string shipmentId, string tag,
-            string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsRemoveTag");
-            }
-            // verify the required parameter 'tag' is set
-            if (tag == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'tag' when calling ShipmentsApi->ShipmentsRemoveTag");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsRemoveTag");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}/tags/{tag}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarPathParams.Add("tag", Configuration.ApiClient.ParameterToString(tag)); // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, null, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsRemoveTag", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-
-            return new ApiResponse<object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        ///     Update a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="shipment">Shipment</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>CreateShipmentResponse</returns>
-        public CreateShipmentResponse ShipmentsUpdateShipment(string shipmentId, AddressValidatingShipment shipment,
-            string apiKey)
-        {
-            var localVarResponse = ShipmentsUpdateShipmentWithHttpInfo(shipmentId, shipment, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Update a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="shipment">Shipment</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of CreateShipmentResponse</returns>
-        public ApiResponse<CreateShipmentResponse> ShipmentsUpdateShipmentWithHttpInfo(string shipmentId,
-            AddressValidatingShipment shipment, string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsUpdateShipment");
-            }
-            // verify the required parameter 'shipment' is set
-            if (shipment == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipment' when calling ShipmentsApi->ShipmentsUpdateShipment");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsUpdateShipment");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (shipment.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(shipment); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = shipment; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsUpdateShipment", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CreateShipmentResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CreateShipmentResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateShipmentResponse)));
-        }
-
-        /// <summary>
-        ///     Update a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="shipment">Shipment</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of CreateShipmentResponse</returns>
-        public async Task<CreateShipmentResponse> ShipmentsUpdateShipmentAsync(string shipmentId,
-            AddressValidatingShipment shipment, string apiKey)
-        {
-            var localVarResponse = await ShipmentsUpdateShipmentAsyncWithHttpInfo(shipmentId, shipment, apiKey);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        ///     Update a shipment
-        /// </summary>
-        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="shipmentId">Shipment ID</param>
-        /// <param name="shipment">Shipment</param>
-        /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (CreateShipmentResponse)</returns>
-        public async Task<ApiResponse<CreateShipmentResponse>> ShipmentsUpdateShipmentAsyncWithHttpInfo(
-            string shipmentId, AddressValidatingShipment shipment, string apiKey)
-        {
-            // verify the required parameter 'shipmentId' is set
-            if (shipmentId == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsUpdateShipment");
-            }
-            // verify the required parameter 'shipment' is set
-            if (shipment == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'shipment' when calling ShipmentsApi->ShipmentsUpdateShipment");
-            }
-            // verify the required parameter 'apiKey' is set
-            if (apiKey == null)
-            {
-                throw new ApiException(400,
-                    "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsUpdateShipment");
-            }
-
-            var localVarPath = "/v1/shipments/{shipment_id}";
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new Dictionary<string, string>();
-            var localVarHeaderParams = new Dictionary<string, string>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody;
-
-            // to determine the Content-Type header
-            string[] localVarHttpContentTypes =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            string[] localVarHttpHeaderAccepts =
-            {
-                "application/json",
-                "text/json"
-            };
-            var localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-            {
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-            }
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId));
-            // path parameter
-            localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey));
-            // header parameter
-            if (shipment.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(shipment); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = shipment; // byte array
-            }
-
-            // authentication (api-key) required
-            if (!string.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
-            {
-                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
-            }
-
-            // make the HTTP request
-            var localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams,
-                localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            var localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            var exception = ExceptionFactory?.Invoke("ShipmentsUpdateShipment", localVarResponse);
-            if (exception != null)
-            {
-                throw exception;
-            }
-
-            return new ApiResponse<CreateShipmentResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (CreateShipmentResponse)
-                Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateShipmentResponse)));
-        }
-
-        /// <summary>
-        ///     Sets the base path of the API client.
-        /// </summary>
-        /// <value>The base path</value>
-        [Obsolete(
-            "SetBasePath is deprecated, please do 'Configuration.ApiClient = new ApiClient(\"http://new-path\")' instead."
-        )]
-        public void SetBasePath(string basePath)
-        {
-            // do nothing
-        }
-
-        /// <summary>
-        ///     Gets the default header.
+        /// Gets the default header.
         /// </summary>
         /// <returns>Dictionary of HTTP header</returns>
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
-        public Dictionary<string, string> DefaultHeader()
+        public IDictionary<String, String> DefaultHeader()
         {
-            return Configuration.DefaultHeader;
+            return new ReadOnlyDictionary<string, string>(this.Configuration.DefaultHeader);
         }
 
         /// <summary>
-        ///     Add default header.
+        /// Add default header.
         /// </summary>
         /// <param name="key">Header field name.</param>
         /// <param name="value">Header field value.</param>
@@ -2857,7 +647,1716 @@ namespace ShipEngine.ApiClient.Api
         [Obsolete("AddDefaultHeader is deprecated, please use Configuration.AddDefaultHeader instead.")]
         public void AddDefaultHeader(string key, string value)
         {
-            Configuration.AddDefaultHeader(key, value);
+            this.Configuration.AddDefaultHeader(key, value);
         }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="tag"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ShipmentAddTagResponse</returns>
+        public ShipmentAddTagResponse ShipmentsAddTag (string shipmentId, string tag, string apiKey)
+        {
+             ApiResponse<ShipmentAddTagResponse> localVarResponse = ShipmentsAddTagWithHttpInfo(shipmentId, tag, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="tag"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of ShipmentAddTagResponse</returns>
+        public ApiResponse< ShipmentAddTagResponse > ShipmentsAddTagWithHttpInfo (string shipmentId, string tag, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsAddTag");
+            // verify the required parameter 'tag' is set
+            if (tag == null)
+                throw new ApiException(400, "Missing required parameter 'tag' when calling ShipmentsApi->ShipmentsAddTag");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsAddTag");
+
+            var localVarPath = "/v1/shipments/{shipment_id}/tags/{tag}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (tag != null) localVarPathParams.Add("tag", Configuration.ApiClient.ParameterToString(tag)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsAddTag", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ShipmentAddTagResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ShipmentAddTagResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ShipmentAddTagResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="tag"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ShipmentAddTagResponse</returns>
+        public async System.Threading.Tasks.Task<ShipmentAddTagResponse> ShipmentsAddTagAsync (string shipmentId, string tag, string apiKey)
+        {
+             ApiResponse<ShipmentAddTagResponse> localVarResponse = await ShipmentsAddTagAsyncWithHttpInfo(shipmentId, tag, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="tag"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (ShipmentAddTagResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ShipmentAddTagResponse>> ShipmentsAddTagAsyncWithHttpInfo (string shipmentId, string tag, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsAddTag");
+            // verify the required parameter 'tag' is set
+            if (tag == null)
+                throw new ApiException(400, "Missing required parameter 'tag' when calling ShipmentsApi->ShipmentsAddTag");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsAddTag");
+
+            var localVarPath = "/v1/shipments/{shipment_id}/tags/{tag}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (tag != null) localVarPathParams.Add("tag", Configuration.ApiClient.ParameterToString(tag)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsAddTag", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ShipmentAddTagResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ShipmentAddTagResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ShipmentAddTagResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        public void ShipmentsCancel (string shipmentId, string apiKey)
+        {
+             ShipmentsCancelWithHttpInfo(shipmentId, apiKey);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> ShipmentsCancelWithHttpInfo (string shipmentId, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsCancel");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsCancel");
+
+            var localVarPath = "/v1/shipments/{shipment_id}/cancel";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsCancel", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task ShipmentsCancelAsync (string shipmentId, string apiKey)
+        {
+             await ShipmentsCancelAsyncWithHttpInfo(shipmentId, apiKey);
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> ShipmentsCancelAsyncWithHttpInfo (string shipmentId, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsCancel");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsCancel");
+
+            var localVarPath = "/v1/shipments/{shipment_id}/cancel";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsCancel", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentsRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>CreateShipmentsResponse</returns>
+        public CreateShipmentsResponse ShipmentsCreateShipments (CreateShipmentsRequest shipmentsRequest, string apiKey)
+        {
+             ApiResponse<CreateShipmentsResponse> localVarResponse = ShipmentsCreateShipmentsWithHttpInfo(shipmentsRequest, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentsRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of CreateShipmentsResponse</returns>
+        public ApiResponse< CreateShipmentsResponse > ShipmentsCreateShipmentsWithHttpInfo (CreateShipmentsRequest shipmentsRequest, string apiKey)
+        {
+            // verify the required parameter 'shipmentsRequest' is set
+            if (shipmentsRequest == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentsRequest' when calling ShipmentsApi->ShipmentsCreateShipments");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsCreateShipments");
+
+            var localVarPath = "/v1/shipments";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (shipmentsRequest != null && shipmentsRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(shipmentsRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = shipmentsRequest; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsCreateShipments", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CreateShipmentsResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CreateShipmentsResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateShipmentsResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentsRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of CreateShipmentsResponse</returns>
+        public async System.Threading.Tasks.Task<CreateShipmentsResponse> ShipmentsCreateShipmentsAsync (CreateShipmentsRequest shipmentsRequest, string apiKey)
+        {
+             ApiResponse<CreateShipmentsResponse> localVarResponse = await ShipmentsCreateShipmentsAsyncWithHttpInfo(shipmentsRequest, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentsRequest"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (CreateShipmentsResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CreateShipmentsResponse>> ShipmentsCreateShipmentsAsyncWithHttpInfo (CreateShipmentsRequest shipmentsRequest, string apiKey)
+        {
+            // verify the required parameter 'shipmentsRequest' is set
+            if (shipmentsRequest == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentsRequest' when calling ShipmentsApi->ShipmentsCreateShipments");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsCreateShipments");
+
+            var localVarPath = "/v1/shipments";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (shipmentsRequest != null && shipmentsRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(shipmentsRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = shipmentsRequest; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsCreateShipments", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CreateShipmentsResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (CreateShipmentsResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateShipmentsResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Shipment</returns>
+        public Shipment ShipmentsGet (string shipmentId, string apiKey)
+        {
+             ApiResponse<Shipment> localVarResponse = ShipmentsGetWithHttpInfo(shipmentId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Shipment</returns>
+        public ApiResponse< Shipment > ShipmentsGetWithHttpInfo (string shipmentId, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGet");
+
+            var localVarPath = "/v1/shipments/{shipment_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Shipment>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Shipment) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Shipment</returns>
+        public async System.Threading.Tasks.Task<Shipment> ShipmentsGetAsync (string shipmentId, string apiKey)
+        {
+             ApiResponse<Shipment> localVarResponse = await ShipmentsGetAsyncWithHttpInfo(shipmentId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Shipment)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Shipment>> ShipmentsGetAsyncWithHttpInfo (string shipmentId, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsGet");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGet");
+
+            var localVarPath = "/v1/shipments/{shipment_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsGet", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Shipment>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Shipment) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="externalShipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Shipment</returns>
+        public Shipment ShipmentsGetByExternalId (string externalShipmentId, string apiKey)
+        {
+             ApiResponse<Shipment> localVarResponse = ShipmentsGetByExternalIdWithHttpInfo(externalShipmentId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="externalShipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Shipment</returns>
+        public ApiResponse< Shipment > ShipmentsGetByExternalIdWithHttpInfo (string externalShipmentId, string apiKey)
+        {
+            // verify the required parameter 'externalShipmentId' is set
+            if (externalShipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'externalShipmentId' when calling ShipmentsApi->ShipmentsGetByExternalId");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGetByExternalId");
+
+            var localVarPath = "/v1/shipments/external_shipment_id/{external_shipment_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (externalShipmentId != null) localVarPathParams.Add("external_shipment_id", Configuration.ApiClient.ParameterToString(externalShipmentId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsGetByExternalId", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Shipment>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Shipment) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="externalShipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of Shipment</returns>
+        public async System.Threading.Tasks.Task<Shipment> ShipmentsGetByExternalIdAsync (string externalShipmentId, string apiKey)
+        {
+             ApiResponse<Shipment> localVarResponse = await ShipmentsGetByExternalIdAsyncWithHttpInfo(externalShipmentId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="externalShipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (Shipment)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Shipment>> ShipmentsGetByExternalIdAsyncWithHttpInfo (string externalShipmentId, string apiKey)
+        {
+            // verify the required parameter 'externalShipmentId' is set
+            if (externalShipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'externalShipmentId' when calling ShipmentsApi->ShipmentsGetByExternalId");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGetByExternalId");
+
+            var localVarPath = "/v1/shipments/external_shipment_id/{external_shipment_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (externalShipmentId != null) localVarPathParams.Add("external_shipment_id", Configuration.ApiClient.ParameterToString(externalShipmentId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsGetByExternalId", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Shipment>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Shipment) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <returns>RateResponse</returns>
+        public RateResponse ShipmentsGetRatesForShipment (string shipmentId, string apiKey, DateTime? createdAtStart = null)
+        {
+             ApiResponse<RateResponse> localVarResponse = ShipmentsGetRatesForShipmentWithHttpInfo(shipmentId, apiKey, createdAtStart);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <returns>ApiResponse of RateResponse</returns>
+        public ApiResponse< RateResponse > ShipmentsGetRatesForShipmentWithHttpInfo (string shipmentId, string apiKey, DateTime? createdAtStart = null)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsGetRatesForShipment");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGetRatesForShipment");
+
+            var localVarPath = "/v1/shipments/{shipment_id}/rates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (createdAtStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_start", createdAtStart)); // query parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsGetRatesForShipment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<RateResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (RateResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(RateResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <returns>Task of RateResponse</returns>
+        public async System.Threading.Tasks.Task<RateResponse> ShipmentsGetRatesForShipmentAsync (string shipmentId, string apiKey, DateTime? createdAtStart = null)
+        {
+             ApiResponse<RateResponse> localVarResponse = await ShipmentsGetRatesForShipmentAsyncWithHttpInfo(shipmentId, apiKey, createdAtStart);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <returns>Task of ApiResponse (RateResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<RateResponse>> ShipmentsGetRatesForShipmentAsyncWithHttpInfo (string shipmentId, string apiKey, DateTime? createdAtStart = null)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsGetRatesForShipment");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsGetRatesForShipment");
+
+            var localVarPath = "/v1/shipments/{shipment_id}/rates";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (createdAtStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_start", createdAtStart)); // query parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsGetRatesForShipment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<RateResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (RateResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(RateResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="tag"> (optional)</param>
+        /// <param name="shipmentStatus"> (optional)</param>
+        /// <param name="modifiedAtStart"> (optional)</param>
+        /// <param name="modifiedAtEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>ListShipmentResponse</returns>
+        public ListShipmentResponse ShipmentsList (string apiKey, string batchId = null, string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
+        {
+             ApiResponse<ListShipmentResponse> localVarResponse = ShipmentsListWithHttpInfo(apiKey, batchId, tag, shipmentStatus, modifiedAtStart, modifiedAtEnd, createdAtStart, createdAtEnd, page, pageSize, sortDir, sortBy);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="tag"> (optional)</param>
+        /// <param name="shipmentStatus"> (optional)</param>
+        /// <param name="modifiedAtStart"> (optional)</param>
+        /// <param name="modifiedAtEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>ApiResponse of ListShipmentResponse</returns>
+        public ApiResponse< ListShipmentResponse > ShipmentsListWithHttpInfo (string apiKey, string batchId = null, string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsList");
+
+            var localVarPath = "/v1/shipments";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (batchId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "batch_id", batchId)); // query parameter
+            if (tag != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "tag", tag)); // query parameter
+            if (shipmentStatus != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "shipment_status", shipmentStatus)); // query parameter
+            if (modifiedAtStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "modified_at_start", modifiedAtStart)); // query parameter
+            if (modifiedAtEnd != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "modified_at_end", modifiedAtEnd)); // query parameter
+            if (createdAtStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_start", createdAtStart)); // query parameter
+            if (createdAtEnd != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_end", createdAtEnd)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (sortDir != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "sort_dir", sortDir)); // query parameter
+            if (sortBy != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "sort_by", sortBy)); // query parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsList", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ListShipmentResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ListShipmentResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListShipmentResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="tag"> (optional)</param>
+        /// <param name="shipmentStatus"> (optional)</param>
+        /// <param name="modifiedAtStart"> (optional)</param>
+        /// <param name="modifiedAtEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>Task of ListShipmentResponse</returns>
+        public async System.Threading.Tasks.Task<ListShipmentResponse> ShipmentsListAsync (string apiKey, string batchId = null, string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
+        {
+             ApiResponse<ListShipmentResponse> localVarResponse = await ShipmentsListAsyncWithHttpInfo(apiKey, batchId, tag, shipmentStatus, modifiedAtStart, modifiedAtEnd, createdAtStart, createdAtEnd, page, pageSize, sortDir, sortBy);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="batchId"> (optional)</param>
+        /// <param name="tag"> (optional)</param>
+        /// <param name="shipmentStatus"> (optional)</param>
+        /// <param name="modifiedAtStart"> (optional)</param>
+        /// <param name="modifiedAtEnd"> (optional)</param>
+        /// <param name="createdAtStart"> (optional)</param>
+        /// <param name="createdAtEnd"> (optional)</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pageSize"> (optional)</param>
+        /// <param name="sortDir"> (optional)</param>
+        /// <param name="sortBy"> (optional)</param>
+        /// <returns>Task of ApiResponse (ListShipmentResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ListShipmentResponse>> ShipmentsListAsyncWithHttpInfo (string apiKey, string batchId = null, string tag = null, string shipmentStatus = null, DateTime? modifiedAtStart = null, DateTime? modifiedAtEnd = null, DateTime? createdAtStart = null, DateTime? createdAtEnd = null, int? page = null, int? pageSize = null, string sortDir = null, string sortBy = null)
+        {
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsList");
+
+            var localVarPath = "/v1/shipments";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (batchId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "batch_id", batchId)); // query parameter
+            if (tag != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "tag", tag)); // query parameter
+            if (shipmentStatus != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "shipment_status", shipmentStatus)); // query parameter
+            if (modifiedAtStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "modified_at_start", modifiedAtStart)); // query parameter
+            if (modifiedAtEnd != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "modified_at_end", modifiedAtEnd)); // query parameter
+            if (createdAtStart != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_start", createdAtStart)); // query parameter
+            if (createdAtEnd != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "created_at_end", createdAtEnd)); // query parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pageSize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page_size", pageSize)); // query parameter
+            if (sortDir != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "sort_dir", sortDir)); // query parameter
+            if (sortBy != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "sort_by", sortBy)); // query parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsList", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ListShipmentResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ListShipmentResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListShipmentResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pagesize"> (optional)</param>
+        /// <returns>ShipmentResponseErrors</returns>
+        public ShipmentResponseErrors ShipmentsListErrors (string shipmentId, string apiKey, int? page = null, int? pagesize = null)
+        {
+             ApiResponse<ShipmentResponseErrors> localVarResponse = ShipmentsListErrorsWithHttpInfo(shipmentId, apiKey, page, pagesize);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pagesize"> (optional)</param>
+        /// <returns>ApiResponse of ShipmentResponseErrors</returns>
+        public ApiResponse< ShipmentResponseErrors > ShipmentsListErrorsWithHttpInfo (string shipmentId, string apiKey, int? page = null, int? pagesize = null)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsListErrors");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsListErrors");
+
+            var localVarPath = "/v1/shipments/{shipment_id}/errors";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pagesize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "pagesize", pagesize)); // query parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsListErrors", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ShipmentResponseErrors>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ShipmentResponseErrors) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ShipmentResponseErrors)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pagesize"> (optional)</param>
+        /// <returns>Task of ShipmentResponseErrors</returns>
+        public async System.Threading.Tasks.Task<ShipmentResponseErrors> ShipmentsListErrorsAsync (string shipmentId, string apiKey, int? page = null, int? pagesize = null)
+        {
+             ApiResponse<ShipmentResponseErrors> localVarResponse = await ShipmentsListErrorsAsyncWithHttpInfo(shipmentId, apiKey, page, pagesize);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <param name="page"> (optional)</param>
+        /// <param name="pagesize"> (optional)</param>
+        /// <returns>Task of ApiResponse (ShipmentResponseErrors)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ShipmentResponseErrors>> ShipmentsListErrorsAsyncWithHttpInfo (string shipmentId, string apiKey, int? page = null, int? pagesize = null)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsListErrors");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsListErrors");
+
+            var localVarPath = "/v1/shipments/{shipment_id}/errors";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
+            if (pagesize != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "pagesize", pagesize)); // query parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsListErrors", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ShipmentResponseErrors>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ShipmentResponseErrors) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ShipmentResponseErrors)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="tag"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        public void ShipmentsRemoveTag (string shipmentId, string tag, string apiKey)
+        {
+             ShipmentsRemoveTagWithHttpInfo(shipmentId, tag, apiKey);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="tag"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> ShipmentsRemoveTagWithHttpInfo (string shipmentId, string tag, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsRemoveTag");
+            // verify the required parameter 'tag' is set
+            if (tag == null)
+                throw new ApiException(400, "Missing required parameter 'tag' when calling ShipmentsApi->ShipmentsRemoveTag");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsRemoveTag");
+
+            var localVarPath = "/v1/shipments/{shipment_id}/tags/{tag}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (tag != null) localVarPathParams.Add("tag", Configuration.ApiClient.ParameterToString(tag)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsRemoveTag", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="tag"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task ShipmentsRemoveTagAsync (string shipmentId, string tag, string apiKey)
+        {
+             await ShipmentsRemoveTagAsyncWithHttpInfo(shipmentId, tag, apiKey);
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="tag"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> ShipmentsRemoveTagAsyncWithHttpInfo (string shipmentId, string tag, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsRemoveTag");
+            // verify the required parameter 'tag' is set
+            if (tag == null)
+                throw new ApiException(400, "Missing required parameter 'tag' when calling ShipmentsApi->ShipmentsRemoveTag");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsRemoveTag");
+
+            var localVarPath = "/v1/shipments/{shipment_id}/tags/{tag}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (tag != null) localVarPathParams.Add("tag", Configuration.ApiClient.ParameterToString(tag)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsRemoveTag", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="shipment"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        public void ShipmentsUpdateShipment (string shipmentId, AddressValidatingShipment shipment, string apiKey)
+        {
+             ShipmentsUpdateShipmentWithHttpInfo(shipmentId, shipment, apiKey);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="shipment"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> ShipmentsUpdateShipmentWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsUpdateShipment");
+            // verify the required parameter 'shipment' is set
+            if (shipment == null)
+                throw new ApiException(400, "Missing required parameter 'shipment' when calling ShipmentsApi->ShipmentsUpdateShipment");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsUpdateShipment");
+
+            var localVarPath = "/v1/shipments/{shipment_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (shipment != null && shipment.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(shipment); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = shipment; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsUpdateShipment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="shipment"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task ShipmentsUpdateShipmentAsync (string shipmentId, AddressValidatingShipment shipment, string apiKey)
+        {
+             await ShipmentsUpdateShipmentAsyncWithHttpInfo(shipmentId, shipment, apiKey);
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="shipmentId"></param>
+        /// <param name="shipment"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> ShipmentsUpdateShipmentAsyncWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey)
+        {
+            // verify the required parameter 'shipmentId' is set
+            if (shipmentId == null)
+                throw new ApiException(400, "Missing required parameter 'shipmentId' when calling ShipmentsApi->ShipmentsUpdateShipment");
+            // verify the required parameter 'shipment' is set
+            if (shipment == null)
+                throw new ApiException(400, "Missing required parameter 'shipment' when calling ShipmentsApi->ShipmentsUpdateShipment");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling ShipmentsApi->ShipmentsUpdateShipment");
+
+            var localVarPath = "/v1/shipments/{shipment_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (shipmentId != null) localVarPathParams.Add("shipment_id", Configuration.ApiClient.ParameterToString(shipmentId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (shipment != null && shipment.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(shipment); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = shipment; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ShipmentsUpdateShipment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
     }
 }
