@@ -498,6 +498,77 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="model"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>ConnectAccountResponseDTO</returns>
+        ConnectAccountResponseDTO NewgisticsAccountCarrierConnectAccount (NewgisticsAccountInformationDTO model, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="model"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of ConnectAccountResponseDTO</returns>
+        ApiResponse<ConnectAccountResponseDTO> NewgisticsAccountCarrierConnectAccountWithHttpInfo (NewgisticsAccountInformationDTO model, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        void NewgisticsAccountCarrierDisconnectAccount (string carrierId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> NewgisticsAccountCarrierDisconnectAccountWithHttpInfo (string carrierId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="settings"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        void NewgisticsAccountCarrierUpdateSettings (string carrierId, NewgisticsAccountSettingsDTO settings, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="settings"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> NewgisticsAccountCarrierUpdateSettingsWithHttpInfo (string carrierId, NewgisticsAccountSettingsDTO settings, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="model"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ConnectAccountResponseDTO</returns>
         ConnectAccountResponseDTO OnTracAccountCarrierConnectAccount (OnTracAccountInformationDTO model, string apiKey);
 
         /// <summary>
@@ -1163,6 +1234,77 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="apiKey">API Key</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> ImexAccountCarrierDisconnectAccountAsyncWithHttpInfo (string carrierId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="model"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ConnectAccountResponseDTO</returns>
+        System.Threading.Tasks.Task<ConnectAccountResponseDTO> NewgisticsAccountCarrierConnectAccountAsync (NewgisticsAccountInformationDTO model, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="model"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (ConnectAccountResponseDTO)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ConnectAccountResponseDTO>> NewgisticsAccountCarrierConnectAccountAsyncWithHttpInfo (NewgisticsAccountInformationDTO model, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task NewgisticsAccountCarrierDisconnectAccountAsync (string carrierId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> NewgisticsAccountCarrierDisconnectAccountAsyncWithHttpInfo (string carrierId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="settings"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task NewgisticsAccountCarrierUpdateSettingsAsync (string carrierId, NewgisticsAccountSettingsDTO settings, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="settings"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> NewgisticsAccountCarrierUpdateSettingsAsyncWithHttpInfo (string carrierId, NewgisticsAccountSettingsDTO settings, string apiKey);
         /// <summary>
         /// 
         /// </summary>
@@ -4804,6 +4946,521 @@ namespace ShipEngine.ApiClient.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("ImexAccountCarrierDisconnectAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="model"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ConnectAccountResponseDTO</returns>
+        public ConnectAccountResponseDTO NewgisticsAccountCarrierConnectAccount (NewgisticsAccountInformationDTO model, string apiKey)
+        {
+             ApiResponse<ConnectAccountResponseDTO> localVarResponse = NewgisticsAccountCarrierConnectAccountWithHttpInfo(model, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="model"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of ConnectAccountResponseDTO</returns>
+        public ApiResponse< ConnectAccountResponseDTO > NewgisticsAccountCarrierConnectAccountWithHttpInfo (NewgisticsAccountInformationDTO model, string apiKey)
+        {
+            // verify the required parameter 'model' is set
+            if (model == null)
+                throw new ApiException(400, "Missing required parameter 'model' when calling CarrierAccountsApi->NewgisticsAccountCarrierConnectAccount");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarrierAccountsApi->NewgisticsAccountCarrierConnectAccount");
+
+            var localVarPath = "/v1/connections/carriers/newgistics";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (model != null && model.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(model); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = model; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("NewgisticsAccountCarrierConnectAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ConnectAccountResponseDTO>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ConnectAccountResponseDTO) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ConnectAccountResponseDTO)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="model"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ConnectAccountResponseDTO</returns>
+        public async System.Threading.Tasks.Task<ConnectAccountResponseDTO> NewgisticsAccountCarrierConnectAccountAsync (NewgisticsAccountInformationDTO model, string apiKey)
+        {
+             ApiResponse<ConnectAccountResponseDTO> localVarResponse = await NewgisticsAccountCarrierConnectAccountAsyncWithHttpInfo(model, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="model"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (ConnectAccountResponseDTO)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ConnectAccountResponseDTO>> NewgisticsAccountCarrierConnectAccountAsyncWithHttpInfo (NewgisticsAccountInformationDTO model, string apiKey)
+        {
+            // verify the required parameter 'model' is set
+            if (model == null)
+                throw new ApiException(400, "Missing required parameter 'model' when calling CarrierAccountsApi->NewgisticsAccountCarrierConnectAccount");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarrierAccountsApi->NewgisticsAccountCarrierConnectAccount");
+
+            var localVarPath = "/v1/connections/carriers/newgistics";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (model != null && model.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(model); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = model; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("NewgisticsAccountCarrierConnectAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ConnectAccountResponseDTO>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ConnectAccountResponseDTO) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ConnectAccountResponseDTO)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        public void NewgisticsAccountCarrierDisconnectAccount (string carrierId, string apiKey)
+        {
+             NewgisticsAccountCarrierDisconnectAccountWithHttpInfo(carrierId, apiKey);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> NewgisticsAccountCarrierDisconnectAccountWithHttpInfo (string carrierId, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarrierAccountsApi->NewgisticsAccountCarrierDisconnectAccount");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarrierAccountsApi->NewgisticsAccountCarrierDisconnectAccount");
+
+            var localVarPath = "/v1/connections/carriers/newgistics/{carrier_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("NewgisticsAccountCarrierDisconnectAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task NewgisticsAccountCarrierDisconnectAccountAsync (string carrierId, string apiKey)
+        {
+             await NewgisticsAccountCarrierDisconnectAccountAsyncWithHttpInfo(carrierId, apiKey);
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> NewgisticsAccountCarrierDisconnectAccountAsyncWithHttpInfo (string carrierId, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarrierAccountsApi->NewgisticsAccountCarrierDisconnectAccount");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarrierAccountsApi->NewgisticsAccountCarrierDisconnectAccount");
+
+            var localVarPath = "/v1/connections/carriers/newgistics/{carrier_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("NewgisticsAccountCarrierDisconnectAccount", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="settings"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        public void NewgisticsAccountCarrierUpdateSettings (string carrierId, NewgisticsAccountSettingsDTO settings, string apiKey)
+        {
+             NewgisticsAccountCarrierUpdateSettingsWithHttpInfo(carrierId, settings, apiKey);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="settings"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> NewgisticsAccountCarrierUpdateSettingsWithHttpInfo (string carrierId, NewgisticsAccountSettingsDTO settings, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarrierAccountsApi->NewgisticsAccountCarrierUpdateSettings");
+            // verify the required parameter 'settings' is set
+            if (settings == null)
+                throw new ApiException(400, "Missing required parameter 'settings' when calling CarrierAccountsApi->NewgisticsAccountCarrierUpdateSettings");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarrierAccountsApi->NewgisticsAccountCarrierUpdateSettings");
+
+            var localVarPath = "/v1/connections/carriers/newgistics/{carrier_id}/settings";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (settings != null && settings.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(settings); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = settings; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("NewgisticsAccountCarrierUpdateSettings", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="settings"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task NewgisticsAccountCarrierUpdateSettingsAsync (string carrierId, NewgisticsAccountSettingsDTO settings, string apiKey)
+        {
+             await NewgisticsAccountCarrierUpdateSettingsAsyncWithHttpInfo(carrierId, settings, apiKey);
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="settings"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> NewgisticsAccountCarrierUpdateSettingsAsyncWithHttpInfo (string carrierId, NewgisticsAccountSettingsDTO settings, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarrierAccountsApi->NewgisticsAccountCarrierUpdateSettings");
+            // verify the required parameter 'settings' is set
+            if (settings == null)
+                throw new ApiException(400, "Missing required parameter 'settings' when calling CarrierAccountsApi->NewgisticsAccountCarrierUpdateSettings");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarrierAccountsApi->NewgisticsAccountCarrierUpdateSettings");
+
+            var localVarPath = "/v1/connections/carriers/newgistics/{carrier_id}/settings";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (settings != null && settings.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(settings); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = settings; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("NewgisticsAccountCarrierUpdateSettings", localVarResponse);
                 if (exception != null) throw exception;
             }
 

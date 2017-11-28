@@ -31,32 +31,6 @@ namespace ShipEngine.ApiClient.Model
     public partial class PurchaseLabelWithoutShipmentRequest :  IEquatable<PurchaseLabelWithoutShipmentRequest>, IValidatableObject
     {
         /// <summary>
-        /// Gets or Sets LabelFormat
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum LabelFormatEnum
-        {
-            
-            /// <summary>
-            /// Enum Pdf for "pdf"
-            /// </summary>
-            [EnumMember(Value = "pdf")]
-            Pdf,
-            
-            /// <summary>
-            /// Enum Zpl for "zpl"
-            /// </summary>
-            [EnumMember(Value = "zpl")]
-            Zpl,
-            
-            /// <summary>
-            /// Enum Png for "png"
-            /// </summary>
-            [EnumMember(Value = "png")]
-            Png
-        }
-
-        /// <summary>
         /// Gets or Sets ValidateAddress
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -67,19 +41,50 @@ namespace ShipEngine.ApiClient.Model
             /// Enum NoValidation for "noValidation"
             /// </summary>
             [EnumMember(Value = "noValidation")]
-            NoValidation,
+            NoValidation = 1,
             
             /// <summary>
             /// Enum ValidateOnly for "validateOnly"
             /// </summary>
             [EnumMember(Value = "validateOnly")]
-            ValidateOnly,
+            ValidateOnly = 2,
             
             /// <summary>
             /// Enum ValidateAndClean for "validateAndClean"
             /// </summary>
             [EnumMember(Value = "validateAndClean")]
-            ValidateAndClean
+            ValidateAndClean = 3
+        }
+
+        /// <summary>
+        /// Gets or Sets ValidateAddress
+        /// </summary>
+        [DataMember(Name="validate_address", EmitDefaultValue=false)]
+        public ValidateAddressEnum? ValidateAddress { get; set; }
+        /// <summary>
+        /// Gets or Sets LabelFormat
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum LabelFormatEnum
+        {
+            
+            /// <summary>
+            /// Enum Pdf for "pdf"
+            /// </summary>
+            [EnumMember(Value = "pdf")]
+            Pdf = 1,
+            
+            /// <summary>
+            /// Enum Zpl for "zpl"
+            /// </summary>
+            [EnumMember(Value = "zpl")]
+            Zpl = 2,
+            
+            /// <summary>
+            /// Enum Png for "png"
+            /// </summary>
+            [EnumMember(Value = "png")]
+            Png = 3
         }
 
         /// <summary>
@@ -88,37 +93,32 @@ namespace ShipEngine.ApiClient.Model
         [DataMember(Name="label_format", EmitDefaultValue=false)]
         public LabelFormatEnum? LabelFormat { get; set; }
         /// <summary>
-        /// Gets or Sets ValidateAddress
-        /// </summary>
-        [DataMember(Name="validate_address", EmitDefaultValue=false)]
-        public ValidateAddressEnum? ValidateAddress { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="PurchaseLabelWithoutShipmentRequest" /> class.
         /// </summary>
-        /// <param name="LabelFormat">LabelFormat.</param>
-        /// <param name="LabelLayout">LabelLayout.</param>
         /// <param name="TestLabel">TestLabel.</param>
         /// <param name="ValidateAddress">ValidateAddress.</param>
-        public PurchaseLabelWithoutShipmentRequest(LabelFormatEnum? LabelFormat = default(LabelFormatEnum?), string LabelLayout = default(string), bool? TestLabel = default(bool?), ValidateAddressEnum? ValidateAddress = default(ValidateAddressEnum?))
+        /// <param name="LabelLayout">LabelLayout.</param>
+        /// <param name="LabelFormat">LabelFormat.</param>
+        public PurchaseLabelWithoutShipmentRequest(bool? TestLabel = default(bool?), ValidateAddressEnum? ValidateAddress = default(ValidateAddressEnum?), string LabelLayout = default(string), LabelFormatEnum? LabelFormat = default(LabelFormatEnum?))
         {
-            this.LabelFormat = LabelFormat;
-            this.LabelLayout = LabelLayout;
             this.TestLabel = TestLabel;
             this.ValidateAddress = ValidateAddress;
+            this.LabelLayout = LabelLayout;
+            this.LabelFormat = LabelFormat;
         }
         
+        /// <summary>
+        /// Gets or Sets TestLabel
+        /// </summary>
+        [DataMember(Name="test_label", EmitDefaultValue=false)]
+        public bool? TestLabel { get; set; }
+
 
         /// <summary>
         /// Gets or Sets LabelLayout
         /// </summary>
         [DataMember(Name="label_layout", EmitDefaultValue=false)]
         public string LabelLayout { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TestLabel
-        /// </summary>
-        [DataMember(Name="test_label", EmitDefaultValue=false)]
-        public bool? TestLabel { get; set; }
 
 
         /// <summary>
@@ -129,10 +129,10 @@ namespace ShipEngine.ApiClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class PurchaseLabelWithoutShipmentRequest {\n");
-            sb.Append("  LabelFormat: ").Append(LabelFormat).Append("\n");
-            sb.Append("  LabelLayout: ").Append(LabelLayout).Append("\n");
             sb.Append("  TestLabel: ").Append(TestLabel).Append("\n");
             sb.Append("  ValidateAddress: ").Append(ValidateAddress).Append("\n");
+            sb.Append("  LabelLayout: ").Append(LabelLayout).Append("\n");
+            sb.Append("  LabelFormat: ").Append(LabelFormat).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -168,16 +168,6 @@ namespace ShipEngine.ApiClient.Model
 
             return 
                 (
-                    this.LabelFormat == input.LabelFormat ||
-                    (this.LabelFormat != null &&
-                    this.LabelFormat.Equals(input.LabelFormat))
-                ) && 
-                (
-                    this.LabelLayout == input.LabelLayout ||
-                    (this.LabelLayout != null &&
-                    this.LabelLayout.Equals(input.LabelLayout))
-                ) && 
-                (
                     this.TestLabel == input.TestLabel ||
                     (this.TestLabel != null &&
                     this.TestLabel.Equals(input.TestLabel))
@@ -186,6 +176,16 @@ namespace ShipEngine.ApiClient.Model
                     this.ValidateAddress == input.ValidateAddress ||
                     (this.ValidateAddress != null &&
                     this.ValidateAddress.Equals(input.ValidateAddress))
+                ) && 
+                (
+                    this.LabelLayout == input.LabelLayout ||
+                    (this.LabelLayout != null &&
+                    this.LabelLayout.Equals(input.LabelLayout))
+                ) && 
+                (
+                    this.LabelFormat == input.LabelFormat ||
+                    (this.LabelFormat != null &&
+                    this.LabelFormat.Equals(input.LabelFormat))
                 );
         }
 
@@ -198,14 +198,14 @@ namespace ShipEngine.ApiClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.LabelFormat != null)
-                    hashCode = hashCode * 59 + this.LabelFormat.GetHashCode();
-                if (this.LabelLayout != null)
-                    hashCode = hashCode * 59 + this.LabelLayout.GetHashCode();
                 if (this.TestLabel != null)
                     hashCode = hashCode * 59 + this.TestLabel.GetHashCode();
                 if (this.ValidateAddress != null)
                     hashCode = hashCode * 59 + this.ValidateAddress.GetHashCode();
+                if (this.LabelLayout != null)
+                    hashCode = hashCode * 59 + this.LabelLayout.GetHashCode();
+                if (this.LabelFormat != null)
+                    hashCode = hashCode * 59 + this.LabelFormat.GetHashCode();
                 return hashCode;
             }
         }

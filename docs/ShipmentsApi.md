@@ -631,7 +631,7 @@ void (empty response body)
 
 <a name="shipmentsupdateshipment"></a>
 # **ShipmentsUpdateShipment**
-> void ShipmentsUpdateShipment (string shipmentId, AddressValidatingShipment shipment, string apiKey)
+> CreateShipmentResponse ShipmentsUpdateShipment (string shipmentId, AddressValidatingShipment shipment, string apiKey)
 
 
 
@@ -661,7 +661,8 @@ namespace Example
 
             try
             {
-                apiInstance.ShipmentsUpdateShipment(shipmentId, shipment, apiKey);
+                CreateShipmentResponse result = apiInstance.ShipmentsUpdateShipment(shipmentId, shipment, apiKey);
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -682,7 +683,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**CreateShipmentResponse**](CreateShipmentResponse.md)
 
 ### Authorization
 

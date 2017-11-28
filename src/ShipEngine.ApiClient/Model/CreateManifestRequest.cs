@@ -122,8 +122,8 @@ namespace ShipEngine.ApiClient.Model
                 ) && 
                 (
                     this.ExcludedLabelIds == input.ExcludedLabelIds ||
-                    (this.ExcludedLabelIds != null &&
-                    this.ExcludedLabelIds.SequenceEqual(input.ExcludedLabelIds))
+                    this.ExcludedLabelIds != null &&
+                    this.ExcludedLabelIds.SequenceEqual(input.ExcludedLabelIds)
                 ) && 
                 (
                     this.WarehouseId == input.WarehouseId ||

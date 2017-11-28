@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **Nickname** | **string** |  | [optional] 
 **FriendlyName** | **string** |  | [optional] 
 **Primary** | **bool?** |  | [optional] 
+**HasMultiPackageSupportingServices** | **bool?** |  | [optional] 
+**SupportsLabelMessages** | **bool?** |  | [optional] 
 **Services** | [**List&lt;Service&gt;**](Service.md) |  | [optional] 
 **Packages** | [**List&lt;Package&gt;**](Package.md) |  | [optional] 
 **Options** | [**List&lt;CarrierAdvancedOption&gt;**](CarrierAdvancedOption.md) |  | [optional] 

@@ -3,6 +3,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**LabelLayout** | **string** |  | [optional] 
+**LabelFormat** | **string** |  | [optional] 
 **BatchId** | **string** |  | [optional] 
 **ExternalBatchId** | **string** |  | [optional] 
 **BatchNotes** | **string** |  | [optional] 

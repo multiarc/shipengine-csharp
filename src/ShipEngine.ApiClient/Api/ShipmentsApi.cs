@@ -271,8 +271,8 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="shipmentId"></param>
         /// <param name="shipment"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns></returns>
-        void ShipmentsUpdateShipment (string shipmentId, AddressValidatingShipment shipment, string apiKey);
+        /// <returns>CreateShipmentResponse</returns>
+        CreateShipmentResponse ShipmentsUpdateShipment (string shipmentId, AddressValidatingShipment shipment, string apiKey);
 
         /// <summary>
         /// 
@@ -284,8 +284,8 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="shipmentId"></param>
         /// <param name="shipment"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ShipmentsUpdateShipmentWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey);
+        /// <returns>ApiResponse of CreateShipmentResponse</returns>
+        ApiResponse<CreateShipmentResponse> ShipmentsUpdateShipmentWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -535,8 +535,8 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="shipmentId"></param>
         /// <param name="shipment"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ShipmentsUpdateShipmentAsync (string shipmentId, AddressValidatingShipment shipment, string apiKey);
+        /// <returns>Task of CreateShipmentResponse</returns>
+        System.Threading.Tasks.Task<CreateShipmentResponse> ShipmentsUpdateShipmentAsync (string shipmentId, AddressValidatingShipment shipment, string apiKey);
 
         /// <summary>
         /// 
@@ -548,8 +548,8 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="shipmentId"></param>
         /// <param name="shipment"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ShipmentsUpdateShipmentAsyncWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey);
+        /// <returns>Task of ApiResponse (CreateShipmentResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateShipmentResponse>> ShipmentsUpdateShipmentAsyncWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey);
         #endregion Asynchronous Operations
     }
 
@@ -2180,10 +2180,11 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="shipmentId"></param>
         /// <param name="shipment"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns></returns>
-        public void ShipmentsUpdateShipment (string shipmentId, AddressValidatingShipment shipment, string apiKey)
+        /// <returns>CreateShipmentResponse</returns>
+        public CreateShipmentResponse ShipmentsUpdateShipment (string shipmentId, AddressValidatingShipment shipment, string apiKey)
         {
-             ShipmentsUpdateShipmentWithHttpInfo(shipmentId, shipment, apiKey);
+             ApiResponse<CreateShipmentResponse> localVarResponse = ShipmentsUpdateShipmentWithHttpInfo(shipmentId, shipment, apiKey);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2193,8 +2194,8 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="shipmentId"></param>
         /// <param name="shipment"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> ShipmentsUpdateShipmentWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey)
+        /// <returns>ApiResponse of CreateShipmentResponse</returns>
+        public ApiResponse< CreateShipmentResponse > ShipmentsUpdateShipmentWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey)
         {
             // verify the required parameter 'shipmentId' is set
             if (shipmentId == null)
@@ -2260,9 +2261,9 @@ namespace ShipEngine.ApiClient.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<CreateShipmentResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (CreateShipmentResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateShipmentResponse)));
         }
 
         /// <summary>
@@ -2272,10 +2273,11 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="shipmentId"></param>
         /// <param name="shipment"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ShipmentsUpdateShipmentAsync (string shipmentId, AddressValidatingShipment shipment, string apiKey)
+        /// <returns>Task of CreateShipmentResponse</returns>
+        public async System.Threading.Tasks.Task<CreateShipmentResponse> ShipmentsUpdateShipmentAsync (string shipmentId, AddressValidatingShipment shipment, string apiKey)
         {
-             await ShipmentsUpdateShipmentAsyncWithHttpInfo(shipmentId, shipment, apiKey);
+             ApiResponse<CreateShipmentResponse> localVarResponse = await ShipmentsUpdateShipmentAsyncWithHttpInfo(shipmentId, shipment, apiKey);
+             return localVarResponse.Data;
 
         }
 
@@ -2286,8 +2288,8 @@ namespace ShipEngine.ApiClient.Api
         /// <param name="shipmentId"></param>
         /// <param name="shipment"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> ShipmentsUpdateShipmentAsyncWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey)
+        /// <returns>Task of ApiResponse (CreateShipmentResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CreateShipmentResponse>> ShipmentsUpdateShipmentAsyncWithHttpInfo (string shipmentId, AddressValidatingShipment shipment, string apiKey)
         {
             // verify the required parameter 'shipmentId' is set
             if (shipmentId == null)
@@ -2353,9 +2355,9 @@ namespace ShipEngine.ApiClient.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<CreateShipmentResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (CreateShipmentResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CreateShipmentResponse)));
         }
 
     }

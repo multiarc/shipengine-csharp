@@ -128,6 +128,9 @@ Class | Method | HTTP request | Description
 *CarrierAccountsApi* | [**GlobegisticsAccountCarrierDisconnectAccount**](docs/CarrierAccountsApi.md#globegisticsaccountcarrierdisconnectaccount) | **DELETE** /v1/connections/carriers/globegistics/{carrier_id} | 
 *CarrierAccountsApi* | [**ImexAccountCarrierConnectAccount**](docs/CarrierAccountsApi.md#imexaccountcarrierconnectaccount) | **POST** /v1/connections/carriers/imex | 
 *CarrierAccountsApi* | [**ImexAccountCarrierDisconnectAccount**](docs/CarrierAccountsApi.md#imexaccountcarrierdisconnectaccount) | **DELETE** /v1/connections/carriers/imex/{carrier_id} | 
+*CarrierAccountsApi* | [**NewgisticsAccountCarrierConnectAccount**](docs/CarrierAccountsApi.md#newgisticsaccountcarrierconnectaccount) | **POST** /v1/connections/carriers/newgistics | 
+*CarrierAccountsApi* | [**NewgisticsAccountCarrierDisconnectAccount**](docs/CarrierAccountsApi.md#newgisticsaccountcarrierdisconnectaccount) | **DELETE** /v1/connections/carriers/newgistics/{carrier_id} | 
+*CarrierAccountsApi* | [**NewgisticsAccountCarrierUpdateSettings**](docs/CarrierAccountsApi.md#newgisticsaccountcarrierupdatesettings) | **PUT** /v1/connections/carriers/newgistics/{carrier_id}/settings | 
 *CarrierAccountsApi* | [**OnTracAccountCarrierConnectAccount**](docs/CarrierAccountsApi.md#ontracaccountcarrierconnectaccount) | **POST** /v1/connections/carriers/ontrac | 
 *CarrierAccountsApi* | [**OnTracAccountCarrierDisconnectAccount**](docs/CarrierAccountsApi.md#ontracaccountcarrierdisconnectaccount) | **DELETE** /v1/connections/carriers/ontrac/{carrier_id} | 
 *CarrierAccountsApi* | [**RrDonnelleyAccountCarrierConnectAccount**](docs/CarrierAccountsApi.md#rrdonnelleyaccountcarrierconnectaccount) | **POST** /v1/connections/carriers/rr_donnelley | 
@@ -137,11 +140,16 @@ Class | Method | HTTP request | Description
 *CarrierAccountsApi* | [**UPSAccountCarrierConnectAccount**](docs/CarrierAccountsApi.md#upsaccountcarrierconnectaccount) | **POST** /v1/connections/carriers/ups | 
 *CarrierAccountsApi* | [**UPSAccountCarrierDisconnectAccount**](docs/CarrierAccountsApi.md#upsaccountcarrierdisconnectaccount) | **DELETE** /v1/connections/carriers/ups/{carrier_id} | 
 *CarrierAccountsApi* | [**UPSAccountCarrierUpdateSettings**](docs/CarrierAccountsApi.md#upsaccountcarrierupdatesettings) | **PUT** /v1/connections/carriers/ups/{carrier_id}/settings | 
+*CarriersApi* | [**CarriersAddFunds**](docs/CarriersApi.md#carriersaddfunds) | **PUT** /v1/carriers/{carrier_id}/add_funds | 
 *CarriersApi* | [**CarriersGet**](docs/CarriersApi.md#carriersget) | **GET** /v1/carriers/{carrier_id} | 
 *CarriersApi* | [**CarriersGetOptions**](docs/CarriersApi.md#carriersgetoptions) | **GET** /v1/carriers/{carrier_id}/options | 
 *CarriersApi* | [**CarriersList**](docs/CarriersApi.md#carrierslist) | **GET** /v1/carriers | 
 *CarriersApi* | [**CarriersListPackages**](docs/CarriersApi.md#carrierslistpackages) | **GET** /v1/carriers/{carrier_id}/packages | 
 *CarriersApi* | [**CarriersListServices**](docs/CarriersApi.md#carrierslistservices) | **GET** /v1/carriers/{carrier_id}/services | 
+*EnvironmentApi* | [**EnvironmentCreateWebhook**](docs/EnvironmentApi.md#environmentcreatewebhook) | **POST** /v1/environment/webhooks | 
+*EnvironmentApi* | [**EnvironmentDeleteWebhook**](docs/EnvironmentApi.md#environmentdeletewebhook) | **DELETE** /v1/environment/webhooks/{webhook_id} | 
+*EnvironmentApi* | [**EnvironmentGetWebhookById**](docs/EnvironmentApi.md#environmentgetwebhookbyid) | **GET** /v1/environment/webhooks/{webhook_id} | 
+*EnvironmentApi* | [**EnvironmentUpdateWebhook**](docs/EnvironmentApi.md#environmentupdatewebhook) | **PUT** /v1/environment/webhooks/{webhook_id} | 
 *EnvironmentApi* | [**EnvironmentWebhooks**](docs/EnvironmentApi.md#environmentwebhooks) | **GET** /v1/environment/webhooks | 
 *EnvironmentApi* | [**EnvironmentWhoami**](docs/EnvironmentApi.md#environmentwhoami) | **GET** /v1/environment/whoami | 
 *InsuranceApi* | [**InsuranceAddFunds**](docs/InsuranceApi.md#insuranceaddfunds) | **PATCH** /v1/insurance/shipsurance/add_funds | 
@@ -200,6 +208,7 @@ Class | Method | HTTP request | Description
  - [Model.ApiErrorDTO](docs/ApiErrorDTO.md)
  - [Model.ApiErrorResponseDTO](docs/ApiErrorResponseDTO.md)
  - [Model.AsendiaAccountInformationDTO](docs/AsendiaAccountInformationDTO.md)
+ - [Model.BalanceResponse](docs/BalanceResponse.md)
  - [Model.Batch](docs/Batch.md)
  - [Model.BatchResponseError](docs/BatchResponseError.md)
  - [Model.BatchResponseErrors](docs/BatchResponseErrors.md)
@@ -215,6 +224,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateShipmentResponse](docs/CreateShipmentResponse.md)
  - [Model.CreateShipmentsRequest](docs/CreateShipmentsRequest.md)
  - [Model.CreateShipmentsResponse](docs/CreateShipmentsResponse.md)
+ - [Model.CreateWebhookDTO](docs/CreateWebhookDTO.md)
  - [Model.CustomsItem](docs/CustomsItem.md)
  - [Model.DHLExpressAccountInformationDTO](docs/DHLExpressAccountInformationDTO.md)
  - [Model.DHLExpressAccountSettingsDTO](docs/DHLExpressAccountSettingsDTO.md)
@@ -227,6 +237,8 @@ Class | Method | HTTP request | Description
  - [Model.ImexAccountInformationDTO](docs/ImexAccountInformationDTO.md)
  - [Model.InternationalOptions](docs/InternationalOptions.md)
  - [Model.Label](docs/Label.md)
+ - [Model.LabelMessages](docs/LabelMessages.md)
+ - [Model.LabelPackage](docs/LabelPackage.md)
  - [Model.LinkDTO](docs/LinkDTO.md)
  - [Model.ListBatchResponse](docs/ListBatchResponse.md)
  - [Model.ListLabelResponse](docs/ListLabelResponse.md)
@@ -236,6 +248,8 @@ Class | Method | HTTP request | Description
  - [Model.ManifestsListResponse](docs/ManifestsListResponse.md)
  - [Model.ModifyBatchRequest](docs/ModifyBatchRequest.md)
  - [Model.MoneyDTO](docs/MoneyDTO.md)
+ - [Model.NewgisticsAccountInformationDTO](docs/NewgisticsAccountInformationDTO.md)
+ - [Model.NewgisticsAccountSettingsDTO](docs/NewgisticsAccountSettingsDTO.md)
  - [Model.OnTracAccountInformationDTO](docs/OnTracAccountInformationDTO.md)
  - [Model.Package](docs/Package.md)
  - [Model.PackagesListResponse](docs/PackagesListResponse.md)
@@ -267,10 +281,12 @@ Class | Method | HTTP request | Description
  - [Model.UPSAccountInformationDTO](docs/UPSAccountInformationDTO.md)
  - [Model.UPSAccountSettingsDTO](docs/UPSAccountSettingsDTO.md)
  - [Model.UPSInvoiceDTO](docs/UPSInvoiceDTO.md)
+ - [Model.UpdateWebhookDTO](docs/UpdateWebhookDTO.md)
  - [Model.VoidLabelResponse](docs/VoidLabelResponse.md)
  - [Model.WarehouseDTO](docs/WarehouseDTO.md)
  - [Model.WarehouseListDTO](docs/WarehouseListDTO.md)
  - [Model.WarehouseRequest](docs/WarehouseRequest.md)
+ - [Model.WebhookDTO](docs/WebhookDTO.md)
  - [Model.Weight](docs/Weight.md)
 
 

@@ -41,33 +41,38 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Merchandise for "merchandise"
             /// </summary>
             [EnumMember(Value = "merchandise")]
-            Merchandise,
+            Merchandise = 1,
             
             /// <summary>
             /// Enum Documents for "documents"
             /// </summary>
             [EnumMember(Value = "documents")]
-            Documents,
+            Documents = 2,
             
             /// <summary>
             /// Enum Gift for "gift"
             /// </summary>
             [EnumMember(Value = "gift")]
-            Gift,
+            Gift = 3,
             
             /// <summary>
             /// Enum Returnedgoods for "returned_goods"
             /// </summary>
             [EnumMember(Value = "returned_goods")]
-            Returnedgoods,
+            Returnedgoods = 4,
             
             /// <summary>
             /// Enum Sample for "sample"
             /// </summary>
             [EnumMember(Value = "sample")]
-            Sample
+            Sample = 5
         }
 
+        /// <summary>
+        /// Gets or Sets Contents
+        /// </summary>
+        [DataMember(Name="contents", EmitDefaultValue=false)]
+        public ContentsEnum? Contents { get; set; }
         /// <summary>
         /// Gets or Sets NonDelivery
         /// </summary>
@@ -79,20 +84,15 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Returntosender for "return_to_sender"
             /// </summary>
             [EnumMember(Value = "return_to_sender")]
-            Returntosender,
+            Returntosender = 1,
             
             /// <summary>
             /// Enum Treatasabandoned for "treat_as_abandoned"
             /// </summary>
             [EnumMember(Value = "treat_as_abandoned")]
-            Treatasabandoned
+            Treatasabandoned = 2
         }
 
-        /// <summary>
-        /// Gets or Sets Contents
-        /// </summary>
-        [DataMember(Name="contents", EmitDefaultValue=false)]
-        public ContentsEnum? Contents { get; set; }
         /// <summary>
         /// Gets or Sets NonDelivery
         /// </summary>
@@ -171,8 +171,8 @@ namespace ShipEngine.ApiClient.Model
                 ) && 
                 (
                     this.CustomsItems == input.CustomsItems ||
-                    (this.CustomsItems != null &&
-                    this.CustomsItems.SequenceEqual(input.CustomsItems))
+                    this.CustomsItems != null &&
+                    this.CustomsItems.SequenceEqual(input.CustomsItems)
                 ) && 
                 (
                     this.NonDelivery == input.NonDelivery ||

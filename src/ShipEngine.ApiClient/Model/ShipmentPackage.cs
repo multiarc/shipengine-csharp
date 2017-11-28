@@ -37,12 +37,14 @@ namespace ShipEngine.ApiClient.Model
         /// <param name="Weight">Weight.</param>
         /// <param name="Dimensions">Dimensions.</param>
         /// <param name="InsuredValue">InsuredValue.</param>
-        public ShipmentPackage(string PackageCode = default(string), Weight Weight = default(Weight), Dimensions Dimensions = default(Dimensions), MoneyDTO InsuredValue = default(MoneyDTO))
+        /// <param name="LabelMessages">LabelMessages.</param>
+        public ShipmentPackage(string PackageCode = default(string), Weight Weight = default(Weight), Dimensions Dimensions = default(Dimensions), MoneyDTO InsuredValue = default(MoneyDTO), LabelMessages LabelMessages = default(LabelMessages))
         {
             this.PackageCode = PackageCode;
             this.Weight = Weight;
             this.Dimensions = Dimensions;
             this.InsuredValue = InsuredValue;
+            this.LabelMessages = LabelMessages;
         }
         
         /// <summary>
@@ -70,6 +72,12 @@ namespace ShipEngine.ApiClient.Model
         public MoneyDTO InsuredValue { get; set; }
 
         /// <summary>
+        /// Gets or Sets LabelMessages
+        /// </summary>
+        [DataMember(Name="label_messages", EmitDefaultValue=false)]
+        public LabelMessages LabelMessages { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -81,6 +89,7 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("  Weight: ").Append(Weight).Append("\n");
             sb.Append("  Dimensions: ").Append(Dimensions).Append("\n");
             sb.Append("  InsuredValue: ").Append(InsuredValue).Append("\n");
+            sb.Append("  LabelMessages: ").Append(LabelMessages).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -134,6 +143,11 @@ namespace ShipEngine.ApiClient.Model
                     this.InsuredValue == input.InsuredValue ||
                     (this.InsuredValue != null &&
                     this.InsuredValue.Equals(input.InsuredValue))
+                ) && 
+                (
+                    this.LabelMessages == input.LabelMessages ||
+                    (this.LabelMessages != null &&
+                    this.LabelMessages.Equals(input.LabelMessages))
                 );
         }
 
@@ -154,6 +168,8 @@ namespace ShipEngine.ApiClient.Model
                     hashCode = hashCode * 59 + this.Dimensions.GetHashCode();
                 if (this.InsuredValue != null)
                     hashCode = hashCode * 59 + this.InsuredValue.GetHashCode();
+                if (this.LabelMessages != null)
+                    hashCode = hashCode * 59 + this.LabelMessages.GetHashCode();
                 return hashCode;
             }
         }

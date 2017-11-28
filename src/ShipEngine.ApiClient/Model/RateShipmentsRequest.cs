@@ -108,8 +108,8 @@ namespace ShipEngine.ApiClient.Model
             return 
                 (
                     this.ShipmentIds == input.ShipmentIds ||
-                    (this.ShipmentIds != null &&
-                    this.ShipmentIds.SequenceEqual(input.ShipmentIds))
+                    this.ShipmentIds != null &&
+                    this.ShipmentIds.SequenceEqual(input.ShipmentIds)
                 ) && 
                 (
                     this.RateOptions == input.RateOptions ||
@@ -118,8 +118,8 @@ namespace ShipEngine.ApiClient.Model
                 ) && 
                 (
                     this.Shipments == input.Shipments ||
-                    (this.Shipments != null &&
-                    this.Shipments.SequenceEqual(input.Shipments))
+                    this.Shipments != null &&
+                    this.Shipments.SequenceEqual(input.Shipments)
                 );
         }
 

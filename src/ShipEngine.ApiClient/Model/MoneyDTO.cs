@@ -41,31 +41,31 @@ namespace ShipEngine.ApiClient.Model
             /// Enum USD for "uSD"
             /// </summary>
             [EnumMember(Value = "uSD")]
-            USD,
+            USD = 1,
             
             /// <summary>
             /// Enum CAD for "cAD"
             /// </summary>
             [EnumMember(Value = "cAD")]
-            CAD,
+            CAD = 2,
             
             /// <summary>
             /// Enum AUD for "aUD"
             /// </summary>
             [EnumMember(Value = "aUD")]
-            AUD,
+            AUD = 3,
             
             /// <summary>
             /// Enum GBP for "gBP"
             /// </summary>
             [EnumMember(Value = "gBP")]
-            GBP,
+            GBP = 4,
             
             /// <summary>
             /// Enum EUR for "eUR"
             /// </summary>
             [EnumMember(Value = "eUR")]
-            EUR
+            EUR = 5
         }
 
         /// <summary>

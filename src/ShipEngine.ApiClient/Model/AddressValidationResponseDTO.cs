@@ -41,25 +41,25 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Unverified for "unverified"
             /// </summary>
             [EnumMember(Value = "unverified")]
-            Unverified,
+            Unverified = 1,
             
             /// <summary>
             /// Enum Verified for "verified"
             /// </summary>
             [EnumMember(Value = "verified")]
-            Verified,
+            Verified = 2,
             
             /// <summary>
             /// Enum Warning for "warning"
             /// </summary>
             [EnumMember(Value = "warning")]
-            Warning,
+            Warning = 3,
             
             /// <summary>
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error
+            Error = 4
         }
 
         /// <summary>
@@ -182,8 +182,8 @@ namespace ShipEngine.ApiClient.Model
                 ) && 
                 (
                     this.Messages == input.Messages ||
-                    (this.Messages != null &&
-                    this.Messages.SequenceEqual(input.Messages))
+                    this.Messages != null &&
+                    this.Messages.SequenceEqual(input.Messages)
                 ) && 
                 (
                     this.NativeMatchedParsedAddress == input.NativeMatchedParsedAddress ||

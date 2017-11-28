@@ -41,21 +41,26 @@ namespace ShipEngine.ApiClient.Model
             /// Enum DailyPickup for "dailyPickup"
             /// </summary>
             [EnumMember(Value = "dailyPickup")]
-            DailyPickup,
+            DailyPickup = 1,
             
             /// <summary>
             /// Enum OccasionalPickup for "occasionalPickup"
             /// </summary>
             [EnumMember(Value = "occasionalPickup")]
-            OccasionalPickup,
+            OccasionalPickup = 2,
             
             /// <summary>
             /// Enum CustomerCounter for "customerCounter"
             /// </summary>
             [EnumMember(Value = "customerCounter")]
-            CustomerCounter
+            CustomerCounter = 3
         }
 
+        /// <summary>
+        /// Gets or Sets PickupType
+        /// </summary>
+        [DataMember(Name="pickup_type", EmitDefaultValue=false)]
+        public PickupTypeEnum? PickupType { get; set; }
         /// <summary>
         /// Gets or Sets MailInnovationsEndorsement
         /// </summary>
@@ -67,44 +72,39 @@ namespace ShipEngine.ApiClient.Model
             /// Enum None for "none"
             /// </summary>
             [EnumMember(Value = "none")]
-            None,
+            None = 1,
             
             /// <summary>
             /// Enum Returnservicerequested for "return_service_requested"
             /// </summary>
             [EnumMember(Value = "return_service_requested")]
-            Returnservicerequested,
+            Returnservicerequested = 2,
             
             /// <summary>
             /// Enum Forwardingservicerequested for "forwarding_service_requested"
             /// </summary>
             [EnumMember(Value = "forwarding_service_requested")]
-            Forwardingservicerequested,
+            Forwardingservicerequested = 3,
             
             /// <summary>
             /// Enum Addressservicerequested for "address_service_requested"
             /// </summary>
             [EnumMember(Value = "address_service_requested")]
-            Addressservicerequested,
+            Addressservicerequested = 4,
             
             /// <summary>
             /// Enum Changeservicerequested for "change_service_requested"
             /// </summary>
             [EnumMember(Value = "change_service_requested")]
-            Changeservicerequested,
+            Changeservicerequested = 5,
             
             /// <summary>
             /// Enum Leaveifnoresponse for "leave_if_no_response"
             /// </summary>
             [EnumMember(Value = "leave_if_no_response")]
-            Leaveifnoresponse
+            Leaveifnoresponse = 6
         }
 
-        /// <summary>
-        /// Gets or Sets PickupType
-        /// </summary>
-        [DataMember(Name="pickup_type", EmitDefaultValue=false)]
-        public PickupTypeEnum? PickupType { get; set; }
         /// <summary>
         /// Gets or Sets MailInnovationsEndorsement
         /// </summary>

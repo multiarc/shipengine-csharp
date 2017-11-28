@@ -41,25 +41,25 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Pound for "pound"
             /// </summary>
             [EnumMember(Value = "pound")]
-            Pound,
+            Pound = 1,
             
             /// <summary>
             /// Enum Ounce for "ounce"
             /// </summary>
             [EnumMember(Value = "ounce")]
-            Ounce,
+            Ounce = 2,
             
             /// <summary>
             /// Enum Gram for "gram"
             /// </summary>
             [EnumMember(Value = "gram")]
-            Gram,
+            Gram = 3,
             
             /// <summary>
             /// Enum Kilogram for "kilogram"
             /// </summary>
             [EnumMember(Value = "kilogram")]
-            Kilogram
+            Kilogram = 4
         }
 
         /// <summary>

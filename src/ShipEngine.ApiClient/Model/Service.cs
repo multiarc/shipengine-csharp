@@ -39,7 +39,8 @@ namespace ShipEngine.ApiClient.Model
         /// <param name="Name">Name.</param>
         /// <param name="Domestic">Domestic.</param>
         /// <param name="International">International.</param>
-        public Service(string CarrierId = default(string), string CarrierCode = default(string), string ServiceCode = default(string), string Name = default(string), bool? Domestic = default(bool?), bool? International = default(bool?))
+        /// <param name="IsMultiPackageSupported">IsMultiPackageSupported.</param>
+        public Service(string CarrierId = default(string), string CarrierCode = default(string), string ServiceCode = default(string), string Name = default(string), bool? Domestic = default(bool?), bool? International = default(bool?), bool? IsMultiPackageSupported = default(bool?))
         {
             this.CarrierId = CarrierId;
             this.CarrierCode = CarrierCode;
@@ -47,6 +48,7 @@ namespace ShipEngine.ApiClient.Model
             this.Name = Name;
             this.Domestic = Domestic;
             this.International = International;
+            this.IsMultiPackageSupported = IsMultiPackageSupported;
         }
         
         /// <summary>
@@ -86,6 +88,12 @@ namespace ShipEngine.ApiClient.Model
         public bool? International { get; set; }
 
         /// <summary>
+        /// Gets or Sets IsMultiPackageSupported
+        /// </summary>
+        [DataMember(Name="is_multi_package_supported", EmitDefaultValue=false)]
+        public bool? IsMultiPackageSupported { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -99,6 +107,7 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Domestic: ").Append(Domestic).Append("\n");
             sb.Append("  International: ").Append(International).Append("\n");
+            sb.Append("  IsMultiPackageSupported: ").Append(IsMultiPackageSupported).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -162,6 +171,11 @@ namespace ShipEngine.ApiClient.Model
                     this.International == input.International ||
                     (this.International != null &&
                     this.International.Equals(input.International))
+                ) && 
+                (
+                    this.IsMultiPackageSupported == input.IsMultiPackageSupported ||
+                    (this.IsMultiPackageSupported != null &&
+                    this.IsMultiPackageSupported.Equals(input.IsMultiPackageSupported))
                 );
         }
 
@@ -186,6 +200,8 @@ namespace ShipEngine.ApiClient.Model
                     hashCode = hashCode * 59 + this.Domestic.GetHashCode();
                 if (this.International != null)
                     hashCode = hashCode * 59 + this.International.GetHashCode();
+                if (this.IsMultiPackageSupported != null)
+                    hashCode = hashCode * 59 + this.IsMultiPackageSupported.GetHashCode();
                 return hashCode;
             }
         }

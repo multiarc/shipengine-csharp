@@ -126,8 +126,8 @@ namespace ShipEngine.ApiClient.Model
             return 
                 (
                     this.Shipments == input.Shipments ||
-                    (this.Shipments != null &&
-                    this.Shipments.SequenceEqual(input.Shipments))
+                    this.Shipments != null &&
+                    this.Shipments.SequenceEqual(input.Shipments)
                 ) && 
                 (
                     this.Total == input.Total ||

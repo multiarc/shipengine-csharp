@@ -90,8 +90,8 @@ namespace ShipEngine.ApiClient.Model
             return 
                 (
                     this.Tags == input.Tags ||
-                    (this.Tags != null &&
-                    this.Tags.SequenceEqual(input.Tags))
+                    this.Tags != null &&
+                    this.Tags.SequenceEqual(input.Tags)
                 );
         }
 

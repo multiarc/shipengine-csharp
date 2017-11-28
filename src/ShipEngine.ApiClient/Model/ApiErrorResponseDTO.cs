@@ -104,8 +104,8 @@ namespace ShipEngine.ApiClient.Model
                 ) && 
                 (
                     this.Errors == input.Errors ||
-                    (this.Errors != null &&
-                    this.Errors.SequenceEqual(input.Errors))
+                    this.Errors != null &&
+                    this.Errors.SequenceEqual(input.Errors)
                 );
         }
 

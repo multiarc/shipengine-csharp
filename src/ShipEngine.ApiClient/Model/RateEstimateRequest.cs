@@ -41,33 +41,38 @@ namespace ShipEngine.ApiClient.Model
             /// Enum None for "none"
             /// </summary>
             [EnumMember(Value = "none")]
-            None,
+            None = 1,
             
             /// <summary>
             /// Enum Delivery for "delivery"
             /// </summary>
             [EnumMember(Value = "delivery")]
-            Delivery,
+            Delivery = 2,
             
             /// <summary>
             /// Enum Signature for "signature"
             /// </summary>
             [EnumMember(Value = "signature")]
-            Signature,
+            Signature = 3,
             
             /// <summary>
             /// Enum Adultsignature for "adult_signature"
             /// </summary>
             [EnumMember(Value = "adult_signature")]
-            Adultsignature,
+            Adultsignature = 4,
             
             /// <summary>
             /// Enum Directsignature for "direct_signature"
             /// </summary>
             [EnumMember(Value = "direct_signature")]
-            Directsignature
+            Directsignature = 5
         }
 
+        /// <summary>
+        /// Gets or Sets Confirmation
+        /// </summary>
+        [DataMember(Name="confirmation", EmitDefaultValue=false)]
+        public ConfirmationEnum? Confirmation { get; set; }
         /// <summary>
         /// Gets or Sets AddressResidentialIndicator
         /// </summary>
@@ -79,26 +84,21 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Unknown for "unknown"
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown,
+            Unknown = 1,
             
             /// <summary>
             /// Enum Yes for "yes"
             /// </summary>
             [EnumMember(Value = "yes")]
-            Yes,
+            Yes = 2,
             
             /// <summary>
             /// Enum No for "no"
             /// </summary>
             [EnumMember(Value = "no")]
-            No
+            No = 3
         }
 
-        /// <summary>
-        /// Gets or Sets Confirmation
-        /// </summary>
-        [DataMember(Name="confirmation", EmitDefaultValue=false)]
-        public ConfirmationEnum? Confirmation { get; set; }
         /// <summary>
         /// Gets or Sets AddressResidentialIndicator
         /// </summary>

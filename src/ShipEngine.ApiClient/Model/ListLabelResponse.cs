@@ -126,8 +126,8 @@ namespace ShipEngine.ApiClient.Model
             return 
                 (
                     this.Labels == input.Labels ||
-                    (this.Labels != null &&
-                    this.Labels.SequenceEqual(input.Labels))
+                    this.Labels != null &&
+                    this.Labels.SequenceEqual(input.Labels)
                 ) && 
                 (
                     this.Total == input.Total ||

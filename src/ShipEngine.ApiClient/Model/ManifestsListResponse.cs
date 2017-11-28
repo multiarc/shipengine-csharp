@@ -126,8 +126,8 @@ namespace ShipEngine.ApiClient.Model
             return 
                 (
                     this.Manifests == input.Manifests ||
-                    (this.Manifests != null &&
-                    this.Manifests.SequenceEqual(input.Manifests))
+                    this.Manifests != null &&
+                    this.Manifests.SequenceEqual(input.Manifests)
                 ) && 
                 (
                     this.Total == input.Total ||

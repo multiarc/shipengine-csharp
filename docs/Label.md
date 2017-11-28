@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **LabelDownload** | [**LinkDTO**](LinkDTO.md) |  | [optional] 
 **FormDownload** | [**LinkDTO**](LinkDTO.md) |  | [optional] 
 **InsuranceClaim** | [**LinkDTO**](LinkDTO.md) |  | [optional] 
+**Packages** | [**List&lt;LabelPackage&gt;**](LabelPackage.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

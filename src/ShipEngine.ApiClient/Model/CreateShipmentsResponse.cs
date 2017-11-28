@@ -104,8 +104,8 @@ namespace ShipEngine.ApiClient.Model
                 ) && 
                 (
                     this.Shipments == input.Shipments ||
-                    (this.Shipments != null &&
-                    this.Shipments.SequenceEqual(input.Shipments))
+                    this.Shipments != null &&
+                    this.Shipments.SequenceEqual(input.Shipments)
                 );
         }
 

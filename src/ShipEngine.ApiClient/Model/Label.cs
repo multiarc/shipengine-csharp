@@ -41,27 +41,32 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Processing for "processing"
             /// </summary>
             [EnumMember(Value = "processing")]
-            Processing,
+            Processing = 1,
             
             /// <summary>
             /// Enum Completed for "completed"
             /// </summary>
             [EnumMember(Value = "completed")]
-            Completed,
+            Completed = 2,
             
             /// <summary>
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error,
+            Error = 3,
             
             /// <summary>
             /// Enum Voided for "voided"
             /// </summary>
             [EnumMember(Value = "voided")]
-            Voided
+            Voided = 4
         }
 
+        /// <summary>
+        /// Gets or Sets Status
+        /// </summary>
+        [DataMember(Name="status", EmitDefaultValue=false)]
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Gets or Sets LabelFormat
         /// </summary>
@@ -73,21 +78,26 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Pdf for "pdf"
             /// </summary>
             [EnumMember(Value = "pdf")]
-            Pdf,
+            Pdf = 1,
             
             /// <summary>
             /// Enum Zpl for "zpl"
             /// </summary>
             [EnumMember(Value = "zpl")]
-            Zpl,
+            Zpl = 2,
             
             /// <summary>
             /// Enum Png for "png"
             /// </summary>
             [EnumMember(Value = "png")]
-            Png
+            Png = 3
         }
 
+        /// <summary>
+        /// Gets or Sets LabelFormat
+        /// </summary>
+        [DataMember(Name="label_format", EmitDefaultValue=false)]
+        public LabelFormatEnum? LabelFormat { get; set; }
         /// <summary>
         /// Gets or Sets TrackingStatus
         /// </summary>
@@ -99,37 +109,27 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Unknown for "unknown"
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown,
+            Unknown = 1,
             
             /// <summary>
             /// Enum Intransit for "in_transit"
             /// </summary>
             [EnumMember(Value = "in_transit")]
-            Intransit,
+            Intransit = 2,
             
             /// <summary>
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error,
+            Error = 3,
             
             /// <summary>
             /// Enum Delivered for "delivered"
             /// </summary>
             [EnumMember(Value = "delivered")]
-            Delivered
+            Delivered = 4
         }
 
-        /// <summary>
-        /// Gets or Sets Status
-        /// </summary>
-        [DataMember(Name="status", EmitDefaultValue=false)]
-        public StatusEnum? Status { get; set; }
-        /// <summary>
-        /// Gets or Sets LabelFormat
-        /// </summary>
-        [DataMember(Name="label_format", EmitDefaultValue=false)]
-        public LabelFormatEnum? LabelFormat { get; set; }
         /// <summary>
         /// Gets or Sets TrackingStatus
         /// </summary>
@@ -162,7 +162,8 @@ namespace ShipEngine.ApiClient.Model
         /// <param name="LabelDownload">LabelDownload.</param>
         /// <param name="FormDownload">FormDownload.</param>
         /// <param name="InsuranceClaim">InsuranceClaim.</param>
-        public Label(string LabelId = default(string), StatusEnum? Status = default(StatusEnum?), string ShipmentId = default(string), DateTime? ShipDate = default(DateTime?), DateTime? CreatedAt = default(DateTime?), MoneyDTO ShipmentCost = default(MoneyDTO), MoneyDTO InsuranceCost = default(MoneyDTO), string TrackingNumber = default(string), bool? IsReturnLabel = default(bool?), bool? IsInternational = default(bool?), string BatchId = default(string), string CarrierId = default(string), string ServiceCode = default(string), string PackageCode = default(string), bool? Voided = default(bool?), DateTime? VoidedAt = default(DateTime?), LabelFormatEnum? LabelFormat = default(LabelFormatEnum?), string LabelLayout = default(string), bool? Trackable = default(bool?), string CarrierCode = default(string), TrackingStatusEnum? TrackingStatus = default(TrackingStatusEnum?), LinkDTO LabelDownload = default(LinkDTO), LinkDTO FormDownload = default(LinkDTO), LinkDTO InsuranceClaim = default(LinkDTO))
+        /// <param name="Packages">Packages.</param>
+        public Label(string LabelId = default(string), StatusEnum? Status = default(StatusEnum?), string ShipmentId = default(string), DateTime? ShipDate = default(DateTime?), DateTime? CreatedAt = default(DateTime?), MoneyDTO ShipmentCost = default(MoneyDTO), MoneyDTO InsuranceCost = default(MoneyDTO), string TrackingNumber = default(string), bool? IsReturnLabel = default(bool?), bool? IsInternational = default(bool?), string BatchId = default(string), string CarrierId = default(string), string ServiceCode = default(string), string PackageCode = default(string), bool? Voided = default(bool?), DateTime? VoidedAt = default(DateTime?), LabelFormatEnum? LabelFormat = default(LabelFormatEnum?), string LabelLayout = default(string), bool? Trackable = default(bool?), string CarrierCode = default(string), TrackingStatusEnum? TrackingStatus = default(TrackingStatusEnum?), LinkDTO LabelDownload = default(LinkDTO), LinkDTO FormDownload = default(LinkDTO), LinkDTO InsuranceClaim = default(LinkDTO), List<LabelPackage> Packages = default(List<LabelPackage>))
         {
             this.LabelId = LabelId;
             this.Status = Status;
@@ -188,6 +189,7 @@ namespace ShipEngine.ApiClient.Model
             this.LabelDownload = LabelDownload;
             this.FormDownload = FormDownload;
             this.InsuranceClaim = InsuranceClaim;
+            this.Packages = Packages;
         }
         
         /// <summary>
@@ -320,6 +322,12 @@ namespace ShipEngine.ApiClient.Model
         public LinkDTO InsuranceClaim { get; set; }
 
         /// <summary>
+        /// Gets or Sets Packages
+        /// </summary>
+        [DataMember(Name="packages", EmitDefaultValue=false)]
+        public List<LabelPackage> Packages { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -351,6 +359,7 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("  LabelDownload: ").Append(LabelDownload).Append("\n");
             sb.Append("  FormDownload: ").Append(FormDownload).Append("\n");
             sb.Append("  InsuranceClaim: ").Append(InsuranceClaim).Append("\n");
+            sb.Append("  Packages: ").Append(Packages).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -504,6 +513,11 @@ namespace ShipEngine.ApiClient.Model
                     this.InsuranceClaim == input.InsuranceClaim ||
                     (this.InsuranceClaim != null &&
                     this.InsuranceClaim.Equals(input.InsuranceClaim))
+                ) && 
+                (
+                    this.Packages == input.Packages ||
+                    this.Packages != null &&
+                    this.Packages.SequenceEqual(input.Packages)
                 );
         }
 
@@ -564,6 +578,8 @@ namespace ShipEngine.ApiClient.Model
                     hashCode = hashCode * 59 + this.FormDownload.GetHashCode();
                 if (this.InsuranceClaim != null)
                     hashCode = hashCode * 59 + this.InsuranceClaim.GetHashCode();
+                if (this.Packages != null)
+                    hashCode = hashCode * 59 + this.Packages.GetHashCode();
                 return hashCode;
             }
         }

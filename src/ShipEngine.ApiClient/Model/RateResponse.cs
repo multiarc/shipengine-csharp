@@ -41,25 +41,25 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Working for "working"
             /// </summary>
             [EnumMember(Value = "working")]
-            Working,
+            Working = 1,
             
             /// <summary>
             /// Enum Completed for "completed"
             /// </summary>
             [EnumMember(Value = "completed")]
-            Completed,
+            Completed = 2,
             
             /// <summary>
             /// Enum Partial for "partial"
             /// </summary>
             [EnumMember(Value = "partial")]
-            Partial,
+            Partial = 3,
             
             /// <summary>
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error
+            Error = 4
         }
 
         /// <summary>
@@ -72,20 +72,20 @@ namespace ShipEngine.ApiClient.Model
         /// </summary>
         /// <param name="Rates">Rates.</param>
         /// <param name="InvalidRates">InvalidRates.</param>
-        /// <param name="Errors">Errors.</param>
         /// <param name="RateRequestId">RateRequestId.</param>
         /// <param name="ShipmentId">ShipmentId.</param>
         /// <param name="CreatedAt">CreatedAt.</param>
         /// <param name="Status">Status.</param>
-        public RateResponse(List<Rate> Rates = default(List<Rate>), List<Rate> InvalidRates = default(List<Rate>), List<ProviderError> Errors = default(List<ProviderError>), string RateRequestId = default(string), string ShipmentId = default(string), DateTime? CreatedAt = default(DateTime?), StatusEnum? Status = default(StatusEnum?))
+        /// <param name="Errors">Errors.</param>
+        public RateResponse(List<Rate> Rates = default(List<Rate>), List<Rate> InvalidRates = default(List<Rate>), string RateRequestId = default(string), string ShipmentId = default(string), DateTime? CreatedAt = default(DateTime?), StatusEnum? Status = default(StatusEnum?), List<ProviderError> Errors = default(List<ProviderError>))
         {
             this.Rates = Rates;
             this.InvalidRates = InvalidRates;
-            this.Errors = Errors;
             this.RateRequestId = RateRequestId;
             this.ShipmentId = ShipmentId;
             this.CreatedAt = CreatedAt;
             this.Status = Status;
+            this.Errors = Errors;
         }
         
         /// <summary>
@@ -99,12 +99,6 @@ namespace ShipEngine.ApiClient.Model
         /// </summary>
         [DataMember(Name="invalid_rates", EmitDefaultValue=false)]
         public List<Rate> InvalidRates { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Errors
-        /// </summary>
-        [DataMember(Name="errors", EmitDefaultValue=false)]
-        public List<ProviderError> Errors { get; set; }
 
         /// <summary>
         /// Gets or Sets RateRequestId
@@ -126,6 +120,12 @@ namespace ShipEngine.ApiClient.Model
 
 
         /// <summary>
+        /// Gets or Sets Errors
+        /// </summary>
+        [DataMember(Name="errors", EmitDefaultValue=false)]
+        public List<ProviderError> Errors { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -135,11 +135,11 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("class RateResponse {\n");
             sb.Append("  Rates: ").Append(Rates).Append("\n");
             sb.Append("  InvalidRates: ").Append(InvalidRates).Append("\n");
-            sb.Append("  Errors: ").Append(Errors).Append("\n");
             sb.Append("  RateRequestId: ").Append(RateRequestId).Append("\n");
             sb.Append("  ShipmentId: ").Append(ShipmentId).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Errors: ").Append(Errors).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -176,18 +176,13 @@ namespace ShipEngine.ApiClient.Model
             return 
                 (
                     this.Rates == input.Rates ||
-                    (this.Rates != null &&
-                    this.Rates.SequenceEqual(input.Rates))
+                    this.Rates != null &&
+                    this.Rates.SequenceEqual(input.Rates)
                 ) && 
                 (
                     this.InvalidRates == input.InvalidRates ||
-                    (this.InvalidRates != null &&
-                    this.InvalidRates.SequenceEqual(input.InvalidRates))
-                ) && 
-                (
-                    this.Errors == input.Errors ||
-                    (this.Errors != null &&
-                    this.Errors.SequenceEqual(input.Errors))
+                    this.InvalidRates != null &&
+                    this.InvalidRates.SequenceEqual(input.InvalidRates)
                 ) && 
                 (
                     this.RateRequestId == input.RateRequestId ||
@@ -208,6 +203,11 @@ namespace ShipEngine.ApiClient.Model
                     this.Status == input.Status ||
                     (this.Status != null &&
                     this.Status.Equals(input.Status))
+                ) && 
+                (
+                    this.Errors == input.Errors ||
+                    this.Errors != null &&
+                    this.Errors.SequenceEqual(input.Errors)
                 );
         }
 
@@ -224,8 +224,6 @@ namespace ShipEngine.ApiClient.Model
                     hashCode = hashCode * 59 + this.Rates.GetHashCode();
                 if (this.InvalidRates != null)
                     hashCode = hashCode * 59 + this.InvalidRates.GetHashCode();
-                if (this.Errors != null)
-                    hashCode = hashCode * 59 + this.Errors.GetHashCode();
                 if (this.RateRequestId != null)
                     hashCode = hashCode * 59 + this.RateRequestId.GetHashCode();
                 if (this.ShipmentId != null)
@@ -234,6 +232,8 @@ namespace ShipEngine.ApiClient.Model
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
+                if (this.Errors != null)
+                    hashCode = hashCode * 59 + this.Errors.GetHashCode();
                 return hashCode;
             }
         }

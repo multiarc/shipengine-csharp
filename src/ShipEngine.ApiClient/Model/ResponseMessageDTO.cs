@@ -41,69 +41,74 @@ namespace ShipEngine.ApiClient.Model
             /// Enum A1000 for "a1000"
             /// </summary>
             [EnumMember(Value = "a1000")]
-            A1000,
+            A1000 = 1,
             
             /// <summary>
             /// Enum A1001 for "a1001"
             /// </summary>
             [EnumMember(Value = "a1001")]
-            A1001,
+            A1001 = 2,
             
             /// <summary>
             /// Enum A1002 for "a1002"
             /// </summary>
             [EnumMember(Value = "a1002")]
-            A1002,
+            A1002 = 3,
             
             /// <summary>
             /// Enum A1003 for "a1003"
             /// </summary>
             [EnumMember(Value = "a1003")]
-            A1003,
+            A1003 = 4,
             
             /// <summary>
             /// Enum A1004 for "a1004"
             /// </summary>
             [EnumMember(Value = "a1004")]
-            A1004,
+            A1004 = 5,
             
             /// <summary>
             /// Enum A1005 for "a1005"
             /// </summary>
             [EnumMember(Value = "a1005")]
-            A1005,
+            A1005 = 6,
             
             /// <summary>
             /// Enum A1006 for "a1006"
             /// </summary>
             [EnumMember(Value = "a1006")]
-            A1006,
+            A1006 = 7,
             
             /// <summary>
             /// Enum R1000 for "r1000"
             /// </summary>
             [EnumMember(Value = "r1000")]
-            R1000,
+            R1000 = 8,
             
             /// <summary>
             /// Enum R1001 for "r1001"
             /// </summary>
             [EnumMember(Value = "r1001")]
-            R1001,
+            R1001 = 9,
             
             /// <summary>
             /// Enum R1002 for "r1002"
             /// </summary>
             [EnumMember(Value = "r1002")]
-            R1002,
+            R1002 = 10,
             
             /// <summary>
             /// Enum R1003 for "r1003"
             /// </summary>
             [EnumMember(Value = "r1003")]
-            R1003
+            R1003 = 11
         }
 
+        /// <summary>
+        /// Gets or Sets Code
+        /// </summary>
+        [DataMember(Name="code", EmitDefaultValue=false)]
+        public CodeEnum? Code { get; set; }
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
@@ -115,26 +120,21 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Error for "error"
             /// </summary>
             [EnumMember(Value = "error")]
-            Error,
+            Error = 1,
             
             /// <summary>
             /// Enum Warning for "warning"
             /// </summary>
             [EnumMember(Value = "warning")]
-            Warning,
+            Warning = 2,
             
             /// <summary>
             /// Enum Info for "info"
             /// </summary>
             [EnumMember(Value = "info")]
-            Info
+            Info = 3
         }
 
-        /// <summary>
-        /// Gets or Sets Code
-        /// </summary>
-        [DataMember(Name="code", EmitDefaultValue=false)]
-        public CodeEnum? Code { get; set; }
         /// <summary>
         /// Gets or Sets Type
         /// </summary>

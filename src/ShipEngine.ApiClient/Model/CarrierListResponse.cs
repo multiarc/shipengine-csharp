@@ -90,8 +90,8 @@ namespace ShipEngine.ApiClient.Model
             return 
                 (
                     this.Carriers == input.Carriers ||
-                    (this.Carriers != null &&
-                    this.Carriers.SequenceEqual(input.Carriers))
+                    this.Carriers != null &&
+                    this.Carriers.SequenceEqual(input.Carriers)
                 );
         }
 

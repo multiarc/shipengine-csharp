@@ -127,13 +127,13 @@ namespace ShipEngine.ApiClient.Model
                 ) && 
                 (
                     this.ShipmentIds == input.ShipmentIds ||
-                    (this.ShipmentIds != null &&
-                    this.ShipmentIds.SequenceEqual(input.ShipmentIds))
+                    this.ShipmentIds != null &&
+                    this.ShipmentIds.SequenceEqual(input.ShipmentIds)
                 ) && 
                 (
                     this.RateIds == input.RateIds ||
-                    (this.RateIds != null &&
-                    this.RateIds.SequenceEqual(input.RateIds))
+                    this.RateIds != null &&
+                    this.RateIds.SequenceEqual(input.RateIds)
                 );
         }
 

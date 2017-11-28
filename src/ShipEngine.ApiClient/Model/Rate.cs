@@ -41,15 +41,20 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Check for "check"
             /// </summary>
             [EnumMember(Value = "check")]
-            Check,
+            Check = 1,
             
             /// <summary>
             /// Enum Shipment for "shipment"
             /// </summary>
             [EnumMember(Value = "shipment")]
-            Shipment
+            Shipment = 2
         }
 
+        /// <summary>
+        /// Gets or Sets RateType
+        /// </summary>
+        [DataMember(Name="rate_type", EmitDefaultValue=false)]
+        public RateTypeEnum? RateType { get; set; }
         /// <summary>
         /// Gets or Sets ValidationStatus
         /// </summary>
@@ -61,32 +66,27 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Valid for "valid"
             /// </summary>
             [EnumMember(Value = "valid")]
-            Valid,
+            Valid = 1,
             
             /// <summary>
             /// Enum Invalid for "invalid"
             /// </summary>
             [EnumMember(Value = "invalid")]
-            Invalid,
+            Invalid = 2,
             
             /// <summary>
             /// Enum Haswarnings for "has_warnings"
             /// </summary>
             [EnumMember(Value = "has_warnings")]
-            Haswarnings,
+            Haswarnings = 3,
             
             /// <summary>
             /// Enum Unknown for "unknown"
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown
+            Unknown = 4
         }
 
-        /// <summary>
-        /// Gets or Sets RateType
-        /// </summary>
-        [DataMember(Name="rate_type", EmitDefaultValue=false)]
-        public RateTypeEnum? RateType { get; set; }
         /// <summary>
         /// Gets or Sets ValidationStatus
         /// </summary>
@@ -444,13 +444,13 @@ namespace ShipEngine.ApiClient.Model
                 ) && 
                 (
                     this.WarningMessages == input.WarningMessages ||
-                    (this.WarningMessages != null &&
-                    this.WarningMessages.SequenceEqual(input.WarningMessages))
+                    this.WarningMessages != null &&
+                    this.WarningMessages.SequenceEqual(input.WarningMessages)
                 ) && 
                 (
                     this.ErrorMessages == input.ErrorMessages ||
-                    (this.ErrorMessages != null &&
-                    this.ErrorMessages.SequenceEqual(input.ErrorMessages))
+                    this.ErrorMessages != null &&
+                    this.ErrorMessages.SequenceEqual(input.ErrorMessages)
                 ) && 
                 (
                     this.CarrierCode == input.CarrierCode ||

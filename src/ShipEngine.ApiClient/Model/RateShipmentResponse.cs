@@ -41,27 +41,32 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Pending for "pending"
             /// </summary>
             [EnumMember(Value = "pending")]
-            Pending,
+            Pending = 1,
             
             /// <summary>
             /// Enum Processing for "processing"
             /// </summary>
             [EnumMember(Value = "processing")]
-            Processing,
+            Processing = 2,
             
             /// <summary>
             /// Enum Labelpurchased for "label_purchased"
             /// </summary>
             [EnumMember(Value = "label_purchased")]
-            Labelpurchased,
+            Labelpurchased = 3,
             
             /// <summary>
             /// Enum Cancelled for "cancelled"
             /// </summary>
             [EnumMember(Value = "cancelled")]
-            Cancelled
+            Cancelled = 4
         }
 
+        /// <summary>
+        /// Gets or Sets ShipmentStatus
+        /// </summary>
+        [DataMember(Name="shipment_status", EmitDefaultValue=false)]
+        public ShipmentStatusEnum? ShipmentStatus { get; set; }
         /// <summary>
         /// Gets or Sets Confirmation
         /// </summary>
@@ -73,33 +78,38 @@ namespace ShipEngine.ApiClient.Model
             /// Enum None for "none"
             /// </summary>
             [EnumMember(Value = "none")]
-            None,
+            None = 1,
             
             /// <summary>
             /// Enum Delivery for "delivery"
             /// </summary>
             [EnumMember(Value = "delivery")]
-            Delivery,
+            Delivery = 2,
             
             /// <summary>
             /// Enum Signature for "signature"
             /// </summary>
             [EnumMember(Value = "signature")]
-            Signature,
+            Signature = 3,
             
             /// <summary>
             /// Enum Adultsignature for "adult_signature"
             /// </summary>
             [EnumMember(Value = "adult_signature")]
-            Adultsignature,
+            Adultsignature = 4,
             
             /// <summary>
             /// Enum Directsignature for "direct_signature"
             /// </summary>
             [EnumMember(Value = "direct_signature")]
-            Directsignature
+            Directsignature = 5
         }
 
+        /// <summary>
+        /// Gets or Sets Confirmation
+        /// </summary>
+        [DataMember(Name="confirmation", EmitDefaultValue=false)]
+        public ConfirmationEnum? Confirmation { get; set; }
         /// <summary>
         /// Gets or Sets InsuranceProvider
         /// </summary>
@@ -111,31 +121,21 @@ namespace ShipEngine.ApiClient.Model
             /// Enum None for "none"
             /// </summary>
             [EnumMember(Value = "none")]
-            None,
+            None = 1,
             
             /// <summary>
             /// Enum Shipsurance for "shipsurance"
             /// </summary>
             [EnumMember(Value = "shipsurance")]
-            Shipsurance,
+            Shipsurance = 2,
             
             /// <summary>
             /// Enum Carrier for "carrier"
             /// </summary>
             [EnumMember(Value = "carrier")]
-            Carrier
+            Carrier = 3
         }
 
-        /// <summary>
-        /// Gets or Sets ShipmentStatus
-        /// </summary>
-        [DataMember(Name="shipment_status", EmitDefaultValue=false)]
-        public ShipmentStatusEnum? ShipmentStatus { get; set; }
-        /// <summary>
-        /// Gets or Sets Confirmation
-        /// </summary>
-        [DataMember(Name="confirmation", EmitDefaultValue=false)]
-        public ConfirmationEnum? Confirmation { get; set; }
         /// <summary>
         /// Gets or Sets InsuranceProvider
         /// </summary>
@@ -162,9 +162,9 @@ namespace ShipEngine.ApiClient.Model
         /// <param name="AdvancedOptions">AdvancedOptions.</param>
         /// <param name="InsuranceProvider">InsuranceProvider.</param>
         /// <param name="Tags">Tags.</param>
-        /// <param name="TotalWeight">TotalWeight.</param>
         /// <param name="Packages">Packages.</param>
-        public RateShipmentResponse(RateResponse RateResponse = default(RateResponse), string ShipmentId = default(string), string CarrierId = default(string), string ServiceCode = default(string), string ExternalShipmentId = default(string), DateTime? ShipDate = default(DateTime?), DateTime? CreatedAt = default(DateTime?), DateTime? ModifiedAt = default(DateTime?), ShipmentStatusEnum? ShipmentStatus = default(ShipmentStatusEnum?), AddressDTO ShipTo = default(AddressDTO), AddressDTO ShipFrom = default(AddressDTO), string WarehouseId = default(string), AddressDTO ReturnTo = default(AddressDTO), ConfirmationEnum? Confirmation = default(ConfirmationEnum?), InternationalOptions Customs = default(InternationalOptions), Dictionary<string, Object> AdvancedOptions = default(Dictionary<string, Object>), InsuranceProviderEnum? InsuranceProvider = default(InsuranceProviderEnum?), List<TagResponse> Tags = default(List<TagResponse>), Weight TotalWeight = default(Weight), List<ShipmentPackage> Packages = default(List<ShipmentPackage>))
+        /// <param name="TotalWeight">TotalWeight.</param>
+        public RateShipmentResponse(RateResponse RateResponse = default(RateResponse), string ShipmentId = default(string), string CarrierId = default(string), string ServiceCode = default(string), string ExternalShipmentId = default(string), DateTime? ShipDate = default(DateTime?), DateTime? CreatedAt = default(DateTime?), DateTime? ModifiedAt = default(DateTime?), ShipmentStatusEnum? ShipmentStatus = default(ShipmentStatusEnum?), AddressDTO ShipTo = default(AddressDTO), AddressDTO ShipFrom = default(AddressDTO), string WarehouseId = default(string), AddressDTO ReturnTo = default(AddressDTO), ConfirmationEnum? Confirmation = default(ConfirmationEnum?), InternationalOptions Customs = default(InternationalOptions), Dictionary<string, Object> AdvancedOptions = default(Dictionary<string, Object>), InsuranceProviderEnum? InsuranceProvider = default(InsuranceProviderEnum?), List<TagResponse> Tags = default(List<TagResponse>), List<ShipmentPackage> Packages = default(List<ShipmentPackage>), Weight TotalWeight = default(Weight))
         {
             this.RateResponse = RateResponse;
             this.ShipmentId = ShipmentId;
@@ -184,8 +184,8 @@ namespace ShipEngine.ApiClient.Model
             this.AdvancedOptions = AdvancedOptions;
             this.InsuranceProvider = InsuranceProvider;
             this.Tags = Tags;
-            this.TotalWeight = TotalWeight;
             this.Packages = Packages;
+            this.TotalWeight = TotalWeight;
         }
         
         /// <summary>
@@ -282,16 +282,16 @@ namespace ShipEngine.ApiClient.Model
         public List<TagResponse> Tags { get; set; }
 
         /// <summary>
-        /// Gets or Sets TotalWeight
-        /// </summary>
-        [DataMember(Name="total_weight", EmitDefaultValue=false)]
-        public Weight TotalWeight { get; set; }
-
-        /// <summary>
         /// Gets or Sets Packages
         /// </summary>
         [DataMember(Name="packages", EmitDefaultValue=false)]
         public List<ShipmentPackage> Packages { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TotalWeight
+        /// </summary>
+        [DataMember(Name="total_weight", EmitDefaultValue=false)]
+        public Weight TotalWeight { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -319,8 +319,8 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("  AdvancedOptions: ").Append(AdvancedOptions).Append("\n");
             sb.Append("  InsuranceProvider: ").Append(InsuranceProvider).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
-            sb.Append("  TotalWeight: ").Append(TotalWeight).Append("\n");
             sb.Append("  Packages: ").Append(Packages).Append("\n");
+            sb.Append("  TotalWeight: ").Append(TotalWeight).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -432,8 +432,8 @@ namespace ShipEngine.ApiClient.Model
                 ) && 
                 (
                     this.AdvancedOptions == input.AdvancedOptions ||
-                    (this.AdvancedOptions != null &&
-                    this.AdvancedOptions.SequenceEqual(input.AdvancedOptions))
+                    this.AdvancedOptions != null &&
+                    this.AdvancedOptions.SequenceEqual(input.AdvancedOptions)
                 ) && 
                 (
                     this.InsuranceProvider == input.InsuranceProvider ||
@@ -442,18 +442,18 @@ namespace ShipEngine.ApiClient.Model
                 ) && 
                 (
                     this.Tags == input.Tags ||
-                    (this.Tags != null &&
-                    this.Tags.SequenceEqual(input.Tags))
+                    this.Tags != null &&
+                    this.Tags.SequenceEqual(input.Tags)
+                ) && 
+                (
+                    this.Packages == input.Packages ||
+                    this.Packages != null &&
+                    this.Packages.SequenceEqual(input.Packages)
                 ) && 
                 (
                     this.TotalWeight == input.TotalWeight ||
                     (this.TotalWeight != null &&
                     this.TotalWeight.Equals(input.TotalWeight))
-                ) && 
-                (
-                    this.Packages == input.Packages ||
-                    (this.Packages != null &&
-                    this.Packages.SequenceEqual(input.Packages))
                 );
         }
 
@@ -502,10 +502,10 @@ namespace ShipEngine.ApiClient.Model
                     hashCode = hashCode * 59 + this.InsuranceProvider.GetHashCode();
                 if (this.Tags != null)
                     hashCode = hashCode * 59 + this.Tags.GetHashCode();
-                if (this.TotalWeight != null)
-                    hashCode = hashCode * 59 + this.TotalWeight.GetHashCode();
                 if (this.Packages != null)
                     hashCode = hashCode * 59 + this.Packages.GetHashCode();
+                if (this.TotalWeight != null)
+                    hashCode = hashCode * 59 + this.TotalWeight.GetHashCode();
                 return hashCode;
             }
         }

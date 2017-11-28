@@ -41,19 +41,19 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Unknown for "unknown"
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown,
+            Unknown = 1,
             
             /// <summary>
             /// Enum Yes for "yes"
             /// </summary>
             [EnumMember(Value = "yes")]
-            Yes,
+            Yes = 2,
             
             /// <summary>
             /// Enum No for "no"
             /// </summary>
             [EnumMember(Value = "no")]
-            No
+            No = 3
         }
 
         /// <summary>

@@ -31,6 +31,37 @@ namespace ShipEngine.ApiClient.Model
     public partial class Batch :  IEquatable<Batch>, IValidatableObject
     {
         /// <summary>
+        /// Gets or Sets LabelFormat
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum LabelFormatEnum
+        {
+            
+            /// <summary>
+            /// Enum Pdf for "pdf"
+            /// </summary>
+            [EnumMember(Value = "pdf")]
+            Pdf = 1,
+            
+            /// <summary>
+            /// Enum Zpl for "zpl"
+            /// </summary>
+            [EnumMember(Value = "zpl")]
+            Zpl = 2,
+            
+            /// <summary>
+            /// Enum Png for "png"
+            /// </summary>
+            [EnumMember(Value = "png")]
+            Png = 3
+        }
+
+        /// <summary>
+        /// Gets or Sets LabelFormat
+        /// </summary>
+        [DataMember(Name="label_format", EmitDefaultValue=false)]
+        public LabelFormatEnum? LabelFormat { get; set; }
+        /// <summary>
         /// Gets or Sets Status
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -41,49 +72,49 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Open for "open"
             /// </summary>
             [EnumMember(Value = "open")]
-            Open,
+            Open = 1,
             
             /// <summary>
             /// Enum Queued for "queued"
             /// </summary>
             [EnumMember(Value = "queued")]
-            Queued,
+            Queued = 2,
             
             /// <summary>
             /// Enum Processing for "processing"
             /// </summary>
             [EnumMember(Value = "processing")]
-            Processing,
+            Processing = 3,
             
             /// <summary>
             /// Enum Completed for "completed"
             /// </summary>
             [EnumMember(Value = "completed")]
-            Completed,
+            Completed = 4,
             
             /// <summary>
             /// Enum Completedwitherrors for "completed_with_errors"
             /// </summary>
             [EnumMember(Value = "completed_with_errors")]
-            Completedwitherrors,
+            Completedwitherrors = 5,
             
             /// <summary>
             /// Enum Archived for "archived"
             /// </summary>
             [EnumMember(Value = "archived")]
-            Archived,
+            Archived = 6,
             
             /// <summary>
             /// Enum Notifying for "notifying"
             /// </summary>
             [EnumMember(Value = "notifying")]
-            Notifying,
+            Notifying = 7,
             
             /// <summary>
             /// Enum Invalid for "invalid"
             /// </summary>
             [EnumMember(Value = "invalid")]
-            Invalid
+            Invalid = 8
         }
 
         /// <summary>
@@ -94,6 +125,8 @@ namespace ShipEngine.ApiClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Batch" /> class.
         /// </summary>
+        /// <param name="LabelLayout">LabelLayout.</param>
+        /// <param name="LabelFormat">LabelFormat.</param>
         /// <param name="BatchId">BatchId.</param>
         /// <param name="ExternalBatchId">ExternalBatchId.</param>
         /// <param name="BatchNotes">BatchNotes.</param>
@@ -110,8 +143,10 @@ namespace ShipEngine.ApiClient.Model
         /// <param name="LabelDownload">LabelDownload.</param>
         /// <param name="FormDownload">FormDownload.</param>
         /// <param name="Status">Status.</param>
-        public Batch(string BatchId = default(string), string ExternalBatchId = default(string), string BatchNotes = default(string), DateTime? CreatedAt = default(DateTime?), DateTime? ProcessedAt = default(DateTime?), int? Errors = default(int?), int? Warnings = default(int?), int? Completed = default(int?), int? Forms = default(int?), int? Count = default(int?), LinkDTO BatchShipmentsUrl = default(LinkDTO), LinkDTO BatchLabelsUrl = default(LinkDTO), LinkDTO BatchErrorsUrl = default(LinkDTO), LinkDTO LabelDownload = default(LinkDTO), LinkDTO FormDownload = default(LinkDTO), StatusEnum? Status = default(StatusEnum?))
+        public Batch(string LabelLayout = default(string), LabelFormatEnum? LabelFormat = default(LabelFormatEnum?), string BatchId = default(string), string ExternalBatchId = default(string), string BatchNotes = default(string), DateTime? CreatedAt = default(DateTime?), DateTime? ProcessedAt = default(DateTime?), int? Errors = default(int?), int? Warnings = default(int?), int? Completed = default(int?), int? Forms = default(int?), int? Count = default(int?), LinkDTO BatchShipmentsUrl = default(LinkDTO), LinkDTO BatchLabelsUrl = default(LinkDTO), LinkDTO BatchErrorsUrl = default(LinkDTO), LinkDTO LabelDownload = default(LinkDTO), LinkDTO FormDownload = default(LinkDTO), StatusEnum? Status = default(StatusEnum?))
         {
+            this.LabelLayout = LabelLayout;
+            this.LabelFormat = LabelFormat;
             this.BatchId = BatchId;
             this.ExternalBatchId = ExternalBatchId;
             this.BatchNotes = BatchNotes;
@@ -130,6 +165,13 @@ namespace ShipEngine.ApiClient.Model
             this.Status = Status;
         }
         
+        /// <summary>
+        /// Gets or Sets LabelLayout
+        /// </summary>
+        [DataMember(Name="label_layout", EmitDefaultValue=false)]
+        public string LabelLayout { get; set; }
+
+
         /// <summary>
         /// Gets or Sets BatchId
         /// </summary>
@@ -229,6 +271,8 @@ namespace ShipEngine.ApiClient.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Batch {\n");
+            sb.Append("  LabelLayout: ").Append(LabelLayout).Append("\n");
+            sb.Append("  LabelFormat: ").Append(LabelFormat).Append("\n");
             sb.Append("  BatchId: ").Append(BatchId).Append("\n");
             sb.Append("  ExternalBatchId: ").Append(ExternalBatchId).Append("\n");
             sb.Append("  BatchNotes: ").Append(BatchNotes).Append("\n");
@@ -279,6 +323,16 @@ namespace ShipEngine.ApiClient.Model
                 return false;
 
             return 
+                (
+                    this.LabelLayout == input.LabelLayout ||
+                    (this.LabelLayout != null &&
+                    this.LabelLayout.Equals(input.LabelLayout))
+                ) && 
+                (
+                    this.LabelFormat == input.LabelFormat ||
+                    (this.LabelFormat != null &&
+                    this.LabelFormat.Equals(input.LabelFormat))
+                ) && 
                 (
                     this.BatchId == input.BatchId ||
                     (this.BatchId != null &&
@@ -370,6 +424,10 @@ namespace ShipEngine.ApiClient.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.LabelLayout != null)
+                    hashCode = hashCode * 59 + this.LabelLayout.GetHashCode();
+                if (this.LabelFormat != null)
+                    hashCode = hashCode * 59 + this.LabelFormat.GetHashCode();
                 if (this.BatchId != null)
                     hashCode = hashCode * 59 + this.BatchId.GetHashCode();
                 if (this.ExternalBatchId != null)

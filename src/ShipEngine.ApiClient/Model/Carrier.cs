@@ -41,10 +41,12 @@ namespace ShipEngine.ApiClient.Model
         /// <param name="Nickname">Nickname.</param>
         /// <param name="FriendlyName">FriendlyName.</param>
         /// <param name="Primary">Primary.</param>
+        /// <param name="HasMultiPackageSupportingServices">HasMultiPackageSupportingServices.</param>
+        /// <param name="SupportsLabelMessages">SupportsLabelMessages.</param>
         /// <param name="Services">Services.</param>
         /// <param name="Packages">Packages.</param>
         /// <param name="Options">Options.</param>
-        public Carrier(string CarrierId = default(string), string CarrierCode = default(string), string AccountNumber = default(string), bool? RequiresFundedAmount = default(bool?), double? Balance = default(double?), string Nickname = default(string), string FriendlyName = default(string), bool? Primary = default(bool?), List<Service> Services = default(List<Service>), List<Package> Packages = default(List<Package>), List<CarrierAdvancedOption> Options = default(List<CarrierAdvancedOption>))
+        public Carrier(string CarrierId = default(string), string CarrierCode = default(string), string AccountNumber = default(string), bool? RequiresFundedAmount = default(bool?), double? Balance = default(double?), string Nickname = default(string), string FriendlyName = default(string), bool? Primary = default(bool?), bool? HasMultiPackageSupportingServices = default(bool?), bool? SupportsLabelMessages = default(bool?), List<Service> Services = default(List<Service>), List<Package> Packages = default(List<Package>), List<CarrierAdvancedOption> Options = default(List<CarrierAdvancedOption>))
         {
             this.CarrierId = CarrierId;
             this.CarrierCode = CarrierCode;
@@ -54,6 +56,8 @@ namespace ShipEngine.ApiClient.Model
             this.Nickname = Nickname;
             this.FriendlyName = FriendlyName;
             this.Primary = Primary;
+            this.HasMultiPackageSupportingServices = HasMultiPackageSupportingServices;
+            this.SupportsLabelMessages = SupportsLabelMessages;
             this.Services = Services;
             this.Packages = Packages;
             this.Options = Options;
@@ -108,6 +112,18 @@ namespace ShipEngine.ApiClient.Model
         public bool? Primary { get; set; }
 
         /// <summary>
+        /// Gets or Sets HasMultiPackageSupportingServices
+        /// </summary>
+        [DataMember(Name="has_multi_package_supporting_services", EmitDefaultValue=false)]
+        public bool? HasMultiPackageSupportingServices { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SupportsLabelMessages
+        /// </summary>
+        [DataMember(Name="supports_label_messages", EmitDefaultValue=false)]
+        public bool? SupportsLabelMessages { get; set; }
+
+        /// <summary>
         /// Gets or Sets Services
         /// </summary>
         [DataMember(Name="services", EmitDefaultValue=false)]
@@ -141,6 +157,8 @@ namespace ShipEngine.ApiClient.Model
             sb.Append("  Nickname: ").Append(Nickname).Append("\n");
             sb.Append("  FriendlyName: ").Append(FriendlyName).Append("\n");
             sb.Append("  Primary: ").Append(Primary).Append("\n");
+            sb.Append("  HasMultiPackageSupportingServices: ").Append(HasMultiPackageSupportingServices).Append("\n");
+            sb.Append("  SupportsLabelMessages: ").Append(SupportsLabelMessages).Append("\n");
             sb.Append("  Services: ").Append(Services).Append("\n");
             sb.Append("  Packages: ").Append(Packages).Append("\n");
             sb.Append("  Options: ").Append(Options).Append("\n");
@@ -219,19 +237,29 @@ namespace ShipEngine.ApiClient.Model
                     this.Primary.Equals(input.Primary))
                 ) && 
                 (
+                    this.HasMultiPackageSupportingServices == input.HasMultiPackageSupportingServices ||
+                    (this.HasMultiPackageSupportingServices != null &&
+                    this.HasMultiPackageSupportingServices.Equals(input.HasMultiPackageSupportingServices))
+                ) && 
+                (
+                    this.SupportsLabelMessages == input.SupportsLabelMessages ||
+                    (this.SupportsLabelMessages != null &&
+                    this.SupportsLabelMessages.Equals(input.SupportsLabelMessages))
+                ) && 
+                (
                     this.Services == input.Services ||
-                    (this.Services != null &&
-                    this.Services.SequenceEqual(input.Services))
+                    this.Services != null &&
+                    this.Services.SequenceEqual(input.Services)
                 ) && 
                 (
                     this.Packages == input.Packages ||
-                    (this.Packages != null &&
-                    this.Packages.SequenceEqual(input.Packages))
+                    this.Packages != null &&
+                    this.Packages.SequenceEqual(input.Packages)
                 ) && 
                 (
                     this.Options == input.Options ||
-                    (this.Options != null &&
-                    this.Options.SequenceEqual(input.Options))
+                    this.Options != null &&
+                    this.Options.SequenceEqual(input.Options)
                 );
         }
 
@@ -260,6 +288,10 @@ namespace ShipEngine.ApiClient.Model
                     hashCode = hashCode * 59 + this.FriendlyName.GetHashCode();
                 if (this.Primary != null)
                     hashCode = hashCode * 59 + this.Primary.GetHashCode();
+                if (this.HasMultiPackageSupportingServices != null)
+                    hashCode = hashCode * 59 + this.HasMultiPackageSupportingServices.GetHashCode();
+                if (this.SupportsLabelMessages != null)
+                    hashCode = hashCode * 59 + this.SupportsLabelMessages.GetHashCode();
                 if (this.Services != null)
                     hashCode = hashCode * 59 + this.Services.GetHashCode();
                 if (this.Packages != null)

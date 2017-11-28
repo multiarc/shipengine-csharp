@@ -21,8 +21,8 @@ Name | Type | Description | Notes
 **AdvancedOptions** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
 **InsuranceProvider** | **string** |  | [optional] 
 **Tags** | [**List&lt;TagResponse&gt;**](TagResponse.md) |  | [optional] 
-**TotalWeight** | [**Weight**](Weight.md) |  | [optional] 
 **Packages** | [**List&lt;ShipmentPackage&gt;**](ShipmentPackage.md) |  | [optional] 
+**TotalWeight** | [**Weight**](Weight.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

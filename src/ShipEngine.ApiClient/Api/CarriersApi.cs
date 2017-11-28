@@ -32,6 +32,31 @@ namespace ShipEngine.ApiClient.Api
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="carrierId"></param>
+        /// <param name="amountToAdd"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>BalanceResponse</returns>
+        BalanceResponse CarriersAddFunds (string carrierId, MoneyDTO amountToAdd, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="amountToAdd"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of BalanceResponse</returns>
+        ApiResponse<BalanceResponse> CarriersAddFundsWithHttpInfo (string carrierId, MoneyDTO amountToAdd, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
         /// <param name="apiKey">API Key</param>
         /// <returns>Carrier</returns>
         Carrier CarriersGet (string carrierId, string apiKey);
@@ -139,6 +164,31 @@ namespace ShipEngine.ApiClient.Api
         ApiResponse<CarrierListServicesResponse> CarriersListServicesWithHttpInfo (string carrierId, string apiKey);
         #endregion Synchronous Operations
         #region Asynchronous Operations
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="amountToAdd"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of BalanceResponse</returns>
+        System.Threading.Tasks.Task<BalanceResponse> CarriersAddFundsAsync (string carrierId, MoneyDTO amountToAdd, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="amountToAdd"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (BalanceResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BalanceResponse>> CarriersAddFundsAsyncWithHttpInfo (string carrierId, MoneyDTO amountToAdd, string apiKey);
         /// <summary>
         /// 
         /// </summary>
@@ -350,6 +400,193 @@ namespace ShipEngine.ApiClient.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="amountToAdd"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>BalanceResponse</returns>
+        public BalanceResponse CarriersAddFunds (string carrierId, MoneyDTO amountToAdd, string apiKey)
+        {
+             ApiResponse<BalanceResponse> localVarResponse = CarriersAddFundsWithHttpInfo(carrierId, amountToAdd, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="amountToAdd"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of BalanceResponse</returns>
+        public ApiResponse< BalanceResponse > CarriersAddFundsWithHttpInfo (string carrierId, MoneyDTO amountToAdd, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarriersApi->CarriersAddFunds");
+            // verify the required parameter 'amountToAdd' is set
+            if (amountToAdd == null)
+                throw new ApiException(400, "Missing required parameter 'amountToAdd' when calling CarriersApi->CarriersAddFunds");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersAddFunds");
+
+            var localVarPath = "/v1/carriers/{carrier_id}/add_funds";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (amountToAdd != null && amountToAdd.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(amountToAdd); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = amountToAdd; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersAddFunds", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<BalanceResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (BalanceResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BalanceResponse)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="amountToAdd"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of BalanceResponse</returns>
+        public async System.Threading.Tasks.Task<BalanceResponse> CarriersAddFundsAsync (string carrierId, MoneyDTO amountToAdd, string apiKey)
+        {
+             ApiResponse<BalanceResponse> localVarResponse = await CarriersAddFundsAsyncWithHttpInfo(carrierId, amountToAdd, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="carrierId"></param>
+        /// <param name="amountToAdd"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (BalanceResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<BalanceResponse>> CarriersAddFundsAsyncWithHttpInfo (string carrierId, MoneyDTO amountToAdd, string apiKey)
+        {
+            // verify the required parameter 'carrierId' is set
+            if (carrierId == null)
+                throw new ApiException(400, "Missing required parameter 'carrierId' when calling CarriersApi->CarriersAddFunds");
+            // verify the required parameter 'amountToAdd' is set
+            if (amountToAdd == null)
+                throw new ApiException(400, "Missing required parameter 'amountToAdd' when calling CarriersApi->CarriersAddFunds");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling CarriersApi->CarriersAddFunds");
+
+            var localVarPath = "/v1/carriers/{carrier_id}/add_funds";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (carrierId != null) localVarPathParams.Add("carrier_id", Configuration.ApiClient.ParameterToString(carrierId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (amountToAdd != null && amountToAdd.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(amountToAdd); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = amountToAdd; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CarriersAddFunds", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<BalanceResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (BalanceResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BalanceResponse)));
         }
 
         /// <summary>

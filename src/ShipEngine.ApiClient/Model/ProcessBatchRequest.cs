@@ -31,12 +31,47 @@ namespace ShipEngine.ApiClient.Model
     public partial class ProcessBatchRequest :  IEquatable<ProcessBatchRequest>, IValidatableObject
     {
         /// <summary>
+        /// Gets or Sets LabelFormat
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum LabelFormatEnum
+        {
+            
+            /// <summary>
+            /// Enum Pdf for "pdf"
+            /// </summary>
+            [EnumMember(Value = "pdf")]
+            Pdf = 1,
+            
+            /// <summary>
+            /// Enum Zpl for "zpl"
+            /// </summary>
+            [EnumMember(Value = "zpl")]
+            Zpl = 2,
+            
+            /// <summary>
+            /// Enum Png for "png"
+            /// </summary>
+            [EnumMember(Value = "png")]
+            Png = 3
+        }
+
+        /// <summary>
+        /// Gets or Sets LabelFormat
+        /// </summary>
+        [DataMember(Name="label_format", EmitDefaultValue=false)]
+        public LabelFormatEnum? LabelFormat { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ProcessBatchRequest" /> class.
         /// </summary>
         /// <param name="ShipDate">ShipDate.</param>
-        public ProcessBatchRequest(DateTime? ShipDate = default(DateTime?))
+        /// <param name="LabelLayout">LabelLayout.</param>
+        /// <param name="LabelFormat">LabelFormat.</param>
+        public ProcessBatchRequest(DateTime? ShipDate = default(DateTime?), string LabelLayout = default(string), LabelFormatEnum? LabelFormat = default(LabelFormatEnum?))
         {
             this.ShipDate = ShipDate;
+            this.LabelLayout = LabelLayout;
+            this.LabelFormat = LabelFormat;
         }
         
         /// <summary>
@@ -44,6 +79,13 @@ namespace ShipEngine.ApiClient.Model
         /// </summary>
         [DataMember(Name="ship_date", EmitDefaultValue=false)]
         public DateTime? ShipDate { get; set; }
+
+        /// <summary>
+        /// Gets or Sets LabelLayout
+        /// </summary>
+        [DataMember(Name="label_layout", EmitDefaultValue=false)]
+        public string LabelLayout { get; set; }
+
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -54,6 +96,8 @@ namespace ShipEngine.ApiClient.Model
             var sb = new StringBuilder();
             sb.Append("class ProcessBatchRequest {\n");
             sb.Append("  ShipDate: ").Append(ShipDate).Append("\n");
+            sb.Append("  LabelLayout: ").Append(LabelLayout).Append("\n");
+            sb.Append("  LabelFormat: ").Append(LabelFormat).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,6 +136,16 @@ namespace ShipEngine.ApiClient.Model
                     this.ShipDate == input.ShipDate ||
                     (this.ShipDate != null &&
                     this.ShipDate.Equals(input.ShipDate))
+                ) && 
+                (
+                    this.LabelLayout == input.LabelLayout ||
+                    (this.LabelLayout != null &&
+                    this.LabelLayout.Equals(input.LabelLayout))
+                ) && 
+                (
+                    this.LabelFormat == input.LabelFormat ||
+                    (this.LabelFormat != null &&
+                    this.LabelFormat.Equals(input.LabelFormat))
                 );
         }
 
@@ -106,6 +160,10 @@ namespace ShipEngine.ApiClient.Model
                 int hashCode = 41;
                 if (this.ShipDate != null)
                     hashCode = hashCode * 59 + this.ShipDate.GetHashCode();
+                if (this.LabelLayout != null)
+                    hashCode = hashCode * 59 + this.LabelLayout.GetHashCode();
+                if (this.LabelFormat != null)
+                    hashCode = hashCode * 59 + this.LabelFormat.GetHashCode();
                 return hashCode;
             }
         }

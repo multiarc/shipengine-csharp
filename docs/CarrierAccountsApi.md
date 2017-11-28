@@ -24,6 +24,9 @@ Method | HTTP request | Description
 [**GlobegisticsAccountCarrierDisconnectAccount**](CarrierAccountsApi.md#globegisticsaccountcarrierdisconnectaccount) | **DELETE** /v1/connections/carriers/globegistics/{carrier_id} | 
 [**ImexAccountCarrierConnectAccount**](CarrierAccountsApi.md#imexaccountcarrierconnectaccount) | **POST** /v1/connections/carriers/imex | 
 [**ImexAccountCarrierDisconnectAccount**](CarrierAccountsApi.md#imexaccountcarrierdisconnectaccount) | **DELETE** /v1/connections/carriers/imex/{carrier_id} | 
+[**NewgisticsAccountCarrierConnectAccount**](CarrierAccountsApi.md#newgisticsaccountcarrierconnectaccount) | **POST** /v1/connections/carriers/newgistics | 
+[**NewgisticsAccountCarrierDisconnectAccount**](CarrierAccountsApi.md#newgisticsaccountcarrierdisconnectaccount) | **DELETE** /v1/connections/carriers/newgistics/{carrier_id} | 
+[**NewgisticsAccountCarrierUpdateSettings**](CarrierAccountsApi.md#newgisticsaccountcarrierupdatesettings) | **PUT** /v1/connections/carriers/newgistics/{carrier_id}/settings | 
 [**OnTracAccountCarrierConnectAccount**](CarrierAccountsApi.md#ontracaccountcarrierconnectaccount) | **POST** /v1/connections/carriers/ontrac | 
 [**OnTracAccountCarrierDisconnectAccount**](CarrierAccountsApi.md#ontracaccountcarrierdisconnectaccount) | **DELETE** /v1/connections/carriers/ontrac/{carrier_id} | 
 [**RrDonnelleyAccountCarrierConnectAccount**](CarrierAccountsApi.md#rrdonnelleyaccountcarrierconnectaccount) | **POST** /v1/connections/carriers/rr_donnelley | 
@@ -1324,6 +1327,201 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="newgisticsaccountcarrierconnectaccount"></a>
+# **NewgisticsAccountCarrierConnectAccount**
+> ConnectAccountResponseDTO NewgisticsAccountCarrierConnectAccount (NewgisticsAccountInformationDTO model, string apiKey)
+
+
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
+
+namespace Example
+{
+    public class NewgisticsAccountCarrierConnectAccountExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api-key
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+
+            var apiInstance = new CarrierAccountsApi();
+            var model = new NewgisticsAccountInformationDTO(); // NewgisticsAccountInformationDTO | 
+            var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
+
+            try
+            {
+                ConnectAccountResponseDTO result = apiInstance.NewgisticsAccountCarrierConnectAccount(model, apiKey);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling CarrierAccountsApi.NewgisticsAccountCarrierConnectAccount: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **model** | [**NewgisticsAccountInformationDTO**](NewgisticsAccountInformationDTO.md)|  | 
+ **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
+
+### Return type
+
+[**ConnectAccountResponseDTO**](ConnectAccountResponseDTO.md)
+
+### Authorization
+
+[api-key](../README.md#api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json
+ - **Accept**: application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="newgisticsaccountcarrierdisconnectaccount"></a>
+# **NewgisticsAccountCarrierDisconnectAccount**
+> void NewgisticsAccountCarrierDisconnectAccount (string carrierId, string apiKey)
+
+
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
+
+namespace Example
+{
+    public class NewgisticsAccountCarrierDisconnectAccountExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api-key
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+
+            var apiInstance = new CarrierAccountsApi();
+            var carrierId = carrierId_example;  // string | 
+            var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
+
+            try
+            {
+                apiInstance.NewgisticsAccountCarrierDisconnectAccount(carrierId, apiKey);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling CarrierAccountsApi.NewgisticsAccountCarrierDisconnectAccount: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **carrierId** | **string**|  | 
+ **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api-key](../README.md#api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="newgisticsaccountcarrierupdatesettings"></a>
+# **NewgisticsAccountCarrierUpdateSettings**
+> void NewgisticsAccountCarrierUpdateSettings (string carrierId, NewgisticsAccountSettingsDTO settings, string apiKey)
+
+
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using ShipEngine.ApiClient.Api;
+using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
+
+namespace Example
+{
+    public class NewgisticsAccountCarrierUpdateSettingsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api-key
+            Configuration.Default.AddApiKey("api-key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("api-key", "Bearer");
+
+            var apiInstance = new CarrierAccountsApi();
+            var carrierId = carrierId_example;  // string | 
+            var settings = new NewgisticsAccountSettingsDTO(); // NewgisticsAccountSettingsDTO | 
+            var apiKey = apiKey_example;  // string | API Key (default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY)
+
+            try
+            {
+                apiInstance.NewgisticsAccountCarrierUpdateSettings(carrierId, settings, apiKey);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling CarrierAccountsApi.NewgisticsAccountCarrierUpdateSettings: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **carrierId** | **string**|  | 
+ **settings** | [**NewgisticsAccountSettingsDTO**](NewgisticsAccountSettingsDTO.md)|  | 
+ **apiKey** | **string**| API Key | [default to jHpriMLAiP0f8PszTUn37t4D3+q2lW/G+eaMgGAupBY]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[api-key](../README.md#api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/json
  - **Accept**: application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

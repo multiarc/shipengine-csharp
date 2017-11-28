@@ -216,8 +216,8 @@ namespace ShipEngine.ApiClient.Model
                 ) && 
                 (
                     this.Events == input.Events ||
-                    (this.Events != null &&
-                    this.Events.SequenceEqual(input.Events))
+                    this.Events != null &&
+                    this.Events.SequenceEqual(input.Events)
                 );
         }
 

@@ -41,13 +41,13 @@ namespace ShipEngine.ApiClient.Model
             /// Enum Inch for "inch"
             /// </summary>
             [EnumMember(Value = "inch")]
-            Inch,
+            Inch = 1,
             
             /// <summary>
             /// Enum Centimeter for "centimeter"
             /// </summary>
             [EnumMember(Value = "centimeter")]
-            Centimeter
+            Centimeter = 2
         }
 
         /// <summary>

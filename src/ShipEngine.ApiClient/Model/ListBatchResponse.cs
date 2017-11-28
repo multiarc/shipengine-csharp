@@ -126,8 +126,8 @@ namespace ShipEngine.ApiClient.Model
             return 
                 (
                     this.Batches == input.Batches ||
-                    (this.Batches != null &&
-                    this.Batches.SequenceEqual(input.Batches))
+                    this.Batches != null &&
+                    this.Batches.SequenceEqual(input.Batches)
                 ) && 
                 (
                     this.Total == input.Total ||

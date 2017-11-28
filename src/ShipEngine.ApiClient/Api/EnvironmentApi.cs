@@ -14,6 +14,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using RestSharp;
 using ShipEngine.ApiClient.Client;
+using ShipEngine.ApiClient.Model;
 
 namespace ShipEngine.ApiClient.Api
 {
@@ -30,9 +31,103 @@ namespace ShipEngine.ApiClient.Api
         /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWebhookDto"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Object</returns>
-        Object EnvironmentWebhooks (string apiKey);
+        /// <returns>WebhookDTO</returns>
+        WebhookDTO EnvironmentCreateWebhook (CreateWebhookDTO createWebhookDto, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of WebhookDTO</returns>
+        ApiResponse<WebhookDTO> EnvironmentCreateWebhookWithHttpInfo (CreateWebhookDTO createWebhookDto, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        void EnvironmentDeleteWebhook (string webhookId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> EnvironmentDeleteWebhookWithHttpInfo (string webhookId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>WebhookDTO</returns>
+        WebhookDTO EnvironmentGetWebhookById (string webhookId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of WebhookDTO</returns>
+        ApiResponse<WebhookDTO> EnvironmentGetWebhookByIdWithHttpInfo (string webhookId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="updateWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        void EnvironmentUpdateWebhook (string webhookId, UpdateWebhookDTO updateWebhookDto, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="updateWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> EnvironmentUpdateWebhookWithHttpInfo (string webhookId, UpdateWebhookDTO updateWebhookDto, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>List&lt;WebhookDTO&gt;</returns>
+        List<WebhookDTO> EnvironmentWebhooks (string apiKey);
 
         /// <summary>
         /// 
@@ -42,8 +137,8 @@ namespace ShipEngine.ApiClient.Api
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> EnvironmentWebhooksWithHttpInfo (string apiKey);
+        /// <returns>ApiResponse of List&lt;WebhookDTO&gt;</returns>
+        ApiResponse<List<WebhookDTO>> EnvironmentWebhooksWithHttpInfo (string apiKey);
         /// <summary>
         /// 
         /// </summary>
@@ -74,9 +169,103 @@ namespace ShipEngine.ApiClient.Api
         /// 
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWebhookDto"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> EnvironmentWebhooksAsync (string apiKey);
+        /// <returns>Task of WebhookDTO</returns>
+        System.Threading.Tasks.Task<WebhookDTO> EnvironmentCreateWebhookAsync (CreateWebhookDTO createWebhookDto, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (WebhookDTO)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhookDTO>> EnvironmentCreateWebhookAsyncWithHttpInfo (CreateWebhookDTO createWebhookDto, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task EnvironmentDeleteWebhookAsync (string webhookId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> EnvironmentDeleteWebhookAsyncWithHttpInfo (string webhookId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of WebhookDTO</returns>
+        System.Threading.Tasks.Task<WebhookDTO> EnvironmentGetWebhookByIdAsync (string webhookId, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (WebhookDTO)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebhookDTO>> EnvironmentGetWebhookByIdAsyncWithHttpInfo (string webhookId, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="updateWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task EnvironmentUpdateWebhookAsync (string webhookId, UpdateWebhookDTO updateWebhookDto, string apiKey);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="updateWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> EnvironmentUpdateWebhookAsyncWithHttpInfo (string webhookId, UpdateWebhookDTO updateWebhookDto, string apiKey);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of List&lt;WebhookDTO&gt;</returns>
+        System.Threading.Tasks.Task<List<WebhookDTO>> EnvironmentWebhooksAsync (string apiKey);
 
         /// <summary>
         /// 
@@ -86,8 +275,8 @@ namespace ShipEngine.ApiClient.Api
         /// </remarks>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> EnvironmentWebhooksAsyncWithHttpInfo (string apiKey);
+        /// <returns>Task of ApiResponse (List&lt;WebhookDTO&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<WebhookDTO>>> EnvironmentWebhooksAsyncWithHttpInfo (string apiKey);
         /// <summary>
         /// 
         /// </summary>
@@ -213,11 +402,683 @@ namespace ShipEngine.ApiClient.Api
         ///  
         /// </summary>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWebhookDto"></param>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Object</returns>
-        public Object EnvironmentWebhooks (string apiKey)
+        /// <returns>WebhookDTO</returns>
+        public WebhookDTO EnvironmentCreateWebhook (CreateWebhookDTO createWebhookDto, string apiKey)
         {
-             ApiResponse<Object> localVarResponse = EnvironmentWebhooksWithHttpInfo(apiKey);
+             ApiResponse<WebhookDTO> localVarResponse = EnvironmentCreateWebhookWithHttpInfo(createWebhookDto, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of WebhookDTO</returns>
+        public ApiResponse< WebhookDTO > EnvironmentCreateWebhookWithHttpInfo (CreateWebhookDTO createWebhookDto, string apiKey)
+        {
+            // verify the required parameter 'createWebhookDto' is set
+            if (createWebhookDto == null)
+                throw new ApiException(400, "Missing required parameter 'createWebhookDto' when calling EnvironmentApi->EnvironmentCreateWebhook");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling EnvironmentApi->EnvironmentCreateWebhook");
+
+            var localVarPath = "/v1/environment/webhooks";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (createWebhookDto != null && createWebhookDto.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(createWebhookDto); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = createWebhookDto; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("EnvironmentCreateWebhook", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<WebhookDTO>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (WebhookDTO) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WebhookDTO)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of WebhookDTO</returns>
+        public async System.Threading.Tasks.Task<WebhookDTO> EnvironmentCreateWebhookAsync (CreateWebhookDTO createWebhookDto, string apiKey)
+        {
+             ApiResponse<WebhookDTO> localVarResponse = await EnvironmentCreateWebhookAsyncWithHttpInfo(createWebhookDto, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (WebhookDTO)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<WebhookDTO>> EnvironmentCreateWebhookAsyncWithHttpInfo (CreateWebhookDTO createWebhookDto, string apiKey)
+        {
+            // verify the required parameter 'createWebhookDto' is set
+            if (createWebhookDto == null)
+                throw new ApiException(400, "Missing required parameter 'createWebhookDto' when calling EnvironmentApi->EnvironmentCreateWebhook");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling EnvironmentApi->EnvironmentCreateWebhook");
+
+            var localVarPath = "/v1/environment/webhooks";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (createWebhookDto != null && createWebhookDto.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(createWebhookDto); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = createWebhookDto; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("EnvironmentCreateWebhook", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<WebhookDTO>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (WebhookDTO) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WebhookDTO)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        public void EnvironmentDeleteWebhook (string webhookId, string apiKey)
+        {
+             EnvironmentDeleteWebhookWithHttpInfo(webhookId, apiKey);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> EnvironmentDeleteWebhookWithHttpInfo (string webhookId, string apiKey)
+        {
+            // verify the required parameter 'webhookId' is set
+            if (webhookId == null)
+                throw new ApiException(400, "Missing required parameter 'webhookId' when calling EnvironmentApi->EnvironmentDeleteWebhook");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling EnvironmentApi->EnvironmentDeleteWebhook");
+
+            var localVarPath = "/v1/environment/webhooks/{webhook_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (webhookId != null) localVarPathParams.Add("webhook_id", Configuration.ApiClient.ParameterToString(webhookId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("EnvironmentDeleteWebhook", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task EnvironmentDeleteWebhookAsync (string webhookId, string apiKey)
+        {
+             await EnvironmentDeleteWebhookAsyncWithHttpInfo(webhookId, apiKey);
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> EnvironmentDeleteWebhookAsyncWithHttpInfo (string webhookId, string apiKey)
+        {
+            // verify the required parameter 'webhookId' is set
+            if (webhookId == null)
+                throw new ApiException(400, "Missing required parameter 'webhookId' when calling EnvironmentApi->EnvironmentDeleteWebhook");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling EnvironmentApi->EnvironmentDeleteWebhook");
+
+            var localVarPath = "/v1/environment/webhooks/{webhook_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (webhookId != null) localVarPathParams.Add("webhook_id", Configuration.ApiClient.ParameterToString(webhookId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("EnvironmentDeleteWebhook", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>WebhookDTO</returns>
+        public WebhookDTO EnvironmentGetWebhookById (string webhookId, string apiKey)
+        {
+             ApiResponse<WebhookDTO> localVarResponse = EnvironmentGetWebhookByIdWithHttpInfo(webhookId, apiKey);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of WebhookDTO</returns>
+        public ApiResponse< WebhookDTO > EnvironmentGetWebhookByIdWithHttpInfo (string webhookId, string apiKey)
+        {
+            // verify the required parameter 'webhookId' is set
+            if (webhookId == null)
+                throw new ApiException(400, "Missing required parameter 'webhookId' when calling EnvironmentApi->EnvironmentGetWebhookById");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling EnvironmentApi->EnvironmentGetWebhookById");
+
+            var localVarPath = "/v1/environment/webhooks/{webhook_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (webhookId != null) localVarPathParams.Add("webhook_id", Configuration.ApiClient.ParameterToString(webhookId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("EnvironmentGetWebhookById", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<WebhookDTO>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (WebhookDTO) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WebhookDTO)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of WebhookDTO</returns>
+        public async System.Threading.Tasks.Task<WebhookDTO> EnvironmentGetWebhookByIdAsync (string webhookId, string apiKey)
+        {
+             ApiResponse<WebhookDTO> localVarResponse = await EnvironmentGetWebhookByIdAsyncWithHttpInfo(webhookId, apiKey);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse (WebhookDTO)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<WebhookDTO>> EnvironmentGetWebhookByIdAsyncWithHttpInfo (string webhookId, string apiKey)
+        {
+            // verify the required parameter 'webhookId' is set
+            if (webhookId == null)
+                throw new ApiException(400, "Missing required parameter 'webhookId' when calling EnvironmentApi->EnvironmentGetWebhookById");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling EnvironmentApi->EnvironmentGetWebhookById");
+
+            var localVarPath = "/v1/environment/webhooks/{webhook_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (webhookId != null) localVarPathParams.Add("webhook_id", Configuration.ApiClient.ParameterToString(webhookId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("EnvironmentGetWebhookById", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<WebhookDTO>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (WebhookDTO) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WebhookDTO)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="updateWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns></returns>
+        public void EnvironmentUpdateWebhook (string webhookId, UpdateWebhookDTO updateWebhookDto, string apiKey)
+        {
+             EnvironmentUpdateWebhookWithHttpInfo(webhookId, updateWebhookDto, apiKey);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="updateWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> EnvironmentUpdateWebhookWithHttpInfo (string webhookId, UpdateWebhookDTO updateWebhookDto, string apiKey)
+        {
+            // verify the required parameter 'webhookId' is set
+            if (webhookId == null)
+                throw new ApiException(400, "Missing required parameter 'webhookId' when calling EnvironmentApi->EnvironmentUpdateWebhook");
+            // verify the required parameter 'updateWebhookDto' is set
+            if (updateWebhookDto == null)
+                throw new ApiException(400, "Missing required parameter 'updateWebhookDto' when calling EnvironmentApi->EnvironmentUpdateWebhook");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling EnvironmentApi->EnvironmentUpdateWebhook");
+
+            var localVarPath = "/v1/environment/webhooks/{webhook_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (webhookId != null) localVarPathParams.Add("webhook_id", Configuration.ApiClient.ParameterToString(webhookId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (updateWebhookDto != null && updateWebhookDto.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(updateWebhookDto); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = updateWebhookDto; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("EnvironmentUpdateWebhook", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="updateWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task EnvironmentUpdateWebhookAsync (string webhookId, UpdateWebhookDTO updateWebhookDto, string apiKey)
+        {
+             await EnvironmentUpdateWebhookAsyncWithHttpInfo(webhookId, updateWebhookDto, apiKey);
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookId"></param>
+        /// <param name="updateWebhookDto"></param>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> EnvironmentUpdateWebhookAsyncWithHttpInfo (string webhookId, UpdateWebhookDTO updateWebhookDto, string apiKey)
+        {
+            // verify the required parameter 'webhookId' is set
+            if (webhookId == null)
+                throw new ApiException(400, "Missing required parameter 'webhookId' when calling EnvironmentApi->EnvironmentUpdateWebhook");
+            // verify the required parameter 'updateWebhookDto' is set
+            if (updateWebhookDto == null)
+                throw new ApiException(400, "Missing required parameter 'updateWebhookDto' when calling EnvironmentApi->EnvironmentUpdateWebhook");
+            // verify the required parameter 'apiKey' is set
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'apiKey' when calling EnvironmentApi->EnvironmentUpdateWebhook");
+
+            var localVarPath = "/v1/environment/webhooks/{webhook_id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "text/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (webhookId != null) localVarPathParams.Add("webhook_id", Configuration.ApiClient.ParameterToString(webhookId)); // path parameter
+            if (apiKey != null) localVarHeaderParams.Add("api-key", Configuration.ApiClient.ParameterToString(apiKey)); // header parameter
+            if (updateWebhookDto != null && updateWebhookDto.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(updateWebhookDto); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = updateWebhookDto; // byte array
+            }
+
+            // authentication (api-key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("api-key")))
+            {
+                localVarHeaderParams["api-key"] = Configuration.GetApiKeyWithPrefix("api-key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("EnvironmentUpdateWebhook", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="apiKey">API Key</param>
+        /// <returns>List&lt;WebhookDTO&gt;</returns>
+        public List<WebhookDTO> EnvironmentWebhooks (string apiKey)
+        {
+             ApiResponse<List<WebhookDTO>> localVarResponse = EnvironmentWebhooksWithHttpInfo(apiKey);
              return localVarResponse.Data;
         }
 
@@ -226,8 +1087,8 @@ namespace ShipEngine.ApiClient.Api
         /// </summary>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">API Key</param>
-        /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > EnvironmentWebhooksWithHttpInfo (string apiKey)
+        /// <returns>ApiResponse of List&lt;WebhookDTO&gt;</returns>
+        public ApiResponse< List<WebhookDTO> > EnvironmentWebhooksWithHttpInfo (string apiKey)
         {
             // verify the required parameter 'apiKey' is set
             if (apiKey == null)
@@ -276,9 +1137,9 @@ namespace ShipEngine.ApiClient.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<List<WebhookDTO>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+                (List<WebhookDTO>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<WebhookDTO>)));
         }
 
         /// <summary>
@@ -286,10 +1147,10 @@ namespace ShipEngine.ApiClient.Api
         /// </summary>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> EnvironmentWebhooksAsync (string apiKey)
+        /// <returns>Task of List&lt;WebhookDTO&gt;</returns>
+        public async System.Threading.Tasks.Task<List<WebhookDTO>> EnvironmentWebhooksAsync (string apiKey)
         {
-             ApiResponse<Object> localVarResponse = await EnvironmentWebhooksAsyncWithHttpInfo(apiKey);
+             ApiResponse<List<WebhookDTO>> localVarResponse = await EnvironmentWebhooksAsyncWithHttpInfo(apiKey);
              return localVarResponse.Data;
 
         }
@@ -299,8 +1160,8 @@ namespace ShipEngine.ApiClient.Api
         /// </summary>
         /// <exception cref="ShipEngine.ApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">API Key</param>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> EnvironmentWebhooksAsyncWithHttpInfo (string apiKey)
+        /// <returns>Task of ApiResponse (List&lt;WebhookDTO&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<WebhookDTO>>> EnvironmentWebhooksAsyncWithHttpInfo (string apiKey)
         {
             // verify the required parameter 'apiKey' is set
             if (apiKey == null)
@@ -349,9 +1210,9 @@ namespace ShipEngine.ApiClient.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<List<WebhookDTO>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Object) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+                (List<WebhookDTO>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<WebhookDTO>)));
         }
 
         /// <summary>

@@ -90,8 +90,8 @@ namespace ShipEngine.ApiClient.Model
             return 
                 (
                     this.Warehouses == input.Warehouses ||
-                    (this.Warehouses != null &&
-                    this.Warehouses.SequenceEqual(input.Warehouses))
+                    this.Warehouses != null &&
+                    this.Warehouses.SequenceEqual(input.Warehouses)
                 );
         }
 

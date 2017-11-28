@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | [optional] 
 **Domestic** | **bool?** |  | [optional] 
 **International** | **bool?** |  | [optional] 
+**IsMultiPackageSupported** | **bool?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
